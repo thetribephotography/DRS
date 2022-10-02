@@ -1,0 +1,26 @@
+.box,
+.set{ 
+    opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 16px;
+  transform: scale(0.8);
+  transition: 0.5s;
+}
+
+.layout{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    /* grid-gap: 20px; */
+    /* -ms-grid-column-align: center; */
+
+}
+
+.upload{
+    margin: 2px 2px 2px 2px;
+    padding: 2px 2px 2px 2px;
+    text-align: center;
+    align-items: center;
+    display: grid;
+    
+}

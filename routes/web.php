@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use Spatie\Permission\Traits\HasRoles;
+use App\Models\User;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UploadController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +25,40 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/page', function () {
+    if (Auth::user()->hasRole('admin')){
+        return view ('admin.index');
+    } else if(Auth::user()->hasRole('registered')){
+        return view('user.index');
+    }
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/admin/index', function () {
-    return view('admin.index');
-})->middleware(['auth', 'role:admin'])->name('admin.index');
+Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
+    // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
+    
+});
 
-Route::get('/user/index', function () {
-    return view('user.index');
-})->middleware(['auth', 'role:registered'])->name('user.index');
+Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
+    Route::any('user/upload',[UserController::class, 'upload'])->name('user.upload');
+    Route::any('user/publish',[UserController::class, 'published'])->name('user.publish');
+    Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
+    Route::any('user/software',[UserController::class, 'softwares'])->name('user.software');
+    Route::any('upload/software',[UploadController::class, 'software'])->name('uploads.software');
+    Route::any('user/dataset',[UserController::class, 'datasets'])->name('user.dataset');
+    Route::any('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
+    Route::any('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
+    Route::any('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
+
+
+});
+
+// Route::get('/layouts/admin', function(){
+//    return view('layouts.admin');
+// });
 
 require __DIR__.'/auth.php';
