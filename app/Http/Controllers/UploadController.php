@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Upload;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
+use Illuminate\Support\Facades\Auth;
 
 
 use Illuminate\Http\Request;
@@ -27,9 +29,12 @@ class UploadController extends Controller
 
         ]);
 
-     // differenciate between publish,dataset,software and workflow when pulling categories from db
 
+     // differenciate between publish,dataset,software and workflow when pulling categories from db
        $topic_id = 1;
+
+        // get Authenticated user id 
+       $user = Auth::id();
 
        $path = $this->UploadFile($request->file('summary-upload'), 'Publish');
 
@@ -43,6 +48,7 @@ class UploadController extends Controller
         $upload->access_id = $request->example;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
+        $upload->user_id = $user;
 
         $upload->save();
 
@@ -71,8 +77,11 @@ class UploadController extends Controller
         ]);
 
      // differenciate between publish,dataset,software and workflow when pulling categories from db
-
        $topic_id = 2;
+
+        // get Authenticated user id 
+        $user = Auth::id();
+
 
        $path = $this->UploadFile($request->file('file-upload'), 'Software');
         
@@ -90,6 +99,7 @@ class UploadController extends Controller
         $upload->access_id = $request->example;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
+        $upload->user_id = $user;
 
         $upload->save();
 
@@ -117,11 +127,14 @@ class UploadController extends Controller
         ]);
 
      // differenciate between publish,dataset,software and workflow when pulling categories from db
-
        $topic_id = 3;
 
-       $path = $this->UploadFile($request->file('file-upload'), 'Dataset');
 
+        // get Authenticated user id 
+        $user = Auth::id();
+
+
+       $path = $this->UploadFile($request->file('file-upload'), 'Dataset');
           //trying to upload multiple files from different inputs into one column
 
     // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
@@ -136,6 +149,7 @@ class UploadController extends Controller
         $upload->access_id = $request->example;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
+        $upload->user_id = $user;
 
         $upload->save();
 
@@ -163,11 +177,13 @@ class UploadController extends Controller
         ]);
 
      // differenciate between publish,dataset,software and workflow when pulling categories from db
-
        $topic_id = 4;
 
-       $path = $this->UploadFile($request->file('file-upload'), 'Webflow');
+        // get Authenticated user id 
+       $user = Auth::id();
 
+
+       $path = $this->UploadFile($request->file('file-upload'), 'Webflow');
           //trying to upload multiple files from different inputs into one column
 
     // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
@@ -182,6 +198,7 @@ class UploadController extends Controller
         $upload->access_id = $request->example;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
+        $upload->user_id = $user;
 
         $upload->save();
 
@@ -191,6 +208,12 @@ class UploadController extends Controller
 
     
 
+    }
+
+    public function uploadlist(){
+
+            return Upload::all();
+            return view ('user.upload_list');
     }
 
 }

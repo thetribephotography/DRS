@@ -23,6 +23,8 @@ return new class extends Migration
             $table->mediumText('keywords');
             $table->unsignedinteger('topic_id')->nullable();
             $table->unsignedinteger('access_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('doi_id')->nullable();
             $table->string('path');
 
