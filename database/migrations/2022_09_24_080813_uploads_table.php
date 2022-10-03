@@ -27,9 +27,9 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('doi_id')->nullable();
             $table->string('path');
-
             
             $table->timestamps();
+            
         });
     }
 

@@ -54,6 +54,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     Route::any('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
     Route::any('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
+    Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
 
 
 });

@@ -212,8 +212,23 @@ class UploadController extends Controller
 
     public function uploadlist(){
 
-            return Upload::all();
-            return view ('user.upload_list');
+            
+            $user = Auth::id();
+
+            $list = Upload::where('user_id', $user)->get();
+
+            // dd($list);
+
+            return view ('user.upload_list', compact('list', 'user'));
+    }
+
+    public function uploadshow($id){
+        // dd('ghj');
+        $value = Upload::find($id);
+
+        // dd($value);
+
+        return view('user.upload_show')->with('val', $value);
     }
 
 }
