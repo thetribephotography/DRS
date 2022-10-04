@@ -223,9 +223,8 @@ class UploadController extends Controller
     }
 
     public function uploadshow($id){
-        // dd('ghj');
-        $value = Upload::find($id);
-
+        
+        $value = Upload::find($id)->get_class_vars('intoviet', )->get();
         // dd($value);
 
         return view('user.upload_show')->with('val', $value);
