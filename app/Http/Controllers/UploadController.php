@@ -232,4 +232,6 @@ class UploadController extends Controller
         return view('user.upload_show')->with('value', $value);
     }
 
+    
+
 }
