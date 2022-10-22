@@ -64,15 +64,6 @@
                       </div>
                     </div>
                     
-                    {{-- <div class="col-span-6 sm:col-span-4">
-                        <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                        <select name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                          <option>United States</option>
-                          <option>Canada</option>
-                          <option>Mexico</option>
-                        </select>
-                    </div> --}}
-
 
                     <div class="col-span-6 sm:col-span-6">
                       <hr class="my-4 mx-auto w-48 h-1 bg-gray-100 rounded border-0 md:my-10 dark:bg-gray-700">   
