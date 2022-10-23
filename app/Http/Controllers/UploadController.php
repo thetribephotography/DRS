@@ -55,7 +55,6 @@ class UploadController extends Controller
         // dd(publish);
 
         return redirect ('/page')->with ('status', 'Upload Successful');
-
     
 
     }

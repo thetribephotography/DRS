@@ -11,9 +11,6 @@
 .layout{
     display: grid;
     grid-template-columns: repeat(4,auto);
-    /* grid-gap: 20px; */
-    /* -ms-grid-column-align: center; */
-
 }
 
 .upload{
