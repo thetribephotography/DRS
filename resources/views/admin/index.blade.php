@@ -7,5 +7,8 @@
     </x-slot>
     
     <h1>ADMIN PAGEEEEEEEEEE</h1>
+
+
+    
     
     </x-app-layout>
