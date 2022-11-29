@@ -161,7 +161,7 @@ class UploadController extends Controller
     }
 
 
-    public function webflow(Request $request){
+    public function webflow(Request $requestc){
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -226,9 +226,9 @@ class UploadController extends Controller
         $value = Upload::find($id);
 
         // return $value;
-        // dd($value);
+        dd($value);
 
-        return view('user.upload_show')->with('value', $value);
+        // return view('user.upload_show')->with('value', $value);
     }
 
     
