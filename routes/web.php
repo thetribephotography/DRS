@@ -44,17 +44,17 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
 });
 
 Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
-    Route::any('user/upload',[UserController::class, 'upload'])->name('user.upload');
-    Route::any('user/publish',[UserController::class, 'published'])->name('user.publish');
-    Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    Route::any('user/software',[UserController::class, 'softwares'])->name('user.software');
-    Route::any('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::any('user/dataset',[UserController::class, 'datasets'])->name('user.dataset');
-    Route::any('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::any('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
-    Route::any('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-    Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
-    Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
+    // Route::any('user/upload',[UserController::class, 'upload'])->name('user.upload');
+    // Route::any('user/publish',[UserController::class, 'published'])->name('user.publish');
+    // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
+    // Route::any('user/software',[UserController::class, 'softwares'])->name('user.software');
+    // Route::any('upload/software',[UploadController::class, 'software'])->name('uploads.software');
+    // Route::any('user/dataset',[UserController::class, 'datasets'])->name('user.dataset');
+    // Route::any('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
+    // Route::any('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
+    // Route::any('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
+    // Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
+    // Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
 
 
 });
