@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Traits\HasRoles;
+// use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
+use Maklad\Permission\Traits\HasRoles;
+// use Spatie\Permission\Traits\HasRoles;
 
 class Upload extends Model
 {
     use HasFactory, HasRoles;
+
+    protected $guard_name = 'web';
 
     protected $fillable = [
         'title',
@@ -26,7 +30,12 @@ class Upload extends Model
     ];
 
 
-    public function user(){
-        return $this->belongsTo( User::class, 'user_id' );
+        public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
+
+    // public function user(){
+    //     return $this->belongsTo( User::class, 'user_id' );
+    // }
 }

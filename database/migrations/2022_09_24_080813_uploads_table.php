@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+// use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,22 +14,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('uploads', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->mediumText('description');
-            $table->dateTime('published_at');
-            $table->string('language');
-            $table->mediumText('author');
-            $table->mediumText('keywords');
-            $table->unsignedinteger('topic_id')->nullable();
-            $table->unsignedinteger('access_id')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('doi_id')->nullable();
-            $table->string('path');
+        Schema::create('uploads', function (Blueprint $collection) {
+            // $collection->id();
+            $collection->string('title');
+            $collection->string('description');
+            $collection->string('published_at');
+            $collection->string('language');
+            $collection->string('author');
+            $collection->string('keywords');
+            $collection->integer('topic_id')->nullable();
+            $collection->integer('access_id')->nullable();
+            $collection->unsignedBigInteger('user_id');
+            $collection->index('user_id');
+            // $collection->string('doi_id')->nullable();
+            $collection->string('path');
             
-            $table->timestamps();
+            $collection->timestamps();
             
         });
     }
