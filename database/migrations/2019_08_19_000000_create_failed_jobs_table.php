@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('failed_jobs', function (Blueprint $collection) {
-            // $collection->id();
+            $collection->id()->unique();
             $collection->string('uuid')->unique();
             $collection->string('connection');
             $collection->string('queue');

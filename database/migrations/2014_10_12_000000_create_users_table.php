@@ -15,6 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $collection) {
+            $collection->id()->unique();
             // $collection->index();
             $collection->string('name');
             $collection->string('email')->unique();
