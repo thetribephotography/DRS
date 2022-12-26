@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Controllers\Auth\RegisteredUserController;
 // use Spatie\Permission\Traits\HasRoles;
+use Maklad\Permission\Traits\HasRoles;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
