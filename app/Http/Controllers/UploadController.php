@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
 use Illuminate\Support\Facades\Auth;
+use Maklad\Permission\Traits\HasRoles;
+use Jenssegers\Mongodb\Eloquent\Model;
+
 
 
 use Illuminate\Http\Request;
