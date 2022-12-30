@@ -236,4 +236,20 @@ class UploadController extends Controller
 
     
 
+// trying the refactor the code
+    // public function uploadnew(Request $request){
+    //     request for specific hidden column and save in variable
+    //     if ( a hidden input is == to a particular number){
+    //         save in the db in specific column to differenciate the upload type 
+    //     }  else if (same condition for diffenrent view type){
+    //         do the same
+    //     } else if(...............){
+    //         do the smae
+    //     } else if (................){
+    //         yehyehyeh
+    //     }
+    // }
+
+    
+
 }
