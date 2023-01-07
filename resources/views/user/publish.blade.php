@@ -120,6 +120,7 @@
                       </div> 
                   </div>
 
+                  <input type="hidden" id="topic_id" name="topic_id" value="1">
 
 
                     </div>

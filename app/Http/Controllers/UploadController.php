@@ -19,199 +19,6 @@ class UploadController extends Controller
 {
     use Uploader;
 
-    public function publish(Request $request){
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'language' => 'required',
-            'author' => 'required',
-            'keywords' => 'required',
-            'example' => 'required',
-            'summary-upload' => 'required',
-
-        ]);
-
-
-     // differenciate between publish,dataset,software and workflow when pulling categories from db
-       $topic_id = 1;
-
-        // get Authenticated user id 
-       $user = Auth::id();
-
-       $path = $this->UploadFile($request->file('summary-upload'), 'Publish');
-
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-
-        $upload->save();
-
-        // dd(publish);
-
-        return redirect ('/page')->with ('status', 'Upload Successful');
-    
-
-    }
-
-
-
-    public function software(Request $request){
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'language' => 'required',
-            'author' => 'required',
-            'keywords' => 'required',
-            'example' => 'required',
-            // 'summary-upload' => 'required',
-            'file-upload' => 'required',
-
-        ]);
-
-     // differenciate between publish,dataset,software and workflow when pulling categories from db
-       $topic_id = 2;
-
-        // get Authenticated user id 
-        $user = Auth::id();
-
-
-       $path = $this->UploadFile($request->file('file-upload'), 'Software');
-        
-       //trying to upload multiple files from different inputs into one column
-
-    // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
-
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-
-        $upload->save();
-
-        // dd(publish);
-
-        return redirect ('/page')->with ('status', 'Upload Successful');
-
-    
-
-    }
-
-
-    public function dataset(Request $request){
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'language' => 'required',
-            'author' => 'required',
-            'keywords' => 'required',
-            'example' => 'required',
-            // 'summary-upload' => 'required',
-            'file-upload' => 'required',
-
-        ]);
-
-     // differenciate between publish,dataset,software and workflow when pulling categories from db
-       $topic_id = 3;
-
-
-        // get Authenticated user id 
-        $user = Auth::id();
-
-
-       $path = $this->UploadFile($request->file('file-upload'), 'Dataset');
-          //trying to upload multiple files from different inputs into one column
-
-    // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
-
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-
-        $upload->save();
-
-        // dd(publish);
-
-        return redirect ('/page')->with ('status', 'Upload Successful');
-
-    
-
-    }
-
-
-    public function webflow(Request $requestc){
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'language' => 'required',
-            'author' => 'required',
-            'keywords' => 'required',
-            'example' => 'required',
-            // 'summary-upload' => 'required',
-            'file-upload' => 'required',
-
-        ]);
-
-     // differenciate between publish,dataset,software and workflow when pulling categories from db
-       $topic_id = 4;
-
-        // get Authenticated user id 
-       $user = Auth::id();
-
-
-       $path = $this->UploadFile($request->file('file-upload'), 'Webflow');
-          //trying to upload multiple files from different inputs into one column
-
-    // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
-
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-
-        $upload->save();
-
-        // dd(publish);
-
-        return redirect ('/page')->with ('status', 'Upload Successful');
-
-    
-
-    }
-
     public function uploadlist(){
 
             
@@ -233,22 +40,121 @@ class UploadController extends Controller
 
         // return view('user.upload_show')->with('value', $value);
     }
-
     
+    // REMEMBER TO UPLOAD MULTIPLE FILES CODE TO ONE PATH(1 for file, 1 FOR VIDEOS/IMAGES)
+    public function publish(Request $request){
 
-// trying the refactor the code
-    // public function uploadnew(Request $request){
-    //     request for specific hidden column and save in variable
-    //     if ( a hidden input is == to a particular number){
-    //         save in the db in specific column to differenciate the upload type 
-    //     }  else if (same condition for diffenrent view type){
-    //         do the same
-    //     } else if(...............){
-    //         do the smae
-    //     } else if (................){
-    //         yehyehyeh
-    //     }
-    // }
+         $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'date' => 'required',
+            'language' => 'required',
+            'author' => 'required',
+            'keywords' => 'required',
+            'example' => 'required',
+            'topic_id' => 'required',
+        ]);
+    
+        //     request for specific hidden column and save in variable
+        $topic_id = $request->topic_id;
+        $file_name = $request->title;
+    
+    if ( $topic_id == 1){
+            
+        $user = Auth::id();
+
+        $path = $this->UploadFile($request->file('summary-upload'), $file_name);
+
+        $upload = new Upload;
+        $upload->title = $request->title;
+        $upload->description = $request->description;
+        $upload->published_at = $request->date;
+        $upload->language = $request->language;
+        $upload->author = $request->author;
+        $upload->keywords = $request->keywords;
+        $upload->access_id = $request->example;
+        $upload->topic_id = $topic_id;
+        $upload->path = $path;
+        $upload->user_id = $user;
+
+        $upload->save(); 
+
+
+    }  else if ($topic_id == 2){
+           
+        $user = Auth::id();
+
+        $path = $this->UploadFile($request->file('file-upload'), $file_name);
+        
+       //trying to upload multiple files from different inputs into one column
+
+       // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+
+        $upload = new Upload;
+        $upload->title = $request->title;
+        $upload->description = $request->description;
+        $upload->published_at = $request->date;
+        $upload->language = $request->language;
+        $upload->author = $request->author;
+        $upload->keywords = $request->keywords;
+        $upload->access_id = $request->example;
+        $upload->topic_id = $topic_id;
+        $upload->path = $path;
+        $upload->user_id = $user;
+
+        $upload->save();
+
+    } else if($topic_id == 3){
+        // get Authenticated user id 
+        $user = Auth::id();
+
+       $path = $this->UploadFile($request->file('file-upload'), $file_name);
+        //trying to upload multiple files from different inputs into one column
+
+       // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+
+        $upload = new Upload;
+        $upload->title = $request->title;
+        $upload->description = $request->description;
+        $upload->published_at = $request->date;
+        $upload->language = $request->language;
+        $upload->author = $request->author;
+        $upload->keywords = $request->keywords;
+        $upload->access_id = $request->example;
+        $upload->topic_id = $topic_id;
+        $upload->path = $path;
+        $upload->user_id = $user;
+
+        $upload->save();
+
+    } else if ($topic_id == 4){
+        // get Authenticated user id 
+        $user = Auth::id();
+
+        $path = $this->UploadFile($request->file('file-upload'), $file_name);
+        //trying to upload multiple files from different inputs into one column
+
+       // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+
+        $upload = new Upload;
+        $upload->title = $request->title;
+        $upload->description = $request->description;
+        $upload->published_at = $request->date;
+        $upload->language = $request->language;
+        $upload->author = $request->author;
+        $upload->keywords = $request->keywords;
+        $upload->access_id = $request->example;
+        $upload->topic_id = $topic_id;
+        $upload->path = $path;
+        $upload->user_id = $user;
+
+        $upload->save();
+
+    }
+
+    return redirect ("/page")->with ("Upload Successful");
+
+}
 
     
 

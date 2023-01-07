@@ -18,7 +18,7 @@
       </div> --}}
     </div>
     <div class="mt-5 md:col-span-2 md:mt-0">
-      <form method="POST" action="{{ route('uploads.software') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('uploads.publish') }}" enctype="multipart/form-data">
         @csrf
         <div class="overflow-hidden shadow sm:rounded-md">
           <div class="bg-white px-4 py-5 sm:p-6">
@@ -133,6 +133,8 @@
                             </label>
                         </div> 
                     </div>
+
+                  <input type="hidden" id="topic_id" name="topic_id" value="2">
 
 
 
