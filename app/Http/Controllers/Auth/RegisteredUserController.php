@@ -55,10 +55,5 @@ class RegisteredUserController extends Controller
 
         return redirect ('/page');
 
-        // if(Auth::login($user) == 'role:admin'){
-        //     return redirect  ('admin.index');
-        // } else{
-        //     return redirect ('ERORR');
-        // }
     }
 }

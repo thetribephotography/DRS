@@ -18,7 +18,7 @@
         </div> --}}
       </div>
       <div class="mt-5 md:col-span-2 md:mt-0">
-        <form action="{{ route('uploads.webflow') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('uploads.publish') }}" method="POST" enctype="multipart/form-data">
           @csrf
 
           <div class="overflow-hidden shadow sm:rounded-md">
@@ -132,6 +132,8 @@
                                 </label>
                             </div> 
                         </div>
+
+                      <input type="hidden" id="topic_id" name="topic_id" value="4">
 
 
 

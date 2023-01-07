@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('uploads', function (Blueprint $collection) {
-            $collection->id()->unique();
+            // $collection->id()->unique();
             $collection->string('title');
             $collection->string('description');
             $collection->string('published_at');
