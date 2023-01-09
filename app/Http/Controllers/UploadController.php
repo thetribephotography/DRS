@@ -20,13 +20,16 @@ class UploadController extends Controller
     use Uploader;
 
     public function uploadlist(){
-
-            
+        
+            // $this->authorize('isRegistered|isAdmin');
             $user = Auth::id();
+
 
             $list = Upload::where('user_id', $user)->get();
 
             // dd($list);
+
+
 
             return view ('user.upload_list', compact('list', 'user'));
     }
@@ -151,6 +154,8 @@ class UploadController extends Controller
         $upload->save();
 
     }
+
+
 
     return redirect ("/page")->with ("Upload Successful");
 
