@@ -36,6 +36,7 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'view_public_post']);
         Permission::firstOrCreate(['name' => 'view_group_post']);
         // Permission::firstOrCreate(['name' => '']);
+        Permission::firstOrCreate(['name' => 'view_user_post']);
 
 
         $registered_user = Role::where('name', 'registered')->first();
