@@ -45,19 +45,31 @@ class UploadController extends Controller
     }
 
     //CREATE GROUP
-    public function newgroup(Request $request){
+    public function newgroup(Request $request, $id){
         $validate = $request->validate([
             'name' => 'required',
             'members' => 'required',
         ]);
 
         $members = $request->members;
+
+        $users_id = [];
+
+        foreach($members as $members){
+            $users = User::where('email', $members)->get();
+
+                $users_id[] = $user->_id;
+        }
+
+            $update = new Group;
+            $update->name = $request->name;
+            $update->members = $users_id;
         
     }
 
 
     //UPDATE POST
-    public function updatepost(Request $request){
+    public function updatepost(Request $request, $id){
 
         $this->authorize('update_user_post', 'You dont have the Permission to update these records');
 
