@@ -120,6 +120,12 @@
                       </div> 
                   </div>
 
+                  {{-- <label for="" class="input_form">Farm Produce</label>
+                                <div class="input-group input-group-sm mb-3">
+                                      <select class="js-example-basic-multiple form-control border-0 border-bottom" required name="farm_produce" multiple="multiple" id="farmProduce" value="">
+                                      </select>
+                                </div> --}}
+
                   <input type="hidden" id="topic_id" name="topic_id" value="1">
 
 
@@ -142,7 +148,12 @@
     </div>
   </div>
 
-  
+  <script>
+       $('.js-example-basic-multiple').select2({
+        placeholder: "Select multiple items",
+        allowClear: true
+    });
+  </script>
  
  
  
