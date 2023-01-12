@@ -63,7 +63,7 @@ class UploadController extends Controller
 
             $update = new Group;
             $update->name = $request->name;
-            $update->members = $users_id;
+            $update->group_members = $users_id;
         
     }
 
