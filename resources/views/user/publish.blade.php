@@ -92,11 +92,22 @@
                           </div>
                           <p class="text-sm text-gray-500"> Only Your Selected Group members can View and Access this</p>
                           <div id="box" style="display: none">
-                            <select multiple name="grouping" >
-                            <option value="1" selected>Group 1</option>
-                            <option value="2">Group 4</option>
-                            <option value="3">Group 7</option>
-                            </select>
+                    <div class="relative flex w-full">
+                      <select
+                          id="select-role"
+                          name="roles[]"
+                          multiple
+                          placeholder="Select roles..."
+                          autocomplete="off"
+                          class="block w-full rounded-sm cursor-pointer focus:outline-none" >
+                          @foreach ($find as $find)
+                                        <option value="{{$find->_id}}">{{$find->name}}</option>
+                          @endforeach
+          {{-- <option value="2">admin</option>
+          <option value="3">writer</option>
+          <option value="4">user</option> --}}
+        </select>
+      </div>
                           </div>
                         </div>
                       </fieldset>
@@ -150,15 +161,6 @@
     </div>
   </div>
 
-  {{-- <script>
-       $('.js-example-basic-multiple').select2({
-        placeholder: "Select multiple items",
-        allowClear: true
-    });
-  </script> --}}
- 
- 
- 
  
  
  {{-- MIGHT STILL USE THESE --}}

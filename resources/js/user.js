@@ -1,11 +1,6 @@
 import { set } from "lodash";
 
-function text(x) {
-    if (x == 0 )document.getElementbyId("publish_show"). style.display = "block";
-    else document.getElementbyId("publish_show"). style.display = "hidden";
-    return;
-  }
-
+// Shows and hides group selection under access rights selection in Upload Form
 const box = document.getElementById('box');
 
 function handleRadioClick() {
@@ -21,7 +16,12 @@ radioButtons.forEach(radio => {
   radio.addEventListener('click', handleRadioClick);
 });
 
-// $(document).ready(function() {
-//   $('.js-example-basic-multiple').select2();
-// });
+
+
+
+// Tom-Select for multiple seelection in dropdowns
+    new TomSelect('#select-role', {
+      maxItems: 3,
+    });
+
 
