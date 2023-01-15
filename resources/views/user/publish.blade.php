@@ -92,8 +92,8 @@
                           </div>
                           <p class="text-sm text-gray-500"> Only Your Selected Group members can View and Access this</p>
                           <div id="box" style="display: none">
-                            <select name="grouping" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            <option value="1">Group 1</option>
+                            <select multiple name="grouping" >
+                            <option value="1" selected>Group 1</option>
                             <option value="2">Group 4</option>
                             <option value="3">Group 7</option>
                             </select>
@@ -120,11 +120,13 @@
                       </div> 
                   </div>
 
-                  <label for="" class="input_form">Farm Produce</label>
+                  {{-- <label for="" class="input_form">Farm Produce</label>
                                 <div class="input-group input-group-sm mb-3">
-                                      <select class="js-example-basic-multiple form-control border-0 border-bottom" required name="farm_produce" multiple="multiple" id="farmProduce" value="">
-                                      </select>
-                                </div>
+                                    <select class="js-example-basic-multiple form-control border-0 border-bottom" required name="farm_produce" multiple="multiple" id="farmProduce" value="">
+                                    </select>
+                                </div> --}}
+
+                                {{-- <label for=""></label> --}}
 
                   <input type="hidden" id="topic_id" name="topic_id" value="1">
 
@@ -148,12 +150,12 @@
     </div>
   </div>
 
-  <script>
+  {{-- <script>
        $('.js-example-basic-multiple').select2({
         placeholder: "Select multiple items",
         allowClear: true
     });
-  </script>
+  </script> --}}
  
  
  
