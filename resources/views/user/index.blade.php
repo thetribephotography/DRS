@@ -14,6 +14,7 @@
 <h4>HOT LINKS</h4>
 
 <a href="{{route ('user.upload') }}"> UPLOAD PAGE</a>
+<a href="{{route ('user.create_group' )}}"> CREATE GROUP </a>
 
 
 </x-app-layout>

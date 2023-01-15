@@ -21,7 +21,11 @@ radioButtons.forEach(radio => {
 
 // Tom-Select for multiple seelection in dropdowns
     new TomSelect('#select-role', {
-      maxItems: 3,
+      maxItems: '',
     });
 
 
+    // TRY OUT
+    // new TomSelect("#members", {
+    //     maxItems: 7,
+    // });
