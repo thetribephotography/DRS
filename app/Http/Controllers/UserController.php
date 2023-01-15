@@ -16,25 +16,25 @@ class UserController extends Controller
     public function published(){
         $user = Auth::id();
         $find = Group::where('group_member', $user)->get();
-        return view ('user.publish');
+        return view ('user.publish')->with('find', $find);
     }
 
     public function softwares(){
         $user = Auth::id();
         $find = Group::where('group_member', $user)->get();
-        return view ('user.software');
+        return view ('user.software')->with('find', $find);
     }
 
     public function datasets(){
         $user = Auth::id();
         $find = Group::where('group_member', $user)->get();
-        return view ('user.dataset');
+        return view ('user.dataset')->with('find', $find);
     }
 
     public function workflows(){
         $user = Auth::id();
         $find = Group::where('group_member', $user)->get();
-        return view ('user.workflow');
+        return view ('user.workflow')->with('find', $find);
     }
 }
 
