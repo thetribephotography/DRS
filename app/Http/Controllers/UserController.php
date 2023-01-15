@@ -36,6 +36,11 @@ class UserController extends Controller
         $find = Group::where('group_member', $user)->get();
         return view ('user.workflow')->with('find', $find);
     }
+
+    public function create_group(){
+
+        return view ('user.create_group');
+    }
 }
 
 
