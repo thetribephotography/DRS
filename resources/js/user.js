@@ -26,6 +26,3 @@ radioButtons.forEach(radio => {
 
 
     // TRY OUT
-    // new TomSelect("#members", {
-    //     maxItems: 7,
-    // });
