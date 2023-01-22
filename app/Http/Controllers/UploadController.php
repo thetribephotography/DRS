@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Upload;
 use App\Models\User;
+use App\Models\Group;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
@@ -43,30 +44,6 @@ class UploadController extends Controller
 
         // return view('user.upload_show')->with('value', $value);
     }
-
-    //CREATE GROUP
-    public function newgroup(Request $request, $id){
-        $validate = $request->validate([
-            'name' => 'required',
-            'members' => 'required',
-        ]);
-
-        $members = $request->members;
-
-        $users_id = [];
-
-        foreach($members as $members){
-            $users = User::where('email', $members)->get();
-
-                $users_id[] = $user->_id;
-        }
-
-            $update = new Group;
-            $update->name = $request->name;
-            $update->group_members = $users_id;
-        
-    }
-
 
     //UPDATE POST
     public function updatepost(Request $request, $id){

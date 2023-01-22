@@ -20,6 +20,7 @@ class PermissionSeeder extends Seeder
         app()['cache']->forget('maklad.permission.cache');
 
         Permission::firstOrCreate(['name' => 'create_post']);
+        Permission::firstOrCreate(['name' => 'create_group']);
         Permission::firstOrCreate(['name' => 'update_post']);
         Permission::firstOrCreate(['name' => 'group_post']);
         Permission::firstOrCreate(['name' => 'delete_all_post']);
@@ -35,8 +36,11 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'view_all_post']);
         Permission::firstOrCreate(['name' => 'view_public_post']);
         Permission::firstOrCreate(['name' => 'view_group_post']);
-        // Permission::firstOrCreate(['name' => '']);
+        Permission::firstOrCreate(['name' => 'view_group']);
+        Permission::firstOrCreate(['name' => 'view_all_group']);
         Permission::firstOrCreate(['name' => 'view_user_post']);
+        Permission::firstOrCreate(['name' => 'edit_group']);
+        Permission::firstOrCreate(['name' => 'edit_all_group']);
 
 
         $registered_user = Role::where('name', 'registered')->first();
@@ -49,6 +53,9 @@ class PermissionSeeder extends Seeder
             'update_user',
             'view_public_post',
             'view_group_post',
+            'view_group',
+            'create_group',
+            'edit_group',
         ];
 
         foreach ($registered_user_permissions as $permission) {
@@ -67,6 +74,9 @@ class PermissionSeeder extends Seeder
             'delete_user',
             'update_user',
             'view_all_post',
+            'view_all_group',
+            'create_group',
+            'edit_all_group',
         ];
 
         foreach ($admin_user_permissions as $permission) {
