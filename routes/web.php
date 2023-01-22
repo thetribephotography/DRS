@@ -9,6 +9,9 @@ use Maklad\Permission\Traits\HasRoles;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HomeController;
+
 // use PHPUnit\TextUI\XmlConfiguration\GroupCollection;
 
 
@@ -33,6 +36,8 @@ Route::get('/page', function () {
         return view ('admin.index');
     } else if(Auth::user()->hasRole('registered')){
         return view('user.index');
+    } else {
+        return view ('auth.login');
     }
 });
 
