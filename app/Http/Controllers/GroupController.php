@@ -61,7 +61,7 @@ class GroupController extends Controller
     }
 
     // SHOW GROUP SELECTED AND EDIT
-    public function edit(Request $request, $id){
+    public function show_one(Request $request, $id){
 
         $one = Group::where('_id', $id)->get();
 
@@ -70,8 +70,12 @@ class GroupController extends Controller
         }
 
         return view ('/')->with('one', $one);
+    }
 
-        if($request->all == ''){
+
+    // EDIT SELECTED GROUP
+    public function edit(){
+         if($request->all() == ''){
             return redirect ('/page')->with('No Updates Made');
 
         } else {
@@ -86,9 +90,10 @@ class GroupController extends Controller
                 $users = User::where('email', $members)->get();
                 $users_id[] = $users->_id;
             }
-               $one->update();
 
                $one->group_members = $request->$users_id;
+
+               $one->update();
 
             return view ('/page')->with('Update Successful');
 
