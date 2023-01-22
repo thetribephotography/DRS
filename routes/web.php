@@ -9,6 +9,7 @@ use Maklad\Permission\Traits\HasRoles;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
+// use PHPUnit\TextUI\XmlConfiguration\GroupCollection;
 
 
 /*
@@ -63,5 +64,25 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
 // Route::get('/layouts/admin', function(){
 //    return view('layouts.admin');
 // });
+
+
+ //New Ones Created
+    //User
+    // Route::get('user/profile', [UserController::class, 'show'])->name('user-view-profile');
+    // Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user-edit-profile');
+    // Route::get('account-delete/', [UserController::class, 'destroy'])->name('user-delete-account');
+
+    // //Upload
+    // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
+    // Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
+    // Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
+    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
+
+
+    // //Group
+    // Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create-group');
+    // Route::get('user/groups', [GroupContoller::class, 'index'])->name('group.view-group');
+
+
 
 require __DIR__.'/auth.php';
