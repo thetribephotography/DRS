@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\GroupContoller;
+use App\Http\Controllers\HomeController;
 // use Spatie\Permission\Traits\HasRoles;
 use Maklad\Permission\Traits\HasRoles;
 use App\Models\User;
@@ -24,10 +25,9 @@ use PHPUnit\TextUI\XmlConfiguration\GroupCollection;
 */
 
 // Pubic Routes
-Route::get('/', function () {
-    return view('layout');
-});
-
+Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('about-us', [HomeController::class, 'about'])->name('about-us');
+Route::get('terms', [HomeController::class, 'terms'])->name('terms');
 
 
 
