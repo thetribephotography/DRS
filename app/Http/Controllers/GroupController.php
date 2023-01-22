@@ -86,9 +86,10 @@ class GroupController extends Controller
                 $users = User::where('email', $members)->get();
                 $users_id[] = $users->_id;
             }
-               $one->update();
 
                $one->group_members = $request->$users_id;
+
+               $one->update();
 
             return view ('/page')->with('Update Successful');
 
