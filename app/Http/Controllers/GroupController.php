@@ -61,9 +61,9 @@ class GroupController extends Controller
     }
 
     // SHOW GROUP SELECTED AND EDIT
-    public function show_one(Request $request, $id){
+    public function show_one($id){
 
-        $one = Group::where('_id', $id)->get();
+        $one = Group::where('_id', $id)->first();
 
         if(!$one){
             return redirect('')->with('There is no Such Upload');
@@ -74,7 +74,9 @@ class GroupController extends Controller
 
 
     // EDIT SELECTED GROUP
-    public function edit(){
+    public function edit(Request $request, $id){
+        $one = Group::where('_id', $id)->first();
+
          if($request->all() == ''){
             return redirect ('/page')->with('No Updates Made');
 
