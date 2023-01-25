@@ -67,9 +67,9 @@ class GroupController extends Controller
 
         if(!$one){
             return redirect('')->with('There is no Such Upload');
+        } else {
+            return view ('/')->with('one', $one);
         }
-
-        return view ('/')->with('one', $one);
     }
 
 
