@@ -195,8 +195,6 @@ class UploadController extends Controller
         $update->update();
     }
 
-
-
     return redirect ("/page")->with ("Upload Successful");
 
 }
