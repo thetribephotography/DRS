@@ -16,7 +16,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class AdminController extends Controller
 {
-    public function viewall(){
+    public function viewallpost(){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
         $see = Uploads::all();
@@ -59,5 +59,31 @@ class AdminController extends Controller
         }
     }
 
-    
+    public function deleteall($id){
+        $this->authorize('delete_all_post', 'You do not have the Authorization for this Action');
+
+        $delete = Upload::where('_id', $id)->delete();
+
+        return redirect ("/page")->with('Successfully Deleted');
+    }
+
+
+    public function viewallgroups(){
+        $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
+
+        $see = Group::all();
+
+        return view ("")->with('see', $see);
+    }
+
+
+    public function viewonegroup($id){
+        $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
+
+        $view = Group::find($id);
+
+        return view("")->with('view', $view);
+    }
+
+
 }

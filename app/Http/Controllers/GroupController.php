@@ -52,21 +52,23 @@ class GroupController extends Controller
     }
 
     //SHOW ALL GROUPS FOR ADMIN 
-    public function showAll(){
-        $this->authorize('view_all_group', 'Yu dont have the permission to access this');
+    // public function showAll(){
+    //     $this->authorize('view_all_group', 'Yu dont have the permission to access this');
 
-        $list_all = Group::all();
+    //     $list_all = Group::all();
 
-        return view ('')->with('list_all', $list_all);
-    }
+    //     return view ('')->with('list_all', $list_all);
+    // }
 
     // SHOW GROUP SELECTED AND EDIT
     public function show_one($id){
 
-        $one = Group::where('_id', $id)->first();
+        $user = Auth::id();
+
+        $one = Group::where('_id', $id && 'group_members', $user)->first();
 
         if(!$one){
-            return redirect('')->with('There is no Such Upload');
+            return redirect('')->with('There is no Such Group');
         } else {
             return view ('/')->with('one', $one);
         }
@@ -100,5 +102,40 @@ class GroupController extends Controller
             return view ('/page')->with('Update Successful');
 
         }
+    }
+
+    public function leave($id){
+        $user = Auth::id();
+
+        $group = Group::where('_id', $id)->first();
+        $member = $group->group_members;
+
+        if(!$group){
+            return redirect("/page")->with('No Such Group exists');
+        }
+        
+        $found = false;
+
+        for ($i = 0; $i < count($member); $i++){
+            if ($member[i] == $user){
+                unset($member[$i]);
+                $found = true;
+                break;
+            }
+        }
+
+            if($found){
+                // Update the group in the database with the updated array of group members
+            $group->group_members = $member;
+            $group->update();
+
+            return redirect ("/page")->with('User successfully removed from group');
+            }
+             else {
+            return redirect ("/page")->with('User id not found in group members');
+        }
+
+
+
     }
 }
