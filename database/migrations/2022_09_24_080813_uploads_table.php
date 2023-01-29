@@ -28,7 +28,7 @@ return new class extends Migration
             $collection->index('user_id');
             // $collection->string('doi_id')->nullable();
             $collection->string('path');
-            
+            $collection->softDeletes();
             $collection->timestamps();
             
         });

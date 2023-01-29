@@ -36,8 +36,10 @@ class UploadController extends Controller
     public function uploadshow($id){
 
         $this->authorize('view_user_post', 'You do not have the permission to access this.');
+
         
-        $value = Upload::find($id);
+        $user = Auth::id();
+        $value = Upload::find($id && $user);
 
         // return $value;
         dd($value);
@@ -198,6 +200,15 @@ class UploadController extends Controller
     return redirect ("/page")->with ("Upload Successful");
 
 }
+
+    public function deletepost($id){
+        $this->authorize('delete_user_post', 'You do not have the permission to execute this command');
+        $user = Auth::id();
+        $delete = Upload::where('_id', $id && 'user_id', $user)->delete();
+
+        return redirect ("/page")->with('Successfully Deleted');
+
+    }
 
     
 

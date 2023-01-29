@@ -9,11 +9,14 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Maklad\Permission\Traits\HasRoles;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 // use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
+
+        protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
