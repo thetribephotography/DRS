@@ -77,6 +77,7 @@ class PermissionSeeder extends Seeder
             'view_all_group',
             'create_group',
             'edit_all_group',
+            'create_user',
         ];
 
         foreach ($admin_user_permissions as $permission) {

@@ -51,15 +51,6 @@ class GroupController extends Controller
 
     }
 
-    //SHOW ALL GROUPS FOR ADMIN 
-    // public function showAll(){
-    //     $this->authorize('view_all_group', 'Yu dont have the permission to access this');
-
-    //     $list_all = Group::all();
-
-    //     return view ('')->with('list_all', $list_all);
-    // }
-
     // SHOW GROUP SELECTED AND EDIT
     public function show_one($id){
 
