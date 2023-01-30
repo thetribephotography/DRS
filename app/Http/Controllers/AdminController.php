@@ -16,6 +16,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class AdminController extends Controller
 {
+    // VIEW ALL UPLOADS IN A LIST
     public function viewallpost(){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
@@ -24,6 +25,7 @@ class AdminController extends Controller
         return view ('')->with('see', $see);
     }
 
+    // VIEW 1 UPLOAD
     public function view_one_all($id){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
@@ -32,6 +34,7 @@ class AdminController extends Controller
         return view ('')->with('find', $find);
     }
 
+    // UPDATE ANY UPLOAD BY ID
     public function updateall($id){
         $this->authorize('update_all_post', 'You are not Authorized for this Action');
 
@@ -59,6 +62,7 @@ class AdminController extends Controller
         }
     }
 
+    // DELETE ANY UPLOAD
     public function deleteall($id){
         $this->authorize('delete_all_post', 'You do not have the Authorization for this Action');
 
@@ -67,7 +71,7 @@ class AdminController extends Controller
         return redirect ("/page")->with('Successfully Deleted');
     }
 
-
+    // view all groups in a list
     public function viewallgroups(){
         $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
 
@@ -76,7 +80,7 @@ class AdminController extends Controller
         return view ("")->with('see', $see);
     }
 
-
+    // VIEW 1 GROUP
     public function viewonegroup($id){
         $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
 
@@ -85,5 +89,70 @@ class AdminController extends Controller
         return view("")->with('view', $view);
     }
 
+
+    //DELETE ANY GROUP
+    public function deletegroup($id){
+        $this->authorize('edit_all_group', 'You do not have the Authorization for this Action');
+
+        $delete = Group::where('_id', $id)->delete();
+
+        return view("")->with("Successfully Deleted");
+
+    }
+
+        //REMOVE ANY USER FROM ANY GROUP
+        public function remove($id, $user){
+            $this->authorize('edit_all_group', 'You do not have the Authorization for this Action');
+
+            $group = Group::where('_id', $id)->first();
+            $members = $group->group_members;
+
+            $key = array_search($user, $members);
+
+            if(!in_array($user && $members)){
+                return view ("")->with("User not Found in Group");
+            } else {
+                unset($members[$user]);
+                $group->group_members->$members;
+                $group->update();
+
+                return view ("")->with("Successfully Deleted");
+            }
+
+        }
+
+        //SEE ALL USERS
+        public function seeuser(){
+            $this->authorize('create_user', 'You do not have the Authorization for this Action');
+
+            $list = User::all();
+
+            return view("")->with('list', $list);
+        }
+
+        //SHOW 1 USER
+        public function userone($id){
+            $this->authorize('create_user', 'You do not have the Authorization for this Action');
+
+            $show = User::where('_id', $id)->first();
+
+            return view ("")->with('show', $show);
+        }
+
+        // //UPDATE USER
+        // public function userupdate($id){
+
+        // }
+
+
+       //DELETE ANY USER
+       public function userdelete($id){
+        $this->authorize('delete_user', 'You do not have the Authorization for this Action');
+
+        $delete = User::where('_id', $id)->delete();
+
+        return redirect("/page")->with("Successfully deleted");
+
+       }
 
 }
