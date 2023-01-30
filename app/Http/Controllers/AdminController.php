@@ -135,8 +135,9 @@ class AdminController extends Controller
             $this->authorize('create_user', 'You do not have the Authorization for this Action');
 
             $show = User::where('_id', $id)->first();
+            $groups = Group::where('group_members', $id)->get();
 
-            return view ("")->with('show', $show);
+            return view ("", compact ('show', 'groups'));
         }
 
         // //UPDATE USER
