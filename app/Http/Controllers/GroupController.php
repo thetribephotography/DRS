@@ -15,7 +15,7 @@ use App\Models\Group;
 class GroupController extends Controller
 {
     //CREATE GROUP
-    public function newgroup(Request $request, $id){
+    public function create(Request $request, $id){
         $this->authorize('create_group', 'You do not have the Permission to Access this Page');
 
         $validate = $request->validate([

@@ -41,6 +41,10 @@ class UserController extends Controller
 
         return view ('user.create_group');
     }
+
+    public function edit(){
+        return view('user.edit-profile');
+    }
 }
 
 

@@ -73,9 +73,9 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
 
  //New Ones Created
     //User
-    // Route::get('user/profile', [UserController::class, 'show'])->name('user-view-profile');
-    // Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user-edit-profile');
-    // Route::get('account-delete/', [UserController::class, 'destroy'])->name('user-delete-account');
+    Route::get('user/profile', [UserController::class, 'show'])->name('user-view-profile');
+    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user-edit-profile');
+    Route::post('account-delete', [UserController::class, 'destroy'])->name('user-delete-account');
 
     // //Upload
     // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
@@ -85,8 +85,8 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
 
 
     // //Group
-    // Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create-group');
-    // Route::get('user/groups', [GroupContoller::class, 'index'])->name('group.view-group');
+    Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create_group');
+    // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
 
 

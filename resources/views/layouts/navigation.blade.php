@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('/page')" :active="request()->routeIs('/page')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
@@ -20,6 +20,11 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                @if(session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -34,6 +39,12 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        {{-- Dashboard --}}
+                        <x-dropdown-link :href="route('dashboard')" onclick=""> Dashboard </x-dropdown-link>
+
+                        {{-- Profile --}}
+                        <x-dropdown-link :href="route('user-view-profile')" onclick="">Profile</x-dropdown-link>
+                        
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
