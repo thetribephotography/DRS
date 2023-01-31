@@ -12,9 +12,9 @@ use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 // use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable Implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes, MustVerifyEmail;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
         protected $dates = ['deleted_at'];
 

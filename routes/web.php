@@ -26,9 +26,12 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    // PUBLIC / UNPROTECTED ROUTES
+Route::get('/', [HomeController::class, 'index'])->name('landing');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
+
 
 
 Route::get('/page', function () {
@@ -41,9 +44,9 @@ Route::get('/page', function () {
     }
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
