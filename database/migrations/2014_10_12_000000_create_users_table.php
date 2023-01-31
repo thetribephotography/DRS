@@ -19,9 +19,9 @@ return new class extends Migration
             // $collection->index();
             $collection->string('name');
             $collection->string('email')->unique();
-            // $collection->timestamp('email_verified_at')->nullable();
+            $collection->timestamp('email_verified_at')->nullable();
             $collection->string('password');
-            // $collection->rememberToken();
+            $collection->rememberToken();
             $collection->softDeletes();
             $collection->timestamps();
         });
