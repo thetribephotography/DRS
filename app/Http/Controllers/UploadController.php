@@ -11,10 +11,8 @@ use App\Traits\Uploader;
 use Illuminate\Support\Facades\Auth;
 use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\Model;
-
-
-
 use Illuminate\Http\Request;
+
 
 class UploadController extends Controller
 {
