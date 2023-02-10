@@ -29,6 +29,7 @@ class Upload extends Model
         'topic_id',
         'path',
         'user_id',
+        'tags_id',
 
     ];
 
@@ -36,5 +37,9 @@ class Upload extends Model
         public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tag(){
+        return $this->belongsTo(Tag::class, 'tags_id');
     }
 }
