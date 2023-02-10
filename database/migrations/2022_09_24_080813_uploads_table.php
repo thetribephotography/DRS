@@ -26,6 +26,8 @@ return new class extends Migration
             $collection->integer('access_id')->nullable();
             $collection->unsignedBigInteger('user_id');
             $collection->index('user_id');
+            $collection->unsignedBigInteger('tags_id');
+            $collection->index('tags_id')->nullable();
             // $collection->string('doi_id')->nullable();
             $collection->string('path');
             $collection->softDeletes();
