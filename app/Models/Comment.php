@@ -26,6 +26,12 @@ class Comment extends Model
 
     ];
 
+    //Relationship of the user to comments
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function upload()
     {
         return $this->belongsTo(Upload::class, 'comments');

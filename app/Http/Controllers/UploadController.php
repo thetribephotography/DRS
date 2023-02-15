@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\UserController;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Group;
 use App\Models\Software;
 use App\Models\Tag;
@@ -41,7 +42,10 @@ class UploadController extends Controller
         //
         // $this->authorize('create_post', "You are not authorised");
         $upload = Upload::where('_id', $id)->first();
-        return view('user.show_upload', compact('upload'));
+
+        $comments = Comment::where('upload_id',$upload->_id)->with('user')->get(); //Gets comments and users that made the commment
+        // dd($comments);
+        return view('user.show_upload', compact('upload','comments'));
     }
 
 

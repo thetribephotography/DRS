@@ -46,7 +46,7 @@ class CommentController extends Controller
         //Add new comment id to comment file in this particular upload
         $upload->push('comments', $new_comment->id);
 
-        return redirect('/')->with("Comment Added Succesfully");
+        return redirect()->back()->with("message","Comment Added Sucessfully");
     }
 
     /**
