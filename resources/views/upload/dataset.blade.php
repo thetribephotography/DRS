@@ -2,13 +2,13 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Workflow Upload Form') }}
-        </h2>    
+            {{ __('Dataset Upload Form') }}
+        </h2>
     </x-slot>
-  
-  
+
+
   <div class="container px-4 px-4 mb-4 mt-4">
-  
+
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-0">
@@ -18,22 +18,26 @@
         </div> --}}
       </div>
       <div class="mt-5 md:col-span-2 md:mt-0">
-        <form action="{{ route('uploads.publish') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('upload.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
 
           <div class="overflow-hidden shadow sm:rounded-md">
             <div class="bg-white px-4 py-5 sm:p-6">
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-4">
+
+                    {{-- My Logic. I'll use this until i find a better way of handling things --}}
+                    <input type="hidden" name="type" readonly value="dataset" >
+
                   <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                   <input type="text" name="title" id="title" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                 </div>
-  
+
                 <div class="col-span-6 sm:col-span-4">
                   <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                   <textarea id="description" name="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Brief description for your Project. URLs are hyperlinked."></textarea>
                 </div>
-  
+
                 <div class="col-span-6 sm:col-span-4">
                     <label for="date" class="block text-sm font-medium text-gray-700">Publication Date</label>
                     <div class="relative">
@@ -44,50 +48,50 @@
                     </div>
                 <p class="mt-2 text-sm text-gray-500">Note: Date of first publication.</p>
                 </div>
-  
+
                 <div class="col-span-6 sm:col-span-4">
                   <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
                   <input type="text" name="language" id="language"  class=" js-example-basic-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   <p class="mt-2 text-sm text-gray-500">Primary Language of Upload</p>
                 </div>
-  
+
                 <div class="col-span-6">
                   <label for="author" class="block text-sm font-medium text-gray-700">Author(s)</label>
                   <input type="text" name="author" id="author" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                 </div>
-  
-                
-                       
+
+
+
                       <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                         <label for="keywords" class="block text-sm font-medium text-gray-700">KeyWords</label>
                         <div class="input-group input-group-sm mb-3">
                             <input name="keywords" id="keywords"  multiple="multiple" class="js-example-basic-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ">
-  
+
                       </div>
                     </div>
-                    
+
                     <div class="col-span-6 sm:col-span-6">
-                        <hr class="my-4 mx-auto w-48 h-1 bg-gray-100 rounded border-0 md:my-10 dark:bg-gray-700">   
-                        </div>  
-  
+                    <hr class="my-4 mx-auto w-48 h-1 bg-gray-100 rounded border-0 md:my-10 dark:bg-gray-700">
+                    </div>
+
                     <div class="col-span-6 sm:col-span-6">
                     <fieldset>
                         <legend class="contents text-base font-medium text-gray-900">Access Rights</legend>
-                        <p class="text-sm text-gray-500">Please Choose how Visible your Data will be on Our Platform</p>
+                        <p class="text-sm text-gray-500">Please Choose how Visible your Data will be on the Internet</p>
                         <div class="mt-4 space-y-4">
                           <div class="flex items-center">
                             <input id="push-everything" name="example" value="1" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" checked>
                             <label for="push-everything" class="ml-3 block text-sm font-medium text-gray-700">Public</label>
                           </div>
                           <p class="text-sm text-gray-500"> Anyone Can View and Access this</p>
-  
+
                           <div class="flex items-center">
-                            <input id="push-email" name="example" value="2"  type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <input id="push-email" name="example" value="2" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
                             <label for="push-email" class="ml-3 block text-sm font-medium text-gray-700">Private</label>
                           </div>
                           <p class="text-sm text-gray-500"> Only You Can View and Access this</p>
                           <div class="flex items-center">
-                            <input id="group" name="example" value="2" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <input id="group" name="example" value="3" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
                             <label for="group" class="ml-3 block text-sm font-medium text-gray-700">Group</label>
                           </div>
                           <p class="text-sm text-gray-500"> Only Your Selected Group members can View and Access this</p>
@@ -101,16 +105,16 @@
                         </div>
                       </fieldset>
                     </div>
-  
-  
+
+
                     <div class="col-span-6 sm:col-span-6">
-                        <hr class="my-4 mx-auto w-48 h-1 bg-gray-100 rounded border-0 md:my-10 dark:bg-gray-700">   
+                        <hr class="my-4 mx-auto w-48 h-1 bg-gray-100 rounded border-0 md:my-10 dark:bg-gray-700">
                         </div>
-      
+
 
                         <div class="mt-10 col-span-6 sm:col-span-4">
                         {{-- <div class="flex text-sm text-gray-600"> --}}
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="large_size">Upload Workflow File</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="large_size">Upload Dataset File</label>
                         <input class="block w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400" id="file-upload" name="file-upload" type="file">
                         <p class="pt-3 mb-2 text-sm text-gray-500 dark:text-gray-400">It is Advisable you zip the folder before Uploading for Better Consumption</p>
                         {{-- </div> --}}
@@ -130,34 +134,31 @@
                                     </div>
                                     <input id="dropzone-file"  name="summary-upload" type="file" class="hidden" />
                                 </label>
-                            </div> 
+                            </div>
                         </div>
 
-                      <input type="hidden" id="topic_id" name="topic_id" value="4">
-
-
+                        <input type="hidden" id="topic_id" name="topic_id" value="3">
 
                     </div>
-                    
-  
+
+
                     <div class="px-4 py-3 text-right sm:px-6">
                         <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
                       </div>
-  
+
                     </div>
-                
-                
-  
+
+
+
               </div>
             </div>
-           
+
         </form>
       </div>
     </div>
   </div>
-  
-  
-  
-  
+
+
+
+
   </x-app-layout>
-    

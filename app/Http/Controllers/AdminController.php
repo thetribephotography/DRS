@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
+use App\Models\Group;
 use App\Models\Upload;
 use App\Models\User;
-use App\Models\Group;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Maklad\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Maklad\Permission\Traits\HasRoles;
 
 
 class AdminController extends Controller
 {
+
+    public function index(){
+        return view('admin.index');
+    }
     // VIEW ALL UPLOADS IN A LIST
     public function viewallpost(){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
-        $see = Uploads::all();
+        $see = Upload::all();
 
         return view ('')->with('see', $see);
     }
@@ -29,13 +33,13 @@ class AdminController extends Controller
     public function view_one_all($id){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
-        $find = Uploads::find($id);
+        $find = Upload::find($id);
 
         return view ('')->with('find', $find);
     }
 
     // UPDATE ANY UPLOAD BY ID
-    public function updateall($id){
+    public function updateall(Request $request, $id){
         $this->authorize('update_all_post', 'You are not Authorized for this Action');
 
         if($request->all() == ''){

@@ -10,13 +10,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
-// use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable Implements MustVerifyEmail
+
+// Implements MustVerifyEmail --Temporary
+
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
+    use HasApiTokens, HasRoles, HasFactory, Notifiable, HasRoles, SoftDeletes;
+    protected $guard_name = 'web';
 
-        protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -47,6 +50,7 @@ class User extends Authenticatable Implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 
 
     public function upload(){

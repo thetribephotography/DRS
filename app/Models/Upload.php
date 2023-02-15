@@ -9,6 +9,12 @@ use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 // use Spatie\Permission\Traits\HasRoles;
 
+//Declaring Acccess rights
+const PUBLIC_ACCESS = "public";
+const PRIVATE_ACCESS = "private";
+const GROUP_ACCESS = "group";
+
+
 class Upload extends Model
 {
     use HasFactory, HasRoles, SoftDeletes;
@@ -20,21 +26,66 @@ class Upload extends Model
     protected $fillable = [
         'title',
         'description',
-        'published_at',
-        'language',
-        'author',
-        'keywords',
-        'access_id',
-        'doi_id',
-        'topic_id',
-        'path',
+        'authors',
+        'type',
         'user_id',
-
+        'user_id',
+        'path',
+        'thumbnail_path',
+        'access_rights',
+        'category',
+        'comments',
+        'tags',
+        'languages',
+        'file_type',
+        'file_size',
     ];
 
+    protected $casts = [
+        'access_rights' => 'string',
+        'tags' => 'array',
+        'comments' => 'array',
+        'category' => 'array',
+        'authors' => 'array',
+        'languages' => 'array',
+    ];
 
-        public function user(): BelongsTo
+    // SCOPE FILTER LEARN
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('active', true);
+    // }
+
+    // MAIN SCOPE FILTER
+    public function scopeFilter($query, array $filters){
+
+        if($filters['search'] ?? false){
+
+            //searches by title
+        $query->where('title', 'like', '%' . request('search') . '%');
+
+        }
+
+    }
+
+
+        public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }
+
+
+
+
+

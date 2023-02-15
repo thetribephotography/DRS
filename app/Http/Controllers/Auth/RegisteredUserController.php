@@ -48,12 +48,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $user->assignRole('registered');
-
+        //Assigns role
+        // This means anyone registred from the UI will have this role. Admin and super admins are created manually
+        $user->assignRole('registered user');
         Auth::login($user);
         // return redirect(RouteServiceProvider::HOME);
-
-        return redirect ('/page');
+        return redirect ('/');
 
     }
 }

@@ -1,16 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-// use Spatie\Permission\Traits\HasRoles;
-use Maklad\Permission\Traits\HasRoles;
-use App\Models\User;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UploadController;
+use App\Http\Controllers\DatasetsController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicationsController;
+use App\Http\Controllers\SoftwaresController;
+use App\Http\Controllers\TestUserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkflowsController;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Maklad\Permission\Traits\HasRoles;
+use Illuminate\Http\Request;
+
+
 
 // use PHPUnit\TextUI\XmlConfiguration\GroupCollection;
 
@@ -26,7 +35,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-    // PUBLIC / UNPROTECTED ROUTES
+    // PUBLIC UNPROTECTED ROUTES
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -34,62 +43,70 @@ Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('ter
 
 
 
-Route::get('/page', function () {
-    if (Auth::user()->hasRole('admin')){
-        return view ('admin.index');
-    } else if(Auth::user()->hasRole('registered')){
-        return view('user.index');
-    } else {
-        return view ('auth.login');
-    }
+//For all my test
+Route::get('/test_form', [UploadController::class, 'test']);
+Route::post('/upload',[UploadController::class, 'test_upload']);
+Route::post('/uploading',[UploadController::class, 'test_upload'])->name('uploader');
+
+Route::get('/form2', function () {
+    return view('form2');
 });
+Route::post('/form3', function (Request $request) {
+    dd($request);
+});
+Route::get('/create-test-user-form', [ TestUserController::class , 'create_test_users']);
+Route::post('/create-test-user', [ TestUserController::class , 'store_test_users']);
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
+    // ANYTHING THAT CONSIGN AUTHETICATED ADMIN ONLY
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
-    
+
+    Route::get('/admin-dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
 });
 
-Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
-    Route::any('user/upload',[UserController::class, 'upload'])->name('user.upload');
-    Route::get('user/publish',[UserController::class, 'published'])->name('user.publish');
-    Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    Route::get('user/software',[UserController::class, 'softwares'])->name('user.software');
-    // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::get('user/dataset',[UserController::class, 'datasets'])->name('user.dataset');
-    // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::get('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
-    // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-    Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
-    Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
 
-});
+    // ANYTHING THAT CONSIGN AUTHENTICATED REGISTERED USER
+Route::prefix('')->middleware([ 'auth','role:registered user'])->group(function(){
 
-// Route::get('/layouts/admin', function(){
-//    return view('layouts.admin');
-// });
-
-
- //New Ones Created
+    //New Ones Created
+    //User Dashaboard
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     //User
-    Route::get('user/profile', [UserController::class, 'show'])->name('user-view-profile');
-    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user-edit-profile');
-    Route::post('account-delete', [UserController::class, 'destroy'])->name('user-delete-account');
+    Route::get('user/profile', [UserController::class, 'show'])->name('user.view');
+    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('user/account-delete', [UserController::class, 'destroy'])->name('user.delete');
 
-    // //Upload
-    // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    // Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
-    // Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
+    //Search Result from landing page
+    Route::get('/search-results', [UserController::class, 'search_result']);
+
+    // UPLOAD
+    Route::get('/user/uploads',[UploadController::class, 'index'])->name('user.upload-list');
+    Route::get('/upload',[UploadController::class, 'create'])->name('upload.create');
+    Route::get('/upload/software',[UploadController::class, 'create_software'])->name('upload.create.software');
+    Route::get('/upload/publication',[UploadController::class, 'create_publication'])->name('upload.create.publication');
+    Route::get('/upload/dataset',[UploadController::class, 'create_dataset'])->name('upload.create.dataset');
+    Route::get('/upload/workflow',[UploadController::class, 'create_workflow'])->name('upload.create.workflow');
+    Route::post('/upload-store',[UploadController::class, 'store'])->name('upload.store');
+    Route::get('/uploads/{id}',[UploadController::class, 'show'])->name('user.show.single');
+
+    //Submit comment
+    Route::post('/uploads/{id}/comment', [ CommentController::class, 'store'] );
+    //Categories
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.show');
 
 
-    // //Group
-    Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create_group');
+
+    //Group Setting
+    Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create');
+    Route::get('/groups', [GroupContoller::class, 'index'])->name('group.index');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
+});
+
+
+
+
+
 
 
 

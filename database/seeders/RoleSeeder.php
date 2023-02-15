@@ -21,10 +21,9 @@ class RoleSeeder extends Seeder
     {
 
         // Eloquent::unguard();
-
+        Role::create(['name' => 'super admin']);
         Role::create(['name' => 'admin']);
-        Role::create(['name' => 'registered']);
-        Role::create(['name' => 'visitor']);
-        Role::create(['name' => 'superadmin']);
+        Role::create(['name' => 'registered user']);
+
     }
 }

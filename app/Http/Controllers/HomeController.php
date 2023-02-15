@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Upload;
 
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(){
-        return view('landing');
+
+        // Get the latest *PUBLIC* datasets (4)
+        $uploads = Upload::latest('created_at')->where('acess_rights',"public")->take(4)->get();
+
+        return view('landing', compact('uploads'));
     }
 
     public function about(){

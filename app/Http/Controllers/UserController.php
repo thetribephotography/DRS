@@ -2,48 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Group;
+use App\Models\Upload;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
-    public function upload(){
-        return view ('user.upload');
+    public function index(){
+
+
+        $user_id = Auth::id();
+        $uploads = Upload::where('user_id',$user_id)->get();
+        // $groups = Group::all();
+
+        return view('user.index',compact('uploads',));
     }
 
-    public function published(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('user.publish')->with('find', $find);
-    }
+    public function search_result(Request $request){
 
-    public function softwares(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('user.software')->with('find', $find);
-    }
-
-    public function datasets(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('user.dataset')->with('find', $find);
-    }
-
-    public function workflows(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('user.workflow')->with('find', $find);
-    }
-
-    public function create_group(){
-
-        return view ('user.create_group');
+        $results = Upload::latest()->filter(request(['search',]))->simplepaginate(8);
+        return view('user.search_result', compact('results'));
     }
 
     public function edit(){
-        return view('user.edit-profile');
+        return view('user.edit');
     }
 }
 

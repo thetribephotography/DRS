@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Maklad\Permission\Traits\HasRoles;
-use Jenssegers\Mongodb\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
+use App\Models\Group;
 use App\Models\Upload;
 use App\Models\User;
-use App\Models\Group;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Jenssegers\Mongodb\Eloquent\Model;
+use Maklad\Permission\Traits\HasRoles;
 
 class GroupController extends Controller
 {
@@ -36,7 +36,7 @@ class GroupController extends Controller
             $update = new Group;
             $update->name = $request->name;
             $update->group_members = $users_id;
-        
+
     }
 
     // SHOW ALL GROUPS FOR PARTICULAR USER
@@ -104,11 +104,11 @@ class GroupController extends Controller
         if(!$group){
             return redirect("/page")->with('No Such Group exists');
         }
-        
+
         $found = false;
 
         for ($i = 0; $i < count($member); $i++){
-            if ($member[i] == $user){
+            if ($member[$i] == $user){
                 unset($member[$i]);
                 $found = true;
                 break;

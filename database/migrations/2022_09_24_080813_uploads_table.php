@@ -16,21 +16,43 @@ return new class extends Migration
     {
         Schema::create('uploads', function (Blueprint $collection) {
             // $collection->id()->unique();
-            $collection->string('title');
+
+            //Required for all
+            $collection->index('title');
             $collection->string('description');
-            $collection->string('published_at');
-            $collection->string('language');
-            $collection->string('author');
-            $collection->string('keywords');
-            $collection->integer('topic_id')->nullable();
-            $collection->integer('access_id')->nullable();
-            $collection->unsignedBigInteger('user_id');
+            $collection->array('authors');
+            $collection->string('type'); // "publication", "dataset","software","workflow"
             $collection->index('user_id');
-            // $collection->string('doi_id')->nullable();
+            $collection->unsignedBigInteger('user_id');
             $collection->string('path');
+            $collection->string('thumbnail_path')->nullable();
+            $collection->string('access_rights'); // "public", "private", "group"
+            $collection->array('category'); // Has a category
+            $collection->array('comments')->nullable(); //Upload can have a commment
+            $collection->array('tags')->nullable();
+            $collection->string('file_type'); //Type of file, zip, jpeg, png, exe
+            $collection->bigInteger('file_size'); //Size of File
             $collection->softDeletes();
+
+            //For file size - To be done
+            // $collection->unsignedBigInteger()->nullable();
             $collection->timestamps();
-            
+
+
+            //Special Attributes for Publication
+            $collection->string('published_at')->nullable();
+            $collection->string('doi')->nullable();
+
+            //Special Attributes for Software
+            $collection->array('languages')->nullable();
+
+            //Special Attributes for Dataset
+
+            //Special Attributes for Dataset
+
+
+
+
         });
     }
 
