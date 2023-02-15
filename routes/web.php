@@ -98,8 +98,8 @@ Route::prefix('')->middleware([ 'auth','role:registered user'])->group(function(
 
 
     //Group Setting
-    Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create');
-    Route::get('/groups', [GroupContoller::class, 'index'])->name('group.index');
+    Route::get('/create_group', [GroupController::class, 'create'])->name('group.create');
+    Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 });
 

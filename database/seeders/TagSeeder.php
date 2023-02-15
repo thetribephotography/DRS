@@ -17,7 +17,7 @@ class TagSeeder extends Seeder
     {
         //
         Tag::create([
-            'name' => 'HTML',
+            'name' => 'Workflows',
         ]);
 
         Tag::create([
@@ -34,6 +34,12 @@ class TagSeeder extends Seeder
 
         Tag::create([
             'name' => 'Python-project',
+        ]);
+        Tag::create([
+            'name' => 'Design',
+        ]);
+        Tag::create([
+            'name' => 'Open-source',
         ]);
     }
 }

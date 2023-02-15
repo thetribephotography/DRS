@@ -14,8 +14,42 @@ use Maklad\Permission\Traits\HasRoles;
 
 class GroupController extends Controller
 {
+
+    // SHOW ALL GROUPS FOR PARTICULAR USER
+    public function index(){
+        $this->authorize('view_group', 'Yu dont have the permission to access this');
+
+        $user = Auth::id();
+
+        $groups = Group::where('group_members', $user)->get();
+
+        return view ('')->with('list', compact('groups'));
+
+    }
+
+    // SHOW GROUP SELECTED AND EDIT
+    public function show($id){
+
+        $user = Auth::id();
+
+        $one = Group::where('_id', $id && 'group_members', $user)->first();
+
+        if(!$one){
+            return redirect('')->with('There is no Such Group');
+        } else {
+            return view ('/')->with('one', $one);
+        }
+    }
+
+    public function create(){
+
+        $user_id = Auth::id();
+        // $groups = Group::where('_id',$user_id)->get();
+        return view('group.create');
+    }
+
     //CREATE GROUP
-    public function create(Request $request, $id){
+    public function store(Request $request, $id){
         $this->authorize('create_group', 'You do not have the Permission to Access this Page');
 
         $validate = $request->validate([
@@ -39,38 +73,11 @@ class GroupController extends Controller
 
     }
 
-    // SHOW ALL GROUPS FOR PARTICULAR USER
-    public function show(){
-        $this->authorize('view_group', 'Yu dont have the permission to access this');
-
-        $user = Auth::id();
-
-        $list = Group::where('group_members', $user)->get();
-
-        return view ('')->with('list', $list);
-
-    }
-
-    // SHOW GROUP SELECTED AND EDIT
-    public function show_one($id){
-
-        $user = Auth::id();
-
-        $one = Group::where('_id', $id && 'group_members', $user)->first();
-
-        if(!$one){
-            return redirect('')->with('There is no Such Group');
-        } else {
-            return view ('/')->with('one', $one);
-        }
-    }
-
-
-    // EDIT SELECTED GROUP
+        // EDIT SELECTED GROUP
     public function edit(Request $request, $id){
         $one = Group::where('_id', $id)->first();
 
-         if($request->all() == ''){
+            if($request->all() == ''){
             return redirect ('/page')->with('No Updates Made');
 
         } else {
@@ -86,14 +93,17 @@ class GroupController extends Controller
                 $users_id[] = $users->_id;
             }
 
-               $one->group_members = $request->$users_id;
+                $one->group_members = $request->$users_id;
 
-               $one->update();
+                $one->update();
 
             return view ('/page')->with('Update Successful');
 
         }
     }
+
+
+
 
     public function leave($id){
         $user = Auth::id();

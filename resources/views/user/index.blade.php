@@ -8,8 +8,8 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            {{-- TABLE STARTS HERE --}}
 
+            {{-- TABLE STARTS HERE --}}
             <div class=" p-8 relative overflow-x-auto shadow-md sm:rounded-lg">
                 <h3 class="text-3xl mb-2">Actions</h3>
                 <table class="w-full text-sm text-left text-gray-500">
@@ -49,8 +49,8 @@
                             </th>
                             <td class="px-6 py-4">
                                 <a href="{{route('group.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Create</a>
-                                <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
-                                <a href="{{route('group.create')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                                <a href="/groups/id" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
                             </td>
                         </tr>
                     </tbody>
@@ -130,7 +130,7 @@
                     </tbody>
                 </table>
             </div>
-    {{-- TABLE STARTS HERE --}}
+        {{-- TABLE STARTS HERE --}}
 
             <div class=" p-8 relative overflow-x-auto shadow-md sm:rounded-lg">
                 <h3 class="text-3xl mb-2">Group</h3>
