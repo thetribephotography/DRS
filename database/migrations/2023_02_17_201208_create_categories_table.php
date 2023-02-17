@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-// use Illuminate\Database\Schema\Blueprint;
 use Jenssegers\Mongodb\Schema\Blueprint;
+// use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,11 +14,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $collection) {
-            // $collection->id();
-            $collection->string('name')->unique();
+        Schema::create('categories', function (Blueprint $collection) {
+            $collection->id();
+            $collection->string('name');
+            $collection->longText('description');
             $collection->timestamps();
-            $collection->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('categories');
     }
 };

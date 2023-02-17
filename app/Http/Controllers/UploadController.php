@@ -35,14 +35,14 @@ class UploadController extends Controller
 
         $this->authorize('view_user_post', 'You do not have the permission to access this.');
 
-        
         $user = Auth::id();
-        $value = Upload::find($id && $user);
+        $upload = Upload::where($id && $user)->first();
 
-        // return $value;
-        dd($value);
+         $comments = Comment::where('upload_id',$upload->_id)->with('user')->get(); //Gets comments and users that made the commment
 
-        // return view('user.upload_show')->with('value', $value);
+        // dd($value);
+
+        return view('user.show_upload', compact('upload','comments'));
     }
 
     //UPDATE POST
