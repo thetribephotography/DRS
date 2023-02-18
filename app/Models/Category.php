@@ -23,4 +23,9 @@ class Category extends Model
     protected $hidden = [
 
     ];
+
+
+    public function upload(){
+        return $this->hasMany(Upload::class);
+    }
 }

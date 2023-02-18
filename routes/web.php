@@ -65,7 +65,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
     Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
+    Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 });
 
@@ -88,7 +88,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
 
 
     // //Group
-    Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create_group');
+    Route::post('user/create_group', [GroupContoller::class, 'create'])->name('group.create_group');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
 
