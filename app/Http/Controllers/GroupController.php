@@ -36,6 +36,8 @@ class GroupController extends Controller
             $update = new Group;
             $update->name = $request->name;
             $update->group_members = $users_id;
+
+            return view('/page')->with('Group Created Successfully');
         
     }
 
@@ -47,7 +49,7 @@ class GroupController extends Controller
 
         $list = Group::where('group_members', $user)->get();
 
-        return view ('')->with('list', $list);
+        return view ('/page')->with('list', $list);
 
     }
 
@@ -61,7 +63,7 @@ class GroupController extends Controller
         if(!$one){
             return redirect('')->with('There is no Such Group');
         } else {
-            return view ('/')->with('one', $one);
+            return view ('/page')->with('one', $one);
         }
     }
 

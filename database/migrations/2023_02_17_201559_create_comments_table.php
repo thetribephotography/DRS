@@ -14,11 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $collection) {
+        Schema::create('comments', function (Blueprint $collection) {
+            //Currently onhold
             // $collection->id();
-            $collection->string('name')->unique();
+            $collection->integer('user_id');
+            $collection->index('upload_id');
+            $collection->unsignedBigInteger('upload_id');
+            $collection->longText('content');
             $collection->timestamps();
-            $collection->softDeletes();
+
         });
     }
 
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('comments');
     }
 };

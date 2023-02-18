@@ -30,16 +30,36 @@ class Upload extends Model
         'path',
         'user_id',
         'tags_id',
+        'comments',
+        'category_id',
 
     ];
 
 
-        public function user(): BelongsTo
-    {
+    public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function tag(){
-        return $this->belongsTo(Tag::class, 'tags_id');
+    public function tags_id(){
+        return $this->hasMany(Tag::class);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function category_id(){
+        return $this->hasMany(Category::class);
+    }
+
+    public function scopeFilter($query, array $filters){
+
+        if($filters['search'] ?? false){
+
+            //searches by title
+        $query->where('title', 'like', '%' . request('search') . '%');
+
+        }
+    }
+
 }
