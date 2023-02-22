@@ -10,33 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function upload(){
-        return view ('user.upload');
+    public function index(){
+
+
+        $user_id = Auth::id();
+        $uploads = Upload::where('user_id',$user_id)->get();
+        // $groups = Group::all();
+
+        return view('user.index')->with('uploads', $uploads);
     }
 
-    public function published(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('upload.publish')->with('find', $find);
-    }
-
-    public function softwares(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('upload.software')->with('find', $find);
-    }
-
-    public function datasets(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('upload.dataset')->with('find', $find);
-    }
-
-    public function workflows(){
-        $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
-        return view ('upload.workflow')->with('find', $find);
-    }
 
     public function create_group(){
 

@@ -103,7 +103,7 @@
                                 <x-dropdown-link :href="route('dashboard')" onclick=""> Dashboard </x-dropdown-link>
 
                                 {{-- Profile --}}
-                                <x-dropdown-link :href="route('user.view_profile')" onclick="">Profile</x-dropdown-link>
+                                <x-dropdown-link :href="route('user.view-profile')" onclick="">Profile</x-dropdown-link>
 
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
