@@ -44,9 +44,8 @@ Route::get('/page', function () {
     }
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
 
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
@@ -65,7 +64,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
     Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
+    Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 });
 
@@ -76,9 +75,9 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
 
  //New Ones Created
     //User
-    Route::get('user/profile', [UserController::class, 'show'])->name('user-view-profile');
-    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user-edit-profile');
-    Route::post('account-delete', [UserController::class, 'destroy'])->name('user-delete-account');
+    Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
+    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
+    Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
 
     // //Upload
     // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
@@ -87,8 +86,9 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
 
 
-    // //Group
-    Route::get('user/create_group', [GroupContoller::class, 'create'])->name('group.create_group');
+    //Group
+    Route::get('user/create_group', [UserController::class, 'create_group'])->name('user.create_group');
+    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
 

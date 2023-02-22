@@ -5,20 +5,59 @@ namespace App\Http\Controllers;
 use App\Models\Upload;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Tag;
+use App\Models\Category;
+use App\Models\Comments;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
 use Illuminate\Support\Facades\Auth;
 use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\Model;
-
-
-
 use Illuminate\Http\Request;
+
+
 
 class UploadController extends Controller
 {
     use Uploader;
+
+    public function upload(){
+        return view ('user.upload');
+    }
+
+    public function published(){
+        $user = Auth::id();
+        $find = Group::where('group_member', $user)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view ('upload.publish', compact('find', 'categories', 'tags'));
+    }
+
+    public function softwares(){
+        $user = Auth::id();
+        $find = Group::where('group_member', $user)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view ('upload.software', compact('find', 'categories', 'tags'));
+    }
+
+    public function datasets(){
+        $user = Auth::id();
+        $find = Group::where('group_member', $user)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view ('upload.dataset', compact('find', 'categories', 'tags'));
+    }
+
+    public function workflows(){
+        $user = Auth::id();
+        $find = Group::where('group_member', $user)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view ('upload.workflow', compact('find', 'categories', 'tags'));
+    }
+
 
     public function uploadlist(){
         
@@ -37,14 +76,20 @@ class UploadController extends Controller
 
         $this->authorize('view_user_post', 'You do not have the permission to access this.');
 
-        
         $user = Auth::id();
-        $value = Upload::find($id && $user);
+        $upload = Upload::where($id && $user)->first();
 
-        // return $value;
-        dd($value);
+        foreach($uploads->_id as $uploadtag_id){
+            $tag = Tag::where('_id', $upload->tags_id);
 
-        // return view('user.upload_show')->with('value', $value);
+            $tags[] = $tag->_id; 
+        }
+
+        $comments = Comment::where('upload_id',$upload->_id)->with('user')->get(); //Gets comments and users that made the commment
+
+        // dd($value);
+
+        return view('user.show_upload', compact('upload', 'comments', 'tags'));
     }
 
     //UPDATE POST

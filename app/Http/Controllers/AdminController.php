@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function viewallpost(){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
-        $see = Uploads::all();
+        $see = Upload::all();
 
         return view ('')->with('see', $see);
     }
@@ -29,13 +29,13 @@ class AdminController extends Controller
     public function view_one_all($id){
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
 
-        $find = Uploads::find($id);
+        $find = Upload::find($id);
 
         return view ('')->with('find', $find);
     }
 
     // UPDATE ANY UPLOAD BY ID
-    public function updateall($id){
+    public function updateall(Request $request, $id){
         $this->authorize('update_all_post', 'You are not Authorized for this Action');
 
         if($request->all() == ''){

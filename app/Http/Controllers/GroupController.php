@@ -36,18 +36,20 @@ class GroupController extends Controller
             $update = new Group;
             $update->name = $request->name;
             $update->group_members = $users_id;
+
+            return view('/page')->with('Group Created Successfully');
         
     }
 
     // SHOW ALL GROUPS FOR PARTICULAR USER
     public function show(){
-        $this->authorize('view_group', 'Yu dont have the permission to access this');
+        $this->authorize('view_group', 'You dont have the permission to access this');
 
         $user = Auth::id();
 
         $list = Group::where('group_members', $user)->get();
 
-        return view ('')->with('list', $list);
+        return view ('/page')->with('list', $list);
 
     }
 
@@ -57,11 +59,12 @@ class GroupController extends Controller
         $user = Auth::id();
 
         $one = Group::where('_id', $id && 'group_members', $user)->first();
+        $uploads = Upload::where('_id', $one->upload)->get();
 
         if(!$one){
-            return redirect('')->with('There is no Such Group');
+            return redirect('/page')->with('There is no Such Group');
         } else {
-            return view ('/')->with('one', $one);
+            return view ('', compact('one', '$uploads'));
         }
     }
 
@@ -126,7 +129,8 @@ class GroupController extends Controller
             return redirect ("/page")->with('User id not found in group members');
         }
 
-
-
     }
+
+
+    //VIEW PoSTS IN A GROUP
 }

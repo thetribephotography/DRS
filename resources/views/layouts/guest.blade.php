@@ -7,11 +7,23 @@
 
         <title>{{ config('app.name', 'DRS') }}</title>
 
+        {{-- Select2 --}}
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+        {{-- Alpine --}}
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        {{-- TailwindCSS --}}
+        <script src="https://cdn.tailwindcss.com"></script>
 
         @livewireStyles
     </head>
@@ -91,7 +103,7 @@
                                 <x-dropdown-link :href="route('dashboard')" onclick=""> Dashboard </x-dropdown-link>
 
                                 {{-- Profile --}}
-                                <x-dropdown-link :href="route('user-view-profile')" onclick="">Profile</x-dropdown-link>
+                                <x-dropdown-link :href="route('user.view-profile')" onclick="">Profile</x-dropdown-link>
 
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
@@ -132,27 +144,6 @@
 
         {{-- GUEST FOOTER --}}
         <footer class="fixed bottom-0 w-full bg-gray-100 text-center">
-            <div class="px-6 pt-6">
-              <form action="">
-                <div class="grid md:grid-cols-3 gird-cols-1 gap-4 flex justify-center items-center">
-                  <div class="md:ml-auto md:mb-6">
-                    <p class="text-gray-800">
-                      <strong>Sign up for our newsletter</strong>
-                    </p>
-                  </div>
-
-                  <div class="md:mb-6">
-                    <input type="text" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                      id="exampleFormControlInput1"
-                      placeholder="Email address"/>
-                  </div>
-
-                  <div class="md:mr-auto mb-6">
-                    <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Subscribe</button>
-                  </div>
-                </div>
-              </form>
-            </div>
 
             <div class="text-center text-gray-700 p-4" style="background-color: rgba(0, 0, 0, 0.2);">
               © 2023 Copyright:
