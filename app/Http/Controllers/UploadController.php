@@ -79,12 +79,6 @@ class UploadController extends Controller
         $user = Auth::id();
         $upload = Upload::where($id && $user)->first();
 
-        foreach($uploads->_id as $uploadtag_id){
-            $tag = Tag::where('_id', $upload->tags_id);
-
-            $tags[] = $tag->_id; 
-        }
-
         $comments = Comment::where('upload_id',$upload->_id)->with('user')->get(); //Gets comments and users that made the commment
 
         // dd($value);
@@ -133,6 +127,8 @@ class UploadController extends Controller
             'keywords' => 'required',
             'example' => 'required',
             'topic_id' => 'required',
+            'category' => 'required',
+
         ]);
     
         //     request for hidden column, title and access rights and save in variable

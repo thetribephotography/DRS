@@ -14,6 +14,12 @@ use App\Models\Group;
 
 class GroupController extends Controller
 {
+    //RENDER HTML FILE FUNCTIONS
+    public function create_group(){
+
+        return view ('group.create');
+    }
+
     //CREATE GROUP
     public function create(Request $request, $id){
         $this->authorize('create_group', 'You do not have the Permission to Access this Page');
