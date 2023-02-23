@@ -53,18 +53,18 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
 });
 
 Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
-    Route::any('user/upload',[UserController::class, 'upload'])->name('user.upload');
-    Route::get('user/publish',[UserController::class, 'published'])->name('user.publish');
+    Route::any('user/upload',[UploadController::class, 'upload'])->name('user.upload');
+    Route::get('user/publish',[UploadController::class, 'published'])->name('user.publish');
     Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    Route::get('user/software',[UserController::class, 'softwares'])->name('user.software');
+    Route::get('user/software',[UploadController::class, 'softwares'])->name('user.software');
     // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::get('user/dataset',[UserController::class, 'datasets'])->name('user.dataset');
+    Route::get('user/dataset',[UploadController::class, 'datasets'])->name('user.dataset');
     // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::get('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
+    Route::get('user/workflow',[UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
     Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
+    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 });
 

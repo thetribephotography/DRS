@@ -20,17 +20,11 @@ class UserController extends Controller
         return view('user.index')->with('uploads', $uploads);
     }
 
-
-    public function create_group(){
-
-        return view ('group.create');
-    }
-
     public function edit(){
         return view('user.edit-profile');
     }
 
-     public function search_result(Request $request){
+    public function search_result(Request $request){
 
         $results = Upload::latest()->filter(request(['search',]))->simplepaginate(8);
         return view('user.search_result', compact('results'));
