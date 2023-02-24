@@ -24,6 +24,7 @@
           <div class="bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-4">
+
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" name="title" id="title" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
               </div>
@@ -44,9 +45,33 @@
               <p class="mt-2 text-sm text-gray-500">Note: Date of first publication.</p>
               </div>
 
+               <div class="col-span-6">
+                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                    <select name="category[]" class="category-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " id="category" multiple="multiple">
+                        @if (count($categories) == 0)
+                        <p>No Category available</p>
+                        @endif
+                        @foreach ( $categories as $category)
+                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-6 lg:col-span-4">
+                    <label for="tags" class="block text-sm font-medium text-gray-700">Tags</label>
+                    <select name="tags[]" class="tags-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " id="tags" multiple="multiple">
+                        @if (count($tags) == 0)
+                        <p>No Tag found</p>
+                        @endif
+                        @foreach ( $tags as $tag)
+                            <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
               <div class="col-span-6 sm:col-span-4">
                 <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
-                <input type="text" name="language" id="language"  class=" js-example-basic-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <input type="text" name="language" id="language"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                 <p class="mt-2 text-sm text-gray-500">Primary Language of Upload</p>
               </div>
 
@@ -113,7 +138,8 @@
                     {{-- <div class="flex text-sm text-gray-600"> --}}
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="large_size">Upload Code File</label>
                     <input class="block w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400" id="file-upload" name="file-upload" type="file">
-                    <p class="pt-3 mb-2 text-sm text-gray-500 dark:text-gray-400">It is Advisable you zip the folder before Uploading for Better Consumption</p>
+                    
+                    {{-- <p class="pt-3 mb-2 text-sm text-gray-500 dark:text-gray-400">It is Advisable you zip the folder before Uploading for Better Consumption</p> --}}
                     {{-- </div> --}}
                     </div>
 
@@ -157,7 +183,20 @@
   </div>
 </div>
 
+<script>
+   $(document).ready(function() {
+        $('.category-multiple').select2({
+            placeholder: "Select a Category",
+        });
 
+        $('.tags-multiple').select2({
+            placeholder: "Select a Tag",
+            tags: true
+        });
+
+
+    });
+</script>
 
 
 </x-app-layout>

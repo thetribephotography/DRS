@@ -112,7 +112,7 @@
                     </div>
                     <div class="mb-6">
                         <h3 class="text-3xl font-bold mb-8">Group</h3>
-                        <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Group</a>
+                        <a href="{{route('user.create_group')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Group</a>
                         {{-- <a href="{{route('group.view-group')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">View all groups</a> --}}
                     </div>
                 </div>

@@ -15,14 +15,11 @@ use App\Models\Group;
 class GroupController extends Controller
 {
     //RENDER HTML FILE FUNCTIONS
-    public function create_group(){
 
-        return view ('group.create');
-    }
 
     //CREATE GROUP
-    public function create(Request $request, $id){
-        $this->authorize('create_group', 'You do not have the Permission to Access this Page');
+    public function create(Request $request){
+        // $this->authorize('create_group', 'You do not have the Permission to Access this Page');
 
         $validate = $request->validate([
             'name' => 'required',
@@ -42,6 +39,8 @@ class GroupController extends Controller
             $update = new Group;
             $update->name = $request->name;
             $update->group_members = $users_id;
+
+            $update->save();
 
             return view('/page')->with('Group Created Successfully');
         
