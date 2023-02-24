@@ -15,12 +15,13 @@ class Group extends Model
 
     protected $guard_name = 'web';
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'name',
         'upload',
         'group_members',
+        'user_id',
+        'deleted_at',
+
     ];
 
     public function uploads(){
@@ -29,6 +30,10 @@ class Group extends Model
 
     public function user() {
         return $this->hasMany(User::class, '_id', 'group_members');
+    }
+
+    public function userone() {
+        return $this->belongsTo(User::class, '_id', 'user_id');
     }
 
 }

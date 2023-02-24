@@ -87,7 +87,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
 
 
     //Group
-    Route::get('group/create', [UserController::class, 'create_group'])->name('user.create_group');
+    Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
     Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 

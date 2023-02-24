@@ -52,4 +52,12 @@ class User extends Authenticatable Implements MustVerifyEmail
     public function upload(){
         return $this->hasMany(Upload::class);
     }
+
+    public function group(){
+        return $this->hasMany(Group::class);
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }

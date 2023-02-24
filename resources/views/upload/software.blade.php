@@ -85,7 +85,7 @@
                     <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                       <label for="keywords" class="block text-sm font-medium text-gray-700">KeyWords</label>
                       <div class="input-group input-group-sm mb-3">
-                          <input name="keywords" id="keywords"  multiple="multiple" class="js-example-basic-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ">
+                          <input name="keywords" id="keywords" class=" mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ">
 
                     </div>
                   </div>
@@ -183,7 +183,7 @@
   </div>
 </div>
 
-<script>
+{{-- <script>
    $(document).ready(function() {
         $('.category-multiple').select2({
             placeholder: "Select a Category",
@@ -193,10 +193,8 @@
             placeholder: "Select a Tag",
             tags: true
         });
-
-
     });
-</script>
+</script> --}}
 
 
 </x-app-layout>

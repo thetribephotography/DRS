@@ -12,10 +12,13 @@ class Comment extends Model
 {
     use HasFactory, HasRoles, SoftDeletes;
 
+    protected $guard_name = 'web';
+
     protected $fillable = [
         'user_id',
         'upload_id',
         'content',
+        'deleted_at',
     ];
 
     protected $casts = [
