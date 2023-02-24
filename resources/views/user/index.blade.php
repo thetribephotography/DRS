@@ -1,125 +1,210 @@
 <x-app-layout>
 
+
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{-- {{ __('Dashboard') }} --}}
+        {{ __('Dashboard') }}
     </h2>
 </x-slot>
-
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                You're logged in!
-                <br> <br>
+
+            {{-- TABLE STARTS HERE --}}
+            <div class=" p-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+                <h3 class="text-3xl mb-2">Actions</h3>
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                User
+                            </th>
+                            <td class="px-6 py-4">
+                                <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="{{route('group.create')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Upload
+                            </th>
+                            <td class="px-6 py-4">
+                                <a href="{{route('user.upload')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Create</a>
+                                <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="{{route('group.create')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Group
+                            </th>
+                            <td class="px-6 py-4">
+                                <a href="{{route('group.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Create</a>
+                                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-orange-500 ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Product name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Color
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">
-                            Sliver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 ">Edit</a>
-                        </td>
-                    </tr>
-                    <tr class="border-b bg-gray-50">
-                        <th scope="row" class="px-6 py-4 font-medium ">
-                            Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">
-                            White
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop PC
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600  hover:underline">Edit</a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b ">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600  hover:underline">Edit</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-                    {{-- ACTIONS --}}
-                <br>
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h1 class="font-bold mt-0 mb-6">Actions</h1>
-                    <div class="mb-6">
-                        <h3 class="text-3xl font-bold mb-8"> User</h3>
-                        {{-- <a href="{{route('user.view-profile')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">View Profile</a>
-                        <a href="{{route('user.edit-profile')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit profile</a>
-                        <form action="{{route('user.delete-account')}}" method="POST" class="inline">
-                            @csrf
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Delete Account
-                            </button>
-                        </form> --}}
+            {{-- TABLE ENDS HERE --}}
 
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-3xl font-bold mb-8">Upload</h3>
-                        <a href="{{route('user.upload') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Upload</a>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-3xl font-bold mb-8">Group</h3>
-                        <a href="{{route('user.create_group')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Group</a>
-                        {{-- <a href="{{route('group.view-group')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">View all groups</a> --}}
-                    </div>
-                </div>
+            {{-- TABLE STARTS HERE --}}
+
+            <div class=" p-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+                <h3 class="text-3xl mb-2">Upload</h3>
+                
+                @if ($uploads == null)
+                  <div class="flex items-center bg-blue-500 text-white text-sm mb-4 font-bold px-4 py-3" role="alert">
+                    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+                    <p>&nbsp;  &nbsp;You haven't made any upload</p>
+                    &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; <a href="{{route('user.upload')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Create</a>
+                  </div>
+                @endif
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Authors
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Type
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Accessibility
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category/ies
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tags
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($uploads as $upload )
+                            <tr class="bg-white border-b ">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    <a href="/uploads/{{$upload->id}}" class="hover:underline">{{$upload->title}}</a>
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{-- @foreach($upload->author as $authors) --}}
+                                       {{$upload->author}}
+                                       {{-- @endforeach --}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{$upload->type}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{$upload->acess_rights}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    @foreach ($upload->category_id as $category )
+                                        {{$category}}, <br>
+                                    @endforeach
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{$upload->tags}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                    <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        {{-- TABLE STARTS HERE --}}
+
+            <div class=" p-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+                <h3 class="text-3xl mb-2">Group</h3>
+                {{-- @if (count($groups) == 0)
+                  <div class="flex items-center bg-blue-500 text-white text-sm mb-4 font-bold px-4 py-3" role="alert">
+                    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+                    <p>You don't belong or have created a group</p>
+                    &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; <a href="{{route('group.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Create</a>
+                  </div>
+                @endif --}}
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Members
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                User4484989
+                            </th>
+                            <td class="px-6 py-4">
+                                Group member 1, Group member 2
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="{{route('group.create')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                               The other group i created
+                            </th>
+                            <td class="px-6 py-4">
+                                Group member 1, Group member 2
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="{{route('group.create')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                               FaintmeOne
+                            </th>
+                            <td class="px-6 py-4">
+                                Group member 1, Group member 2
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{route('group.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</a>
+                                <a href="{{route('group.create')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {{-- TABLE ENDS HERE --}}
+
 
             </div>
         </div>
     </div>
 </div>
+
 
 </x-app-layout>

@@ -44,15 +44,13 @@ Route::get('/page', function () {
     }
 });
 
-
-Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
-
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
     
 });
 
 Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
+    Route::get('/page', [UserController::class, 'index'])->name('user.index');
     Route::any('user/upload',[UploadController::class, 'upload'])->name('user.upload');
     Route::get('user/publish',[UploadController::class, 'published'])->name('user.publish');
     Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
