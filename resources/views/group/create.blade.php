@@ -16,7 +16,11 @@
                         </div>
                         <div class="mb-6">
                           <label for="members" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Add Group Members</label>
-                          <input name="members" type="text" id="members" multiple="multiple" class="members-multiple bg-gray-50 border border-gray-300 text-black-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 white:bg-gray-700" required>
+                          <select name="members[]" id="members" class="members-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " multiple="multiple">
+                            @foreach ($users as $user)
+                                <option value=" {{$user->_id}} "> {{$user->email}} </option>
+                            @endforeach
+                          </select>
                         </div>
                         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Submit
@@ -27,12 +31,11 @@
         </div>
     </section>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
         $('.members-multiple').select2({
             placeholder: "Select Group Members",
         });
-
     });
-    </script>
+    </script> --}}
 </x-app-layout>

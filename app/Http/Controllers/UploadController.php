@@ -28,7 +28,7 @@ class UploadController extends Controller
 
     public function published(){
         $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
+        $find = Group::where('user_id', $user || 'group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.publish', compact('find', 'categories', 'tags'));
@@ -36,7 +36,7 @@ class UploadController extends Controller
 
     public function softwares(){
         $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
+        $find = Group::where('user_id', $user || 'group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.software', compact('find', 'categories', 'tags'));
@@ -44,7 +44,7 @@ class UploadController extends Controller
 
     public function datasets(){
         $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
+        $find = Group::where('user_id', $user || 'group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.dataset', compact('find', 'categories', 'tags'));
@@ -52,7 +52,7 @@ class UploadController extends Controller
 
     public function workflows(){
         $user = Auth::id();
-        $find = Group::where('group_member', $user)->get();
+        $find = Group::where('user_id', $user || 'group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.workflow', compact('find', 'categories', 'tags'));
@@ -153,6 +153,7 @@ class UploadController extends Controller
         $topic_id = $request->topic_id;
         $file_name = $request->title;
         $access = $request->example;
+
     
     if ( $topic_id == 1){
         //    1 = publish
@@ -172,6 +173,10 @@ class UploadController extends Controller
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
+        $upload->category_id = $cat;
+        $upload->tags_id = $request->tags;
+        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+        $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
         $upload->save(); 
 
@@ -198,9 +203,7 @@ class UploadController extends Controller
         $upload->path = $path;
         $upload->user_id = $user;
         $upload->category_id = $cat;
-        $upload->author = explode(",", $request->authors);
-        $upload->languages = explode(",", $request->language);
-        // $upload->file_name = $file->getClientOriginalName(); // File Name
+        $upload->tags_id = $request->tags;
         $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
         $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
@@ -228,6 +231,10 @@ class UploadController extends Controller
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
+        $upload->category_id = $cat;
+        $upload->tags_id = $request->tags;
+        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+        $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
         $upload->save();
 
@@ -253,6 +260,10 @@ class UploadController extends Controller
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
+        $upload->category_id = $cat;
+        $upload->tags_id = $request->tags;
+        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+        $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
         $upload->save();
 

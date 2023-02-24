@@ -18,7 +18,7 @@ return new class extends Migration
             // $collection->id();
             $collection->string('name')->unique();
             $collection->timestamps();
-            $collection->softDeletes();
+            // $collection->softDeletes();
         });
     }
 

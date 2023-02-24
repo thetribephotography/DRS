@@ -43,9 +43,33 @@
                 <p class="mt-2 text-sm text-gray-500">Note: Date of first publication.</p>
                 </div>
 
+                <div class="col-span-6">
+                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                    <select name="category[]" class="category-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " id="category" multiple="multiple">
+                        @if (count($categories) == 0)
+                        <p>No Category available</p>
+                        @endif
+                        @foreach ( $categories as $category)
+                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-6 lg:col-span-4">
+                    <label for="tags" class="block text-sm font-medium text-gray-700">Tags</label>
+                    <select name="tags[]" class="tags-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " id="tags" multiple="multiple">
+                        @if (count($tags) == 0)
+                        <p>No Tag found</p>
+                        @endif
+                        @foreach ( $tags as $tag)
+                            <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="col-span-6 sm:col-span-4">
                   <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
-                  <input type="text" name="language" id="language"  class=" js-example-basic-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  <input type="text" name="language" id="language"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   <p class="mt-2 text-sm text-gray-500">Primary Language of Upload</p>
                 </div>
 
@@ -94,18 +118,15 @@
                           <div id="box" style="display: none">
                     <div class="relative flex w-full">
                       <select
-                          id="select-role"
+                          id="roles"
                           name="roles[]"
-                          multiple
+                          multiple = "multiple"
                           placeholder="Select roles..."
                           autocomplete="off"
-                          class="block w-full rounded-sm cursor-pointer focus:outline-none" >
-                          @foreach ($find as $find)
-                                        <option value="{{$find->_id}}">{{$find->name}}</option>
+                          class=" roles-multiple  block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" >
+                          @foreach ($find as $fin)
+                                      <option value=" {{$fin->_id}} "> {{$fin->name}} </option>
                           @endforeach
-          {{-- <option value="2">admin</option>
-          <option value="3">writer</option>
-          <option value="4">user</option> --}}
         </select>
       </div>
                           </div>

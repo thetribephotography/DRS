@@ -15,7 +15,12 @@ use App\Models\Group;
 class GroupController extends Controller
 {
     //RENDER HTML FILE FUNCTIONS
+    public function create_group(){
 
+        $users = User::all();
+        return view ('group.create', compact('users'));
+
+    }
 
     //CREATE GROUP
     public function create(Request $request){
@@ -26,23 +31,26 @@ class GroupController extends Controller
             'members' => 'required',
         ]);
 
-        $members = $request->members;
+        $user = Auth::id();
 
-        $users_id = [];
+        // $members = $request->members;
 
-        foreach($members as $members){
-            $users = User::where('email', $members)->get();
+        // $users_id = [];
 
-                $users_id[] = $users->_id;
-        }
+        // foreach($members as $members){
+        //     $users = User::where('email', $members)->get();
+
+        //         $users_id[] = $users->_id;
+        // }
 
             $update = new Group;
             $update->name = $request->name;
-            $update->group_members = $users_id;
+            $update->group_members = $request->members;
+            $update->user_id = $user;
 
             $update->save();
 
-            return view('/page')->with('Group Created Successfully');
+            return redirect('/page')->with('Group Created Successfully');
         
     }
 
