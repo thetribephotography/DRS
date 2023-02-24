@@ -65,7 +65,7 @@ class UploadController extends Controller
 
             $user = Auth::id();
 
-            $list = Upload::where('user_id', $user)->get();
+            $list = Upload::where('user_id', $user && 'deleted_at', null)->get();
 
             // dd($list);
 
@@ -129,7 +129,25 @@ class UploadController extends Controller
             'topic_id' => 'required',
             'category' => 'required',
 
-        ]);
+        ],
+
+                 //Array to specify validation message for a particular validation
+        [
+                'file_upload.mimes' => 'Accepted file formats is Zip and Rar',
+                'categiry.required' => 'Selected field is required. Select at least one category'
+            ]
+    );
+
+
+        //category and tag save in db as array
+        $category = $request->category;
+
+        $cat = [];
+
+        foreach($category as $categories){
+            $cat[] = $categories;
+        }
+
     
         //     request for hidden column, title and access rights and save in variable
         $topic_id = $request->topic_id;
@@ -137,6 +155,7 @@ class UploadController extends Controller
         $access = $request->example;
     
     if ( $topic_id == 1){
+        //    1 = publish
             
         $user = Auth::id();
 
@@ -158,7 +177,7 @@ class UploadController extends Controller
 
 
     }  else if ($topic_id == 2){
-           
+        //    2 = software
         $user = Auth::id();
 
         $path = $this->UploadFile($request->file('file-upload'), $file_name);
@@ -178,10 +197,18 @@ class UploadController extends Controller
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
+        $upload->category_id = $cat;
+        $upload->author = explode(",", $request->authors);
+        $upload->languages = explode(",", $request->language);
+        // $upload->file_name = $file->getClientOriginalName(); // File Name
+        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+        $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
         $upload->save();
 
     } else if($topic_id == 3){
+        //    3 = dataset
+
         // get Authenticated user id 
         $user = Auth::id();
 
@@ -205,6 +232,8 @@ class UploadController extends Controller
         $upload->save();
 
     } else if ($topic_id == 4){
+        //    4 = workflow
+
         // get Authenticated user id 
         $user = Auth::id();
 

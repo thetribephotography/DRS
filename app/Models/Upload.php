@@ -32,6 +32,8 @@ class Upload extends Model
         'tags_id',
         'comments',
         'category_id',
+        'file_type',
+        'file_size',
 
     ];
 

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+        public function create_group(){
+
+        return view ('group.create');
+    }
+
     public function index(){
 
 
