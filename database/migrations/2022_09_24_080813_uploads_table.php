@@ -29,6 +29,7 @@ return new class extends Migration
             $collection->array('tags_id')->nullable();
             $collection->array('comments')->nullable();
             $collection->array('category_id');
+            $collection->array('group_id')->nullable();
             // $collection->string('doi_id')->nullable();
             $collection->string('path');
             $collection->string('file_type'); //Type of file, zip, jpeg, png, exe

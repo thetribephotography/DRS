@@ -118,17 +118,16 @@
                           <div id="box" style="display: none">
                     <div class="relative flex w-full">
                       <select
-                          id="roles"
-                          name="roles[]"
-                          multiple = "multiple"
-                          placeholder="Select roles..."
-                          autocomplete="off"
-                          class=" roles-multiple  block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" >
-                          @foreach ($find as $fin)
-                                      <option value=" {{$fin->_id}} "> {{$fin->name}} </option>
+                          id="grouping"
+                          name="grouping[]"
+                          class=" grouping-multiple  block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                          multiple = "multiple">
+                          
+                          @foreach ($find as $find)
+                                      <option value=" {{$find->_id}} "> {{$find->name}} </option>
                           @endforeach
-        </select>
-      </div>
+                         </select>
+                        </div>
                           </div>
                         </div>
                       </fieldset>
