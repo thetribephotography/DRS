@@ -28,16 +28,23 @@ radioButtons.forEach(radio => {
                placeholder: "Select a Tag",
                tags: true,
            });
-
-          $(".roles-multiple").select2({
-              placeholder: "Select a Group",
-              
-           });
-
-           $(document).ready(function () {
-               $(".members-multiple").select2({
-                   placeholder: "Select Group Members",
-               });
-           });
            
        });
+
+                  $(document).ready(function () {
+                      $(".members-multiple").select2({
+                          placeholder: "Select Group Members",
+                      });
+                  });
+                          //   $(document).ready(function () {
+                          //   $(".roles-multiple").select2({
+                          //       placeholder: "Select a Group",
+                          //   });
+                          // });
+
+
+                            $(document).ready(function () {
+                              $(".grouping-multiple").select2({
+                                placeholder: "Select Group"
+                              });
+                            });

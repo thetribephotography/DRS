@@ -118,10 +118,10 @@
                         </div>
                         <p class="text-sm text-gray-500"> Only Your Selected Group members can View and Access this</p>
                         <div id="box" style="display: none">
-                          <select name="grouping" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                          <option value="1">Group 1</option>
-                          <option value="2">Group 4</option>
-                          <option value="3">Group 7</option>
+                          <select name="grouping[]" id="grouping" class="grouping-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" multiple="multiple">
+                          @foreach($find as $find)
+                            <option value="{{$find->_id}}">{{$find->name}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>

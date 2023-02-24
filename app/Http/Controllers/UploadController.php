@@ -28,7 +28,7 @@ class UploadController extends Controller
 
     public function published(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user || 'group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere( 'group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.publish', compact('find', 'categories', 'tags'));
@@ -36,7 +36,7 @@ class UploadController extends Controller
 
     public function softwares(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user || 'group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.software', compact('find', 'categories', 'tags'));
@@ -44,15 +44,17 @@ class UploadController extends Controller
 
     public function datasets(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user || 'group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
+
+
         return view ('upload.dataset', compact('find', 'categories', 'tags'));
     }
 
     public function workflows(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user || 'group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.workflow', compact('find', 'categories', 'tags'));
@@ -154,7 +156,18 @@ class UploadController extends Controller
         $file_name = $request->title;
         $access = $request->example;
 
+        //STORE GROUPING ID'S IF CHOSEN
+       if($access = 3) {
+        $group = $request->grouping;
+
+        $groups = [];
+        foreach($group as $grouping){
+            $groups[] = $grouping;
+        }
+       }
+
     
+       //Analyse and divert function based on form info collected.
     if ( $topic_id == 1){
         //    1 = publish
             
@@ -170,13 +183,14 @@ class UploadController extends Controller
         $upload->author = $request->author;
         $upload->keywords = $request->keywords;
         $upload->access_id = $request->example;
+        $upload->group_id = $groups;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
         $upload->category_id = $cat;
         $upload->tags_id = $request->tags;
-        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
-        $upload->file_size = $request->file('file-upload')->getSize(); //File size
+        $upload->file_type = $request->file('summary-upload')->getClientOriginalExtension(); // File type
+        $upload->file_size = $request->file('summary-upload')->getSize(); //File size
 
         $upload->save(); 
 
@@ -199,6 +213,7 @@ class UploadController extends Controller
         $upload->author = $request->author;
         $upload->keywords = $request->keywords;
         $upload->access_id = $request->example;
+        $upload->group_id = $groups;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
@@ -228,6 +243,7 @@ class UploadController extends Controller
         $upload->author = $request->author;
         $upload->keywords = $request->keywords;
         $upload->access_id = $request->example;
+        $upload->group_id = $groups;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
@@ -257,6 +273,7 @@ class UploadController extends Controller
         $upload->author = $request->author;
         $upload->keywords = $request->keywords;
         $upload->access_id = $request->example;
+        $upload->group_id = $groups;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
         $upload->user_id = $user;
@@ -269,14 +286,15 @@ class UploadController extends Controller
 
     }
 
-    if ($access == 3){
+    // if ($access == 3){
     
-        $update = Group::where('_id', $id)->first();
-        $upload_id = $upload->_id;
+    //     $id = $request->grouping;
+    //     $update = Group::where('_id', $id)->first();
+    //     $upload_id = $upload->_id;
 
-        $update->upload = $upload_id;
-        $update->update();
-    }
+    //     $update->upload = $upload_id;
+    //     $update->update();
+    // }
 
     return redirect ("/page")->with ("Upload Successful");
 
