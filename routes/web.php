@@ -26,14 +26,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-    // PUBLIC / UNPROTECTED ROUTES
-Route::get('/', [HomeController::class, 'index'])->name('landing');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
-
-
-
+// LOGIN/AUTH
 Route::get('/page', function () {
     if (Auth::user()->hasRole('admin')){
         return view ('admin.index');
@@ -42,15 +35,36 @@ Route::get('/page', function () {
     } else {
         return view ('auth.login');
     }
-});
+}); 
 
+    // PUBLIC / UNPROTECTED ROUTES
+Route::get('/', [HomeController::class, 'index'])->name('landing');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
+
+//Search Result from landing page
+    Route::get('/search-results', [UserController::class, 'search_result']);
+
+
+// ADMIN ROUTES
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
     
 });
 
+
+// USER ROUTES
 Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
+    //  User
     Route::get('/page', [UserController::class, 'index'])->name('user.index');
+    Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
+    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
+    Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
+    
+
+
+    //  UPLOAD
     Route::any('user/upload',[UploadController::class, 'upload'])->name('user.upload');
     Route::get('user/publish',[UploadController::class, 'published'])->name('user.publish');
     Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
@@ -64,18 +78,14 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
+
+    //  Group
+    Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
+    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+
 });
 
-// Route::get('/layouts/admin', function(){
-//    return view('layouts.admin');
-// });
 
-
- //New Ones Created
-    //User
-    Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
-    Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
-    Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
 
     // //Upload
     // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
@@ -84,9 +94,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
 
 
-    //Group
-    Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
-    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
 
