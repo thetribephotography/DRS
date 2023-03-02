@@ -11,6 +11,9 @@ use App\Http\Controllers\UserController;
 use App\Models\Upload;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Comment;
+use App\Models\Tag;
+use App\Models\Category;
 
 class GroupController extends Controller
 {
@@ -146,4 +149,18 @@ class GroupController extends Controller
 
 
     //VIEW PoSTS IN A GROUP
+    public function shade(Request $request, $id){
+        $user = Auth::id();
+
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if($user == $validated->email){
+            return view("/page")->with("Proceed");
+        } else {
+            return redirect("/page")->with("wahala");
+        }
+    }
 }
