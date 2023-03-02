@@ -18,11 +18,33 @@ radioButtons.forEach(radio => {
 
 
 
+    //  Multiple select dropdowns 
+       $(document).ready(function () {
+           $(".category-multiple").select2({
+               placeholder: "Select a Category",
+           });
 
-// Tom-Select for multiple seelection in dropdowns
-    new TomSelect('#select-role', {
-      maxItems: '',
-    });
+           $(".tags-multiple").select2({
+               placeholder: "Select a Tag",
+               tags: true,
+           });
+           
+       });
+
+                  $(document).ready(function () {
+                      $(".members-multiple").select2({
+                          placeholder: "Select Group Members",
+                      });
+                  });
+                          //   $(document).ready(function () {
+                          //   $(".roles-multiple").select2({
+                          //       placeholder: "Select a Group",
+                          //   });
+                          // });
 
 
-    // TRY OUT
+                            $(document).ready(function () {
+                              $(".grouping-multiple").select2({
+                                placeholder: "Select Group"
+                              });
+                            });

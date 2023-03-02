@@ -32,6 +32,9 @@ class Upload extends Model
         'tags_id',
         'comments',
         'category_id',
+        'file_type',
+        'file_size',
+        'group_id',
 
     ];
 
@@ -50,6 +53,10 @@ class Upload extends Model
 
     public function category_id(){
         return $this->hasMany(Category::class);
+    }
+
+    public function group(){
+        return $this->hasMany(Group::class, 'group_id');
     }
 
     public function scopeFilter($query, array $filters){

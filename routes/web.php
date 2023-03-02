@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 // use PHPUnit\TextUI\XmlConfiguration\GroupCollection;
 
@@ -26,14 +28,28 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-    // PUBLIC / UNPROTECTED ROUTES
-Route::get('/', [HomeController::class, 'index'])->name('landing');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
+//EMAIL VERFICATION
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{_id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/page');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
 
+
+
+// LOGIN/AUTH
 Route::get('/page', function () {
     if (Auth::user()->hasRole('admin')){
         return view ('admin.index');
@@ -42,42 +58,57 @@ Route::get('/page', function () {
     } else {
         return view ('auth.login');
     }
-});
+}); 
+
+    // PUBLIC / UNPROTECTED ROUTES
+Route::get('/', [HomeController::class, 'index'])->name('landing');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
+
+//Search Result from landing page
+    Route::get('/search-results', [UserController::class, 'search_result']);
 
 
-Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
-
+// ADMIN ROUTES
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
     
 });
 
-Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
-    Route::any('user/upload',[UserController::class, 'upload'])->name('user.upload');
-    Route::get('user/publish',[UserController::class, 'published'])->name('user.publish');
-    Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    Route::get('user/software',[UserController::class, 'softwares'])->name('user.software');
-    // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::get('user/dataset',[UserController::class, 'datasets'])->name('user.dataset');
-    // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::get('user/workflow',[UserController::class, 'workflows'])->name('user.workflow');
-    // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-    Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
-    Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
-});
-
-// Route::get('/layouts/admin', function(){
-//    return view('layouts.admin');
-// });
-
-
- //New Ones Created
-    //User
+// USER ROUTES
+Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function(){
+    //  User
+    Route::get('/page', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
     Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
     Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
+    
+
+
+    //  UPLOAD
+    Route::any('user/upload',[UploadController::class, 'upload'])->name('user.upload');
+    Route::get('user/publish',[UploadController::class, 'published'])->name('user.publish');
+    Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
+    Route::get('user/software',[UploadController::class, 'softwares'])->name('user.software');
+    // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
+    Route::get('user/dataset',[UploadController::class, 'datasets'])->name('user.dataset');
+    // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
+    Route::get('user/workflow',[UploadController::class, 'workflows'])->name('user.workflow');
+    // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
+    Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
+    Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
+    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
+
+
+    //  Group
+    Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
+    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+
+});
+
+
 
     // //Upload
     // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
@@ -86,9 +117,7 @@ Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
 
 
-    //Group
-    Route::get('user/create_group', [UserController::class, 'create_group'])->name('user.create_group');
-    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
 

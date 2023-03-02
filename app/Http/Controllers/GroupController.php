@@ -11,33 +11,49 @@ use App\Http\Controllers\UserController;
 use App\Models\Upload;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Comment;
+use App\Models\Tag;
+use App\Models\Category;
 
 class GroupController extends Controller
 {
+    //RENDER HTML FILE FUNCTIONS
+    public function create_group(){
+
+        $users = User::all();
+        return view ('group.create', compact('users'));
+
+    }
+
     //CREATE GROUP
-    public function create(Request $request, $id){
-        $this->authorize('create_group', 'You do not have the Permission to Access this Page');
+    public function create(Request $request){
+        // $this->authorize('create_group', 'You do not have the Permission to Access this Page');
 
         $validate = $request->validate([
             'name' => 'required',
             'members' => 'required',
         ]);
 
-        $members = $request->members;
+        $user = Auth::id();
 
-        $users_id = [];
+        // $members = $request->members;
 
-        foreach($members as $members){
-            $users = User::where('email', $members)->get();
+        // $users_id = [];
 
-                $users_id[] = $users->_id;
-        }
+        // foreach($members as $members){
+        //     $users = User::where('email', $members)->get();
+
+        //         $users_id[] = $users->_id;
+        // }
 
             $update = new Group;
             $update->name = $request->name;
-            $update->group_members = $users_id;
+            $update->group_members = $request->members;
+            $update->user_id = $user;
 
-            return view('/page')->with('Group Created Successfully');
+            $update->save();
+
+            return redirect('/page')->with('Group Created Successfully');
         
     }
 
@@ -133,4 +149,18 @@ class GroupController extends Controller
 
 
     //VIEW PoSTS IN A GROUP
+    public function shade(Request $request, $id){
+        $user = Auth::id();
+
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if($user == $validated->email){
+            return view("/page")->with("Proceed");
+        } else {
+            return redirect("/page")->with("wahala");
+        }
+    }
 }

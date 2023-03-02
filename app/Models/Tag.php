@@ -14,11 +14,8 @@ class Tag extends Model
 
     protected $guard_name = 'web';
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'name',
-
     ];
 
 
