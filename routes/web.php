@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 // use PHPUnit\TextUI\XmlConfiguration\GroupCollection;
 
@@ -25,6 +27,27 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//EMAIL VERFICATION
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{_id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/page');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+
+
 
 // LOGIN/AUTH
 Route::get('/page', function () {
@@ -55,7 +78,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
 
 
 // USER ROUTES
-Route::prefix('')->middleware(['auth', 'role:registered'])->group(function(){
+Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function(){
     //  User
     Route::get('/page', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
