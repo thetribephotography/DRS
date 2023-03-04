@@ -63,9 +63,14 @@ class GroupController extends Controller
 
         $user = Auth::id();
 
-        $list = Group::where('group_members', $user)->get();
+        $list = Group::where('group_members', $user)->orwhere('user_id', $user)->get();
 
-        return view ('/page')->with('list', $list);
+        // dd($list);
+        if(!$list){
+            return redirect('/page')->with('You are not in any groups right now.Kindly create yours and add your friends or ask to be added');
+        } else {
+            return view ('group.show_all')->with('list', $list);
+        }
 
     }
 
@@ -74,7 +79,7 @@ class GroupController extends Controller
 
         $user = Auth::id();
 
-        $one = Group::where('_id', $id && 'group_members', $user)->first();
+        $one = Group::where('_id', $id && 'group_members', $user)->orwhere('user_id', $user)->first();
         $uploads = Upload::where('_id', $one->upload)->get();
 
         if(!$one){

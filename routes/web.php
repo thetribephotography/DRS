@@ -105,6 +105,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     //  Group
     Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
     Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+    Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
 
 });
 
