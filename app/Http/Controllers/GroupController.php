@@ -20,7 +20,7 @@ class GroupController extends Controller
     //RENDER HTML FILE FUNCTIONS
     public function create_group(){
 
-        $users = User::all();
+        $users = User::role('registered')->get();
         return view ('group.create', compact('users'));
 
     }

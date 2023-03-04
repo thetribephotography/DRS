@@ -157,14 +157,15 @@ class UploadController extends Controller
         $access = $request->example;
 
         //STORE GROUPING ID'S IF CHOSEN
-       if($access = 3) {
+        $groups = [];
+       if($access == 3) {
         $group = $request->grouping;
 
-        $groups = [];
+
         foreach($group as $grouping){
             $groups[] = $grouping;
         }
-       }
+       } 
 
     
        //Analyse and divert function based on form info collected.
