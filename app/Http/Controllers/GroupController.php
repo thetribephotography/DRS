@@ -69,7 +69,7 @@ class GroupController extends Controller
         if(!$list){
             return redirect('/page')->with('You are not in any groups right now.Kindly create yours and add your friends or ask to be added');
         } else {
-            return view ('group.show_all')->with('list', $list);
+            return view ('group.show_all', compact('list'));
         }
 
     }
