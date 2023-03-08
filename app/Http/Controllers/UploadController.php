@@ -63,7 +63,7 @@ class UploadController extends Controller
 
     public function uploadlist(){
         
-            $this->authorize('view_user_post', 'You do not have the permission to access this.');
+            // $this->authorize('view_user_post', 'You do not have the permission to access this.');
 
             $user = Auth::id();
 
@@ -71,7 +71,7 @@ class UploadController extends Controller
 
             // dd($list);
 
-            return view ('user.upload_list', compact('list', 'user'));
+            return view ('upload.upload_list', compact('list', 'user'));
     }
 
     public function uploadshow($id){

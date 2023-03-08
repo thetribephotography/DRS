@@ -35,8 +35,8 @@
             </tr>
         </thead>
         <tbody>
-            @if($list->count() > 0)
             @foreach($list as $list)
+                @if($list->count() > 0)
             <tr class="bg-white border-b white:bg-gray-900 gray:border-gray-700">
                 <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                     {{$list->title}}
@@ -45,7 +45,7 @@
                     {{$list->description}}
                 </td>
                 <td class="py-4 px-6">
-                    @if ($list->topic_id == 1 )
+                    @if ($list->topic_id == 1)
                     Publication
                     @elseif ($list->topic_id == 2)
                     Software
@@ -61,11 +61,11 @@
                     {{$list->language}}
                 </td>
                 <td class="py-4 px-6">
-                   @if ($list->access_id == 1 )
+                   @if ($list->access_id == 1)
                    Public
-                   @elseif ($list->access_id == 2 )
+                   @elseif ($list->access_id == 2)
                    Private
-                   @elseif ($list->access_id == 3 )
+                   @elseif ($list->access_id == 3)
                    Grouped
                    @else
                    No Group
@@ -76,16 +76,17 @@
                     {{-- ->format('D/M/Y') --}}
                 </td>
                 <td class="py-4 px-6">
-                    <a href="/upload/uploadshow/{id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="/upload/uploadshow/{_id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
             </tr>
 
-            @endforeach
             @else
 
             <p>No Uploads Yet</p>
 
             @endif
+            @endforeach
+            
 
         </tbody>
     </table>
