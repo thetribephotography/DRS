@@ -97,7 +97,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
     Route::get('user/workflow',[UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-    Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
+    Route::any('/upload/upload_list',[UploadController::class, 'uploadlist'])->name('upload.upload_list');
     Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 

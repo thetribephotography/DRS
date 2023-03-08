@@ -56,6 +56,7 @@ class PermissionSeeder extends Seeder
             'view_group',
             'create_group',
             'edit_group',
+            'view_user_post',
         ];
 
         foreach ($registered_user_permissions as $permission) {
