@@ -79,7 +79,7 @@ class GroupController extends Controller
 
         $user = Auth::id();
 
-        $one = Group::where('_id', $id && 'group_members', $user)->orwhere('user_id', $user)->first();
+        $one = Group::where('_id', $id)->where('group_members', $user)->orwhere('user_id', $user)->first();
         $uploads = Upload::where('_id', $one->upload)->get();
 
         if(!$one){
@@ -132,7 +132,7 @@ class GroupController extends Controller
         $found = false;
 
         for ($i = 0; $i < count($member); $i++){
-            if ($member[i] == $user){
+            if ($member[$i] == $user){
                 unset($member[$i]);
                 $found = true;
                 break;
