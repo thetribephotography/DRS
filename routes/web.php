@@ -98,7 +98,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('user/workflow',[UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
-    Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
+    Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 
@@ -106,7 +106,8 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
     Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
     Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
-    Route::post('group/leave', [GroupController::class, 'leave'])->name('group.leave');
+    Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');
+    Route::post('group/leave/{_id}', [GroupController::class, 'leave'])->name('group.leave');
 
 });
 

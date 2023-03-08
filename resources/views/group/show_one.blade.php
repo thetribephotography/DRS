@@ -11,15 +11,16 @@
                 <div class="bg-white overflow-hidden shadow-sm">
                     <form action="" method="POST" class="p-6">
                         @csrf
+                        @method('PUT')
                         <div class="mb-6">
                           <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Group Name</label>
-                          <input  name="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-black-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 white:bg-gray-700" placeholder="Name" required>
+                          <input value=" {{$one->name}} " name="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-black-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 white:bg-gray-700" placeholder="Name" required>
                         </div>
                         <div class="mb-6">
                           <label for="members" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Add Group Members</label>
                           <select name="members[]" id="members" class="members-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " multiple="multiple">
-                            @foreach ($users as $user)
-                                <option value=" {{$user->_id}} "> {{$user->email}} </option>
+                            @foreach ($one->group_members as $user)
+                                <option value=" {{$user->_id}} "> {{$user->email}} </option>    
                             @endforeach
                           </select>
                         </div>
