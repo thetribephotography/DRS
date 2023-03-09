@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -98,7 +100,8 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('user/workflow',[UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/upload/upload_list',[UploadController::class, 'uploadlist'])->name('upload.upload_list');
-    Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
+    Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
+    Route::any('/upload/show_one/{_id}',[UploadController::class, 'uploadshow'])->name('upload.show_one');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 
@@ -109,17 +112,21 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');
     Route::post('group/leave/{_id}', [GroupController::class, 'leave'])->name('group.leave');
 
+    //Comments
+    Route::post('/uploads/{id}/comment', [ CommentController::class, 'store'])->name('upload.comment');
+    Route::post('/uploads/delete{_id}', [ CommentController::class, 'destroy'])->name('comment.delete');
+
+    //Categories
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.show');
+
+
+
+    //Group Setting
+    Route::get('/create_group', [GroupController::class, 'create'])->name('group.create');
+    Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
+    // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
+
 });
-
-
-
-    // //Upload
-    // Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    // Route::any('/user/upload_list',[UploadController::class, 'uploadlist'])->name('user.upload_list');
-    // Route::any('/upload/uploadshow/{id}',[UploadController::class, 'uploadshow'])->name('user.uploadshow');
-    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('user.create_group');
-
-
 
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
