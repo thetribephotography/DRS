@@ -39,8 +39,9 @@
                     @endif
                   </h2>
                 </div>
-              <form action="/uploads/{{$upload->_id}}/comment" method="POST" class="mb-6">
+              <form action="{{ route ('upload.comment', $upload->_id ) }}" method="POST" class="mb-6">
                 @csrf
+                @method('POST')
                   <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
                       <label for="comment" class="sr-only">Your comment</label>
                       <textarea name="comment" id="comment" rows="6"
@@ -54,11 +55,11 @@
               </form>
 
               {{-- Success flash messaage --}}
-              @if (session()->has('message'))
+              {{-- @if (session()->has('message'))
                 <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
                     <p class="font-bold"> {{ $message }} </p>
                 </div>
-              @endif
+              @endif --}}
 
 
               @foreach ($comments as $comment )
@@ -92,9 +93,9 @@
                                         <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Edit</a>
                                     </li>
                                 @endif
-                                @if(Auth::user()->hasRole('admin'))
+                                @if(Auth::user()->hasRole('admin') || $upload->user_id == Auth::user()->_id)
                                     <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Delete</a>
+                                        <a href="{{ route ('comment.delete', $comment->id) }}" class="block py-2 px-4 hover:bg-gray-100 ">Delete</a>
                                     </li>
                                 @endif
                                 <li>

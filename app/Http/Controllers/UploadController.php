@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\Tag;
 use App\Models\Category;
-use App\Models\Comments;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
@@ -67,25 +67,25 @@ class UploadController extends Controller
 
             $user = Auth::id();
 
-            $list = Upload::where('user_id', $user && 'deleted_at', null)->get();
+            $list = Upload::where('user_id', $user)->where('deleted_at', null)->get();
 
             // dd($list);
 
-            return view ('upload.upload_list', compact('list', 'user'));
+            return view ('upload.upload_list', compact('list'));
     }
 
     public function uploadshow($id){
 
-        $this->authorize('view_user_post', 'You do not have the permission to access this.');
+        // $this->authorize('view_user_post', 'You do not have the permission to access this.');
 
         $user = Auth::id();
-        $upload = Upload::where($id && $user)->first();
+        $upload = Upload::where('_id', $id)->first();
 
-        $comments = Comment::where('upload_id',$upload->_id)->with('user')->get(); //Gets comments and users that made the commment
+        $comments = Comment::where('upload_id',$upload->_id)->get(); //Gets comments and users that made the commment
 
-        // dd($value);
+        // dd($upload, $comments);
 
-        return view('user.show_upload', compact('upload', 'comments', 'tags'));
+        return view('upload.show_one', compact('upload', 'comments'));
     }
 
     //UPDATE POST
