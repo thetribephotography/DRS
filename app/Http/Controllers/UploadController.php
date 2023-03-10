@@ -28,7 +28,7 @@ class UploadController extends Controller
 
     public function published(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere( 'group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere( 'group_members', $user)->whereNull('deleted_at')->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.publish', compact('find', 'categories', 'tags'));
@@ -36,7 +36,7 @@ class UploadController extends Controller
 
     public function softwares(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->whereNull('deleted_at')->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.software', compact('find', 'categories', 'tags'));
@@ -44,7 +44,7 @@ class UploadController extends Controller
 
     public function datasets(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->get();
+        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->whereNull('deleted_at')->get();
         $categories = Category::all();
         $tags = Tag::all();
 
@@ -54,7 +54,7 @@ class UploadController extends Controller
 
     public function workflows(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->get();
+        $find = Group::where('user_id', $user)->orWhere('group_members', $user)->whereNull('deleted_at')->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.workflow', compact('find', 'categories', 'tags'));
@@ -81,7 +81,7 @@ class UploadController extends Controller
         $user = Auth::id();
         $upload = Upload::where('_id', $id)->first();
 
-        $comments = Comment::where('upload_id',$upload->_id)->get(); //Gets comments and users that made the commment
+        $comments = Comment::where('upload_id',$upload->_id)->whereNull('deleted_at')->get(); //Gets comments and users that made the commment
 
         // dd($upload, $comments);
 
@@ -97,7 +97,7 @@ class UploadController extends Controller
             return redirect ("/page")->with("No Updates were Made");
         } else{
 
-            $update = Upload::where('_id', $id)->first();
+            $update = Upload::where('_id', $id)->whereNull('deleted_at')->first();
 
             $update->title = $request->title;
             $update->description = $request->description;

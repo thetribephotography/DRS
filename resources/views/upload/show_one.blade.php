@@ -90,13 +90,17 @@
                                 aria-labelledby="drop-comment-button">
                                 @if ( Auth::user()->_id == $comment->user->_id )
                                     <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Edit</a>
+                                        <a href="{{ route ('comment.edit', $comment->_id) }}" class="block py-2 px-4 hover:bg-gray-100 ">Edit</a>
                                     </li>
                                 @endif
                                 @if(Auth::user()->hasRole('admin') || $upload->user_id == Auth::user()->_id)
+                                <form action=" {{ route ('comment.delete', $comment->_id) }} " method="post">
+                                    @csrf
+                                    @method('POST')
                                     <li>
-                                        <a href="{{ route ('comment.delete', $comment->id) }}" class="block py-2 px-4 hover:bg-gray-100 ">Delete</a>
+                                        <button type="submit" class="block py-2 px-4 hover:bg-gray-100 ">Delete</button>
                                     </li>
+                                </form>
                                 @endif
                                 <li>
                                     <a href="uploads/{id}/report" class="block py-2 px-4 hover:bg-gray-100 ">Report</a>

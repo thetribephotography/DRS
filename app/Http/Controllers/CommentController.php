@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Illuminate\Support\Facades\Session;
 use App\Models\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,20 +44,41 @@ class CommentController extends Controller
         $new_comment->content = $comment;
         $new_comment->save();
 
+        session()->put('upload_id', $id);
+
         //Add new comment id to comment file in this particular upload
         $upload->push('comments', $new_comment->id);
 
         return redirect()->back()->with("message","Comment Added Sucessfully");
     }
 
+    // SHOW PAGE TO EDIT ONE COMMENT
+    public function edit($id){
+        $comments = Comment::where('_id', $id)->first();
+
+        return view ('upload.comment_edit', compact('comments'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $comment = Comment::where('_id', $id)->whereNull('deleted_at')->first();
+        // $upload_id = Upload::where('comments', $id)->first();
+
+        $comment->content = $request->comment;
+        $comment->update();
+
+        $upload_id = Session::get('upload_id');
+        return redirect()->intended(route('upload.show_one', $upload_id));
+
+    }
 
     /**
      * Remove the specified resource from storage.
