@@ -81,7 +81,7 @@ class UploadController extends Controller
         $user = Auth::id();
         $upload = Upload::where('_id', $id)->first();
 
-        $comments = Comment::where('upload_id',$upload->_id)->whereNull('deleted_at')->get(); //Gets comments and users that made the commment
+        $comments = Comment::where('upload_id',$upload->_id)->whereNull('deleted_at')->orderBy('created_at', 'desc')->get(); //Gets comments and users that made the commment
 
         // dd($upload, $comments);
 
