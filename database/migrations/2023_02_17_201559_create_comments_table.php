@@ -22,6 +22,7 @@ return new class extends Migration
             $collection->unsignedBigInteger('upload_id');
             $collection->longText('content');
             $collection->timestamps();
+            $collection->integer('status');
             $collection->softDeletes()->nullable();
 
         });

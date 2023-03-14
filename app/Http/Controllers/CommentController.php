@@ -35,6 +35,7 @@ class CommentController extends Controller
 
         $user_id = Auth::id();
         $comment = $request->comment;
+        $status = 1;
 
         $upload = Upload::find($id);
 
@@ -42,6 +43,7 @@ class CommentController extends Controller
         $new_comment->user_id = $user_id;
         $new_comment->upload_id = $id;
         $new_comment->content = $comment;
+        $new_comment->status = $status;
         $new_comment->save();
 
         session()->put('upload_id', $id);
@@ -89,6 +91,21 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $delete = Comment::where('_id', $id)->delete();
+
+        return redirect()->back();
+    }
+
+    public function report($id)
+    {
+        $rep = Comment::where('_id', $id)->first();
+
+        // status = 1 ==normal comment
+        // status = 2 ==reported comment/waiting for admin to review and delete
+
+        $status = 2;
+
+        $rep->status = $status;
+        $rep->update();
 
         return redirect()->back();
     }

@@ -101,10 +101,14 @@
                                         <button type="submit" class="block py-2 px-4 hover:bg-gray-100 ">Delete</button>
                                     </li>
                                 </form>
+                                <form action=" {{ route ('comment.report', $comment->_id) }} " method="post">
+                                    @csrf
+                                    @method('POST')
+                                    <li>
+                                        <button type="submit" class="block py-2 px-4 hover:bg-gray-100 ">Report</button>
+                                    </li>
+                                </form>
                                 @endif
-                                <li>
-                                    <a href="uploads/{id}/report" class="block py-2 px-4 hover:bg-gray-100 ">Report</a>
-                                </li>
                             </ul>
                         </div>
                     </footer>
