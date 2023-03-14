@@ -18,6 +18,7 @@ class Comment extends Model
         'user_id',
         'upload_id',
         'content',
+        'status',
         'deleted_at',
     ];
 

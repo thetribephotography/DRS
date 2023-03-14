@@ -117,6 +117,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::post('/uploads/delete/{_id}', [ CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('/upload/comment_edit/{_id}', [CommentController::class, 'edit'])->name('comment.edit');
     Route::post('/comment/update/{_id}', [CommentController::class, 'update'])->name('comment.update');
+    Route::post('/upload/report/{_id}', [CommentController::class, 'report'])->name('comment.report');
 
     //Categories
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.show');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Upload;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
@@ -155,5 +156,14 @@ class AdminController extends Controller
         return redirect("/page")->with("Successfully deleted");
 
        }
+
+       //SEE ALL REPORTED COMMENTS
+       public function comments(){
+        $com = Comment::where('status', 2)->get();
+
+        return view ('', compact ('com'));
+
+       }
+       
 
 }
