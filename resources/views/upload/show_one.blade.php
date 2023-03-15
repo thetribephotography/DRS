@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <section class="bg-white py-8 lg:py-16">
         <div>
             <p class=" text-3xl mb-2 text-center">{{$upload->title}}</p>
@@ -88,8 +88,8 @@
                             class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow">
                             <ul class="py-1 text-sm text-gray-700"
                                 aria-labelledby="drop-comment-button">
-                                @if ( Auth::user()->_id == $comment->user->_id )
-                                    <li>
+                                @if ($comment->user_id ===  Auth::user()->_id )
+                                    <li wire:loading.remove>
                                         <a href="{{ route ('comment.edit', $comment->_id) }}" class="block py-2 px-4 hover:bg-gray-100 ">Edit</a>
                                     </li>
                                 @endif
@@ -123,7 +123,7 @@
                 </article>
 
                 {{-- FOR COMMENTS OF COMMENT --}}
-                {{-- <article class="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg">
+                <article class="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg">
                     <footer class="flex justify-between items-center mb-2">
                         <div class="flex items-center">
                             <p class="inline-flex items-center mr-3 text-sm text-gray-900"><img
@@ -172,7 +172,7 @@
                             Reply
                         </button>
                     </div>
-                </article> --}}
+                </article>
                 {{-- END FOR COMMENTS OF COMMENT --}}
               @endforeach
             </div>
@@ -182,5 +182,5 @@
 
         {{-- For dropddown kini to work --}}
         <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
-</x-guest-layout>
+</x-app-layout>
 

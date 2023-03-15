@@ -31,7 +31,8 @@ return new class extends Migration
             $collection->array('category_id');
             $collection->array('group_id')->nullable();
             // $collection->string('doi_id')->nullable();
-            $collection->string('path');
+            $collection->file('path');
+            $collection->file('media');
             $collection->string('file_type'); //Type of file, zip, jpeg, png, exe
             $collection->bigInteger('file_size'); //Size of File
             $collection->softDeletes();

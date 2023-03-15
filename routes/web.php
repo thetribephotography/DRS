@@ -104,15 +104,25 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
     Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
+<<<<<<< HEAD
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
     Route::any('/upload/uploadshow/{_id}', [UploadController::class, 'uploadshow'])->name('upload.upload_show');
     Route::any('/upload/show_one/{_id}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
+=======
+    Route::any('/upload/upload_list',[UploadController::class, 'uploadlist'])->name('upload.upload_list');
+    // Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
+    Route::any('/upload/show_one/{_id}',[UploadController::class, 'uploadshow'])->name('upload.show_one');
+>>>>>>> 157f7619be906c75e5333907482b60b5c9ed18b4
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 
     //  Group
-    Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
-    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+    //Group Setting
+    Route::get('/create_group', [GroupController::class, 'create'])->name('group.create');
+    Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
+    // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
+    // Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
+    // Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
     Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
     Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');
     Route::post('group/leave/{_id}', [GroupController::class, 'leave'])->name('group.leave');
@@ -129,10 +139,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
 
 
 
-    //Group Setting
-    Route::get('/create_group', [GroupController::class, 'create'])->name('group.create');
-    Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
-    // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
+
 
 });
 

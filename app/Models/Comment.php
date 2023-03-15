@@ -19,6 +19,7 @@ class Comment extends Model
         'upload_id',
         'content',
         'status',
+        'replies',
         'deleted_at',
     ];
 
