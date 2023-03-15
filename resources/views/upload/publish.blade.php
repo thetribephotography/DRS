@@ -80,12 +80,11 @@
 
                 
                        
-                      <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                    <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                         <label for="keywords" class="block text-sm font-medium text-gray-700">KeyWords</label>
                         <div class="input-group input-group-sm mb-3">
                             <input name="keywords" id="keywords"  multiple="multiple" class="js-example-basic-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ">
-
-                      </div>
+                        </div>
                     </div>
                     
 
@@ -144,13 +143,23 @@
                           <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer white:hover:bg-bray-800 white:bg-gray-700 hover:bg-gray-100 white:border-gray-600 white:hover:border-gray-500 white:hover:bg-gray-600">
                               <div class="flex flex-col justify-center items-center pt-5 pb-6">
                                   <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload Publication</span> or drag and drop</p>
+                                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload Media Related Documents</span> or drag and drop</p>
+                                  <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, MP4 or GIF</p>
                               </div>
-                              <input id="dropzone-file"  name="summary-upload" type="file" class="hidden" />
+                              <input id="dropzone-file" id="summary-upload" name="summary-upload" type="file" class="hidden" />
                           </label>
                       </div> 
+
                   </div>
 
+                    <div class="mt-10 col-span-6 sm:col-span-4">
+                    {{-- <div class="flex text-sm text-gray-600"> --}}
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="large_size">Click to upload Publication Documents</label>
+                    <input class="block w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400" id="file-upload" name="file-upload" type="file">
+                    
+                    <p class="pt-3 mb-2 text-sm text-gray-500 dark:text-gray-400">It is Advisable you zip the folder before Uploading for Better Consumption</p>
+                    {{-- </div> --}}
+                    </div>
                   {{-- <label for="" class="input_form">Farm Produce</label>
                                 <div class="input-group input-group-sm mb-3">
                                     <select class="js-example-basic-multiple form-control border-0 border-bottom" required name="farm_produce" multiple="multiple" id="farmProduce" value="">
