@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Unique;
 
 
 
@@ -28,7 +29,7 @@ class UploadController extends Controller
 
     public function published(){
         $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere( 'group_members', $user)->whereNull('deleted_at')->get();
+        $find = Group::where('user_id', $user)->orWhere( 'group_members', $user)->whereNull('deleted_at')->get();
         $categories = Category::all();
         $tags = Tag::all();
         return view ('upload.publish', compact('find', 'categories', 'tags'));
@@ -79,7 +80,7 @@ class UploadController extends Controller
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
 
         $user = Auth::id();
-        $upload = Upload::where('_id', $id)->first();
+        $upload = Upload::where('_id', $id)->where('user_id', $user)->first();
 
         $comments = Comment::where('upload_id',$upload->_id)->whereNull('deleted_at')->orderBy('created_at', 'desc')->get(); //Gets comments and users that made the commment
 
@@ -130,13 +131,15 @@ class UploadController extends Controller
             'example' => 'required',
             'topic_id' => 'required',
             'category' => 'required',
+            'file-upload' => 'required',
+            'summary-upload' => ['required, mimes:jpeg,png,jpg,gif,svg,mp4'],
 
         ],
 
                  //Array to specify validation message for a particular validation
         [
-                'file_upload.mimes' => 'Accepted file formats is Zip and Rar',
-                'categiry.required' => 'Selected field is required. Select at least one category'
+                // 'summary_upload.mimes' => 'File types jpeg,png,jpg,gif,svg,mp4 are advised', 
+                // 'categiry.required' => 'Selected field is required. Select at least one category'
             ]
     );
 
@@ -174,7 +177,8 @@ class UploadController extends Controller
             
         $user = Auth::id();
 
-        $path = $this->UploadFile($request->file('summary-upload'), $file_name);
+        $path = $this->UploadFile($request->file('file-upload'), $file_name);
+        $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
         $upload = new Upload;
         $upload->title = $request->title;
@@ -183,15 +187,16 @@ class UploadController extends Controller
         $upload->language = $request->language;
         $upload->author = $request->author;
         $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
+        $upload->access_id = $request->example; 
         $upload->group_id = $groups;
         $upload->topic_id = $topic_id;
         $upload->path = $path;
+        $upload->media = $media;
         $upload->user_id = $user;
         $upload->category_id = $cat;
         $upload->tags_id = $request->tags;
-        $upload->file_type = $request->file('summary-upload')->getClientOriginalExtension(); // File type
-        $upload->file_size = $request->file('summary-upload')->getSize(); //File size
+        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+        $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
         $upload->save(); 
 

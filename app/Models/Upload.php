@@ -28,6 +28,7 @@ class Upload extends Model
         'doi_id',
         'topic_id',
         'path',
+        'media',
         'user_id',
         'tags_id',
         'comments',
