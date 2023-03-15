@@ -30,6 +30,11 @@ use Illuminate\Http\Request;
 |
 */
 
+//Test Route for building admin dashboard navbar
+Route::get('/dd', function () {
+    return view('dd');
+});
+
 //EMAIL VERFICATION
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -37,13 +42,13 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{_id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
- 
+
     return redirect('/page');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
- 
+
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
@@ -53,55 +58,55 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 // LOGIN/AUTH
 Route::get('/page', function () {
-    if (Auth::user()->hasRole('admin')){
-        return view ('admin.index');
-    } else if(Auth::user()->hasRole('registered')){
+    if (Auth::user()->hasRole('admin')) {
+        return view('admin.index');
+    } else if (Auth::user()->hasRole('registered')) {
         return view('user.index');
     } else {
-        return view ('auth.login');
+        return view('auth.login');
     }
-}); 
+});
 
-    // PUBLIC / UNPROTECTED ROUTES
+// PUBLIC / UNPROTECTED ROUTES
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
 
 //Search Result from landing page
-    Route::get('/search-results', [UserController::class, 'search_result']);
+Route::get('/search-results', [UserController::class, 'search_result']);
 
 
 // ADMIN ROUTES
-Route::prefix('')->middleware(['auth', 'role:admin'])->group(function(){
+Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
     // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
-    
+
 });
 
 
 // USER ROUTES
-Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function(){
+Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
     //  User
     Route::get('/page', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
     Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
     Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
-    
+
 
 
     //  UPLOAD
-    Route::any('user/upload',[UploadController::class, 'upload'])->name('user.upload');
-    Route::get('user/publish',[UploadController::class, 'published'])->name('user.publish');
-    Route::post('upload/publish',[UploadController::class, 'publish'])->name('uploads.publish');
-    Route::get('user/software',[UploadController::class, 'softwares'])->name('user.software');
+    Route::any('user/upload', [UploadController::class, 'upload'])->name('user.upload');
+    Route::get('user/publish', [UploadController::class, 'published'])->name('user.publish');
+    Route::post('upload/publish', [UploadController::class, 'publish'])->name('uploads.publish');
+    Route::get('user/software', [UploadController::class, 'softwares'])->name('user.software');
     // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::get('user/dataset',[UploadController::class, 'datasets'])->name('user.dataset');
+    Route::get('user/dataset', [UploadController::class, 'datasets'])->name('user.dataset');
     // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::get('user/workflow',[UploadController::class, 'workflows'])->name('user.workflow');
+    Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-    Route::any('/upload/upload_list',[UploadController::class, 'uploadlist'])->name('upload.upload_list');
-    Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
-    Route::any('/upload/show_one/{_id}',[UploadController::class, 'uploadshow'])->name('upload.show_one');
+    Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
+    Route::any('/upload/uploadshow/{_id}', [UploadController::class, 'uploadshow'])->name('upload.upload_show');
+    Route::any('/upload/show_one/{_id}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 
@@ -113,8 +118,8 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::post('group/leave/{_id}', [GroupController::class, 'leave'])->name('group.leave');
 
     //Comments
-    Route::post('/uploads/{id}/comment', [ CommentController::class, 'store'])->name('upload.comment');
-    Route::post('/uploads/delete/{_id}', [ CommentController::class, 'destroy'])->name('comment.delete');
+    Route::post('/uploads/{id}/comment', [CommentController::class, 'store'])->name('upload.comment');
+    Route::post('/uploads/delete/{_id}', [CommentController::class, 'destroy'])->name('comment.delete');
     Route::get('/upload/comment_edit/{_id}', [CommentController::class, 'edit'])->name('comment.edit');
     Route::post('/comment/update/{_id}', [CommentController::class, 'update'])->name('comment.update');
     Route::post('/upload/report/{_id}', [CommentController::class, 'report'])->name('comment.report');
@@ -131,8 +136,8 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
 
 });
 
-    // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
+// Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

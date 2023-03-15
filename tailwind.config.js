@@ -6,6 +6,7 @@ module.exports = {
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
+        "./resources/views/**/*.html",
     ],
 
     theme: {
@@ -23,6 +24,7 @@ module.exports = {
                 clblack: "#393E46",
                 gg: "#969AB8",
                 gl: "#E0E2E9",
+                gb: "#0381B1",
             },
             fontSize: {
                 s1: "3.812rem", //61px
