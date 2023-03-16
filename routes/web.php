@@ -104,15 +104,9 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
     Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-<<<<<<< HEAD
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
-    Route::any('/upload/uploadshow/{_id}', [UploadController::class, 'uploadshow'])->name('upload.upload_show');
-    Route::any('/upload/show_one/{_id}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
-=======
-    Route::any('/upload/upload_list',[UploadController::class, 'uploadlist'])->name('upload.upload_list');
     // Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
-    Route::any('/upload/show_one/{_id}',[UploadController::class, 'uploadshow'])->name('upload.show_one');
->>>>>>> 157f7619be906c75e5333907482b60b5c9ed18b4
+    Route::any('/upload/show_one/{_id}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 
@@ -136,11 +130,6 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
 
     //Categories
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.show');
-
-
-
-
-
 });
 
 // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');

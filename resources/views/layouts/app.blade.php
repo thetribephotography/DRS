@@ -108,7 +108,6 @@
     </script>
 
 
-<<<<<<< HEAD
 </head>
 
 <body class="font-poppins antialiased">
@@ -129,13 +128,5 @@
     </div>
     @livewireScripts
 </body>
-=======
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                {{-- <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div> --}}
-            </header>
->>>>>>> 157f7619be906c75e5333907482b60b5c9ed18b4
 
 </html>
