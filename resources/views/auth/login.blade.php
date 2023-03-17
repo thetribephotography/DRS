@@ -8,7 +8,7 @@
             </a>
             <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0">
                 <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
-                    <h1 class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                    <h1 class="text-center text-xl font-bold leading-tight tracking-tight text-clblack md:text-2xl">
                         Log In
                     </h1>
                     <!-- Session Status -->
@@ -89,12 +89,6 @@
                             </span>
                         </p>
                         <div>
-                            @if (Route::has('password.request'))
-                                <a class="text-sm text-gray-600 underline hover:text-gray-900"
-                                    href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
-                            @endif
                             <p class="text-center font-semibold text-clblack">Or</p>
                             <div class="mt-4 flex pl-10">
                                 <a href="">
@@ -121,3 +115,4 @@
             </div>
         </div>
     </section>
+</x-guest-layout>

@@ -39,10 +39,7 @@
     <nav class="flex flex-wrap items-center justify-between bg-white py-4 shadow lg:px-12">
         <div
             class="flex w-full justify-between border-b-2 border-solid border-gray-300 pr-2 pb-5 lg:w-auto lg:border-b-0 lg:pb-0">
-            <div class="mr-16 flex flex-shrink-0 items-center font-semibold text-cdblack">
-                <img class="h-12 w-12" src="{{ asset('images/logo.png') }}" alt="">
-                <span>SoftwareRepoHub</span>
-            </div>
+            <x-application-logo class="mr-16" />
             {{-- Mobile Nav --}}
             <div class="block lg:hidden">
                 <button class="flex items-center rounded" id="nav">
@@ -144,9 +141,20 @@
     <section class="h-[30rem] w-full">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
-            {{-- For image --}}
-            <div class="mr-56 h-80 w-80">
-                <img class="h-full w-full" src="{{ asset('images/group-data.png') }}" alt="">
+            {{-- For Boxes --}}
+            <div class="ml-56 grid h-[24rem] w-80 grid-cols-2 gap-4 bg-yellow-500">
+                <div class="h-20 w-20 bg-blue-400">
+                    <h1>Hello</h1>
+                </div>
+                <div class="h-20 w-20 bg-pink-400">
+                    <h1>Hi</h1>
+                </div>
+                <div class="h-20 w-20 bg-blue-500">
+                    <h1>What's up</h1>
+                </div>
+                <div class="h-20 w-20 bg-red-400">
+                    <h1>Howdy</h1>
+                </div>
             </div>
             {{-- For text --}}
             <div>
