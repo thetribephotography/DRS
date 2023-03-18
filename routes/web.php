@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
@@ -58,6 +59,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 // LOGIN/AUTH
 Route::get('/page', function () {
+    // return view('admin.index');
     if (Auth::user()->hasRole('admin')) {
         return view('admin.index');
     } else if (Auth::user()->hasRole('registered')) {
@@ -79,15 +81,15 @@ Route::get('/search-results', [UserController::class, 'search_result']);
 
 // ADMIN ROUTES
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
-    // Route::get('/admin/index', [RegisteredUserController::class, 'store'])->name('admin.index');
 
+    Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
 });
 
 
 // USER ROUTES
 Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
     //  User
-    Route::get('/page', [UserController::class, 'index'])->name('user.index');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
     Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
     Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');

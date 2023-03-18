@@ -21,3 +21,6 @@ yarn-error.log
 /app/Models/Test.php
 /app/Models/TemporaryFile.php
 /app/Http/Controllers/TestUserController.php
+
+
+/test_files
