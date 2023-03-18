@@ -23,7 +23,7 @@
 
 
 
-
+    <script src="anime.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -280,7 +280,15 @@
     </footer>
     {{-- End of Footer --}}
 
-
+    <script>
+        anime({
+            targets: 'div',
+            translateX: 250,
+            rotate: '1turn',
+            backgroundColor: '#203991',
+            duration: 800
+        });
+    </script>
 
     @livewireScripts
 
