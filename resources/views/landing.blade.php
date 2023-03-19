@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Home') }}</title>
+    <title>{{ $title }}</title>
 
     {{-- Favicon --}}
     <link href="{{ asset('favicon/apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
@@ -85,14 +85,63 @@
                 </form>
             </div>
             {{-- End seaarch bar --}}
-            <div class="ml-6 flex">
-                <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
-                    href="{{ Route('login') }}">Login</a>
 
-                <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
-                    href="{{ Route('register') }}">Sign
-                    Up</a>
-            </div>
+            @auth
+                <div class="ml-6 flex">
+                    {{-- Bell Notification --}}
+                    <div class="mx-10 h-9 w-9 rounded-full hover:bg-gl">
+                        <button class="">
+                            <span class="absolute translate-x-3 text-s9 font-bold text-clblack">4</span>
+                            <svg class="h-6 w-6 translate-y-1.5 translate-x-1.5 text-clblack"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                            </svg>
+
+
+                        </button>
+                    </div>
+
+                    {{-- User Icon --}}
+                    <div x-data="{ open: false }">
+                        {{-- Button --}}
+                        <button class="mx-3 flex rounded-full text-sm focus:ring-4 focus:ring-gray-300" type="button"
+                            @click="open=!open">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="h-8 w-8 rounded-full"
+                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                        </button>
+
+                        {{-- Panel --}}
+                        <div class="absolute right-16 mt-4 w-28 rounded border border-black bg-gray-500 p-2" x-show="open">
+                            <div>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit">
+                                        Log out
+                                    </button>
+                                </form>
+
+                                <a classs="block w-full" href="">Action 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            @endauth
+
+            @guest
+                <div class="ml-6 flex">
+                    <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
+                        href="{{ Route('login') }}">Login</a>
+
+                    <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+                        href="{{ Route('register') }}">Sign
+                        Up</a>
+                </div>
+            @endguest
+
         </div>
 
     </nav>
@@ -159,7 +208,8 @@
             {{-- For text --}}
             <div>
                 <p class="mb-4 text-s2 font-bold text-clblack">Discover a Wide Range of Uploads</p>
-                <p class="text-s6 font-semibold text-cgray">Our Software Engineering data repository offers a variety of
+                <p class="text-s6 font-semibold text-cgray">Our Software Engineering data repository offers a variety
+                    of
                     upload options
                     With an intuitive upload process, it is easy to get started and share your work with the world.</p>
             </div>

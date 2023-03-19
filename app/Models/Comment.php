@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Maklad\Permission\Traits\HasRoles;
 
 class Comment extends Model
 {
-    use HasFactory, HasRoles, SoftDeletes;
+    use HasFactory, HasRoles, SoftDeletes, Notifiable;
 
     protected $guard_name = 'web';
 
@@ -23,13 +24,9 @@ class Comment extends Model
         'deleted_at',
     ];
 
-    protected $casts = [
+    protected $casts = [];
 
-    ];
-
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
     //Relationship of the user to comments
     public function user()
@@ -41,6 +38,4 @@ class Comment extends Model
     {
         return $this->belongsTo(Upload::class, 'upload_id');
     }
-
-
 }

@@ -11,12 +11,13 @@ use Laravel\Sanctum\HasApiTokens;
 use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 // use Spatie\Permission\Traits\HasRoles;
+//Implements MustVerifyEmail
 
-class User extends Authenticatable Implements MustVerifyEmail
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
-        protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -49,15 +50,18 @@ class User extends Authenticatable Implements MustVerifyEmail
     ];
 
 
-    public function upload(){
+    public function upload()
+    {
         return $this->hasMany(Upload::class);
     }
 
-    public function group(){
+    public function group()
+    {
         return $this->hasMany(Group::class);
     }
 
-    public function comment(){
+    public function comment()
+    {
         return $this->hasMany(Comment::class);
     }
 }

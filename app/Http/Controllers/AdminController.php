@@ -20,7 +20,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $title  = "Admin|Dashboard";
+        return view('admin.index', compact('title'));
     }
     // VIEW ALL UPLOADS IN A LIST
     public function viewallpost()

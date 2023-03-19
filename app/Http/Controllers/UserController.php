@@ -11,25 +11,27 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
 
-
+        $user = Auth::user();
         $user_id = Auth::id();
-        $uploads = Upload::where('user_id',$user_id)->get();
+        $uploads = Upload::where('user_id', $user_id)->get();
+        // $notifications = optional($user)->unreadNotifications;
         // $groups = Group::all();
 
-        return view('user.index')->with('uploads', $uploads);
+        return view('user.index', compact('uploads',));
     }
 
-    public function edit(){
+    public function edit()
+    {
         return view('user.edit-profile');
     }
 
-    public function search_result(Request $request){
+    public function search_result(Request $request)
+    {
 
         $results = Upload::latest()->filter(request(['search',]))->simplepaginate(8);
         return view('user.search_result', compact('results'));
     }
 }
-
-
