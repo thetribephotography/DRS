@@ -66,37 +66,73 @@
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full"
                                 src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+
                         </button>
 
                         {{-- Panel --}}
-                        <div class="absolute right-16 mt-4 w-28 rounded border border-black bg-gray-500 p-2" x-show="open">
-                            <div>
+                        <div class="absolute right-16 mt-4 w-44 rounded border border-gl bg-white p-2 pt-4" x-show="open">
+                            <a class="" href="">
+                                <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                    <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                                    </svg>
+
+                                    <p> Dashboard</p>
+                                </div>
+                            </a>
+                            <a class="" href="">
+                                <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
+                                    <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+
+                                    <p>Profile</p>
+                                </div>
+                            </a>
+                            <a class="" href="">
+                                <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
+                                    <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
+                                    </svg>
+
+                                    <p>Notifications</p>
+                                </div>
+                            </a>
+                            <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
+                                <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                </svg>
+
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit">
+                                    <button class="hover:text-cmblue" type="submit">
                                         Log out
                                     </button>
                                 </form>
-
-                                <a classs="block w-full" href="">Action 2</a>
                             </div>
                         </div>
-
                     </div>
-                </div>
-            @endauth
+                @endauth
 
-            @guest
-                <div class="ml-6 flex">
-                    <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
-                        href="{{ Route('login') }}">Login</a>
+                @guest
+                    <div class="ml-6 flex">
+                        <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
+                            href="{{ Route('login') }}">Login</a>
 
-                    <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
-                        href="{{ Route('register') }}">Sign
-                        Up</a>
-                </div>
-            @endguest
+                        <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+                            href="{{ Route('register') }}">Sign
+                            Up</a>
+                    </div>
+                @endguest
 
-        </div>
+            </div>
 
     </nav>
