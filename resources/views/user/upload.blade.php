@@ -1,46 +1,57 @@
 <x-app-layout>
-
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Upload') }}
-        </h2>    
-    </x-slot>
-
-
-<div class="container px-4 px-4 mb-4 mt-4 ml-14 mr-2">
-  <div class="w-full bg-white rounded-lg border shadow-md white:bg-gray-800 grey:border-gray-700 pt-4 pb-4 pl-4 pr-4">
-    <div class="layout">
-      <div class="upload">
-      <a href="{{ route('user.publish') }}" id="publish"> 
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-        {{-- <p>PUBLISH</p> --}}
-      </a>
-      </div>
-      <div class="upload">
-        <a href="{{ route('user.software') }}" id="software"> 
-        <label for="software"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></label>
-        {{-- <p>SOFTWARE</p> --}}
-      </a>
-      </div>
-      <div class="upload">
-        <a href="{{ route('user.dataset') }}" id="dataset"> 
-          <label for="dataset"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></label>
-          {{-- <P>DATASET</P> --}}
-        </a>
-
-      </div>
-
-      <div class="upload">
-        <a href="{{ route('user.workflow') }}" id="workflow"> 
-          <label for="workflow"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></label>
-          {{-- <p>WORKFLOW</p> --}}
-        </a>
-
-      </div>
+    <div class="h-[10rem] w-full bg-gray-100 pt-8 shadow">
+        <div class="ml-[6rem]">
+            <h2 class="mb-4 text-s3 font-semibold text-clblack">Upload type</h2>
+            <p>Select the type of upload you wish to upload</p>
+        </div>
     </div>
 
-  </div>
-</div>
+    <div class="flex h-60 gap-6 pt-14 pl-[25rem]">
+        {{-- Article --}}
+        <a class="text-cgray hover:text-cmblue" href="{{ route('user.publish') }}">
+            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+                <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+                <span class="text-s7 font-semibold uppercase">Article</span>
+            </div>
+        </a>
+        {{-- Dataset --}}
+        <a class="text-cgray hover:text-cmblue" href="{{ route('user.dataset') }}">
+            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+                <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5" />
+                </svg>
+                <span class="text-s7 font-semibold uppercase">Dataset</span>
+            </div>
+        </a>
+        {{-- Software --}}
+        <a class="href= text-cgray hover:text-cmblue"{{ route('user.software') }}">
+            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+                <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                </svg>
+                <span class="text-s7 font-semibold uppercase">Software</span>
+            </div>
+        </a>
+        {{-- Worflow --}}
+        <a class="href= text-cgray hover:text-cmblue"{{ route('user.workflow') }}">
+            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+                <svg class="mb-4 h-12 w-12 translate-x-9" viewBox="0 0 55 50" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M50 35V27.5C50 24.725 47.775 22.5 45 22.5H30V15H35V0H20V15H25V22.5H10C7.225 22.5 5 24.725 5 27.5V35H0V50H15V35H10V27.5H25V35H20V50H35V35H30V27.5H45V35H40V50H55V35H50ZM25 5H30V10H25V5ZM10 45H5V40H10V45ZM30 45H25V40H30V45ZM50 45H45V40H50V45Z"
+                        fill="#7A7A7A" />
+                </svg>
+                <span class="text-s7 font-semibold uppercase">Worflow</span>
+            </div>
+        </a>
 
+    </div>
 </x-app-layout>
-    

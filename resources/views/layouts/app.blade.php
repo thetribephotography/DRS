@@ -45,86 +45,17 @@
 
     @livewireStyles
 
-
-    {{-- Taiwind Configuration --}}
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            "50": "#eff6ff",
-                            "100": "#dbeafe",
-                            "200": "#bfdbfe",
-                            "300": "#93c5fd",
-                            "400": "#60a5fa",
-                            "500": "#3b82f6",
-                            "600": "#2563eb",
-                            "700": "#1d4ed8",
-                            "800": "#1e40af",
-                            "900": "#1e3a8a"
-                        }
-                    }
-                },
-                fontFamily: {
-                    'body': [
-                        'Montserrat',
-                        'ui-sans-serif',
-                        'system-ui',
-                        '-apple-system',
-                        'system-ui',
-                        'Segoe UI',
-                        'Roboto',
-                        'Helvetica Neue',
-                        'Arial',
-                        'Noto Sans',
-                        'sans-serif',
-                        'Apple Color Emoji',
-                        'Segoe UI Emoji',
-                        'Segoe UI Symbol',
-                        'Noto Color Emoji'
-                    ],
-                    'sans': [
-                        'Montserrat',
-                        'ui-sans-serif',
-                        'system-ui',
-                        '-apple-system',
-                        'system-ui',
-                        'Segoe UI',
-                        'Roboto',
-                        'Helvetica Neue',
-                        'Arial',
-                        'Noto Sans',
-                        'sans-serif',
-                        'Apple Color Emoji',
-                        'Segoe UI Emoji',
-                        'Segoe UI Symbol',
-                        'Noto Color Emoji'
-                    ]
-                }
-            }
-        }
-    </script>
-
-
 </head>
 
 <body class="font-poppins antialiased">
-    <div class="min-h-screen bg-gray-100">
+    {{-- Navigation --}}
+    <x-navigation-auth />
 
-        <!-- Page Heading -->
-        <header class="bg-white shadow">
-            <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
 
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
+    <!-- Page Content -->
+    <main>
+        {{ $slot }}
+    </main>
     @livewireScripts
 </body>
 
