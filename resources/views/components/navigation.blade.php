@@ -2,27 +2,29 @@
     <nav class="flex flex-wrap items-center justify-between bg-white py-4 shadow lg:px-12">
         <div
             class="flex w-full justify-between border-b-2 border-solid border-gray-300 pr-2 pb-5 lg:w-auto lg:border-b-0 lg:pb-0">
-            <x-application-logo class="mr-16" />
-            {{-- Mobile Nav --}}
-            <div class="block lg:hidden">
-                <button class="flex items-center rounded" id="nav">
-                    <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                    </svg>
-                </button>
-            </div>
+            <a href="/">
+                <x-application-logo class="mr-16" />
+                {{-- Mobile Nav --}}
+                <div class="block lg:hidden">
+                    <button class="flex items-center rounded" id="nav">
+                        <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                        </svg>
+                    </button>
+                </div>
+            </a>
         </div>
 
         <div class="menu w-full flex-grow px-8 lg:flex lg:w-auto lg:items-center lg:px-3">
             <div class="text-s8 font-regular lg:flex-grow">
-                <a class="mt-4 mr-2 block rounded px-4 py-2 lg:mt-0 lg:inline-block" href="#">
+                <a class="mt-4 mr-2 block rounded px-4 py-2 lg:mt-0 lg:inline-block" href="{{ route('user.upload') }}">
                     UPLOAD
                 </a>
-                <a class="mt-4 mr-2 block rounded px-4 py-2 lg:mt-0 lg:inline-block" href="#">
+                <a class="mt-4 mr-2 block rounded px-4 py-2 lg:mt-0 lg:inline-block" href="{{ route('contact') }}">
                     CONTACT
                 </a>
-                <a class="mt-4 mr-2 block rounded px-4 py-2 lg:mt-0 lg:inline-block" href="#">
+                <a class="mt-4 mr-2 block rounded px-4 py-2 lg:mt-0 lg:inline-block" href="{{ route('about') }}">
                     ABOUT US
                 </a>
             </div>

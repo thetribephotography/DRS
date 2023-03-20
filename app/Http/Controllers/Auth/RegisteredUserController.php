@@ -20,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $title = "Sign Up";
+        return view('auth.register', compact('title'));
     }
 
     /**
@@ -53,7 +54,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         // return redirect(RouteServiceProvider::HOME);
 
-        return redirect ('/page');
-
+        return redirect('/')->with('success', 'Registerd Sucessfully');
     }
 }

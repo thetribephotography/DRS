@@ -23,80 +23,93 @@ class UploadController extends Controller
 {
     use Uploader;
 
-    public function upload(){
-        return view ('user.upload');
+    public function upload()
+    {
+        $title = "Upload";
+        return view('user.upload', compact('title'));
     }
 
-    public function published(){
-        $user = Auth::id();
-        $find = Group::where('user_id', $user)->orWhere( 'group_members', $user)->whereNull('deleted_at')->get();
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view ('upload.publish', compact('find', 'categories', 'tags'));
-    }
-
-    public function softwares(){
-        $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->whereNull('deleted_at')->get();
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view ('upload.software', compact('find', 'categories', 'tags'));
-    }
-
-    public function datasets(){
-        $user = Auth::id();
-        $find = Group::where('user_id', $user) ->orWhere('group_members', $user)->whereNull('deleted_at')->get();
-        $categories = Category::all();
-        $tags = Tag::all();
-
-
-        return view ('upload.dataset', compact('find', 'categories', 'tags'));
-    }
-
-    public function workflows(){
+    public function published()
+    {
+        $title = "Article Upload";
         $user = Auth::id();
         $find = Group::where('user_id', $user)->orWhere('group_members', $user)->whereNull('deleted_at')->get();
         $categories = Category::all();
         $tags = Tag::all();
-        return view ('upload.workflow', compact('find', 'categories', 'tags'));
+        return view('upload.publish', compact('find', 'categories', 'tags', 'title'));
+    }
+
+    public function softwares()
+    {
+        $title = "Software Upload";
+        $user = Auth::id();
+        $find = Group::where('user_id', $user)->orWhere('group_members', $user)->whereNull('deleted_at')->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('upload.software', compact('find', 'categories', 'tags', 'title'));
+    }
+
+    public function datasets()
+    {
+        $title = "Dataset Upload";
+        $user = Auth::id();
+        $find = Group::where('user_id', $user)->orWhere('group_members', $user)->whereNull('deleted_at')->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+
+
+        return view('upload.dataset', compact('find', 'categories', 'tags', 'title'));
+    }
+
+    public function workflows()
+    {
+        $title = "Workflow Upload";
+        $user = Auth::id();
+        $find = Group::where('user_id', $user)->orWhere('group_members', $user)->whereNull('deleted_at')->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('upload.workflow', compact('find', 'categories', 'tags', 'title'));
     }
 
 
-    public function uploadlist(){
-        
-            // $this->authorize('view_user_post', 'You do not have the permission to access this.');
-
-            $user = Auth::id();
-
-            $list = Upload::where('user_id', $user)->where('deleted_at', null)->get();
-
-            // dd($list);
-
-            return view ('upload.upload_list', compact('list'));
-    }
-
-    public function uploadshow($id){
+    public function uploadlist()
+    {
 
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
 
+        $title = "Upload | All";
+        $user = Auth::id();
+
+        $list = Upload::where('user_id', $user)->where('deleted_at', null)->get();
+
+        // dd($list);
+
+        return view('upload.upload_list', compact('list', 'title'));
+    }
+
+    public function uploadshow($id)
+    {
+
+        // $this->authorize('view_user_post', 'You do not have the permission to access this.');
+        $title = "View Single Upload";
         $user = Auth::id();
         $upload = Upload::where('_id', $id)->where('user_id', $user)->first();
-
-        $comments = Comment::where('upload_id',$upload->_id)->whereNull('deleted_at')->orderBy('created_at', 'desc')->get(); //Gets comments and users that made the commment
+        $comments = Comment::where('upload_id', $upload->_id)->whereNull('deleted_at')->orderBy('created_at', 'desc')->get(); //Gets comments and users that made the commment
 
         // dd($upload, $comments);
 
-        return view('upload.show_one', compact('upload', 'comments'));
+        return view('upload.show_one', compact('upload', 'comments', 'title'));
     }
 
     //UPDATE POST
-    public function updatepost(Request $request, $id){
-
+    public function updatepost(Request $request, $id)
+    {
+        $title = "";
         $this->authorize('update_user_post', 'You dont have the Permission to update these records');
 
-        if($request->all() == ''){
-            return redirect ("/page")->with("No Updates were Made");
-        } else{
+        if ($request->all() == '') {
+            return redirect("/dashboard")->with("No Updates were Made");
+        } else {
 
             $update = Upload::where('_id', $id)->whereNull('deleted_at')->first();
 
@@ -113,35 +126,36 @@ class UploadController extends Controller
 
             $update->update();
 
-            return redirect ("/page")->with("Update Successful");
-
+            return redirect("/dashboard")->with("Update Successful");
         }
     }
-    
+
     // REMEMBER TO UPLOAD MULTIPLE FILES CODE TO ONE PATH(1 for file, 1 FOR VIDEOS/IMAGES)
-    public function publish(Request $request){
+    public function publish(Request $request)
+    {
 
-         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'language' => 'required',
-            'author' => 'required',
-            'keywords' => 'required',
-            'example' => 'required',
-            'topic_id' => 'required',
-            'category' => 'required',
-            'file-upload' => 'required',
-            'summary-upload' => ['required, mimes:jpeg,png,jpg,gif,svg,mp4'],
+        $validated = $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'date' => 'required',
+                'language' => 'required',
+                'author' => 'required',
+                'keywords' => 'required',
+                'example' => 'required',
+                'topic_id' => 'required',
+                'category' => 'required',
+                'file-upload' => 'required',
+                'summary-upload' => ['required, mimes:jpeg,png,jpg,gif,svg,mp4'],
 
-        ],
+            ],
 
-                 //Array to specify validation message for a particular validation
-        [
-                // 'summary_upload.mimes' => 'File types jpeg,png,jpg,gif,svg,mp4 are advised', 
+            //Array to specify validation message for a particular validation
+            [
+                // 'summary_upload.mimes' => 'File types jpeg,png,jpg,gif,svg,mp4 are advised',
                 // 'categiry.required' => 'Selected field is required. Select at least one category'
             ]
-    );
+        );
 
 
         //category and tag save in db as array
@@ -149,11 +163,11 @@ class UploadController extends Controller
 
         $cat = [];
 
-        foreach($category as $categories){
+        foreach ($category as $categories) {
             $cat[] = $categories;
         }
 
-    
+
         //     request for hidden column, title and access rights and save in variable
         $topic_id = $request->topic_id;
         $file_name = $request->title;
@@ -161,160 +175,151 @@ class UploadController extends Controller
 
         //STORE GROUPING ID'S IF CHOSEN
         $groups = [];
-       if($access == 3) {
-        $group = $request->grouping;
+        if ($access == 3) {
+            $group = $request->grouping;
 
 
-        foreach($group as $grouping){
-            $groups[] = $grouping;
+            foreach ($group as $grouping) {
+                $groups[] = $grouping;
+            }
         }
-       } 
-
-    
-       //Analyse and divert function based on form info collected.
-    if ( $topic_id == 1){
-        //    1 = publish
-            
-        $user = Auth::id();
-
-        $path = $this->UploadFile($request->file('file-upload'), $file_name);
-        $media = $this->UploadFile($request->file('summary-upload'), $file_name);
-
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example; 
-        $upload->group_id = $groups;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->media = $media;
-        $upload->user_id = $user;
-        $upload->category_id = $cat;
-        $upload->tags_id = $request->tags;
-        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
-        $upload->file_size = $request->file('file-upload')->getSize(); //File size
-
-        $upload->save(); 
 
 
-    }  else if ($topic_id == 2){
-        //    2 = software
-        $user = Auth::id();
+        //Analyse and divert function based on form info collected.
+        if ($topic_id == 1) {
+            //    1 = publish
 
-        $path = $this->UploadFile($request->file('file-upload'), $file_name);
-        
-       //trying to upload multiple files from different inputs into one column
+            $user = Auth::id();
 
-       // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+            $path = $this->UploadFile($request->file('file-upload'), $file_name);
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->group_id = $groups;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-        $upload->category_id = $cat;
-        $upload->tags_id = $request->tags;
-        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
-        $upload->file_size = $request->file('file-upload')->getSize(); //File size
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $request->language;
+            $upload->author = $request->author;
+            $upload->keywords = $request->keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->path = $path;
+            $upload->media = $media;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
-        $upload->save();
+            $upload->save();
+        } else if ($topic_id == 2) {
+            //    2 = software
+            $user = Auth::id();
 
-    } else if($topic_id == 3){
-        //    3 = dataset
+            $path = $this->UploadFile($request->file('file-upload'), $file_name);
 
-        // get Authenticated user id 
-        $user = Auth::id();
+            //trying to upload multiple files from different inputs into one column
 
-       $path = $this->UploadFile($request->file('file-upload'), $file_name);
-        //trying to upload multiple files from different inputs into one column
+            // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
 
-       // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $request->language;
+            $upload->author = $request->author;
+            $upload->keywords = $request->keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->group_id = $groups;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-        $upload->category_id = $cat;
-        $upload->tags_id = $request->tags;
-        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
-        $upload->file_size = $request->file('file-upload')->getSize(); //File size
+            $upload->save();
+        } else if ($topic_id == 3) {
+            //    3 = dataset
 
-        $upload->save();
+            // get Authenticated user id
+            $user = Auth::id();
 
-    } else if ($topic_id == 4){
-        //    4 = workflow
+            $path = $this->UploadFile($request->file('file-upload'), $file_name);
+            //trying to upload multiple files from different inputs into one column
 
-        // get Authenticated user id 
-        $user = Auth::id();
+            // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
 
-        $path = $this->UploadFile($request->file('file-upload'), $file_name);
-        //trying to upload multiple files from different inputs into one column
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $request->language;
+            $upload->author = $request->author;
+            $upload->keywords = $request->keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
-       // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+            $upload->save();
+        } else if ($topic_id == 4) {
+            //    4 = workflow
 
-        $upload = new Upload;
-        $upload->title = $request->title;
-        $upload->description = $request->description;
-        $upload->published_at = $request->date;
-        $upload->language = $request->language;
-        $upload->author = $request->author;
-        $upload->keywords = $request->keywords;
-        $upload->access_id = $request->example;
-        $upload->group_id = $groups;
-        $upload->topic_id = $topic_id;
-        $upload->path = $path;
-        $upload->user_id = $user;
-        $upload->category_id = $cat;
-        $upload->tags_id = $request->tags;
-        $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
-        $upload->file_size = $request->file('file-upload')->getSize(); //File size
+            // get Authenticated user id
+            $user = Auth::id();
 
-        $upload->save();
+            $path = $this->UploadFile($request->file('file-upload'), $file_name);
+            //trying to upload multiple files from different inputs into one column
 
+            // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $request->language;
+            $upload->author = $request->author;
+            $upload->keywords = $request->keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
+
+            $upload->save();
+        }
+
+        // if ($access == 3){
+
+        //     $id = $request->grouping;
+        //     $update = Group::where('_id', $id)->first();
+        //     $upload_id = $upload->_id;
+
+        //     $update->upload = $upload_id;
+        //     $update->update();
+        // }
+
+        return redirect("/dashboard")->with("Upload Successful");
     }
 
-    // if ($access == 3){
-    
-    //     $id = $request->grouping;
-    //     $update = Group::where('_id', $id)->first();
-    //     $upload_id = $upload->_id;
-
-    //     $update->upload = $upload_id;
-    //     $update->update();
-    // }
-
-    return redirect ("/page")->with ("Upload Successful");
-
-}
-
-    public function deletepost($id){
+    public function deletepost($id)
+    {
         $this->authorize('delete_user_post', 'You do not have the permission to execute this command');
         $user = Auth::id();
         $delete = Upload::where('_id', $id && 'user_id', $user)->delete();
 
-        return redirect ("/page")->with('Successfully Deleted');
-
+        return redirect("/dashboard")->with('Successfully Deleted');
     }
-
-    
-
 }

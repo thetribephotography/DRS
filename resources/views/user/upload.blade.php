@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="$title">
     <div class="h-[10rem] w-full bg-gray-100 pt-8 shadow">
         <div class="ml-[6rem]">
             <h2 class="mb-4 text-s3 font-semibold text-clblack">Upload type</h2>
@@ -30,7 +30,7 @@
             </div>
         </a>
         {{-- Software --}}
-        <a class="href= text-cgray hover:text-cmblue"{{ route('user.software') }}">
+        <a class="text-cgray hover:text-cmblue" href="{{ route('user.software') }}">
             <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
                 <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -41,7 +41,7 @@
             </div>
         </a>
         {{-- Worflow --}}
-        <a class="href= text-cgray hover:text-cmblue"{{ route('user.workflow') }}">
+        <a class="text-cgray hover:text-cmblue" href="{{ route('user.workflow') }}">
             <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
                 <svg class="mb-4 h-12 w-12 translate-x-9" viewBox="0 0 55 50" fill="none"
                     xmlns="http://www.w3.org/2000/svg">

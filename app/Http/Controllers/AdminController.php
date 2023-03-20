@@ -49,7 +49,7 @@ class AdminController extends Controller
         $this->authorize('update_all_post', 'You are not Authorized for this Action');
 
         if ($request->all() == '') {
-            return redirect("/page")->with("No Updates were Made");
+            return redirect("/admin-dasboard")->with("No Updates were Made");
         } else {
 
             $update = Upload::where('_id', $id)->first();
@@ -67,7 +67,7 @@ class AdminController extends Controller
 
             $update->update();
 
-            return redirect("/page")->with("Update Successful");
+            return redirect("/admin-dashboard")->with("Update Successful");
         }
     }
 
@@ -78,7 +78,7 @@ class AdminController extends Controller
 
         $delete = Upload::where('_id', $id)->delete();
 
-        return redirect("/page")->with('Successfully Deleted');
+        return redirect("/admin-dashboard")->with('Successfully Deleted');
     }
 
     // view all groups in a list
@@ -167,7 +167,7 @@ class AdminController extends Controller
 
         $delete = User::where('_id', $id)->delete();
 
-        return redirect("/page")->with("Successfully deleted");
+        return redirect("/admin-dashboard")->with("Successfully deleted");
     }
 
     //SEE ALL REPORTED COMMENTS

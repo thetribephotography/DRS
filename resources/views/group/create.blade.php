@@ -1,28 +1,36 @@
-<x-app-layout>
+<x-app-layout :title="$title">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             Create Group
         </h2>
     </x-slot>
     <section>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm">
-                    <form action="" method="POST" class="p-6">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-white shadow-sm">
+                    <form class="p-6" action="" method="POST">
                         @csrf
                         <div class="mb-6">
-                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Group Name</label>
-                          <input  name="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-black-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 white:bg-gray-700" placeholder="Name" required>
+                            <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-black"
+                                for="name">Group Name</label>
+                            <input
+                                class="text-black-900 white:bg-gray-700 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                id="name" name="name" type="text" placeholder="Name" required>
                         </div>
                         <div class="mb-6">
-                          <label for="members" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Add Group Members</label>
-                          <select name="members[]" id="members" class="members-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm  " multiple="multiple">
-                            @foreach ($users as $user)
-                                <option value=" {{$user->_id}} "> {{$user->email}} </option>
-                            @endforeach
-                          </select>
+                            <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-black"
+                                for="members">Add Group Members</label>
+                            <select
+                                class="members-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                id="members" name="members[]" multiple="multiple">
+                                @foreach ($users as $user)
+                                    <option value=" {{ $user->_id }} "> {{ $user->email }} </option>
+                                @endforeach
+                            </select>
                         </div>
-                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button
+                            class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
+                            type="submit">
                             Submit
                         </button>
                     </form>

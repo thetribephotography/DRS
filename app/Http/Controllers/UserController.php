@@ -19,19 +19,22 @@ class UserController extends Controller
         $uploads = Upload::where('user_id', $user_id)->get();
         // $notifications = optional($user)->unreadNotifications;
         // $groups = Group::all();
+        $title = "Dashboard";
 
-        return view('user.index', compact('uploads',));
+        return view('user.index', compact('uploads', 'title'));
     }
 
     public function edit()
     {
-        return view('user.edit-profile');
+        $title = "Edit Profile";
+        return view('user.edit-profile', compact('title'));
     }
 
     public function search_result(Request $request)
     {
 
+        $title = "Search Results";
         $results = Upload::latest()->filter(request(['search',]))->simplepaginate(8);
-        return view('user.search_result', compact('results'));
+        return view('user.search_result', compact('results', 'title'));
     }
 }

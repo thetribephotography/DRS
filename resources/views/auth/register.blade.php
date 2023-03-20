@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="$title">
     <section>
         <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
             <a class="mb-4 flex items-center text-2xl font-bold text-clblack" href="#">

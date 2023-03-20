@@ -56,19 +56,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 
-
-// LOGIN/AUTH
-Route::get('/page', function () {
-    // return view('admin.index');
-    if (Auth::user()->hasRole('admin')) {
-        return view('admin.index');
-    } else if (Auth::user()->hasRole('registered')) {
-        return view('user.index');
-    } else {
-        return view('auth.login');
-    }
-});
-
 // PUBLIC / UNPROTECTED ROUTES
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -87,7 +74,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 // USER ROUTES
-Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
+Route::prefix('')->middleware(['auth', 'role:registered',])->group(function () {
     //  User
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
@@ -114,10 +101,10 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
 
     //  Group
     //Group Setting
-    Route::get('/create_group', [GroupController::class, 'create'])->name('group.create');
-    Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
+    Route::get('/create_group', [GroupController::class, 'create_group'])->name('group.create');
+    // Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
-    // Route::get('group/create', [GroupController::class, 'create_group'])->name('user.create_group');
+    // Route::get('group/create', [GroupController  ::class, 'create_group'])->name('user.create_group');
     // Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
     Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
     Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');

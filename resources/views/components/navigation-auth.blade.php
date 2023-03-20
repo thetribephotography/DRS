@@ -2,16 +2,18 @@
     <nav class="flex flex-wrap items-center justify-between bg-white py-4 shadow lg:px-12">
         <div
             class="flex w-full justify-between border-b-2 border-solid border-gray-300 pr-2 pb-5 lg:w-auto lg:border-b-0 lg:pb-0">
-            <x-application-logo class="mr-16" />
-            {{-- Mobile Nav --}}
-            <div class="block lg:hidden">
-                <button class="flex items-center rounded" id="nav">
-                    <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                    </svg>
-                </button>
-            </div>
+            <a href="/">
+                <x-application-logo class="mr-16" />
+                {{-- Mobile Nav --}}
+                <div class="block lg:hidden">
+                    <button class="flex items-center rounded" id="nav">
+                        <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                        </svg>
+                    </button>
+                </div>
+            </a>
         </div>
         {{-- Search Bar --}}
         <div class="relative mx-auto hidden text-clblack lg:block">
@@ -59,7 +61,7 @@
                     </div>
 
                     {{-- User Icon --}}
-                    <div x-data="{ open: false }">
+                    <div class="z-30" x-data="{ open: false }">
                         {{-- Button --}}
                         <button class="mx-3 flex rounded-full text-sm focus:ring-4 focus:ring-gray-300" type="button"
                             @click="open=!open">
@@ -71,7 +73,7 @@
 
                         {{-- Panel --}}
                         <div class="absolute right-16 mt-4 w-44 rounded border border-gl bg-white p-2 pt-4" x-show="open">
-                            <a class="" href="">
+                            <a class="" href="{{ route('user.index') }}">
                                 <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
                                     <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -82,7 +84,7 @@
                                     <p> Dashboard</p>
                                 </div>
                             </a>
-                            <a class="" href="">
+                            <a class="" href="{{ route('user.view-profile') }}">
                                 <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
                                     <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -93,7 +95,7 @@
                                     <p>Profile</p>
                                 </div>
                             </a>
-                            <a class="" href="">
+                            <a class="" href="#">
                                 <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
                                     <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -111,7 +113,7 @@
                                         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                 </svg>
 
-                                <form action="{{ route('logout') }}" method="POST">
+                                <form action="{{ Route('logout') }}" method="POST">
                                     @csrf
                                     <button class="hover:text-cmblue" type="submit">
                                         Log out
