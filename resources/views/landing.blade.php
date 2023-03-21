@@ -34,7 +34,7 @@
     @livewireStyles
 </head>
 
-<body class="font-poppins">
+<body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
     @auth
         <x-navigation-auth />
     @endauth
@@ -135,8 +135,9 @@
     </section>
     {{-- End of section --}}
 
+
     {{-- Next Section --}}
-    <section class="h-[30rem] w-full">
+    <section class="mb-4 h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For Boxes --}}
@@ -166,6 +167,48 @@
     </section>
     {{-- End of section --}}
 
+    {{-- Next Section --}}
+    <section class="h-[30rem] w-full border-b border-gl pl-40">
+        {{-- Main container --}}
+        <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
+            {{-- For text --}}
+            <div class="pt-10">
+                <p class="mb-4 text-s2 font-bold text-clblack">Amount of research data available</p>
+                <p class="text-s6 font-semibold text-cgray">Suited and trusted with large data archiving standards</p>
+            </div>
+            {{-- For Circle --}}
+            <div class="ml-[12rem] mt-2 h-56 w-56 rounded-full bg-cmblue pt-[5rem] text-center drop-shadow-custom" ">
+                <span class="text-s3 font-bold text-white">400+</span>
+            </div>
+        </div>
+    </section>
+    {{-- End of section --}}
+
+    <div class="mt-10 w-full text-center text-s4 font-bold text-clblack">
+        <h1>Featured datasets</h1>
+               <div class="mt-8 pl-[34rem] text-clblack lg:block">
+            <form action="/search-results" method="GET">
+                <div class="relative w-[30rem] text-center">
+                    <input
+class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular text-gray-900 focus:border-cmblue focus:ring-cmblue" name="search" type="search" placeholder="Explore various datasets" required>
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <button type="submit">
+                            <svg class="h-5 w-5 text-gray-500" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{{-- Featured Datasets section --}}
+<div class="h-52 w-full bg-yellow-300">
+
+</div>
+{{-- End of Featured Datasets section --}}
+
     {{-- Footer --}}
     <footer class="bg-cmblue text-center text-white">
         <div class="container px-10 pt-10">
@@ -179,13 +222,12 @@
                         </div>
 
                         <div class="relative md:mb-6">
-                            <input type="text" placeholder="thanos@gmail.com" />
+                            <input type="text" placeholder="thanos@gmail.com"/>
                         </div>
 
                         <div class="mb-6 md:mr-auto">
                             <button
-                                class="inline-block rounded border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                                data-te-ripple-init data-te-ripple-color="light" type="submit">
+class="inline-block rounded border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" data-te-ripple-init data-te-ripple-color="light" type="submit">
                                 Subscribe
                             </button>
                         </div>
@@ -199,7 +241,7 @@
 
                     <ul class="mb-0 list-none">
                         <li>
-                            <a class="text-left text-white" href="#!">About Us</a>
+                            <a class="text-left text-white" href="{{ route('about') }}">About Us</a>
                         </li>
                         <li>
                             <a class="text-left text-white" href="#!">Carrers</a>
@@ -246,7 +288,7 @@
                             <a class="text-white" href="#!">Help Center</a>
                         </li>
                         <li>
-                            <a class="text-white" href="#!">Terms of Use</a>
+                            <a class="text-white" href="{{ route('terms') }}">Terms of Use</a>
                         </li>
                     </ul>
                 </div>
@@ -278,16 +320,6 @@
         </div>
     </footer>
     {{-- End of Footer --}}
-
-    <script>
-        anime({
-            targets: 'div',
-            translateX: 250,
-            rotate: '1turn',
-            backgroundColor: '#203991',
-            duration: 800
-        });
-    </script>
 
     @livewireScripts
 

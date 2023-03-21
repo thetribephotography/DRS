@@ -34,7 +34,7 @@
     @livewireStyles
 </head>
 
-<body class="font-poppins">
+<body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
 
     {{ $slot }}
 

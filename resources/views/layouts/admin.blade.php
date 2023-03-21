@@ -46,7 +46,8 @@
     @livewireStyles
 </head>
 
-<body class="font-inter antialiased">
+<body
+    class="font-inter antialiased scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
 
     {{-- MAIN CONTAINER --}}
     <div class="flex">

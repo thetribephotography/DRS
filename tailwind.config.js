@@ -44,8 +44,15 @@ module.exports = {
                 semibold: "600",
                 bold: "700",
             },
+            dropShadow: {
+                custom: "0 15px 35px #0092CA",
+            },
         },
     },
 
-    plugins: [require("@tailwindcss/forms")],
+    plugins: [
+        //...
+        require("@tailwindcss/forms"),
+        require("tailwind-scrollbar")({ nocompatible: true }),
+    ],
 };

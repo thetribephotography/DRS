@@ -47,7 +47,8 @@
 
 </head>
 
-<body class="font-poppins antialiased">
+<body
+    class="font-poppins antialiased scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
     {{-- Navigation --}}
     <x-navigation-auth />
 
