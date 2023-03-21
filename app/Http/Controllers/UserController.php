@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Upload;
@@ -36,5 +37,14 @@ class UserController extends Controller
         $title = "Search Results";
         $results = Upload::latest()->filter(request(['search',]))->simplepaginate(8);
         return view('user.search_result', compact('results', 'title'));
+    }
+
+    public function show()
+    {
+        $title = "User Profile";
+        $auth_user_id = Auth::user()->_id;
+        $user = User::where('_id', $auth_user_id)->first();
+
+        return view('user.show', compact('title', 'user'));
     }
 }
