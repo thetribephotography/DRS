@@ -36,6 +36,20 @@ Route::get('/dd', function () {
     return view('dd');
 });
 
+
+// LOGIN/AUTH
+Route::get('/dashboard', function () {
+    // return view('admin.index');
+    if (Auth::user()->hasRole('admin')) {
+        return view('admin.index');
+    } else if (Auth::user()->hasRole('registered')) {
+        return view('user.index');
+    } else {
+        return view('auth.login');
+    }
+});
+
+
 //EMAIL VERFICATION
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -74,7 +88,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 // USER ROUTES
-Route::prefix('')->middleware(['auth', 'role:registered',])->group(function () {
+Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
     //  User
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
