@@ -39,7 +39,6 @@
         <x-navigation-auth />
     @endauth
     @guest
-
         <x-navigation />
     @endguest
 
@@ -205,7 +204,9 @@ class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular te
     </div>
 {{-- Featured Datasets section --}}
 <div class="h-52 w-full bg-yellow-300">
+<div class="ml[30rem] w-[55rem] bg-orange-500">
 
+</div>
 </div>
 {{-- End of Featured Datasets section --}}
 
@@ -260,17 +261,15 @@ class="inline-block rounded border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-x
 
                     <ul class="mb-0 list-none">
                         <li>
-                            <a class="text-white" href="#!">Link 1</a>
+                            <a class="text-white" href="#!">Blog</a>
                         </li>
                         <li>
-                            <a class="text-white" href="#!">Link 2</a>
+                            <a class="text-white" href="#!">Case Studies</a>
                         </li>
                         <li>
-                            <a class="text-white" href="#!">Link 3</a>
+                            <a class="text-white" href="#!">News</a>
                         </li>
-                        <li>
-                            <a class="text-white" href="#!">Link 4</a>
-                        </li>
+
                     </ul>
                 </div>
 
@@ -298,16 +297,7 @@ class="inline-block rounded border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-x
 
                     <ul class="mb-0 list-none">
                         <li>
-                            <a class="text-white" href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Link 4</a>
+                            <a class="text-white" href="www.babcock.edu.ng">Babcock University Illishan Remo, Ogun state</a>
                         </li>
                     </ul>
                 </div>

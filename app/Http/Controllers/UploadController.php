@@ -311,7 +311,7 @@ class UploadController extends Controller
         //     $update->update();
         // }
 
-        return redirect("/dashboard")->with("Upload Successful");
+        return redirect("/dashboard")->with("success", "Upload Successful");
     }
 
     public function deletepost($id)
@@ -320,6 +320,6 @@ class UploadController extends Controller
         $user = Auth::id();
         $delete = Upload::where('_id', $id && 'user_id', $user)->delete();
 
-        return redirect("/dashboard")->with('Successfully Deleted');
+        return redirect("/dashboard")->with("success", 'Successfully Deleted');
     }
 }

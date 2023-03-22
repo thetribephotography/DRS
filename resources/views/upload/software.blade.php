@@ -1,13 +1,21 @@
 <x-app-layout :title="$title">
 
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Software Upload Form') }}
-        </h2>
-    </x-slot>
+    {{-- Header start --}}
+    <div class="h-[10rem] w-full bg-[#C2E7F4] pt-8 shadow">
+        <div class="ml-[15rem]">
+            <h2 class="mt-5 text-s3 font-bold text-cdblack">Software Upload</h2>
+        </div>
+    </div>
+    {{-- End Header --}}
+    {{-- <x-header header="header" /> --}}
 
 
-    <div class="container mb-4 mt-4 px-4 px-4">
+    {{-- Input Fields --}}
+    <section class="ml-[24rem] mt-8 h-[20rem] w-[51rem] bg-yellow-400">
+
+    </section>
+
+    <div class="container mb-4 mt-4 px-4">
 
         <div class="mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -238,7 +246,7 @@
 
                                 <div class="px-4 py-3 text-right sm:px-6">
                                     <button
-                                        class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700"
                                         type="submit">Save</button>
                                 </div>
 

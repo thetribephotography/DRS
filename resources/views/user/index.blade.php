@@ -1,4 +1,53 @@
 <x-app-layout :title="$title">
+    {{-- Flash Message - Success --}}
+    @if (session('success'))
+        <div class="absolute left-[40rem] mb-4 flex rounded-lg bg-green-500 p-4 text-sm text-white transition duration-700 ease-in-out"
+            id="flash-message" role="alert">
+            <svg class="mr-3 inline h-5 w-5 flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Success:</span> {{ session('success') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').classList.add('opacity-0');
+                setTimeout(function() {
+                    document.getElementById('flash-message').remove();
+                }, 10000)
+            }, 4000); // remove the alert after 4 seconds
+        </script>
+    @endif
+    {{-- Flash Message - Error --}}
+    @if (session('error'))
+        <div class="absolute left-[40rem] mb-4 flex rounded-lg bg-red-500 p-4 text-sm text-white transition duration-700 ease-in-out"
+            id="flash-message" role="alert">
+            <svg class="mr-3 inline h-5 w-5 flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Error:</span> {{ session('error') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').classList.add('opacity-0');
+                setTimeout(function() {
+                    document.getElementById('flash-message').remove();
+                }, 10000)
+            }, 4000); // remove the alert after 4 seconds
+        </script>
+    @endif
+    {{-- End flash messages --}}
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
