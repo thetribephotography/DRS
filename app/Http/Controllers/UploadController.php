@@ -146,15 +146,15 @@ class UploadController extends Controller
                 'topic_id' => 'required',
                 'category' => 'required',
                 'file-upload' => 'required',
-                'summary-upload' => ['required, mimes:jpeg,png,jpg,gif,svg,mp4'],
+                'summary-upload' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4',
 
-            ],
+            ]
 
             //Array to specify validation message for a particular validation
-            [
-                // 'summary_upload.mimes' => 'File types jpeg,png,jpg,gif,svg,mp4 are advised',
-                // 'categiry.required' => 'Selected field is required. Select at least one category'
-            ]
+            // [
+            //     'summary_upload.mimes' => 'File types jpeg,png,jpg,gif,svg,mp4 are advised',
+            //     'categiry.required' => 'Selected field is required. Select at least one category'
+            // ]
         );
 
 
@@ -218,10 +218,7 @@ class UploadController extends Controller
             $user = Auth::id();
 
             $path = $this->UploadFile($request->file('file-upload'), $file_name);
-
-            //trying to upload multiple files from different inputs into one column
-
-            // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
             $upload = new Upload;
             $upload->title = $request->title;
@@ -234,6 +231,7 @@ class UploadController extends Controller
             $upload->group_id = $groups;
             $upload->topic_id = $topic_id;
             $upload->path = $path;
+            $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
             $upload->tags_id = $request->tags;
@@ -248,9 +246,7 @@ class UploadController extends Controller
             $user = Auth::id();
 
             $path = $this->UploadFile($request->file('file-upload'), $file_name);
-            //trying to upload multiple files from different inputs into one column
-
-            // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
             $upload = new Upload;
             $upload->title = $request->title;
@@ -263,6 +259,7 @@ class UploadController extends Controller
             $upload->group_id = $groups;
             $upload->topic_id = $topic_id;
             $upload->path = $path;
+            $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
             $upload->tags_id = $request->tags;
@@ -277,9 +274,7 @@ class UploadController extends Controller
             $user = Auth::id();
 
             $path = $this->UploadFile($request->file('file-upload'), $file_name);
-            //trying to upload multiple files from different inputs into one column
-
-            // $path2 = $this->UploadFile($request->file('summary-upload1'), 'Software');
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
             $upload = new Upload;
             $upload->title = $request->title;
@@ -292,6 +287,7 @@ class UploadController extends Controller
             $upload->group_id = $groups;
             $upload->topic_id = $topic_id;
             $upload->path = $path;
+            $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
             $upload->tags_id = $request->tags;
