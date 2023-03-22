@@ -224,11 +224,6 @@
                                             you zip the folder before Uploading for Better Consumption</p>
                                         {{-- </div> --}}
                                     </div>
-                                    {{-- <label for="" class="input_form">Farm Produce</label>
-                                <div class="input-group input-group-sm mb-3">
-                                    <select class="js-example-basic-multiple form-control border-0 border-bottom" required name="farm_produce" multiple="multiple" id="farmProduce" value="">
-                                    </select>
-                                </div> --}}
 
                                     {{-- <label for=""></label> --}}
 

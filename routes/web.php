@@ -37,19 +37,6 @@ Route::get('/dd', function () {
 });
 
 
-// LOGIN/AUTH
-Route::get('/dashboard', function () {
-    // return view('admin.index');
-    if (Auth::user()->hasRole('admin')) {
-        return view('admin.index');
-    } else if (Auth::user()->hasRole('registered')) {
-        return view('user.index');
-    } else {
-        return view('auth.login');
-    }
-});
-
-
 //EMAIL VERFICATION
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -68,6 +55,17 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
+// LOGIN/AUTH
+Route::get('/dashboard', function () {
+    // return view('admin.index');
+    if (Auth::user()->hasRole('admin')) {
+        return view('admin.index');
+    } else if (Auth::user()->hasRole('registered')) {
+        return view('user.index');
+    } else {
+        return view('auth.login');
+    }
+});
 
 
 // PUBLIC / UNPROTECTED ROUTES

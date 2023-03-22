@@ -183,20 +183,6 @@
                                     </div>
 
 
-                                    <div class="col-span-6 mt-10 sm:col-span-4">
-                                        {{-- <div class="flex text-sm text-gray-600"> --}}
-                                        <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
-                                            for="large_size">Upload Dataset File</label>
-                                        <input
-                                            class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:text-gray-400"
-                                            id="file-upload" name="file-upload" type="file">
-                                        <p class="mb-2 pt-3 text-sm text-gray-500 dark:text-gray-400">It is Advisable
-                                            you zip the folder before Uploading for Better Consumption</p>
-                                        {{-- </div> --}}
-                                    </div>
-
-
-
 
                                     <div class="col-span-6 sm:col-span-4">
                                         <div class="flex w-full items-center justify-center">
@@ -219,13 +205,29 @@
                                                         Icon to Upload a Video or Picture explaining your Publication
                                                     </p>
                                                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG
-                                                        or GIF (MAX. 800x400px)</p>
+                                                        or GIF</p>
                                                 </div>
                                                 <input class="hidden" id="dropzone-file" name="summary-upload"
                                                     type="file" />
                                             </label>
                                         </div>
                                     </div>
+
+
+                                    <div class="col-span-6 mt-10 sm:col-span-4">
+                                        {{-- <div class="flex text-sm text-gray-600"> --}}
+                                        <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+                                            for="large_size">Upload Dataset File</label>
+                                        <input
+                                            class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:text-gray-400"
+                                            id="file-upload" name="file-upload" type="file">
+                                        <p class="mb-2 pt-3 text-sm text-gray-500 dark:text-gray-400">It is Advisable
+                                            you zip the folder before Uploading for Better Consumption</p>
+                                        {{-- </div> --}}
+                                    </div>
+
+
+
 
                                     <input id="topic_id" name="topic_id" type="hidden" value="3">
 
