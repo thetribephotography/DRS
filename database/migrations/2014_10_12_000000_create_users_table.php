@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $collection) {
             // $collection->id();
             // $collection->index();
+            $collection->file('profile_picture');
             $collection->string('name');
             $collection->string('email')->unique();
             $collection->timestamp('email_verified_at')->nullable();
