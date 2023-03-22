@@ -315,6 +315,8 @@ class UploadController extends Controller
         $this->authorize('delete_user_post', 'You do not have the permission to execute this command');
         $user = Auth::id();
         $delete = Upload::where('_id', $id && 'user_id', $user)->delete();
+        //deltte comments associated with such post
+        // $comment = Comment::where()
 
         return redirect("/dashboard")->with('Successfully Deleted');
     }

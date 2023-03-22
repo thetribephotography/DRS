@@ -24,7 +24,7 @@
                                 <div>
                                     <input
                                         class="block h-11 w-full rounded-lg border-2 border-gl p-2.5 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
-                                        id="first_name" name="name" type="text" value="{{ old('fname') }}"
+                                        id="first_name" name="fname" type="text" value="{{ old('fname') }}"
                                         placeholder="First Name" required="">
                                 </div>
 
