@@ -17,7 +17,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $user_id = Auth::id();
-        $uploads = Upload::where('user_id', $user_id)->get();
+        $uploads = Upload::where('access_id', "1")->get();
         // $notifications = optional($user)->unreadNotifications;
         // $groups = Group::all();
         $title = "Dashboard";

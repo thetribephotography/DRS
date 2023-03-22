@@ -36,6 +36,7 @@ Route::get('/dd', function () {
     return view('dd');
 });
 
+
 //EMAIL VERFICATION
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -44,7 +45,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{_id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    return redirect('/page');
+    return redirect('/dashbaord');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
@@ -54,6 +55,17 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
+// LOGIN/AUTH
+Route::get('/dashboard', function () {
+    // return view('admin.index');
+    if (Auth::user()->hasRole('admin')) {
+        return view('admin.index');
+    } else if (Auth::user()->hasRole('registered')) {
+        return view('user.index');
+    } else {
+        return view('auth.login');
+    }
+});
 
 
 // PUBLIC / UNPROTECTED ROUTES
@@ -74,7 +86,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 // USER ROUTES
-Route::prefix('')->middleware(['auth', 'role:registered',])->group(function () {
+Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
     //  User
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');

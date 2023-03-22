@@ -10,9 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Traits\Uploader;
 
 class RegisteredUserController extends Controller
 {
+        use Uploader;
     /**
      * Display the registration view.
      *
@@ -35,13 +37,18 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'image-upload' => 'mimes:jpeg,png,jpg',
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $profile = $this->UploadFile($request->file('image-upload'), 'Profile');
+
         $user = User::create([
-            'name' => $request->name,
+            'profile_picture' => $profile,
+            'name' => $request->fname. '' . $request->lname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -54,6 +61,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         // return redirect(RouteServiceProvider::HOME);
 
-        return redirect('/')->with('success', 'Registerd Sucessfully');
+        return redirect('/dashboard')->with('success', 'Registerd Sucessfully');
     }
 }

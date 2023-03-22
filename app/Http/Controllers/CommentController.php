@@ -48,15 +48,13 @@ class CommentController extends Controller
         $new_comment->save();
 
 
-
-
         session()->put('upload_id', $id);
 
         //Add new comment id to comment file in this particular upload
         $upload->push('comments', $new_comment->id);
 
         //Create event for a new comment
-        event(new NewComment($new_comment));
+        // event(new NewComment($new_comment));
 
         return redirect()->back()->with("message", "Comment Added Sucessfully");
     }
