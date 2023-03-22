@@ -17,6 +17,12 @@
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}">
                         @csrf
+
+                        <div>
+                            <input
+                                    class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:text-gray-400"
+                                    id="image-upload" name="image-upload" type="file">
+                        </div>
                         <div class="flex">
                             <div class="w-1/2 pr-4">
                                 <label class="mb-2 block text-sm text-s7 font-medium text-clblack" for="First Name">
@@ -128,6 +134,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
+
+
 
 
 
