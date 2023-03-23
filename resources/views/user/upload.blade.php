@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <div class="flex h-60 gap-6 pt-14 pl-[25rem]">
+    <div class="z-30 flex h-60 gap-6 pt-14 pl-[25rem]">
         {{-- Article --}}
         <a class="text-cgray hover:text-cmblue" href="{{ route('user.publish') }}">
             <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">

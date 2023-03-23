@@ -7,4 +7,30 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## SoftwareRepoHub
+
+The application allows users to store, manage and analyze data related to software engineering projects.
+
+## Features
+
+<ul>
+<li>Search: The application allows users to search for specific data related to software engineering projects.</li>
+<li>User Authentication: The application provides authentication and authorization for users to access the system. It also uses a Role basedd Access (RBA) to ..</li>
+<li>Data Management: The application allows users to store and manage different types of data related to software engineering projects such as project specifications, user stories, tasks, and issues.</li>
+
+<li>Data Analysis: The application provides charts and graphs that allow users to analyze data related to software engineering projects.</li>
+<li>Collaborative Work: Users can collaborate and share data related to software engineering projects with other users.</li>
+<li>Notifications: Users receive notifications for important events related to software engineering projects.</li>
+</ul>
+
+## Screenshots
+
+## Setup
+
+## Founders
+
+Egbeleke Daniel and Tony-Awusaku David
+
+## Contributors
+
+--insert contributors--

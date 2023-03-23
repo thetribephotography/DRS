@@ -16,16 +16,13 @@ class Category extends Model
         'description',
     ];
 
-    protected $casts = [
+    protected $casts = [];
 
-    ];
-
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
 
-    public function upload(){
+    public function upload()
+    {
         return $this->hasMany(Upload::class);
     }
 }

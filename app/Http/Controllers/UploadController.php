@@ -87,18 +87,17 @@ class UploadController extends Controller
         return view('upload.upload_list', compact('list', 'title'));
     }
 
+    //Shows a Single Upload
     public function uploadshow($id)
     {
 
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
         $title = "View Single Upload";
-        $user = Auth::id();
-        $upload = Upload::where('_id', $id)->where('user_id', $user)->first();
-        $comments = Comment::where('upload_id', $upload->_id)->whereNull('deleted_at')->orderBy('created_at', 'desc')->get(); //Gets comments and users that made the commment
+        // $user = Auth::id();
+        $upload = Upload::with('comments',)->where('_id', $id)->first(); //Also fethcs the comment
 
-        // dd($upload, $comments);
-
-        return view('upload.show_one', compact('upload', 'comments', 'title'));
+        //dd($category);
+        return view('upload.show_one', compact('upload',  'title'));
     }
 
     //UPDATE POST
