@@ -40,34 +40,60 @@ class Upload extends Model
     ];
 
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function tags_id(){
+    public function tags_id()
+    {
         return $this->hasMany(Tag::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function category_id(){
+    public function category_id()
+    {
         return $this->hasMany(Category::class);
     }
 
-    public function group(){
+    public function group()
+    {
         return $this->hasMany(Group::class, 'group_id');
     }
 
-    public function scopeFilter($query, array $filters){
+    public function scopeFilter($query, array $filters)
+    {
 
-        if($filters['search'] ?? false){
+        if ($filters['search'] ?? false) {
 
             //searches by title
-        $query->where('title', 'like', '%' . request('search') . '%');
-
+            $query->where('title', 'like', '%' . request('search') . '%');
         }
-    }
 
+
+
+        // //Tag filter
+        // if ($filters['tag'] ?? false) {
+        //     //quer like code
+        //     $query->where('tags', 'like', '%' . request('tag') . '%');
+        // }
+
+        // //search filter
+        // if ($filters['search'] ?? false) {
+        //     //query like code
+
+        //     //searches by title
+        //     $query->where('title', 'like', '%' . request('search') . '%')
+
+        //     //searches by description
+        //     ->orWhere('description', 'like', '%' . request('search') . '%')
+
+        //     //searches by tags
+        //     ->orWhere('tags', 'like', '%' . request('search') . '%');
+        // }
+    }
 }

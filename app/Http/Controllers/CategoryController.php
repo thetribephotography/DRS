@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Upload;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Traits\Uploader;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -41,15 +43,25 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    //SHOW USER CATEGORY  (No private)
+    public function show_user($id)
     {
         //
+
+        // $category = Upload::where('_id', Auth::user()->_id)->where('access_id', '1')->latest();
+        $title = "e";
+
+        return view('categories.show', compact('title',));
+    }
+
+    // SHOW ADMIN Category (With Private)
+    public function show_admin($id)
+    {
+        //
+
+        $category = Category::where('_id', $id)->first();
+        $title = "";
     }
 
     /**

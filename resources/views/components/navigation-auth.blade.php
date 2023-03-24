@@ -73,17 +73,34 @@
 
                         {{-- Panel --}}
                         <div class="absolute right-16 mt-4 w-44 rounded border border-gl bg-white p-2 pt-4" x-show="open">
-                            <a class="" href="{{ route('user.index') }}">
-                                <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
-                                    <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                                    </svg>
 
-                                    <p> Dashboard</p>
-                                </div>
-                            </a>
+                            @role('registered')
+                                <a class="" href="{{ route('user.index') }}">
+                                    <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                        <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                                        </svg>
+
+                                        <p> Dashboard</p>
+                                    </div>
+                                </a>
+                            @else
+                                <a class="" href="{{ route('admin.index') }}">
+                                    <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                        <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                                        </svg>
+
+                                        <p> Dashboard</p>
+                                    </div>
+                                </a>
+                            @endrole
+
+
                             <a class="" href="{{ route('user.view-profile') }}">
                                 <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
                                     <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
@@ -107,8 +124,8 @@
                                 </div>
                             </a>
                             <div class="mb-4 flex px-3 text-cgray hover:text-cmblue">
-                                <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                 </svg>

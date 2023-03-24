@@ -130,7 +130,8 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::post('/upload/report/{_id}', [CommentController::class, 'report'])->name('comment.report');
 
     //Categories
-    Route::get('/categories', [CategoryController::class, 'index'])->name('category.show');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/categories/{id}', [CategoryController::class, 'show_user'])->name('category.show');
 });
 
 // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');

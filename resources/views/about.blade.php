@@ -1,9 +1,10 @@
 <x-guest-layout :title="$title">
+    <x-navigation-auth />
     <!-- Background image -->
     <div class="relative overflow-hidden bg-cover bg-no-repeat"
         style="
     background-position: 50%;
-    background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/146.webp');
+    background-image: url({{ asset('images/aboutt.jpg') }});
     height: 350px;
     ">
         <div class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed"
