@@ -90,12 +90,12 @@ class UploadController extends Controller
     //Shows a Single Upload
     public function uploadshow($id)
     {
-
+        $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
         $title = "View Single Upload";
         // $user = Auth::id();
 
-        $upload = Upload::where('_id', $id)
+        $upload = Upload::where('_id', $id)->where('user_id', $user)->whereIn('access_id', ["1", "3"])
                 ->whereHas('comments', function ($query) {
                     $query->where('deleted_at', null);
                 })
@@ -105,7 +105,11 @@ class UploadController extends Controller
                 }])
                 ->first();
 
-        return view('upload.show_one', compact('upload',  'title'));
+                if(!$upload) {
+                 return view('')->with('You have not been granted access to view this download by the Uploader');   
+                } else {
+                 return view('upload.show_one', compact('upload',  'title'));
+                }
     }
 
     //UPDATE POST
