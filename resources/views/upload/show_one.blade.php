@@ -206,14 +206,13 @@
                         <h4 class="mb-2 font-semibold text-cdblack">Categories:</h4>
                         <div class="bg mt-2">
                             <ul class="max-w-md list-inside list-disc space-y-1">
-
-
+                                {{-- @foreach --}}
                                 <li>
                                     Web Dev
                                 </li>
-                                <li>
+                                {{-- <li>
                                     Hmm
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>

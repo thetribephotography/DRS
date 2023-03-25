@@ -59,6 +59,9 @@ class CommentController extends Controller
         return redirect()->back()->with("message", "Comment Added Sucessfully");
     }
 
+    //REPLY COMMENT
+    
+
     // SHOW PAGE TO EDIT ONE COMMENT
     public function edit($id)
     {

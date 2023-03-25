@@ -103,13 +103,24 @@ class UploadController extends Controller
                     $query->where('deleted_at', null)
                           ->orderBy('created_at', 'desc');
                 }])
+                ->with(['category_id' => function ($query) {
+                    $query->where('_id', 'category_id')
+                          ->orWhere('name', 'category_id');
+                }])
+                ->with(['tags_id' => function ($query) {
+                    $query->where('_id', 'tags_id')
+                          ->orWhere('name', 'tags_id');
+                }])
                 ->first();
 
-                if(!$upload) {
-                 return view('')->with('You have not been granted access to view this download by the Uploader');   
-                } else {
-                 return view('upload.show_one', compact('upload',  'title'));
-                }
+                dd($upload);
+
+                // if(!$upload) {
+                //  return redirect()->back()->with('You have not been granted access to view this download by the Uploader');   
+                // }
+
+                //  return view('upload.show_one', compact('upload',  'title'));
+        
     }
 
     //UPDATE POST
