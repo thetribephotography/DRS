@@ -138,7 +138,7 @@
                             <p>No Category available</p>
                         @endif
                         @foreach ($categories as $category)
-                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                            <option value="{{ $category->_id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -167,7 +167,7 @@
                                     <p>No Tag found</p>
                                 @endif
                                 @foreach ($tags as $tag)
-                                    <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                                    <option value="{{ $tag->_id }}">{{ $tag->name }}</option>
                                 @endforeach
                             </select>
                         </span>
