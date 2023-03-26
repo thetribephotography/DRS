@@ -8,11 +8,12 @@ use App\Models\Comment;
 use App\Models\Upload;
 use App\Models\User;
 use App\Http\Livewire\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class CommentReply extends ModalComponent
 {
-    public $reply, $data;
-    // public  Comment $id;
+    public $reply, $data, $user;
+
 
     protected $rules = [
         'reply' => 'required',
@@ -24,18 +25,18 @@ class CommentReply extends ModalComponent
     }
 
     public function mount($data){
-        $id = $data['id'];
-        // Gate::authorize('replyComment', $this->id);
-        $this->id = $id;
+        $this->data = $data;
     }
 
     
     public function replyComment(Comment $com){
-        $id = $this->data['id'];
-        // Gate::authorize('replyComment', $id);
+        $data = $this->data;
         $validated = $this->validate();
 
-        $com = Comment::where('_id', $id)->first();
+        $user = Auth::id();
+        
+
+        $com = Comment::where('_id', $data)->first();
 
         $com->push('replies', $this->reply);
 
