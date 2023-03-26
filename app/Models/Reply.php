@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Maklad\Permission\Traits\HasRoles;
 
-class Comment extends Model
+class Reply extends Model
 {
     use HasFactory, HasRoles, SoftDeletes, Notifiable;
 
@@ -17,29 +17,18 @@ class Comment extends Model
 
     protected $fillable = [
         'user_id',
-        'upload_id',
+        'comment_id',
         'content',
         'status',
-        'replies',
         'deleted_at',
     ];
 
-    protected $casts = [];
+    public function comment_id(){
+        return $this->belongsTo(Comment::class, 'comment_id');
+    }
 
-    protected $hidden = [];
-
-    //Relationship of the user to comments
-    public function user()
-    {
+    public function user_id(){
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function upload()
-    {
-        return $this->belongsTo(Upload::class, 'upload_id');
-    }
-
-    public function replies(){
-        return $this->hasMany(Reply::class, 'replies');
-    }
 }
