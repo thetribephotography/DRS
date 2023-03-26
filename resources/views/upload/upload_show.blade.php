@@ -90,7 +90,7 @@
                                         <a class="block py-2 px-4 hover:bg-gray-100" href="#">Edit</a>
                                     </li>
                                 @endif
-                                @if (Auth::user()->hasRole('admin'))
+                                @if (Auth::user()->hasRole('admin') || $upload->user_id == Auth::user()->_id)
                                     <li>
                                         <a class="block py-2 px-4 hover:bg-gray-100" href="#">Delete</a>
                                     </li>

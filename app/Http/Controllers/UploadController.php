@@ -113,13 +113,13 @@ class UploadController extends Controller
                 }])
                 ->first();
 
-                dd($upload);
+                // dd($upload);
 
-                // if(!$upload) {
-                //  return redirect()->back()->with('You have not been granted access to view this download by the Uploader');   
-                // }
+                if(!$upload) {
+                 return redirect()->back()->with('You have not been granted access to view this download by the Uploader');   
+                }
 
-                //  return view('upload.show_one', compact('upload',  'title'));
+                 return view('upload.show_one', compact('upload',  'title'));
         
     }
 

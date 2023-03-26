@@ -3,6 +3,9 @@
     <div class="h-screen pt-8">
         <div class="flex pt-8">
 
+            @if(session()->has('message'))
+                <h4 class="text-green-600"> {{session ('message') }} </h4>
+            @endif
             <a href="{{ url()->previous() }}">
                 <div class="absolute left-24 h-10 w-10 rounded-lg border border-clgray hover:bg-gray-300">
                     <svg class="h-5 w-5 translate-y-2.5 translate-x-2.5 text-clgray" xmlns="http://www.w3.org/2000/svg"
@@ -120,8 +123,8 @@
                                         <!-- Dropdown menu -->
                                         <div class="z-10 hidden w-36 divide-y divide-gray-100 rounded bg-white shadow">
                                             <ul class="py-1 text-sm text-gray-700">
-                                                @if ($comment->user_id === Auth::user()->_id)
-                                                    <li wire:loading.remove>
+                                                @if ($comment->user_id == Auth::user()->_id)
+                                                    <li>
                                                         <a class="block py-2 px-4 hover:bg-gray-100"
                                                             href="{{ route('comment.edit', $comment->_id) }}">Edit</a>
                                                     </li>
@@ -151,7 +154,7 @@
                                     </footer>
                                     <p class="text-gray-500"> {{ $comment->content }} </p>
                                     <div class="mt-4 flex items-center space-x-4">
-                                        <button class="flex items-center text-sm text-gray-500 hover:underline"
+                                        <button class="flex items-center text-sm text-gray-500 hover:underline" onclick='Livewire.emit("openModal", "comment-reply", {{ json_encode([ "data" => ["id" => $comment->_id ]]) }})'
                                             type="button">
                                             <svg class="mr-1 h-4 w-4" aria-hidden="true" fill="none"
                                                 stroke="currentColor" viewBox="0 0 24 24"
