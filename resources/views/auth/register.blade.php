@@ -15,7 +15,7 @@
 
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}">
+                    <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div>

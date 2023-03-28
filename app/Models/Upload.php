@@ -47,7 +47,7 @@ class Upload extends Model
 
     public function tags_id()
     {
-        return $this->hasMany(Tag::class);
+        return $this->hasMany(Tag::class, 'tags_id');
     }
 
     public function comments()
@@ -57,7 +57,7 @@ class Upload extends Model
 
     public function category_id()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class, 'category_id');
     }
 
     public function group()
