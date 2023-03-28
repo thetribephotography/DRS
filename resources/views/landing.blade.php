@@ -33,7 +33,19 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireStyles
 
+    {{-- Custom script for preloader --}}
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".preloader");
 
+            loader.classList.add("preloader--hidden"); //Make preloader fade away
+
+            //Remove preloader from page
+            loader.addEventListener("transitioned", () => {
+                document.body.removeChild(loader);
+            });
+        });
+    </script>
 </head>
 
 <body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
@@ -44,7 +56,17 @@
         <x-navigation />
     @endguest
 
-
+    <div class="preloader">
+        <div class="preloader-logo">
+            <svg class="pre-logo" width="80" height="80" viewBox="0 0 145 145" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect width="145" height="145" rx="60" fill="#00B7FD" />
+                <path
+                    d="M72.57 98.476C69.0794 98.476 65.9514 97.9093 63.186 96.776C60.4207 95.6427 58.1994 93.9653 56.522 91.744C54.89 89.5227 54.0287 86.848 53.938 83.72H66.314C66.4954 85.488 67.1074 86.848 68.15 87.8C69.1927 88.7067 70.5527 89.16 72.23 89.16C73.9527 89.16 75.3127 88.7747 76.31 88.004C77.3074 87.188 77.806 86.0773 77.806 84.672C77.806 83.4933 77.398 82.5187 76.582 81.748C75.8114 80.9773 74.8367 80.3427 73.658 79.844C72.5247 79.3453 70.8927 78.7787 68.762 78.144C65.6794 77.192 63.1634 76.24 61.214 75.288C59.2647 74.336 57.5874 72.9307 56.182 71.072C54.7767 69.2133 54.074 66.788 54.074 63.796C54.074 59.3533 55.6834 55.8853 58.902 53.392C62.1207 50.8533 66.314 49.584 71.482 49.584C76.7407 49.584 80.9794 50.8533 84.198 53.392C87.4167 55.8853 89.1394 59.376 89.366 63.864H76.786C76.6954 62.3227 76.1287 61.1213 75.086 60.26C74.0434 59.3533 72.706 58.9 71.074 58.9C69.6687 58.9 68.5354 59.2853 67.674 60.056C66.8127 60.7813 66.382 61.8467 66.382 63.252C66.382 64.7933 67.1074 65.9947 68.558 66.856C70.0087 67.7173 72.2754 68.6467 75.358 69.644C78.4407 70.6867 80.934 71.684 82.838 72.636C84.7874 73.588 86.4647 74.9707 87.87 76.784C89.2754 78.5973 89.978 80.932 89.978 83.788C89.978 86.508 89.2754 88.9787 87.87 91.2C86.51 93.4213 84.5154 95.1893 81.886 96.504C79.2567 97.8187 76.1514 98.476 72.57 98.476Z"
+                    fill="white" />
+            </svg>
+        </div>
+    </div>
     {{-- Hero Section --}}
     <section class="section h-[30rem] w-full border-b border-gl">
 
@@ -137,6 +159,7 @@
     {{-- End of section --}}
 
 
+
     {{-- Next Section --}}
     <section class="section mb-4 h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
@@ -160,8 +183,8 @@
                     <h1 class="t mt-8 text-center">Dataset</h1>
                 </div>
                 <div class="upload-box h-full w-full rounded-lg bg-cmblue text-white">
-                    <svg class="mb-4 mt-12 h-12 w-12 translate-x-10" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <svg class="mb-4 mt-12 h-12 w-12 translate-x-10" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
                     </svg>

@@ -233,18 +233,10 @@
 
 
 
-
-
-
-
-
-
-
-
             {{-- Side Container --}}
             <div class="ml-6 flex h-[40rem] w-[13rem] flex-col shadow">
-                <div class="h-40 w-full">
-                    <h4 class="pt-2 pl-2 font-semibold">Metrics</h4>
+                <div class="h-40 w-full bg-cmblue">
+                    <h4 class="pt-2 pl-2 font-semibold text-white">Metrics</h4>
                     <div class="mt-2 flex">
                         {{-- <div class="text-center">
                             Views
@@ -255,11 +247,11 @@
 
                     </div>
                 </div>
-                <div class="mt-4 h-full w-full bg-[#F5F5F5] px-2">
+                <div class="mt-4 h-full w-full bg-cmblue px-2">
                     {{-- Categories --}}
                     <div class="pt-2">
-                        <h4 class="mb-2 font-semibold text-cdblack">Categories:</h4>
-                        <div class="bg mt-2">
+                        <h4 class="mb-2 font-semibold text-white">Categories:</h4>
+                        <div class="bg mt-2 text-white">
                             <ul class="max-w-md list-inside list-disc space-y-1">
                                 {{-- @foreach --}}
                                 <li>
@@ -274,31 +266,27 @@
 
                     {{-- Tag --}}
                     <div class="mt-6">
-                        <h4 class="mb-2 font-semibold text-cdblack">Tags:</h4>
-                        <div class="bg mt-2">
+                        <h4 class="mb-2 font-semibold text-white">Tags:</h4>
+                        <div class="bg mt-2 text-white">
                             <span
-                                class="mr-2 rounded-full border border-clblack bg-white px-2.5 py-0.5 text-xs font-medium">Software
-                                Development Methodology</span>
-
+                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Security</span>
                             <span
-                                class="mr-2 rounded-full border border-clblack px-2.5 py-0.5 text-xs font-medium">Security</span>
-                            <span
-                                class="mr-2 rounded-full border border-clblack px-2.5 py-0.5 text-xs font-medium">Open-source
+                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Open-source
                                 development</span>
                         </div>
                     </div>
 
                     {{-- Keyword --}}
-                    <div class="mt-6">
-                        <h4 class="mb-2 font-semibold text-cdblack">Keywords</h4>
+                    <div class="mt-6 text-white">
+                        <h4 class="mb-2 font-semibold text-white">Keywords</h4>
                         <div class="bg mt-2">
                             <span
-                                class="mr-2 rounded-full border border-clblack bg-white px-2.5 py-0.5 text-xs font-medium">Waste</span>
+                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Waste</span>
 
                             <span
-                                class="mr-2 rounded-full border border-clblack px-2.5 py-0.5 text-xs font-medium">Resorce</span>
+                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Resorce</span>
                             <span
-                                class="mr-2 rounded-full border border-clblack px-2.5 py-0.5 text-xs font-medium">Red</span>
+                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Red</span>
                         </div>
                     </div>
                 </div>
