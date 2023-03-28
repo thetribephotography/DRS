@@ -95,8 +95,10 @@ class UploadController extends Controller
         $title = "View Single Upload"; 
 
                 $upload = Upload::where('_id', $id)->where('user_id', $user)->whereIn('access_id', ["1", "3"])
-                ->with('comments')
-                ->first();
+                ->with(['comments' => function ($query) {
+                $query->where('deleted_at', null)
+                      ->orderBy('created_at', 'desc');   
+                    }])->first();
 
 // $upload = Upload::where('_id', $id)
 //             ->where('user_id', $user)
@@ -122,8 +124,7 @@ class UploadController extends Controller
                 //     $caten[] = $cat->name;
 
                 // }
-
-                
+                    
 
                 if(!$upload) {
                  return redirect()->back()->with('You have not been granted access to view this download by the Uploader');   
