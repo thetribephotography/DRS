@@ -20,8 +20,8 @@
 
                         <div>
                             <input
-                                    class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:text-gray-400"
-                                    id="image-upload" name="image-upload" type="file">
+                                class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none"
+                                id="image-upload" name="image-upload" type="file">
                         </div>
                         <div class="flex">
                             <div class="w-1/2 pr-4">
@@ -156,7 +156,7 @@
 
                         </div>
                         <button
-                            class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white hover:bg-clblue focus:outline-none focus:ring-0"
+                            class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white focus:outline-none focus:ring-0 hover:bg-clblue"
                             type="submit">Sign in</button>
                         <p class="text-center text-sm font-light text-gray-500">
                             Already have an account? <span class="text-cmblue">
