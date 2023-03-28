@@ -182,9 +182,9 @@
                             <p class="inline-flex items-center mr-3 text-sm text-gray-900"><img
                                     class="mr-2 w-6 h-6 rounded-full"
                                     src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                    alt="Jese Leos">Jese Leos</p>
+                                    alt="Jese Leos">{{$reply->username}}</p>
                             <p class="text-sm text-gray-600"><time pubdate datetime="2022-02-12"
-                                    title="February 12th, 2022">Feb. 12, 2022</time></p>
+                                    title="February 12th, 2022">{{$reply->creatted_at->format ('F d, Y')}}</time></p>
                         </div>
                         <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
                             class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
@@ -217,7 +217,7 @@
                             </ul>
                         </div>
                     </footer>
-                    <p class="text-gray-500">Much appreciated! Glad you liked it ☺️</p>
+                    <p class="text-gray-500">{{$reply->content}}</p>
                     <div class="flex items-center mt-4 space-x-4">
                     </div>
                 </article>
