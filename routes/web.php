@@ -31,10 +31,6 @@ use Illuminate\Http\Request;
 |
 */
 
-//Test Route for building admin dashboard navbar
-Route::get('/dd', function () {
-    return view('dd');
-});
 
 
 //EMAIL VERFICATION
@@ -107,7 +103,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
     // Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
-    Route::any('/upload/show_one/{_id}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
+    Route::any('/upload/show_one/{slug}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 

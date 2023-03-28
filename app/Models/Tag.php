@@ -16,12 +16,12 @@ class Tag extends Model
 
     protected $fillable = [
         'name',
+        'slug',
     ];
 
 
-    public function upload (){
+    public function upload()
+    {
         return $this->hasMany(Upload::class);
     }
-
-
 }

@@ -28,7 +28,7 @@
                         <img class="mr-6 hidden w-48 md:block" src="{{ asset('images/upload.png') }}" alt="Image_no">
                         <div>
                             <h3 class="text-2xl">
-                                <a href="/upload/show_one/{{ $result->_id }}">{{ $result->title }}</a>
+                                <a href="/upload/show_one/{{ $result->slug }}">{{ $result->title }}</a>
                             </h3>
                             <div class="mb-4 text-xl font-bold">
                                 {{ $result->description }}

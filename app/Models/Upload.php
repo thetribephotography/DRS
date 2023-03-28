@@ -20,6 +20,7 @@ class Upload extends Model
     protected $fillable = [
         'title',
         'description',
+        'slug',
         'published_at',
         'language',
         'author',
