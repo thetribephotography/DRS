@@ -6,14 +6,18 @@
             {{-- @if (session()->has('message'))
                 <h4 class="text-green-600"> {{session ('message') }} </h4>
             @endif --}}
+
+            {{-- Go back Button --}}
             <a href="{{ url()->previous() }}">
-                <div class="absolute left-24 h-10 w-10 rounded-lg border border-clgray hover:bg-gray-300">
+                <div class="absolute left-[4rem] h-10 w-10 rounded-lg border border-clgray hover:bg-gray-300">
                     <svg class="h-5 w-5 translate-y-2.5 translate-x-2.5 text-clgray" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
                 </div>
             </a>
+            {{-- End --}}
+
             {{-- Main Container --}}
             <div class="ml-[15rem] flex h-full w-[50rem] flex-col">
                 <div class="mb-10 h-[50rem] w-full">
@@ -234,8 +238,8 @@
 
 
             {{-- Side Container --}}
-            <div class="ml-6 flex h-[40rem] w-[13rem] flex-col shadow">
-                <div class="h-40 w-full bg-cmblue">
+            <div class="ml-6 flex h-[40rem] w-[23rem] flex-col shadow">
+                <div class="h-40 w-full rounded-md bg-cmblue">
                     <h4 class="pt-2 pl-2 font-semibold text-white">Metrics</h4>
                     <div class="mt-2 flex">
                         {{-- <div class="text-center">
@@ -247,9 +251,9 @@
 
                     </div>
                 </div>
-                <div class="mt-4 h-full w-full bg-cmblue px-2">
+                <div class="mt-4 h-full w-full rounded-md bg-cmblue px-2">
                     {{-- Categories --}}
-                    <div class="pt-2">
+                    <div class="pt-2 text-center">
                         <h4 class="mb-2 font-semibold text-white">Categories:</h4>
                         <div class="bg mt-2 text-white">
                             <ul class="max-w-md list-inside list-disc space-y-1">
@@ -266,7 +270,7 @@
 
                     {{-- Tag --}}
                     <div class="mt-6">
-                        <h4 class="mb-2 font-semibold text-white">Tags:</h4>
+                        <h4 class="mb-2 text-center font-semibold text-white">Tags:</h4>
                         <div class="bg mt-2 text-white">
                             <span
                                 class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Security</span>
@@ -277,8 +281,8 @@
                     </div>
 
                     {{-- Keyword --}}
-                    <div class="mt-6 text-white">
-                        <h4 class="mb-2 font-semibold text-white">Keywords</h4>
+                    <div class="mt-6 text-center text-white">
+                        <h4 class="mb-2 font-semibold text-white">Keywords:</h4>
                         <div class="bg mt-2">
                             <span
                                 class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Waste</span>
