@@ -26,12 +26,14 @@
     <script src="anime.min.js"></script>
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/user.css', 'resources/js/user.js'])
 
 
     {{-- Alpine --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireStyles
+
+
 </head>
 
 <body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
@@ -44,7 +46,7 @@
 
 
     {{-- Hero Section --}}
-    <section class="h-[30rem] w-full border-b border-gl">
+    <section class="section h-[30rem] w-full border-b border-gl">
 
         {{-- Flash Message - Success --}}
         @if (session('success'))
@@ -113,7 +115,7 @@
     {{-- End Hero Sectino --}}
 
     {{-- Next Section --}}
-    <section class="h-[30rem] w-full border-b border-gl">
+    <section class="section h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pl-40 pt-20">
             {{-- For text --}}
@@ -136,7 +138,7 @@
 
 
     {{-- Next Section --}}
-    <section class="mb-4 h-[30rem] w-full border-b border-gl">
+    <section class="section mb-4 h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For Boxes --}}
@@ -188,7 +190,7 @@
     {{-- End of section --}}
 
     {{-- Next Section --}}
-    <section class="h-[30rem] w-full border-b border-gl pl-40">
+    <section class="section h-[30rem] w-full border-b border-gl pl-40">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For text --}}
@@ -224,7 +226,7 @@ class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular te
         </div>
     </div>
 {{-- Featured Datasets section --}}
-<div class="h-52 w-full bg-yellow-300">
+<div class="section h-52 w-full bg-yellow-300">
 <div class="ml[30rem] w-[55rem] bg-orange-500">
 
 </div>

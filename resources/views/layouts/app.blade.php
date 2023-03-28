@@ -35,6 +35,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 
+    {{-- ScrollReveal JS Librabry --}}
+    <script src="https://unpkg.com/scrollreveal"></script>
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/user.css', 'resources/js/user.js'])

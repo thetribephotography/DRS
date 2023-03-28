@@ -22,7 +22,8 @@
         rel="stylesheet">
 
 
-
+    {{-- ScrollReveal JS Librabry --}}
+    <script src="https://unpkg.com/scrollreveal"></script>
 
 
     <!-- Scripts -->
