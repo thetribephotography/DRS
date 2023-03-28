@@ -97,6 +97,9 @@
 
 
                             @foreach ($upload->comments as $comment)
+                            @if(empty($comment))
+                                <p>No Comments</p>
+                                @else
                                 <article class="mb-6 rounded-lg bg-[#E9EDF1] p-6 text-base">
                                     <footer class="mb-2 flex items-center justify-between">
                                         <div class="flex items-center">
@@ -169,7 +172,10 @@
                                 </article>
 
                                 {{-- FOR COMMENTS OF COMMENT --}}
-                        @foreach ($comment->replies as $reply)     
+                        @foreach ($comment->replies as $reply)
+                        @if(empty($reply)) 
+                        <p>No replies</p>
+                        @else    
                 <article class="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg">
                     <footer class="flex justify-between items-center mb-2">
                         <div class="flex items-center">
@@ -215,8 +221,10 @@
                     <div class="flex items-center mt-4 space-x-4">
                     </div>
                 </article>
+                @endif
                 @endforeach
                 {{-- END FOR COMMENTS OF COMMENT --}}
+                @endif
                             @endforeach
                         </div>
                     </section>
@@ -259,13 +267,16 @@
                         <h4 class="mb-2 font-semibold text-cdblack">Categories:</h4>
                         <div class="bg mt-2">
                             <ul class="max-w-md list-inside list-disc space-y-1">
-                                {{-- @foreach --}}
+                            {{-- @foreach($upload->catgory_id as $category) --}}
                                 <li>
-                                    Web Dev
+                                    web
+                                    {{-- {{$category->name}} --}}
+                                    {{-- {{$upload->category_id}} --}}
                                 </li>
                                 {{-- <li>
                                     Hmm
                                 </li> --}}
+                                {{-- @endforeach --}}
                             </ul>
                         </div>
                     </div>
@@ -274,9 +285,8 @@
                     <div class="mt-6">
                         <h4 class="mb-2 font-semibold text-cdblack">Tags:</h4>
                         <div class="bg mt-2">
-                            <span
-                                class="mr-2 rounded-full border border-clblack bg-white px-2.5 py-0.5 text-xs font-medium">Software
-                                Development Methodology</span>
+                            {{-- <span
+                                class="mr-2 rounded-full border border-clblack bg-white px-2.5 py-0.5 text-xs font-medium">{{$upload->tag_id}}</span> --}}
 
                             <span
                                 class="mr-2 rounded-full border border-clblack px-2.5 py-0.5 text-xs font-medium">Security</span>
