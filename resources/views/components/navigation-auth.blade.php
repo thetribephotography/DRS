@@ -39,7 +39,7 @@
         {{-- End seaarch bar --}}
         <div class="ml-[1orem] w-full px-8 lg:flex lg:w-auto lg:px-3">
             {{-- Upload Button --}}
-            <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+            <a class="text-md ml-2 mt-4 rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
                 href="{{ Route('user.upload') }}">Upload
             </a>
             {{-- End upload button --}}

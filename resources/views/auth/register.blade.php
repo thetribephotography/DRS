@@ -3,7 +3,7 @@
         <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
             <a class="mb-4 flex items-center text-2xl font-bold text-clblack" href="#">
                 <img src="" alt="">
-                SoftwareRepoHubbb
+                SoftwareRepoHub
             </a>
             <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0">
                 <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
@@ -15,7 +15,8 @@
 
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}">
+                    <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}"
+                        enctype="multipart/form-data">
                         @csrf
 
                         <div>

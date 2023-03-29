@@ -120,16 +120,18 @@
         @endif
 
         {{-- Image --}}
-        <div class="h-[30rem] w-full">
+        <div class="h-[13rem] w-full md:h-[30rem]">
             <img class="h-full w-full object-cover" src="{{ asset('images/code.png') }}" alt="">
         </div>
         {{-- Image End --}}
-        <p class="absolute top-48 left-40 pr-32 text-left text-s1 font-bold leading-[5rem] text-clblack">
+        <p
+            class="absolute top-20 text-s3 font-bold leading-normal text-clblack md:top-48 md:left-40 md:pr-32 md:text-left md:text-s1 md:leading-[5rem]">
             Streamlining
             Software
             Engineering with a
             Comprehensive Data Repository</p>
-        <p class="absolute left-40 top-[23rem] pr-32 text-left text-s6 font-medium text-clblack">Optimize software
+        <p class="absolute font-medium text-clblack md:left-40 md:top-[23rem] md:pr-32 md:text-left md:text-s6">Optimize
+            software
             development process with a comprehensive data repository that spans the entire software development
             lifecycle.</p>
         </div>

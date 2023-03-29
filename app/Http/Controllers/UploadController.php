@@ -89,7 +89,7 @@ class UploadController extends Controller
     }
 
     //Shows a Single Upload
-    public function uploadshow($slug)
+    public function public_view($slug)
     {
         $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
@@ -130,7 +130,7 @@ class UploadController extends Controller
         //     return redirect()->back()->with('You have not been granted access to view this download by the Uploader');
         // }
 
-        return view('upload.show_one', compact('upload',  'title'));
+        return view('upload.public_view', compact('upload',  'title'));
     }
 
     //UPDATE POST
