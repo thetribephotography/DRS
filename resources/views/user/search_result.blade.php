@@ -1,5 +1,4 @@
 <x-guest-layout :title="$title">
-
     <div class="py-12">
         <h3 class="mb-2 text-center text-3xl">Search Result</h3>
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -28,7 +27,7 @@
                         <img class="mr-6 hidden w-48 md:block" src="{{ asset('images/upload.png') }}" alt="Image_no">
                         <div>
                             <h3 class="text-2xl">
-                                <a href="/upload/show_one/{{ $result->_id }}">{{ $result->title }}</a>
+                                <a href="/upload/public/{{ $result->slug }}">{{ $result->title }}</a>
                             </h3>
                             <div class="mb-4 text-xl font-bold">
                                 {{ $result->description }}

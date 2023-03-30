@@ -3,7 +3,7 @@
         <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
             <a class="mb-4 flex items-center text-2xl font-bold text-clblack" href="#">
                 <img src="" alt="">
-                SoftwareRepoHubbb
+                SoftwareRepoHub
             </a>
             <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0">
                 <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
@@ -15,14 +15,9 @@
 
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}"
+                        enctype="multipart/form-data">
                         @csrf
-
-                        <div>
-                            <input
-                                    class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:text-gray-400"
-                                    id="image-upload" name="image-upload" type="file">
-                        </div>
                         <div class="flex">
                             <div class="w-1/2 pr-4">
                                 <label class="mb-2 block text-sm text-s7 font-medium text-clblack" for="First Name">
@@ -142,6 +137,15 @@
                             </div>
 
                         </div>
+                        {{-- Profile Picture  --}}
+                        <div>
+                            <label class="mb-2 block text-sm text-s7 font-medium text-clblack"
+                                for="password_confirmation">
+                                Profile picture</label>
+                            <input
+                                class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none"
+                                id="image-upload" name="image-upload" type="file">
+                        </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
                                 <div class="flex h-5 items-center">
@@ -152,11 +156,9 @@
                                     <label class="text-gray-500" for="remember">I agree to Terms and Condtions</label>
                                 </div>
                             </div>
-
-
                         </div>
                         <button
-                            class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white hover:bg-clblue focus:outline-none focus:ring-0"
+                            class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white focus:outline-none focus:ring-0 hover:bg-clblue"
                             type="submit">Sign in</button>
                         <p class="text-center text-sm font-light text-gray-500">
                             Already have an account? <span class="text-cmblue">

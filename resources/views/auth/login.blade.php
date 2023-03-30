@@ -23,7 +23,7 @@
                                 Email</label>
                             <div>
                                 <input
-                                    class="focus:border-primary-600 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                    class="focus:border-primary-600 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-gray-900 focus:border-cmblue sm:text-sm"
                                     id="email" name="email" type="email" value="{{ old('email') }}"
                                     placeholder="Johndoe@gmail.com" required="">
                                 <svg class="absolute h-4 w-4 -translate-y-7 translate-x-4 text-gg"
@@ -48,7 +48,7 @@
                                         d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
                                 </svg>
                                 <input
-                                    class="focus:ring-primary-600 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                    class="focus:ring-primary-600 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-gray-900 focus:border-cmblue sm:text-sm"
                                     id="password" name="password" x-bind:type="showPassword ? 'text' : 'password'"
                                     placeholder="Password" required="">
 
@@ -92,7 +92,7 @@
 
                         </div>
                         <button
-                            class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white hover:bg-clblue focus:outline-none focus:ring-0"
+                            class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white focus:outline-none focus:ring-0 hover:bg-clblue"
                             type="submit">Sign in</button>
                         <p class="text-center text-sm font-light text-gray-500">
                             Don’t have an account yet? <span class="text-cmblue">

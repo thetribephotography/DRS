@@ -26,12 +26,26 @@
     <script src="anime.min.js"></script>
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/user.css', 'resources/js/user.js'])
 
 
     {{-- Alpine --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireStyles
+
+    {{-- Custom script for preloader --}}
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".preloader");
+
+            loader.classList.add("preloader--hidden"); //Make preloader fade away
+
+            //Remove preloader from page
+            loader.addEventListener("transitioned", () => {
+                document.body.removeChild(loader);
+            });
+        });
+    </script>
 </head>
 
 <body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
@@ -42,9 +56,19 @@
         <x-navigation />
     @endguest
 
-
+    <div class="preloader">
+        <div class="preloader-logo">
+            <svg class="pre-logo" width="80" height="80" viewBox="0 0 145 145" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect width="145" height="145" rx="60" fill="#00B7FD" />
+                <path
+                    d="M72.57 98.476C69.0794 98.476 65.9514 97.9093 63.186 96.776C60.4207 95.6427 58.1994 93.9653 56.522 91.744C54.89 89.5227 54.0287 86.848 53.938 83.72H66.314C66.4954 85.488 67.1074 86.848 68.15 87.8C69.1927 88.7067 70.5527 89.16 72.23 89.16C73.9527 89.16 75.3127 88.7747 76.31 88.004C77.3074 87.188 77.806 86.0773 77.806 84.672C77.806 83.4933 77.398 82.5187 76.582 81.748C75.8114 80.9773 74.8367 80.3427 73.658 79.844C72.5247 79.3453 70.8927 78.7787 68.762 78.144C65.6794 77.192 63.1634 76.24 61.214 75.288C59.2647 74.336 57.5874 72.9307 56.182 71.072C54.7767 69.2133 54.074 66.788 54.074 63.796C54.074 59.3533 55.6834 55.8853 58.902 53.392C62.1207 50.8533 66.314 49.584 71.482 49.584C76.7407 49.584 80.9794 50.8533 84.198 53.392C87.4167 55.8853 89.1394 59.376 89.366 63.864H76.786C76.6954 62.3227 76.1287 61.1213 75.086 60.26C74.0434 59.3533 72.706 58.9 71.074 58.9C69.6687 58.9 68.5354 59.2853 67.674 60.056C66.8127 60.7813 66.382 61.8467 66.382 63.252C66.382 64.7933 67.1074 65.9947 68.558 66.856C70.0087 67.7173 72.2754 68.6467 75.358 69.644C78.4407 70.6867 80.934 71.684 82.838 72.636C84.7874 73.588 86.4647 74.9707 87.87 76.784C89.2754 78.5973 89.978 80.932 89.978 83.788C89.978 86.508 89.2754 88.9787 87.87 91.2C86.51 93.4213 84.5154 95.1893 81.886 96.504C79.2567 97.8187 76.1514 98.476 72.57 98.476Z"
+                    fill="white" />
+            </svg>
+        </div>
+    </div>
     {{-- Hero Section --}}
-    <section class="h-[30rem] w-full border-b border-gl">
+    <section class="section h-[30rem] w-full border-b border-gl">
 
         {{-- Flash Message - Success --}}
         @if (session('success'))
@@ -96,16 +120,18 @@
         @endif
 
         {{-- Image --}}
-        <div class="h-[30rem] w-full">
+        <div class="h-[13rem] w-full md:h-[30rem]">
             <img class="h-full w-full object-cover" src="{{ asset('images/code.png') }}" alt="">
         </div>
         {{-- Image End --}}
-        <p class="absolute top-48 left-40 pr-32 text-left text-s1 font-bold leading-[5rem] text-clblack">
+        <p
+            class="absolute top-20 text-s3 font-bold leading-normal text-clblack md:top-48 md:left-40 md:pr-32 md:text-left md:text-s1 md:leading-[5rem]">
             Streamlining
             Software
             Engineering with a
             Comprehensive Data Repository</p>
-        <p class="absolute left-40 top-[23rem] pr-32 text-left text-s6 font-medium text-clblack">Optimize software
+        <p class="absolute font-medium text-clblack md:left-40 md:top-[23rem] md:pr-32 md:text-left md:text-s6">Optimize
+            software
             development process with a comprehensive data repository that spans the entire software development
             lifecycle.</p>
         </div>
@@ -113,9 +139,9 @@
     {{-- End Hero Sectino --}}
 
     {{-- Next Section --}}
-    <section class="h-[30rem] w-full border-b border-gl">
+    <section class="section h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
-        <div class="grid grid-cols-2 gap-10 pl-40 pt-20">
+        <div class="grid grid-cols-2 gap-10 pt-20 md:pl-40">
             {{-- For text --}}
             <div>
                 <p class="mb-4 text-s2 font-bold text-clblack">High-Quality Research Data</p>
@@ -135,12 +161,13 @@
     {{-- End of section --}}
 
 
+
     {{-- Next Section --}}
-    <section class="mb-4 h-[30rem] w-full border-b border-gl">
+    <section class="section mb-4 h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For Boxes --}}
-            <div class="ml-56 grid h-[24rem] w-80 grid-cols-2 gap-4 px-4 py-4">
+            <div class="upload-box grid h-[24rem] w-80 grid-cols-2 gap-4 px-4 py-4 md:ml-56">
                 <div class="h-full w-full rounded-lg bg-cmblue text-white">
                     <svg class="mb-4 mt-12 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -149,7 +176,7 @@
                     </svg>
                     <h1 class="t mt-8 text-center text-white">Article</h1>
                 </div>
-                <div class="h-full w-full rounded-lg bg-cmblue text-white">
+                <div class="upload-box h-full w-full rounded-lg bg-cmblue text-white">
                     <svg class="mb-4 mt-12 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -157,15 +184,15 @@
                     </svg>
                     <h1 class="t mt-8 text-center">Dataset</h1>
                 </div>
-                <div class="h-full w-full rounded-lg bg-cmblue text-white">
-                    <svg class="mb-4 mt-12 h-12 w-12 translate-x-10" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <div class="upload-box h-full w-full rounded-lg bg-cmblue text-white">
+                    <svg class="mb-4 mt-12 h-12 w-12 translate-x-10" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
                     </svg>
                     <h1 class="t mt-8 text-center text-white">Software</h1>
                 </div>
-                <div class="h-full w-full rounded-lg bg-cmblue">
+                <div class="upload-box h-full w-full rounded-lg bg-cmblue">
                     <svg class="mb-4 mt-12 h-12 w-12 translate-x-10" viewBox="0 0 55 50" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -188,7 +215,7 @@
     {{-- End of section --}}
 
     {{-- Next Section --}}
-    <section class="h-[30rem] w-full border-b border-gl pl-40">
+    <section class="section h-[30rem] w-full border-b border-gl md:pl-40">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For text --}}
@@ -204,11 +231,11 @@
     </section>
     {{-- End of section --}}
 
-    <div class="mt-10 w-full text-center text-s4 font-bold text-clblack">
-        <h1>Featured datasets</h1>
-               <div class="mt-8 pl-[34rem] text-clblack lg:block">
+    <div class="mt-6 w-full text-center text-s4 font-bold text-clblack md:mt-10">
+        <h1 class="text-s6 md:text-s7">Featured datasets</h1>
+            <div class="mt-4 text-clblack md:mt-8 md:pl-[34rem] lg:block">
             <form action="/search-results" method="GET">
-                <div class="relative w-[30rem] text-center">
+                <div class="relative w-full text-center md:w-[30rem]">
                     <input
 class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular text-gray-900 focus:border-cmblue focus:ring-cmblue" name="search" type="search" placeholder="Explore various datasets" required>
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -224,113 +251,18 @@ class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular te
         </div>
     </div>
 {{-- Featured Datasets section --}}
-<div class="h-52 w-full bg-yellow-300">
-<div class="ml[30rem] w-[55rem] bg-orange-500">
+<section class="headline py-4 md:mt-8 md:px-4">
 
-</div>
-</div>
-{{-- End of Featured Datasets section --}}
 
-    {{-- Footer --}}
-    <footer class="bg-cmblue text-center text-white">
-        <div class="container px-10 pt-10">
-            <div>
-                <form action="">
-                    <div class="items-center justify-center">
-                        <div class="md:ml-auto md:mb-6">
-                            <p class="text-s5 font-medium">
-                                Subsribe to our Newsletter
-                            </p>
-                        </div>
+<x-card :uploads="$uploads"/>
 
-                        <div class="relative md:mb-6">
-                            <input type="text" placeholder="thanos@gmail.com"/>
-                        </div>
 
-                        <div class="mb-6 md:mr-auto">
-                            <button
-class="inline-block rounded border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" data-te-ripple-init data-te-ripple-color="light" type="submit">
-                                Subscribe
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
 
-            <div class="mt-20 grid md:grid-cols-2 lg:grid-cols-4">
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Company</h5>
+</section>
+    {{-- End of Featured Datasets section --}}
 
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-left text-white" href="{{ route('about') }}">About Us</a>
-                        </li>
-                        <li>
-                            <a class="text-left text-white" href="#!">Carrers</a>
-                        </li>
-                        <li>
-                            <a class="text-left text-white" href="#!">Partners</a>
-                        </li>
-                        <li>
-                            <a class="text-left text-white" href="#!">Leadership</a>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Resources</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-white" href="#!">Blog</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Case Studies</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">News</a>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Support</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-white" href="#!">FAQs</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Legal</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Help Center</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="{{ route('terms') }}">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Contact</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-white" href="www.babcock.edu.ng">Babcock University Illishan Remo, Ogun state</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-4 pl-24 text-left">
-            © 2023 Copyright:
-            <a class="text-white" href="#">SoftwareRepoHub</a> All rights reserved
-        </div>
-    </footer>
-    {{-- End of Footer --}}
+    <x-footer2 />
 
     @livewireScripts
 

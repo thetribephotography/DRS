@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SoftwareRepoHub') }}</title>
+    <title>{{ $title }}</title>
 
     {{-- Favicon --}}
     <link href="{{ asset('favicon/apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
@@ -38,6 +38,9 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/user.css', 'resources/js/user.js'])
+
+    {{-- ScrollReveal JS Librabry --}}
+    <script src="https://unpkg.com/scrollreveal"></script>
 
 
     {{-- Alpine --}}
@@ -100,7 +103,7 @@
                         </li>
                         <li
                             class="hover:bg-cm-blue delay-50 my-2 flex h-10 w-full cursor-pointer items-center rounded-md text-s7 text-white transition duration-200 ease-in-out hover:bg-white hover:text-cmblue">
-                            <a class="text-md ml-3 flex flex-row" href="#">
+                            <a class="text-md ml-3 flex flex-row" href="{{ route('admin.users') }}">
                                 <svg class="mr-4 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -145,7 +148,7 @@
                         </li>
                         <li
                             class="my-2 flex h-10 w-full cursor-pointer items-center rounded-md text-s7 text-white transition duration-200 ease-in-out hover:bg-white hover:text-cmblue">
-                            <a class="text-md ml-3 flex flex-row" href="#">
+                            <a class="text-md ml-3 flex flex-row" href="{{ route('admin.errors') }}">
                                 <svg class="mr-4 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -217,7 +220,7 @@
         </div>
 
         {{-- Main content --}}
-        <div class="h-screen w-screen">
+        <div class="h-screen w-screen bg-gl">
             {{ $slot }}
         </div>
     </div>
