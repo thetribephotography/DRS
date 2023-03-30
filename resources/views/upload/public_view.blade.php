@@ -44,6 +44,10 @@
                             Download
                         </button>
                     </div>
+                    {{-- Vidoe --}}
+                    <div>
+                        <video class="" src=""></video>
+                    </div>
                     {{-- Bottom --}}
                     <div class="w-full rounded-md bg-slate-100 pb-8 pt-4 pr-10 shadow">
                         <div class="pl-6 text-s8 text-clgray">
@@ -253,8 +257,10 @@
                 </div>
                 <div class="mt-4 h-full w-full rounded-md bg-cmblue px-2">
                     {{-- Categories --}}
-                    <div class="pt-2 text-center">
-                        <h4 class="mb-2 font-semibold text-white">Categories:</h4>
+                    <div class="ml-6 pt-2 text-left">
+                        <a class="t text-decoration-none" href="{{ route('category.index') }}">
+                            <h4 class="mb-2 font-semibold text-white">Categories:</h4>
+                        </a>
                         <div class="bg mt-2 text-white">
                             <ul class="max-w-md list-inside list-disc space-y-1">
                                 {{-- @foreach --}}
@@ -269,8 +275,10 @@
                     </div>
 
                     {{-- Tag --}}
-                    <div class="mt-6">
-                        <h4 class="mb-2 text-center font-semibold text-white">Tags:</h4>
+                    <div class="mt-6 ml-6 text-left">
+                        <a href="">
+                            <h4 class="mb-2 font-semibold text-white">Tags:</h4>
+                        </a>
                         <div class="bg mt-2 text-white">
                             <span
                                 class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Security</span>
@@ -281,7 +289,7 @@
                     </div>
 
                     {{-- Keyword --}}
-                    <div class="mt-6 text-center text-white">
+                    <div class="mt-10 ml-6 h-full text-left text-white">
                         <h4 class="mb-2 font-semibold text-white">Keywords:</h4>
                         <div class="bg mt-2">
                             <span

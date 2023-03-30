@@ -37,6 +37,14 @@
 
 <body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
 
+    @auth
+        <x-navigation-auth />
+    @endauth
+
+    @guest
+        <x-navigation />
+    @endguest
+
     {{ $slot }}
 
     @livewireScripts

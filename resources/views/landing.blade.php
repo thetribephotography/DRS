@@ -141,7 +141,7 @@
     {{-- Next Section --}}
     <section class="section h-[30rem] w-full border-b border-gl">
         {{-- Main container --}}
-        <div class="grid grid-cols-2 gap-10 pl-40 pt-20">
+        <div class="grid grid-cols-2 gap-10 pt-20 md:pl-40">
             {{-- For text --}}
             <div>
                 <p class="mb-4 text-s2 font-bold text-clblack">High-Quality Research Data</p>
@@ -167,7 +167,7 @@
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For Boxes --}}
-            <div class="upload-box ml-56 grid h-[24rem] w-80 grid-cols-2 gap-4 px-4 py-4">
+            <div class="upload-box grid h-[24rem] w-80 grid-cols-2 gap-4 px-4 py-4 md:ml-56">
                 <div class="h-full w-full rounded-lg bg-cmblue text-white">
                     <svg class="mb-4 mt-12 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -215,7 +215,7 @@
     {{-- End of section --}}
 
     {{-- Next Section --}}
-    <section class="section h-[30rem] w-full border-b border-gl pl-40">
+    <section class="section h-[30rem] w-full border-b border-gl md:pl-40">
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For text --}}
@@ -231,11 +231,11 @@
     </section>
     {{-- End of section --}}
 
-    <div class="mt-10 w-full text-center text-s4 font-bold text-clblack">
-        <h1>Featured datasets</h1>
-               <div class="mt-8 pl-[34rem] text-clblack lg:block">
+    <div class="mt-6 w-full text-center text-s4 font-bold text-clblack md:mt-10">
+        <h1 class="text-s6 md:text-s7">Featured datasets</h1>
+            <div class="mt-4 text-clblack md:mt-8 md:pl-[34rem] lg:block">
             <form action="/search-results" method="GET">
-                <div class="relative w-[30rem] text-center">
+                <div class="relative w-full text-center md:w-[30rem]">
                     <input
 class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular text-gray-900 focus:border-cmblue focus:ring-cmblue" name="search" type="search" placeholder="Explore various datasets" required>
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -251,344 +251,18 @@ class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular te
         </div>
     </div>
 {{-- Featured Datasets section --}}
-<section class="headline mt-8 py-4 px-4">
+<section class="headline py-4 md:mt-8 md:px-4">
 
-    {{-- Main --}}
-    <div class="e ml-[20rem] mb-8 w-[60rem] font-inter">
-        <div class="flex pl-2">
-            {{-- For image --}}
-            <div class="mt-4 h-20 w-20">
-                <img class="h-full w-full object-cover" src="{{ asset('images/thanos.jpg') }}" alt="">
-            </div>
-            {{-- For text --}}
-            <div class="ml-4 mb-4 flex flex-col">
-                {{-- ForTop Part --}}
-                <div class="flex">
-                                         {{-- Visibility --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-</svg>
 
-                        <p class="ml-1">Public</p>
-                    </div>
-                    {{-- Type --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-                        <svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5"/>
-                        </svg>
-                        <p class="ml-1">Dataset</p>
-                    </div>
+<x-card :uploads="$uploads"/>
 
-                    {{-- Size --}}
-                     <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="translate-y-1" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="13" height="13" fill="white"/>
-<path d="M4.875 6.5V7.58333M3.25 6.5V8.125M6.5 6.5V8.125M9.75 6.5V8.125M8.125 6.5V7.58333M1.625 1.625V3.79167M1.625 2.70833H11.375M11.375 1.625V3.79167M10.7656 6.5C11.102 6.5 11.375 6.77733 11.375 7.11913V10.2142C11.375 10.556 11.102 10.8333 10.7656 10.8333H2.16667C2.02301 10.8333 1.88523 10.7763 1.78365 10.6747C1.68207 10.5731 1.625 10.4353 1.625 10.2917V7.11913C1.625 6.77733 1.898 6.5 2.23438 6.5H10.7656Z" stroke="#6F737A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                        <p class="ml-1">500KB</p>
-                    </div>
-                    {{-- Date --}}
-                    <div class="flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-</svg>
 
-                        <p class="ml-1">12 March 2023</p>
-                    </div>
-                </div>
-                {{-- End --}}
-                <div class="mt-1">
-                    <h3 class="text-s6 font-regular text-cdblack">Artificial Intelligence</h3>
-                    <p class="mt-1 font-light text-[#6F737A]">Dataset mine from the one and only place to mine datasets. This is very functional</p>
-                </div>
-                <div class="mt-2 flex">
-                    <img class="h-4 w-4 rounded-full" src="{{ asset('images/thanos.jpg') }}" alt="">
-                    <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline" href=""><p>Messi jnr</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="h-[1px] w-full bg-[#C3C2C2]"></div>
-    </div>
-    {{-- End --}}
-        {{-- Main --}}
-    <div class="e ml-[20rem] mb-8 w-[60rem] font-inter">
-        <div class="flex pl-2">
-            {{-- For image --}}
-            <div class="mt-4 h-20 w-20">
-                <img class="h-full w-full object-cover" src="{{ asset('images/thanos.jpg') }}" alt="">
-            </div>
-            {{-- For text --}}
-            <div class="ml-4 mb-4 flex flex-col">
-                {{-- ForTop Part --}}
-                <div class="flex">
-                                         {{-- Visibility --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-</svg>
 
-                        <p class="ml-1">Public</p>
-                    </div>
-                    {{-- Type --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-                        <svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5"/>
-                        </svg>
-                        <p class="ml-1">Dataset</p>
-                    </div>
-
-                    {{-- Size --}}
-                     <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="translate-y-1" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="13" height="13" fill="white"/>
-<path d="M4.875 6.5V7.58333M3.25 6.5V8.125M6.5 6.5V8.125M9.75 6.5V8.125M8.125 6.5V7.58333M1.625 1.625V3.79167M1.625 2.70833H11.375M11.375 1.625V3.79167M10.7656 6.5C11.102 6.5 11.375 6.77733 11.375 7.11913V10.2142C11.375 10.556 11.102 10.8333 10.7656 10.8333H2.16667C2.02301 10.8333 1.88523 10.7763 1.78365 10.6747C1.68207 10.5731 1.625 10.4353 1.625 10.2917V7.11913C1.625 6.77733 1.898 6.5 2.23438 6.5H10.7656Z" stroke="#6F737A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                        <p class="ml-1">500KB</p>
-                    </div>
-                    {{-- Date --}}
-                    <div class="flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-</svg>
-
-                        <p class="ml-1">12 March 2023</p>
-                    </div>
-                </div>
-                {{-- End --}}
-                <div class="mt-1">
-                    <h3 class="text-s6 font-regular text-cdblack">Artificial Intelligence</h3>
-                    <p class="mt-1 font-light text-[#6F737A]">Dataset mine from the one and only place to mine datasets. This is very functional</p>
-                </div>
-                <div class="mt-2 flex">
-                    <img class="h-4 w-4 rounded-full" src="{{ asset('images/thanos.jpg') }}" alt="">
-                    <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline" href=""><p>Messi jnr</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="h-[1px] w-full bg-[#C3C2C2]"></div>
-    </div>
-        {{-- Main --}}
-    <div class="e ml-[20rem] mb-8 w-[60rem] font-inter">
-        <div class="flex pl-2">
-            {{-- For image --}}
-            <div class="mt-4 h-20 w-20">
-                <img class="h-full w-full object-cover" src="{{ asset('images/thanos.jpg') }}" alt="">
-            </div>
-            {{-- For text --}}
-            <div class="ml-4 mb-4 flex flex-col">
-                {{-- ForTop Part --}}
-                <div class="flex">
-                                         {{-- Visibility --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-</svg>
-
-                        <p class="ml-1">Public</p>
-                    </div>
-                    {{-- Type --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-                        <svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5"/>
-                        </svg>
-                        <p class="ml-1">Dataset</p>
-                    </div>
-
-                    {{-- Size --}}
-                     <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="translate-y-1" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="13" height="13" fill="white"/>
-<path d="M4.875 6.5V7.58333M3.25 6.5V8.125M6.5 6.5V8.125M9.75 6.5V8.125M8.125 6.5V7.58333M1.625 1.625V3.79167M1.625 2.70833H11.375M11.375 1.625V3.79167M10.7656 6.5C11.102 6.5 11.375 6.77733 11.375 7.11913V10.2142C11.375 10.556 11.102 10.8333 10.7656 10.8333H2.16667C2.02301 10.8333 1.88523 10.7763 1.78365 10.6747C1.68207 10.5731 1.625 10.4353 1.625 10.2917V7.11913C1.625 6.77733 1.898 6.5 2.23438 6.5H10.7656Z" stroke="#6F737A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                        <p class="ml-1">500KB</p>
-                    </div>
-                    {{-- Date --}}
-                    <div class="flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-</svg>
-
-                        <p class="ml-1">12 March 2023</p>
-                    </div>
-                </div>
-                {{-- End --}}
-                <div class="mt-1">
-                    <h3 class="text-s6 font-regular text-cdblack">Artificial Intelligence</h3>
-                    <p class="mt-1 font-light text-[#6F737A]">Dataset mine from the one and only place to mine datasets. This is very functional</p>
-                </div>
-                <div class="mt-2 flex">
-                    <img class="h-4 w-4 rounded-full" src="{{ asset('images/thanos.jpg') }}" alt="">
-                    <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline" href=""><p>Messi jnr</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="h-[1px] w-full bg-[#C3C2C2]"></div>
-    </div>
-        {{-- Main --}}
-    <div class="e ml-[20rem] mb-8 w-[60rem] font-inter">
-        <div class="flex pl-2">
-            {{-- For image --}}
-            <div class="mt-4 h-20 w-20">
-                <img class="h-full w-full object-cover" src="{{ asset('images/thanos.jpg') }}" alt="">
-            </div>
-            {{-- For text --}}
-            <div class="ml-4 mb-4 flex flex-col">
-                {{-- ForTop Part --}}
-                <div class="flex">
-                                         {{-- Visibility --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-</svg>
-
-                        <p class="ml-1">Public</p>
-                    </div>
-                    {{-- Type --}}
-                    <div class="mr-4 flex text-s8 text-[#6F737A]">
-                        <svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5"/>
-                        </svg>
-                        <p class="ml-1">Dataset</p>
-                    </div>
-
-                    {{-- Size --}}
-                     <div class="mr-4 flex text-s8 text-[#6F737A]">
-<svg class="translate-y-1" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="13" height="13" fill="white"/>
-<path d="M4.875 6.5V7.58333M3.25 6.5V8.125M6.5 6.5V8.125M9.75 6.5V8.125M8.125 6.5V7.58333M1.625 1.625V3.79167M1.625 2.70833H11.375M11.375 1.625V3.79167M10.7656 6.5C11.102 6.5 11.375 6.77733 11.375 7.11913V10.2142C11.375 10.556 11.102 10.8333 10.7656 10.8333H2.16667C2.02301 10.8333 1.88523 10.7763 1.78365 10.6747C1.68207 10.5731 1.625 10.4353 1.625 10.2917V7.11913C1.625 6.77733 1.898 6.5 2.23438 6.5H10.7656Z" stroke="#6F737A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                        <p class="ml-1">500KB</p>
-                    </div>
-                    {{-- Date --}}
-                    <div class="flex text-s8 text-[#6F737A]">
-<svg class="h-3 w-3 translate-y-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-</svg>
-
-                        <p class="ml-1">12 March 2023</p>
-                    </div>
-                </div>
-                {{-- End --}}
-                <div class="mt-1">
-                    <h3 class="text-s6 font-regular text-cdblack">Artificial Intelligence</h3>
-                    <p class="mt-1 font-light text-[#6F737A]">Dataset mine from the one and only place to mine datasets. This is very functional</p>
-                </div>
-                <div class="mt-2 flex">
-                    <img class="h-4 w-4 rounded-full" src="{{ asset('images/thanos.jpg') }}" alt="">
-                    <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline" href=""><p>Messi jnr</p></a>
-                </div>
-            </div>
-        </div>
-        <div class="h-[1px] w-full bg-[#C3C2C2]"></div>
-    </div>
 </section>
-{{-- End of Featured Datasets section --}}
+    {{-- End of Featured Datasets section --}}
 
-    {{-- Footer --}}
-    <footer class="bg-cmblue text-center text-white">
-        <div class="container px-10 pt-10">
-            <div>
-                <form action="">
-                    <div class="items-center justify-center">
-                        <div class="md:ml-auto md:mb-6">
-                            <p class="text-s5 font-medium">
-                                Subsribe to our Newsletter
-                            </p>
-                        </div>
 
-                        <div class="relative md:mb-6">
-                            <input type="text" placeholder="thanos@gmail.com"/>
-                        </div>
-
-                        <div class="mb-6 md:mr-auto">
-                            <button
-class="inline-block rounded border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" data-te-ripple-init data-te-ripple-color="light" type="submit">
-                                Subscribe
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="mt-20 grid md:grid-cols-2 lg:grid-cols-4">
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Company</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-left text-white" href="{{ route('about') }}">About Us</a>
-                        </li>
-                        <li>
-                            <a class="text-left text-white" href="#!">Carrers</a>
-                        </li>
-                        <li>
-                            <a class="text-left text-white" href="#!">Partners</a>
-                        </li>
-                        <li>
-                            <a class="text-left text-white" href="#!">Leadership</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Resources</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-white" href="#!">Blog</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Case Studies</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">News</a>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Support</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-white" href="#!">FAQs</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Legal</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#!">Help Center</a>
-                        </li>
-                        <li>
-                            <a class="text-white" href="{{ route('terms') }}">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mb-6">
-                    <h5 class="mb-2.5 text-s8 font-bold uppercase">Contact</h5>
-
-                    <ul class="mb-0 list-none">
-                        <li>
-                            <a class="text-white" href="www.babcock.edu.ng">Babcock University Illishan Remo, Ogun state</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-4 pl-24 text-left">
-            © 2023 Copyright:
-            <a class="text-white" href="#">SoftwareRepoHub</a> All rights reserved
-        </div>
-    </footer>
-    {{-- End of Footer --}}
+    <x-footer2 />
 
     @livewireScripts
 
