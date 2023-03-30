@@ -15,7 +15,6 @@ class HomeController extends Controller
         $uploads = Upload::with('users')->latest('created_at')->take(6)->get();
         // $uploads = Upload::latest('created_at')->where('acesss_id', 1)->take(6)->get();
         $title = "Home|SoftwareRepoHub";
-
         return view('landing', compact('uploads', 'title'));
     }
 
