@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Tag;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Http\Request;
 use App\Models\Upload;
 use App\Models\User;
@@ -133,15 +136,31 @@ class AdminController extends Controller
         }
     }
 
-    //SEE ALL USERS
-    public function seeuser()
+    //Display all users
+    public function users()
     {
         $this->authorize('create_user', 'You do not have the Authorization for this Action');
 
-        $list = User::all();
+        $title = "Users";
+        $users = User::all();
+        $uploads = Upload::all();
+        $tags = Tag::all();
+        $categories = Category::all();
 
-        return view("")->with('list', $list);
+        return view("admin.users", compact('title', 'users', 'tags', 'categories', 'uploads'));
     }
+
+    public function errors()
+    {
+        $this->authorize('create_user', 'You do not have the Authorization for this Action');
+
+        $title = "Errors and Logs";
+        // $users = User::all();
+
+        return view("admin.errors", compact('title'));
+    }
+
+
 
     //SHOW 1 USER
     public function userone($id)

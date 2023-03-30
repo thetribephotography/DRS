@@ -11,7 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $uploads = Upload::latest('created_at')->where('acesss_id', 1)->take(4)->get();
+        //Current will take even private
+        $uploads = Upload::latest('created_at')->take(6)->get();
+        // $uploads = Upload::latest('created_at')->where('acesss_id', 1)->take(6)->get();
         $title = "Home|SoftwareRepoHub";
 
         return view('landing', compact('uploads', 'title'));
