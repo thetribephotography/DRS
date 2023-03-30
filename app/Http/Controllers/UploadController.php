@@ -94,7 +94,7 @@ class UploadController extends Controller
         $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
         $title = "View Single Upload";
-        $upload = Upload::with('comments')
+        $upload = Upload::with('comments', 'users')
             ->where('slug', $slug)  //Get by slug
             ->whereIn('access_id', ["1"]) //Get only public
             ->first();

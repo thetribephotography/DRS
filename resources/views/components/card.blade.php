@@ -122,7 +122,9 @@
                     <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}</p>
                 </div>
                 <div class="mt-4 flex md:mt-2">
-                    <img class="h-4 w-4 rounded-full" src="{{ asset('images/thanos.jpg') }}" alt="">
+                    <img class="h-4 w-4 rounded-full"
+                        src="{{ $upload->user->profile_picture ? asset('storage/' . $upload->user->profile_picture) : asset('images/user.jpeg') }}"
+                        alt="">
                     <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline"
                         href="">
                         <p>Messi jnr</p>
