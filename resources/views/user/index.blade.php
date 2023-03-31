@@ -58,8 +58,26 @@
                     class="relative mt-6 flex w-full justify-between overflow-x-auto border border-[#D9D9D9] p-4 sm:rounded-lg lg:mt-10 lg:w-[50rem] lg:p-8">
                     <a href="">
                         <div class="">
-                            <div
-                                class="h-14 w-14 rounded-full bg-cmblue hover:bg-[#03739D] md:h-16 md:w-16 lg:h-24 lg:w-24">
+                            {{-- POP up --}}
+                            {{-- <div class="absolute left-[7.5rem] top-[10rem] flex">
+                                <div class="hover:text-white">
+                                    <a class="block max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-cmblue"
+                                        href="{{ route('user.upload') }}">
+                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Icon</h5>
+                                        <p class="font-semibold text-gray-700">Uploads</p>
+                                    </a>
+                                </div>
+                                <div class="ml-8">
+                                    <a class="block max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-cmblue"
+                                        href="{{ route('group.create') }}">
+                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Icon</h5>
+                                        <p class="font-semibold text-gray-700">Group</p>
+                                    </a>
+                                </div>
+                            </div> --}}
+                            {{-- End --}}
+                            <div class="h-14 w-14 rounded-full bg-cmblue hover:bg-[#03739D] md:h-16 md:w-16 lg:h-24 lg:w-24"
+                                x-show="true" @click="open = !open">
                                 <svg class="h-4 w-4 translate-x-5 translate-y-5 lg:h-8 lg:w-8 lg:translate-x-8 lg:translate-y-8"
                                     width="33" height="33" viewBox="0 0 33 33" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -70,6 +88,7 @@
                             </div>
                             <h4 class="ml-2 mt-2 font-semibold text-clblack lg:mt-4 lg:ml-5">Create</h4>
                         </div>
+
                     </a>
                     <a href="{{ route('upload.upload_list') }}">
                         <div class="">
@@ -107,6 +126,9 @@
 
             </div>
         </div>
+
+
+
     </div>
     </div>
 

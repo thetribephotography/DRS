@@ -216,6 +216,7 @@
 
     {{-- Next Section --}}
     <section class="section h-[30rem] w-full border-b border-gl md:pl-40">
+
         {{-- Main container --}}
         <div class="grid grid-cols-2 gap-10 pr-40 pt-20">
             {{-- For text --}}
@@ -224,8 +225,9 @@
                 <p class="text-s6 font-semibold text-cgray">Suited and trusted with large data archiving standards</p>
             </div>
             {{-- For Circle --}}
-            <div class="ml-[12rem] mt-2 h-56 w-56 rounded-full bg-cmblue pt-[5rem] text-center drop-shadow-custom" ">
-                <span class="text-s3 font-bold text-white">400+</span>
+            <div class="ml-[12rem] mt-2 h-56 w-56 rounded-full bg-cmblue pt-[5rem] text-center drop-shadow-custom"
+                id="target">
+                <span class="text-s3 font-bold text-white" id="number">400+</span>
             </div>
         </div>
     </section>
@@ -233,15 +235,18 @@
 
     <div class="mt-6 w-full text-center text-s4 font-bold text-clblack md:mt-10">
         <h1 class="text-s6 md:text-s7">Featured datasets</h1>
-            <div class="mt-4 text-clblack md:mt-8 md:pl-[34rem] lg:block">
+        <div class="mt-4 text-clblack md:mt-8 md:pl-[34rem] lg:block">
             <form action="/search-results" method="GET">
                 <div class="relative w-full text-center md:w-[30rem]">
                     <input
-class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular text-gray-900 focus:border-cmblue focus:ring-cmblue" name="search" type="search" placeholder="Explore various datasets" required>
+                        class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                        name="search" type="search" placeholder="Explore various datasets" required>
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <button type="submit">
-                            <svg class="h-5 w-5 text-gray-500" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            <svg class="h-5 w-5 text-gray-500" aria-hidden="true" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </button>
 
@@ -250,21 +255,23 @@ class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular te
             </form>
         </div>
     </div>
-{{-- Featured Datasets section --}}
-<section class="headline py-4 md:mt-8 md:px-4">
+    {{-- Featured Datasets section --}}
+    <section class="headline py-4 md:mt-8 md:px-4">
 
+        <x-card :uploads="$uploads" />
 
-<x-card :uploads="$uploads"/>
-
-
-
-</section>
+    </section>
     {{-- End of Featured Datasets section --}}
 
 
     <x-footer2 />
 
+
+
+
+
     @livewireScripts
+
 
 </body>
 
