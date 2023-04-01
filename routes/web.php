@@ -31,10 +31,6 @@ use Illuminate\Http\Request;
 |
 */
 
-//Test Route for building admin dashboard navbar
-Route::get('/dd', function () {
-    return view('dd');
-});
 
 
 //EMAIL VERFICATION
@@ -76,16 +72,24 @@ Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('ter
 
 //Search Result from landing page
 Route::get('/search-results', [UserController::class, 'search_result']);
+//View search result (Single)
+Route::any('/upload/public/{slug}', [UploadController::class, 'public_view'])->name('upload.show_one');
+
+//Categories
+Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/categories/{id}', [CategoryController::class, 'show_user'])->name('category.show');
 
 
-// ADMIN ROUTES
+// Only Admin can access
 Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/errors', [AdminController::class, 'errors'])->name('admin.errors');
 });
 
 
-// USER ROUTES
+// Only user can access
 Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
     //  User
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
@@ -107,7 +111,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
     // Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
-    Route::any('/upload/show_one/{_id}', [UploadController::class, 'uploadshow'])->name('upload.show_one');
+
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
 
 
@@ -128,13 +132,13 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('/upload/comment_edit/{_id}', [CommentController::class, 'edit'])->name('comment.edit');
     Route::post('/comment/update/{_id}', [CommentController::class, 'update'])->name('comment.update');
     Route::post('/upload/report/{_id}', [CommentController::class, 'report'])->name('comment.report');
-
-    //Categories
-    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('/categories/{id}', [CategoryController::class, 'show_user'])->name('category.show');
 });
 
-// Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
+// Users and Admin can acesss
+Route::prefix('')->middleware(['auth', 'role:registered|admin', 'verified'])->group(
+    function () {
+    }
+);
 
 
 

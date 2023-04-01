@@ -1,15 +1,15 @@
 <x-app-layout :title="$title">
     <div class="h-[10rem] w-full bg-gray-100 pt-8 shadow">
-        <div class="ml-[6rem]">
-            <h2 class="mb-4 text-s3 font-semibold text-clblack">Upload type</h2>
+        <div class="ml-4 lg:ml-[6rem]">
+            <h2 class="mb-2 text-s5 font-semibold text-clblack lg:mb-4 lg:text-s3">Upload type</h2>
             <p>Select the type of upload you wish to upload</p>
         </div>
     </div>
 
-    <div class="z-30 flex h-60 gap-6 pt-14 pl-[25rem]">
+    <div class="z-30 flex h-60 flex-row gap-6 px-4 lg:mt-0 lg:pt-14 lg:pl-[25rem]">
         {{-- Article --}}
         <a class="text-cgray hover:text-cmblue" href="{{ route('user.publish') }}">
-            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+            <div class="w-full rounded border border-gray-400 text-center hover:bg-[#DBF1FA] lg:w-40 lg:p-4">
                 <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -20,7 +20,7 @@
         </a>
         {{-- Dataset --}}
         <a class="text-cgray hover:text-cmblue" href="{{ route('user.dataset') }}">
-            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+            <div class="w-full rounded border border-gray-400 text-center hover:bg-[#DBF1FA] lg:w-40 lg:p-4">
                 <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -31,7 +31,7 @@
         </a>
         {{-- Software --}}
         <a class="text-cgray hover:text-cmblue" href="{{ route('user.software') }}">
-            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+            <div class="w-full rounded border border-gray-400 text-center hover:bg-[#DBF1FA] lg:w-40 lg:p-4">
                 <svg class="mb-4 h-12 w-12 translate-x-9" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -42,7 +42,7 @@
         </a>
         {{-- Worflow --}}
         <a class="text-cgray hover:text-cmblue" href="{{ route('user.workflow') }}">
-            <div class="w-40 rounded border border-gray-400 p-4 text-center hover:bg-[#DBF1FA]">
+            <div class="w-full rounded border border-gray-400 text-center hover:bg-[#DBF1FA] lg:w-40 lg:p-4">
                 <svg class="mb-4 h-12 w-12 translate-x-9" viewBox="0 0 55 50" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

@@ -2,7 +2,7 @@
         <div class="container mx-auto w-full p-4 md:px-6 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <x-application-logo class="text-white" />
-                <ul class="mb-6 flex flex-wrap items-center text-sm text-white sm:mb-0">
+                <ul class="mb-6 mt-4 flex flex-wrap items-center text-sm text-white lg:mt-0">
                     <li>
                         <a class="mr-4 hover:underline md:mr-6" href="{{ route('about') }}">About</a>
                     </li>

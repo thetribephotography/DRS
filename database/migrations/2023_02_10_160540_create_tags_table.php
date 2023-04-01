@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $collection) {
             // $collection->id();
             $collection->string('name')->unique();
+            $collection->string('slug')->unique();
             $collection->timestamps();
             // $collection->softDeletes();
         });

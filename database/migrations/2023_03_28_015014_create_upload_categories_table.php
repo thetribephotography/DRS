@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 // use Illuminate\Database\Schema\Blueprint;
-use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Jenssegers\Mongodb\Schema\Blueprint;
 
 return new class extends Migration
 {
@@ -14,13 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $collection) {
-            // $table->id();
-            $collection->string('name');
-            $collection->string('slug')->unique();
-            $collection->unsignedBigInteger('upload')->nullable();
-            $collection->array('group_members')->nullable();
-            $collection->softDeletes();
+        Schema::create('upload_categories', function (Blueprint $collection) {
+            $collection->id();
+            $collection->unsignedBigInteger('category_id');
+            $collection->unsignedBigInteger('upload_id');
+            $collection->index('category_id');
+
             $collection->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('upload_categories');
     }
 };

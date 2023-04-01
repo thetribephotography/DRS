@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('uploads', function (Blueprint $collection) {
             // $collection->id()->unique();
             $collection->string('title');
+            $collection->string('slug')->unique();
             $collection->string('description');
             $collection->string('published_at');
             $collection->array('language');
@@ -37,7 +38,6 @@ return new class extends Migration
             $collection->bigInteger('file_size'); //Size of File
             $collection->softDeletes();
             $collection->timestamps();
-            
         });
     }
 

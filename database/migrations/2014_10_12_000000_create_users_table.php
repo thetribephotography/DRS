@@ -19,6 +19,9 @@ return new class extends Migration
             // $collection->index();
             $collection->file('profile_picture');
             $collection->string('name');
+            $collection->string('slug');
+            $collection->string('first_name');
+            $collection->string('last_name');
             $collection->string('email')->unique();
             $collection->timestamp('email_verified_at')->nullable();
             $collection->string('password');

@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $collection) {
             $collection->id();
             $collection->string('name');
+            $collection->string('slug')->unique();
             $collection->longText('description');
             $collection->timestamps();
         });

@@ -1,17 +1,15 @@
 <x-app-layout :title="$title">
-
     {{-- Header start --}}
-    <div class="h-[10rem] w-full bg-[#C2E7F4] pt-8 shadow">
-        <div class="ml-[15rem]">
-            <h2 class="mt-5 text-s3 font-bold text-cdblack">Software Upload</h2>
+    <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8">
+        <div class="ml-6 md:ml-[15rem]">
+            <h2 class="md:t-5 text-s5 font-bold text-cdblack md:text-s3">Software Upload</h2>
         </div>
     </div>
     {{-- End Header --}}
 
 
-
     {{-- Input Fields --}}
-    <section class="my-8 ml-[24rem] h-full w-[51rem] pb-6">
+    <section class="my-8 h-full w-full pb-6 md:ml-[24rem] md:w-[51rem]">
         <form method="POST" action="{{ route('uploads.publish') }}" enctype="multipart/form-data">
             @csrf
             {{-- Side by isde --}}
@@ -285,6 +283,9 @@
             {{-- Upload Kini Multplie --}}
             <div class="mt-6 px-6">
 
+                <label class="mb-2 block text-sm font-medium text-gray-900" for="file_upload">Instructions <span
+                        class="text-s9">(A video that explains how this upload can be used)</span></label>
+                <p class="mb-4 text-s9 text-red-500">NOTE: Only vidoes are accepted</p>
                 <div class="flex w-full items-center justify-center">
                     <label
                         class="hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
@@ -318,12 +319,16 @@
 
 
             {{-- Submmit --}}
-            <button
-                class="mt-8 ml-[45rem] w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 sm:w-auto"
-                type="submit">Save</button>
+            <div class="px-4 lg:px-0">
+                <button
+                    class="mt-8 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 sm:w-auto md:ml-[45rem]"
+                    type="submit">Save</button>
+            </div>
+
         </form>
 
     </section>
+
 
 
 

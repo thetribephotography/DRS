@@ -18,22 +18,25 @@ class Group extends Model
     protected $fillable = [
         'name',
         'upload',
+        'slug',
         'group_members',
         'user_id',
         'deleted_at',
 
     ];
 
-    public function uploads(){
+    public function uploads()
+    {
         return $this->hasMany(Upload::class, '_id', 'upload');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->hasMany(User::class, '_id', 'group_members');
     }
 
-    public function userone() {
+    public function userone()
+    {
         return $this->belongsTo(User::class, '_id', 'user_id');
     }
-
 }

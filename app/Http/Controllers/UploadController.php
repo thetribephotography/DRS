@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -88,50 +89,48 @@ class UploadController extends Controller
     }
 
     //Shows a Single Upload
-    public function uploadshow($id)
+    public function public_view($slug)
     {
         $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
-        $title = "View Single Upload"; 
+        $title = "View Single Upload";
+        $upload = Upload::with('comments')
+            ->where('slug', $slug)  //Get by slug
+            ->whereIn('access_id', ["1"]) //Get only public
+            ->first();
 
-                $upload = Upload::where('_id', $id)->where('user_id', $user)->whereIn('access_id', ["1", "3"])
-                ->with(['comments' => function ($query) {
-                $query->where('deleted_at', null)
-                      ->orderBy('created_at', 'desc');   
-                    }])->first();
+        //Conditon if it returns null
+        if (!$upload) {
+            abort(406, "You do not have access to this file");
+            // return redirect()->back()->with("message",'You have not been granted access to view this download by the Uploader');
+        }
 
-// $upload = Upload::where('_id', $id)
-//             ->where('user_id', $user)
-//             ->whereIn('access_id', ["1", "3"])
-//             ->whereHas('tags_id')
-//             ->whereHas('category_id')
-//             ->with(['comments' => function ($query) {
-//                 $query->where('deleted_at', null)
-//                       ->orderBy('created_at', 'desc');
-//             }])
-//             ->with('tag')
-//             ->with('category')
-//             ->first();
 
-                // $category = $upload->category_id;
-                // $tags = $upload->tags_id;
-                // $caten = [];
+        // $upload = Upload::where('_id', $id)->where('user_id', $user)->whereIn('access_id', ["1", "3"])
+        //     ->whereHas('comments', function ($query) {
+        //         $query->where('deleted_at', null);
+        //     })
+        //     ->with(['comments' => function ($query) {
+        //         $query->where('deleted_at', null)
+        //             ->orderBy('created_at', 'desc');
+        //     }])
+        //     ->with(['category_id' => function ($query) {
+        //         $query->where('_id', 'category_id')
+        //             ->orWhere('name', 'category_id');
+        //     }])
+        //     ->with(['tags_id' => function ($query) {
+        //         $query->where('_id', 'tags_id')
+        //             ->orWhere('name', 'tags_id');
+        //     }])
+        //     ->first();
 
-                // dd($upload, $category, $tags);
+        // dd($upload);
 
-                // foreach($category as $category){
-                //     $cat = Category::where('_id', $category)->get();
-                //     $caten[] = $cat->name;
+        // if (!$upload) {
+        //     return redirect()->back()->with('You have not been granted access to view this download by the Uploader');
+        // }
 
-                // }
-                    
-
-                if(!$upload) {
-                 return redirect()->back()->with('You have not been granted access to view this download by the Uploader');   
-                }
-
-                 return view('upload.show_one', compact('upload',  'title'));
-        
+        return view('upload.public_view', compact('upload',  'title'));
     }
 
     //UPDATE POST
@@ -274,6 +273,7 @@ class UploadController extends Controller
             $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -300,6 +300,7 @@ class UploadController extends Controller
             $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -328,6 +329,7 @@ class UploadController extends Controller
             $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -356,6 +358,7 @@ class UploadController extends Controller
             $upload->media = $media;
             $upload->user_id = $user;
             $upload->category_id = $cat;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
