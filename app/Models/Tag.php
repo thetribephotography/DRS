@@ -20,8 +20,8 @@ class Tag extends Model
     ];
 
 
-    public function upload()
+    public function uploads()
     {
-        return $this->hasMany(Upload::class);
+        return $this->belongsToMany(Tag::class, 'tag_uploads', 'tag_id', 'upload_id');
     }
 }

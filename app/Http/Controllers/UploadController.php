@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryUpload;
+use App\Models\TagUpload;
 use App\Models\Upload;
 use App\Models\User;
 use App\Models\Group;
@@ -94,41 +96,20 @@ class UploadController extends Controller
         $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
         $title = "View Single Upload";
-        $upload = Upload::with('comments', 'users')
+        $upload = Upload::with('comments', 'users', 'categories', 'tags')
             ->where('slug', $slug)  //Get by slug
             ->whereIn('access_id', ["1"]) //Get only public
             ->first();
 
+        $categories = Category::whereIn('_id', $upload->category_id)->get();
         //Conditon if it returns null
         if (!$upload) {
             abort(406, "You do not have access to this file");
             // return redirect()->back()->with("message",'You have not been granted access to view this download by the Uploader');
         }
 
-
-        // $upload = Upload::where('_id', $id)->where('user_id', $user)->whereIn('access_id', ["1", "3"])
-        //     ->whereHas('comments', function ($query) {
-        //         $query->where('deleted_at', null);
-        //     })
-        //     ->with(['comments' => function ($query) {
-        //         $query->where('deleted_at', null)
-        //             ->orderBy('created_at', 'desc');
-        //     }])
-        //     ->with(['category_id' => function ($query) {
-        //         $query->where('_id', 'category_id')
-        //             ->orWhere('name', 'category_id');
-        //     }])
-        //     ->with(['tags_id' => function ($query) {
-        //         $query->where('_id', 'tags_id')
-        //             ->orWhere('name', 'tags_id');
-        //     }])
-        //     ->first();
-
         // dd($upload);
 
-        // if (!$upload) {
-        //     return redirect()->back()->with('You have not been granted access to view this download by the Uploader');
-        // }
 
         return view('upload.public_view', compact('upload',  'title'));
     }
@@ -143,31 +124,31 @@ class UploadController extends Controller
             return redirect("/dashboard")->with("No Updates were Made");
         } else {
 
-        $update = Upload::where('_id', $id)->whereNull('deleted_at')->first();
+            $update = Upload::where('_id', $id)->whereNull('deleted_at')->first();
 
-        //category save in db as array
-        $category = $request->category;
-        $cat = [];
+            //category save in db as array
+            $category = $request->category;
+            $cat = [];
 
-        foreach ($category as $categories) {
-            $cat[] = $categories;
-        }
-
-
-        // request for hidden column, title and access rights and save in variable
-
-        $file_name = $request->title;
-        $access = $request->example;
-
-        //STORE GROUPING ID'S IF CHOSEN
-        $groups = [];
-        if ($access == 3) {
-            $group = $request->grouping;
-
-            foreach ($group as $grouping) {
-                $groups[] = $grouping;
+            foreach ($category as $categories) {
+                $cat[] = $categories;
             }
-        }
+
+
+            // request for hidden column, title and access rights and save in variable
+
+            $file_name = $request->title;
+            $access = $request->example;
+
+            //STORE GROUPING ID'S IF CHOSEN
+            $groups = [];
+            if ($access == 3) {
+                $group = $request->grouping;
+
+                foreach ($group as $grouping) {
+                    $groups[] = $grouping;
+                }
+            }
 
             $path = $this->UploadFile($request->file('file-upload'), $file_name);
             $media = $this->UploadFile($request->file('summary-upload'), $file_name);
@@ -279,6 +260,31 @@ class UploadController extends Controller
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
             $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
         } else if ($topic_id == 2) {
             //    2 = software
             $user = Auth::id();
@@ -306,6 +312,31 @@ class UploadController extends Controller
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
             $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
         } else if ($topic_id == 3) {
             //    3 = dataset
 
@@ -335,6 +366,31 @@ class UploadController extends Controller
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
             $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
         } else if ($topic_id == 4) {
             //    4 = workflow
 
@@ -364,6 +420,31 @@ class UploadController extends Controller
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
             $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
         }
 
         // if ($access == 3){
@@ -374,7 +455,7 @@ class UploadController extends Controller
 
         //     $update->upload = $upload_id;
         //     $update->update();
-        // } 
+        // }
 
         return redirect("/dashboard")->with("success", "Upload Successful");
     }

@@ -7,12 +7,12 @@ use Livewire\Component;
 
 class FilterPost extends Component
 {
-    public $categories;
+    // public $categories;
     public $query;
     public $topic_id;
     public function mount()
     {
-        $this->categories = Category::all();
+        // $this->categories = Category::all();
     }
     public function render()
     {
