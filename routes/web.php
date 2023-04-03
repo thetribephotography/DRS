@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -89,7 +90,11 @@ Route::any('/upload/public/{slug}', [UploadController::class, 'public_view'])->n
 
 //Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/categories/{slug}', [CategoryController::class, 'show_user'])->name('category.show');
+Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('category.show');
+
+//Tags
+Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
+Route::get('/tags/{slug}', [TagController::class, 'show'])->name('tag.show');
 
 
 // Only Admin can access

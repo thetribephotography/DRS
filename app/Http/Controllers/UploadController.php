@@ -93,6 +93,7 @@ class UploadController extends Controller
     //Shows a Single Upload
     public function public_view($slug)
     {
+
         $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
         $title = "View Single Upload";
@@ -100,6 +101,14 @@ class UploadController extends Controller
             ->where('slug', $slug)  //Get by slug
             ->whereIn('access_id', ["1"]) //Get only public
             ->first();
+
+
+        //Track and Record Views using sessions
+        if (!session()->has('viewed_post_' . $upload->id)) {
+            $upload->increment('views');
+            session()->put('viewed_post_' . $upload->id, true);
+        }
+
 
         $categories = Category::whereIn('_id', $upload->category_id)->get();
         //Conditon if it returns null

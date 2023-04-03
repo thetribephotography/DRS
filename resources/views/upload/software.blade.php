@@ -321,7 +321,7 @@
             {{-- Submmit --}}
             <div class="px-4 lg:px-0">
                 <button
-                    class="mt-8 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 sm:w-auto md:ml-[45rem]"
+                    class="mt-8 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover sm:w-auto md:ml-[45rem]"
                     type="submit">Save</button>
             </div>
 

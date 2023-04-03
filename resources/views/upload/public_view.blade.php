@@ -6,20 +6,10 @@
             {{-- @if (session()->has('message'))
                 <h4 class="text-green-600"> {{session ('message') }} </h4>
             @endif --}}
-
-            {{-- Go back Button --}}
-            <a href="{{ url()->previous() }}">
-                <div class="absolute left-[4rem] h-10 w-10 rounded-lg border border-clgray hover:bg-gray-300">
-                    <svg class="h-5 w-5 translate-y-2.5 translate-x-2.5 text-clgray" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                    </svg>
-                </div>
-            </a>
             {{-- End --}}
 
             {{-- Main Container --}}
-            <div class="ml-[15rem] flex h-full w-[50rem] flex-col">
+            <div class="flex h-full w-[50rem] flex-col lg:ml-[6rem]">
                 <div class="mb-10 h-[50rem] w-full">
                     {{-- Top --}}
                     <div class="">
@@ -34,7 +24,7 @@
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
                             {{ $upload->created_at->format('F d, Y') }}</p>
                         <button
-                            class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-blue-400"
+                            class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-b-hover"
                             type="button">
                             <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -64,7 +54,7 @@
                         </div>
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">File Size</h3>
-                            <p class="">{{ $upload->file_size }}KB</p>
+                            <p class="">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                         </div>
                     </div>
                 </div>
@@ -72,7 +62,7 @@
                 <div class="h-full w-full">
                     {{-- COMMENT SECTION --}}
                     <section class="bg-white py-8 lg:py-16">
-                        <div class="mx-auto max-w-2xl px-4">
+                        <div class="mx-auto max-w-2xl pr-4">
                             <div class="mb-6 flex items-center justify-between">
                                 <h2 class="text-lg font-bold text-gray-900 lg:text-2xl">Comments
                                     @if (!count($upload->comments) == 0)
@@ -90,7 +80,7 @@
                                 </div>
                                 <a href="{{ asset('uploadpath') }}" download="">
                                     <button
-                                        class="ml-[33rem] items-center rounded bg-cmblue py-2.5 px-4 text-center font-medium text-white hover:bg-blue-500">
+                                        class="ml-[33rem] items-center rounded bg-cmblue py-2.5 px-4 text-center font-medium text-white hover:bg-b-hover">
                                         Comment
                                     </button>
                                 </a>
@@ -242,16 +232,17 @@
 
 
             {{-- Side Container --}}
-            <div class="ml-6 flex h-[40rem] w-[23rem] flex-col shadow">
+            <div class="ml-6 hidden h-[40rem] w-[23rem] flex-col shadow lg:flex">
                 <div class="h-40 w-full rounded-md bg-cmblue">
                     <h4 class="pt-2 pl-2 font-semibold text-white">Metrics</h4>
                     <div class="mt-2 flex">
-                        {{-- <div class="text-center">
+                        <div class="text-center">
+                            <h4>{{ $upload->views }}</h4>
                             Views
                         </div>
                         <div class="text-center">
                             Downloads
-                        </div> --}}
+                        </div>
 
                     </div>
                 </div>
@@ -264,9 +255,11 @@
                         <div class="bg mt-2 text-white">
                             <ul class="max-w-md list-inside list-disc space-y-1">
                                 @foreach ($upload->categories as $category)
-                                    <li>
-                                        {{ $category->name }}
-                                    </li>
+                                    <a href="/catgeories/{{ $category->slug }}">
+                                        <li>
+                                            {{ $category->name }}
+                                        </li>
+                                    </a>
                                 @endforeach
                             </ul>
                         </div>
@@ -274,13 +267,15 @@
 
                     {{-- Tag --}}
                     <div class="mt-6 ml-6 text-left">
-                        <a href="">
+                        <a href="{{ route('tag.index') }}">
                             <h4 class="mb-2 font-semibold text-white">Tags:</h4>
                         </a>
                         <div class="bg mt-2 text-white">
                             @foreach ($upload->tags as $tag)
-                                <span
-                                    class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">{{ $tag->name }}</span>
+                                <a href="/tags/{{ $tag->slug }}">
+                                    <span
+                                        class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">{{ $tag->name }}</span>
+                                </a>
                             @endforeach
                             {{-- <span
                                 class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Open-source

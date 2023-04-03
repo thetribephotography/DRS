@@ -104,7 +104,7 @@
                             <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
                                 href="{{ Route('login') }}">Login</a>
 
-                            <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+                            <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white hover:bg-b-hover lg:mt-0"
                                 href="{{ Route('register') }}">Sign
                                 Up</a>
                         </div>
