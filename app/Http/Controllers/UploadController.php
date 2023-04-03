@@ -143,18 +143,50 @@ class UploadController extends Controller
             return redirect("/dashboard")->with("No Updates were Made");
         } else {
 
-            $update = Upload::where('_id', $id)->whereNull('deleted_at')->first();
+        $update = Upload::where('_id', $id)->whereNull('deleted_at')->first();
 
-            $update->title = $request->title;
-            $update->description = $request->description;
-            $update->published_at = $request->date;
-            $update->language = $request->language;
-            $update->author = $request->author;
-            $update->keywords = $request->keywords;
-            $update->access_id = $request->example;
-            // $update->topic_id = $topic_id;
-            $update->path = $path;
-            // $update->user_id = $user;
+        //category save in db as array
+        $category = $request->category;
+        $cat = [];
+
+        foreach ($category as $categories) {
+            $cat[] = $categories;
+        }
+
+
+        // request for hidden column, title and access rights and save in variable
+
+        $file_name = $request->title;
+        $access = $request->example;
+
+        //STORE GROUPING ID'S IF CHOSEN
+        $groups = [];
+        if ($access == 3) {
+            $group = $request->grouping;
+
+            foreach ($group as $grouping) {
+                $groups[] = $grouping;
+            }
+        }
+
+            $path = $this->UploadFile($request->file('file-upload'), $file_name);
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
+
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $request->language;
+            $upload->author = $request->author;
+            $upload->keywords = $request->keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->path = $path;
+            $upload->media = $media;
+            $upload->category_id = $cat;
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
 
             $update->update();
 
@@ -178,7 +210,8 @@ class UploadController extends Controller
                 'topic_id' => 'required',
                 'category' => 'required',
                 'file-upload' => 'required',
-                'summary-upload' => 'required|mimes:jpeg,jpg,png,jpg,gif,svg,mp4',
+                'tags' => 'required',
+                'summary-upload' => 'required|mimes:jpeg,png,jpg,gif,svg,mp4',
 
             ]
 
@@ -190,7 +223,7 @@ class UploadController extends Controller
         );
 
 
-        //category and tag save in db as array
+        //category save in db as array
         $category = $request->category;
 
         $cat = [];
@@ -341,7 +374,7 @@ class UploadController extends Controller
 
         //     $update->upload = $upload_id;
         //     $update->update();
-        // }
+        // } 
 
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
