@@ -93,7 +93,6 @@ class UploadController extends Controller
     //Shows a Single Upload
     public function public_view($slug)
     {
-
         $user = Auth::id();
         // $this->authorize('view_user_post', 'You do not have the permission to access this.');
         $title = "View Single Upload";
@@ -122,6 +121,21 @@ class UploadController extends Controller
 
         return view('upload.public_view', compact('upload',  'title'));
     }
+
+    public function download($id)
+    {
+        $upload = Upload::findOrFail($id);
+
+        // Increment the "downloads" column for the requested file
+        if (!session()->has('downloaded_post_' . $upload->id)) {
+            $upload->increment('downloads');
+            session()->put('downloaded_post_' . $upload->id, true);
+        }
+
+        // Return the file as a download response
+        return response()->download(storage_path('app/public/' . $upload->path));
+    }
+
 
     //UPDATE POST
     public function updatepost(Request $request, $id)

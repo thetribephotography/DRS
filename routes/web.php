@@ -88,6 +88,9 @@ Route::get('/search-results', [UserController::class, 'search_result']);
 //View search result (Single)
 Route::any('/upload/public/{slug}', [UploadController::class, 'public_view'])->name('upload.show_one');
 
+///Download
+Route::get('/download/{id}', [UploadController::class, 'download'])->name('download');
+
 //Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('category.show');

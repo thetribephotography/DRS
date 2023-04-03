@@ -35,7 +35,7 @@ return new class extends Migration
             $collection->file('path');
             $collection->file('media');
             $collection->bigInteger('views')->nullable(); // Amount of views
-            $collection->bigInteger('download')->nullable(); // No of downloads
+            $collection->bigInteger('downloads')->nullable(); // No of downloads
             $collection->string('file_type'); //Type of file, zip, jpeg, png, exe
             $collection->bigInteger('file_size'); //Size of File
             $collection->softDeletes();
