@@ -31,7 +31,19 @@ use Illuminate\Http\Request;
 |
 */
 
-
+/*
+|--------------------------------------------------------------------------
+| Order of Routes
+|--------------------------------------------------------------------------
+|These routes are ordered using middleware groups and by roles.
+|
+| Public Routes - Are free and acesssible to all. The purpose is for Unregistered users/Visitors and acesss those pages and send requests
+| User Routes - Places where only the user has access to.
+| Admin Routes - Places where only the user has access to.
+| User && Admin Routes - These are places both the users and admins can access.
+|
+|
+*/
 
 //EMAIL VERFICATION
 Route::get('/email/verify', function () {
@@ -77,7 +89,7 @@ Route::any('/upload/public/{slug}', [UploadController::class, 'public_view'])->n
 
 //Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/categories/{id}', [CategoryController::class, 'show_user'])->name('category.show');
+Route::get('/categories/{slug}', [CategoryController::class, 'show_user'])->name('category.show');
 
 
 // Only Admin can access

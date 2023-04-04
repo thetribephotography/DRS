@@ -14,9 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('upload_categories', function (Blueprint $collection) {
+        Schema::create('tag_uploads', function (Blueprint $collection) {
             $collection->id();
-            $collection->unsignedBigInteger('category_id');
+            $collection->unsignedBigInteger('tag_id');
             $collection->unsignedBigInteger('upload_id');
             $collection->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('upload_categories');
+        Schema::dropIfExists('tag_uploads');
     }
 };

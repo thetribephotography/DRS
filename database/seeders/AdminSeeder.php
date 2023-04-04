@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
             'id' => '1',
             'name' => 'DahntheBadGuy',
             'email' => 'admin2@gmail.com',
+            'profile_picture' => 'thanos',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole('admin');
 
@@ -28,13 +29,15 @@ class AdminSeeder extends Seeder
             'id' => '2',
             'name' => 'DanielTheUser',
             'email' => 'admin1@gmail.com',
+            'profile_picture' => 'thanos',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole('registered');
 
         User::create([
             'id' => '2',
             'name' => 'David',
-            'email' => 'user@gmail.com',
+            'email' => 'user1@gmail.com',
+            'profile_picture' => 'thanos',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole('registered');
     }

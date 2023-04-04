@@ -28,7 +28,7 @@
                         <a href="#">
                             <div class="mt-4 flex">
                                 <img class="h-5 w-5 rounded-full" src="{{ asset('images/thanos.jpg') }}">
-                                <p class="ml-2 text-s8 font-regular text-clgray">{{ $upload->user->name }}</p>
+                                <p class="ml-2 text-s8 font-regular text-clgray">Hey</p>
                             </div>
                         </a>
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
@@ -263,13 +263,11 @@
                         </a>
                         <div class="bg mt-2 text-white">
                             <ul class="max-w-md list-inside list-disc space-y-1">
-                                {{-- @foreach --}}
-                                <li>
-                                    Web Dev
-                                </li>
-                                {{-- <li>
-                                    Hmm
-                                </li> --}}
+                                @foreach ($upload->categories as $category)
+                                    <li>
+                                        {{ $category->name }}
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -280,11 +278,13 @@
                             <h4 class="mb-2 font-semibold text-white">Tags:</h4>
                         </a>
                         <div class="bg mt-2 text-white">
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Security</span>
-                            <span
+                            @foreach ($upload->tags as $tag)
+                                <span
+                                    class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">{{ $tag->name }}</span>
+                            @endforeach
+                            {{-- <span
                                 class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Open-source
-                                development</span>
+                                development</span> --}}
                         </div>
                     </div>
 
