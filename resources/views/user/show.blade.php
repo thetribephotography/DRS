@@ -28,20 +28,57 @@
         </div>
 
         {{-- Info Section --}}
-        <div class="ml-[20rem] mt-6 h-[15rem] w-[55rem] rounded border border-emerald-600 bg-[#F3FCFF] px-6">
-            <div class="mr-12 mt-4 flex">
-                <label class="mb-2 text-sm text-s7 font-medium text-clblack" for="email">
+        <div class="ml-[20rem] mt-6 h-full w-[55rem] rounded py-6 px-6">
 
-                    Email</label>
-                <div class="mr-4">
+            <form action="" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="group relative z-0 mb-6 w-full">
+                        <input
+                            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                            id="floating_first_name" name="floating_first_name" type="text"
+                            value="{{ $user->name }}" placeholder="" disabled />
+                        <label
+                            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600"
+                            for="floating_first_name">First name</label>
+                    </div>
+                    <div class="group relative z-0 mb-6 w-full">
+                        <input
+                            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                            id="floating_last_name" name="floating_last_name" type="text" placeholder=""disabled />
+                        <label
+                            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600"
+                            for="floating_last_name">Last name</label>
+                    </div>
+                </div>
+                <div class="group relative z-0 mb-6 w-full">
                     <input
-                        class="block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 text-gray-900 sm:text-sm"
-                        id="email" name="email" type="email" value="{{ $user->email }}"
-                        placeholder="Johndoe@gmail.com" readonly disabled>
+                        class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                        id="email" name="email" type="email" value="{{ $user->email }}" disabled />
+                    <label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600"
+                        for="email">Email address</label>
+                </div>
+                <div class="group relative z-0 mb-6 flex w-full">
+                    <div>
+                        <input
+                            class="peer block w-1/2 appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                            id="floating_password" name="floating_password" type="password" value="00000000"
+                            placeholder="" disabled />
+                        <label
+                            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600"
+                            for="floating_password">Password</label>
+                    </div>
+
+                    <div>
+                        <a href="{{ route('password.request') }}">Change Password</a>
+                    </div>
 
                 </div>
-
-            </div>
+                <button
+                    class="w-full rounded-lg bg-green-500 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-green-800 sm:w-auto"
+                    type="submit">Edit</button>
+            </form>
 
         </div>
     </div>

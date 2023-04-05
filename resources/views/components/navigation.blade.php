@@ -129,7 +129,7 @@
             </div>
             {{-- Search Bar --}}
             <div class="relative mx-auto hidden text-clblack lg:block">
-                <form action="/search-results" method="GET">
+                <form action="{{ route('search') }}" method="GET">
                     <div class="relative">
                         <input
                             class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"

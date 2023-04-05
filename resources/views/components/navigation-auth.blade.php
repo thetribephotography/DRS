@@ -116,7 +116,7 @@
 
         {{-- Search Bar --}}
         <div class="relative mx-auto hidden text-clblack md:block">
-            <form action="/search-results" method="GET">
+            <form action="{{ route('search') }}" method="GET">
                 <div class="relative md:w-[20rem] lg:w-[30rem]">
                     <input
                         class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"

@@ -15,6 +15,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Livewire\SearchPosts;
+use App\Http\Livewire\SearchResult;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -84,7 +86,7 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
 
 //Search Result from landing page
-Route::get('/search-results', [UserController::class, 'search_result']);
+Route::get('/search', SearchPosts::class)->name('search');
 //View search result (Single)
 Route::any('/upload/public/{slug}', [UploadController::class, 'public_view'])->name('upload.show_one');
 
@@ -98,6 +100,9 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 //Tags
 Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
 Route::get('/tags/{slug}', [TagController::class, 'show'])->name('tag.show');
+
+//View User Profile
+Route::get('/public/user/profile/{id}', [UserController::class, 'public_show'])->name('user.profile.public');
 
 
 // Only Admin can access

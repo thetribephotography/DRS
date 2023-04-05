@@ -70,6 +70,7 @@ class Upload extends Model
         return $this->hasMany(Group::class, 'group_id');
     }
 
+    // Filter frrom Request
     public function scopeFilter($query, array $filters)
     {
 
@@ -78,27 +79,15 @@ class Upload extends Model
             //searches by title
             $query->where('title', 'like', '%' . request('search') . '%');
         }
+    }
 
+    public function scopecustomfilter($query, array $filters)
+    {
 
+        if ($filters['search'] ?? false) {
 
-        // //Tag filter
-        // if ($filters['tag'] ?? false) {
-        //     //quer like code
-        //     $query->where('tags', 'like', '%' . request('tag') . '%');
-        // }
-
-        // //search filter
-        // if ($filters['search'] ?? false) {
-        //     //query like code
-
-        //     //searches by title
-        //     $query->where('title', 'like', '%' . request('search') . '%')
-
-        //     //searches by description
-        //     ->orWhere('description', 'like', '%' . request('search') . '%')
-
-        //     //searches by tags
-        //     ->orWhere('tags', 'like', '%' . request('search') . '%');
-        // }
+            //searches by title
+            $query->where('title', 'like', '%' . $filters['search'] . '%');
+        }
     }
 }
