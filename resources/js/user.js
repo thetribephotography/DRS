@@ -39,6 +39,23 @@ hasLicenseCheckbox.addEventListener("change", (event) => {
   }
 });
 
+//For User Dashboard Page. Show Modal on create clcik
+const createDiv = document.getElementById("create-div");
+const modalDiv = document.getElementById("modal-div");
+const modalDivButton = document.getElementById("modal-div-btn");
+
+//Open
+createDiv.addEventListener("click", () => {
+  modalDiv.style.display = "block";
+});
+
+//Close
+modalDivButton.addEventListener("click", () => {
+  modalDiv.style.display = "none";
+});
+
+//End
+
 //  Multiple select dropdowns
 $(document).ready(function () {
   $(".category-multiple").select2({

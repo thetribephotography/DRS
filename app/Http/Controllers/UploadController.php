@@ -557,6 +557,7 @@ class UploadController extends Controller
             $upload->language = $languages;
             $upload->author = $authors;
             $upload->keywords = $keywords;
+            $upload->dio = $request->dio;
             $upload->access_id = $request->example;
             $upload->group_id = $groups;
             $upload->topic_id = $topic_id;
@@ -599,6 +600,379 @@ class UploadController extends Controller
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
 
+    public function dataset_save(Request $request)
+    {
+
+        $validated = $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'date' => 'required',
+                'language' => 'required',
+                'author' => 'required',
+                'keywords' => 'required',
+                'example' => 'required',
+                'topic_id' => 'required',
+                'category' => 'required',
+                'file-upload' => 'required|mimes:csv,xls,xlsx,json,txt,zip,rar,tar.gz',
+                'tags' => 'required',
+                'summary-upload' => 'required|mimes:jpeg,png,jpg,mp4',
+            ],
+
+            //Array to specify validation message for a particular validation
+            [
+                'file-upload.mimes' => 'Accepted files - csv,xls,txt,xlsx,zip,tar',
+            ]
+        );
+
+
+        //category save in db as array
+        $category = $request->category;
+
+        $cat = [];
+
+        foreach ($category as $categories) {
+            $cat[] = $categories;
+        }
+
+        //Convert string to array for Array Fields
+        $authors = explode(",", $request->author);
+        $keywords = explode(",", $request->keywords);
+        $languages = explode(",", $request->language);
+
+        //     request for hidden column, title and access rights and save in variable
+        $topic_id = $request->topic_id;
+        $file_name = $request->title;
+        $access = $request->example;
+
+        //STORE GROUPING ID'S IF CHOSEN
+        $groups = [];
+        if ($access == 3) {
+            $group = $request->grouping;
+
+
+            foreach ($group as $grouping) {
+                $groups[] = $grouping;
+            }
+        }
+
+
+        //Verify upload type
+        if ($topic_id == 3) {
+            //    1 = publish
+
+            $user = Auth::id();
+            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
+
+
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $languages;
+            $upload->author = $authors;
+            $upload->keywords = $keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->license = $request->license;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->media = $media;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
+
+            $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+        }
+        return redirect("/dashboard")->with("success", "Upload Successful");
+    }
+
+    public function software_save(Request $request)
+    {
+
+        $validated = $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'date' => 'required',
+                'language' => 'required',
+                'author' => 'required',
+                'keywords' => 'required',
+                'example' => 'required',
+                'topic_id' => 'required',
+                'category' => 'required',
+                'file-upload' => 'required|mimes:zip,exe,dmg,zip,rar',
+                'tags' => 'required',
+                'summary-upload' => 'required|mimes:jpeg,png,jpg,mp4',
+            ],
+
+            //Array to specify validation message for a particular validation
+            [
+                'file-upload.mimes' => 'Accepted files - .zip, .tar.gz, .exe, .dmg,.zip, .rar',
+                'summary-upload.mimes' => 'Accepted files - mp4, png, jpg jpeg',
+            ]
+        );
+
+
+        //category save in db as array
+        $category = $request->category;
+
+        $cat = [];
+
+        foreach ($category as $categories) {
+            $cat[] = $categories;
+        }
+
+        //Convert string to array for Array Fields
+        $authors = explode(",", $request->author);
+        $keywords = explode(",", $request->keywords);
+        $languages = explode(",", $request->language);
+
+        //Request for hidden column, title and access rights and save in variable
+        $topic_id = $request->topic_id;
+        $file_name = $request->title;
+        $access = $request->example;
+
+        //STORE GROUPING ID'S IF CHOSEN
+        $groups = [];
+        if ($access == 3) {
+            $group = $request->grouping;
+
+
+            foreach ($group as $grouping) {
+                $groups[] = $grouping;
+            }
+        }
+
+
+        //Verify upload type
+        if ($topic_id == 2) {
+            //    1 = publish
+
+            $user = Auth::id();
+            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
+
+
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $languages;
+            $upload->author = $authors;
+            $upload->keywords = $keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->license = $request->license;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->media = $media;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
+
+            $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+
+                // //Tag Doesn't exist? aka If it is a new Tag
+                // if (!$tag) {
+                //     $newTag = Tag::create([
+                //         'name' => $tag,
+                //         'slug' => Str::slug($tag)
+                //     ]);
+
+                //     $newTag->uploads()->attach($upload->id);
+                //     TagUpload::create([
+                //         'tag_id' => $newTag->id,
+                //         'upload_id' => $upload->id,
+                //     ]);
+                // } else { //
+                //     $tag->uploads()->attach($upload->id);
+                //     TagUpload::create([
+                //         'tag_id' => $tag->id,
+                //         'upload_id' => $upload->id,
+                //     ]);
+                // }
+
+
+
+
+            }
+        }
+        return redirect("/dashboard")->with("success", "Upload Successful");
+    }
+
+    public function workflow_save(Request $request)
+    {
+
+        $validated = $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'date' => 'required',
+                'language' => 'required',
+                'author' => 'required',
+                'keywords' => 'required',
+                'example' => 'required',
+                'topic_id' => 'required',
+                'category' => 'required',
+                'file-upload' => 'required|mimes:zip,rar,cwl,json,yaml,yml,sh',
+                'tags' => 'required',
+                'summary-upload' => 'required|mimes:jpeg,png,jpg,mp4',
+            ],
+
+            //Array to specify validation message for a particular validation
+            [
+                'file-upload.mimes' => 'Accepted files -zip,rar .cwl, .json, .yaml, .yml, .sh',
+                'summary-upload.mimes' => 'Accepted files - mp4, png, jpg jpeg',
+            ]
+        );
+
+
+        //category save in db as array
+        $category = $request->category;
+
+        $cat = [];
+
+        foreach ($category as $categories) {
+            $cat[] = $categories;
+        }
+
+        //Convert string to array for Array Fields
+        $authors = explode(",", $request->author);
+        $keywords = explode(",", $request->keywords);
+        $languages = explode(",", $request->language);
+
+        //Request for hidden column, title and access rights and save in variable
+        $topic_id = $request->topic_id;
+        $file_name = $request->title;
+        $access = $request->example;
+
+        //STORE GROUPING ID'S IF CHOSEN
+        $groups = [];
+        if ($access == 3) {
+            $group = $request->grouping;
+
+
+            foreach ($group as $grouping) {
+                $groups[] = $grouping;
+            }
+        }
+
+
+        //Verify upload type
+        if ($topic_id == 4) {
+            //    1 = publish
+
+            $user = Auth::id();
+            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $media = $this->UploadFile($request->file('summary-upload'), $file_name);
+
+
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $languages;
+            $upload->author = $authors;
+            $upload->keywords = $keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->license = $request->license;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->media = $media;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
+
+            $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+        }
+        return redirect("/dashboard")->with("success", "Upload Successful");
+    }
 
 
 

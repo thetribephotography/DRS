@@ -6,30 +6,18 @@
 
             {{-- Image --}}
             <img class="bg-yellow ml-8 mt-6 h-[12rem] w-[12rem] rounded-full border-2 border-gl object-cover"
-                src="{{ asset('images/thanos.jpg') }}">
+                src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('images/user.jpeg') }}">
 
             </img>
-            <a href="#">
-                <div
-                    class="absolute top-[18rem] left-[30rem] h-[1.8rem] w-[1.8rem] rounded-full bg-gray-200 hover:bg-gray-300">
-                    <svg class="h-4 w-4 translate-x-1.5 translate-y-1.5 text-cmblue" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-
-
-                </div>
-            </a>
             {{-- Small details --}}
             <div class="mt-14 ml-14">
                 <h1 class="text-s3 font-semibold text-cdblack">{{ $user->name }}</h1>
-                <p class="mt-4 text-sm text-cgray">Created at&nbsp; {{ $user->created_at->format('F d, Y') }}</p>
             </div>
         </div>
 
 
-        <div class="mb-2 mt-8">
-            <h4>User Uploads</h4>
+        <div class="mb-2 mt-8 w-1/2 border-b-2 border-clgray py-4 shadow-sm">
+            <h4>Uploads</h4>
         </div>
         <section class="mt-4">
             <div class="py-4 px-6">
@@ -180,15 +168,6 @@
                                         </h3>
                                     </a>
                                     <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}</p>
-                                </div>
-                                <div class="mt-4 flex md:mt-2">
-                                    <img class="h-4 w-4 rounded-full"
-                                        src="{{ $upload->users->profile_picture ? asset('storage/' . $upload->users->profile_picture) : asset('images/user.jpeg') }}"
-                                        alt="">
-                                    <a class="ml-2 text-s9 font-regular text-[#6F737A] hover:text-cmblue hover:underline"
-                                        href="{{ route('user.profile.public', $upload->users->_id) }}">
-                                        <p>{{ $upload->users->name }}</p>
-                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,7 @@
 
     {{-- Input Fields --}}
     <section class="my-8 h-full w-full pb-6 md:ml-[24rem] md:w-[51rem]">
-        <form method="POST" action="{{ route('uploads.publish') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('upload.save.workflow') }}" enctype="multipart/form-data">
             @csrf
             {{-- Side by isde --}}
             <div class="mb-6 grid gap-6 px-6 pt-4 md:grid-cols-2">
@@ -299,7 +299,7 @@
                             </svg>
                             <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click
                                     to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            <p class="text-xs text-gray-500">cwl, .json, .yaml, .yml, .sh
                             </p>
                         </div>
                         <input class="hidden" id="dropzone-file" name="summary-upload" type="file" multiple />
@@ -312,6 +312,33 @@
                     @enderror
                 </div>
 
+            </div>
+
+
+            {{-- FOR LICENSE --}}
+            <div class="mt-6 px-6">
+                <!-- Create a checkbox for the user to indicate if the upload has a license or not -->
+                <div class="form-group flex">
+                    <label class="mb-2 block text-sm font-medium text-gray-900" for="has_license">Does your upload
+                        have a license?</label>
+                    <input class="ml-4" id="has_license" name="has_license" type="checkbox">
+                </div>
+
+                <!-- Create a select dropdown to display the available licenses -->
+                <div class="form-group" class="mb-2 block text-sm font-medium text-gray-900" id="license_options"
+                    style="display: none;">
+                    <label for="license">Choose a license:</label>
+                    <select
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        id="license" name="license">
+                        <option value="GNU General Public License">GNU General Public License</option>
+                        <option value="Attribution (CC BY)">Attribution (CC BY)</option>
+                        <option value="Apache License">Apache License</option>
+                        <option value=">Attribution-NonCommercial (CC BY-NC)">Attribution-NonCommercial (CC BY-NC)
+                        </option>
+                        <option value=">MIT License">MIT License</option>
+                    </select>
+                </div>
             </div>
 
             {{-- Validation --}}

@@ -1,5 +1,4 @@
 <x-app-layout :title="$title">
-
     <div class="h-screen pt-8">
         <div class="flex pt-8">
 
@@ -15,7 +14,7 @@
                     <div class="">
                         <h2 class="text-s4 font-semibold normal-case text-clblack">{{ $upload->title }}
                         </h2>
-                        <a href="#">
+                        <a href="{{ route('user.profile.public', $upload->users->_id) }}">
                             <div class="mt-4 flex">
                                 <img class="h-5 w-5 rounded-full"
                                     src="{{ $upload->users->profile_picture ? asset('storage/' . $upload->users->profile_picture) : asset('images/user.jpeg') }}">
@@ -50,7 +49,12 @@
                         </div>
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Authors</h3>
-                            <p class="">{{ $upload->author }}</p>
+                            <p class="">
+                                @foreach ($upload->author as $author)
+                                    {{ $author . ', ' }}
+                                @endforeach
+                            </p>
+
                         </div>
                         <div class="pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Upload Type</h3>
@@ -70,7 +74,11 @@
                         </div>
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Language</h3>
-                            <p class="">{{ $upload->language }}</p>
+                            <p class="">
+                                @foreach ($upload->language as $language)
+                                    {{ $language . ', ' }}
+                                @endforeach
+                            </p>
                         </div>
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">File Size</h3>
@@ -390,13 +398,11 @@
                     <div class="mt-10 ml-6 h-full text-left text-white">
                         <h4 class="mb-2 font-semibold text-white">Keywords:</h4>
                         <div class="bg mt-2">
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Waste</span>
+                            @foreach ($upload->keywords as $keyword)
+                                <span
+                                    class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $keyword }}</span>
+                            @endforeach
 
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Resorce</span>
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Red</span>
                         </div>
                     </div>
                 </div>

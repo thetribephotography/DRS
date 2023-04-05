@@ -141,7 +141,7 @@
                         alt="">
                     <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline"
                         href="">
-                        <p>Messi jnr</p>
+                        <p>{{ $upload->users->name }}</p>
                     </a>
                 </div>
             </div>

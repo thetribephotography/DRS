@@ -20,6 +20,7 @@ class SearchPosts extends Component
     protected $queryString = ['search'];
     public $categories;
     public $tags;
+    public $selectedSortOption;
     public $SelectedCategories = [];
     public $SelectedTags = [];
     public $SelectedAccess = [];
@@ -69,8 +70,28 @@ class SearchPosts extends Component
 
         $query = Upload::query();
 
-        if ($this->search) {
-            $query->where('title', 'like', '%' . $this->search . '%')->latest('created_at');
+        // Condition for Sort
+        if ((int)$this->selectedSortOption == 0) {
+            // For filter
+            if ($this->search) {
+                $query->where('title', 'like', '%' . $this->search . '%')->latest('created_at');
+            }
+        } elseif ((int)$this->selectedSortOption == 1) { //Sort By Latest
+            if ($this->search) {
+                $query->where('title', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc');
+            }
+        } elseif ((int)$this->selectedSortOption == 2) { // Sort by most views
+            if ($this->search) {
+                $query->where('title', 'like', '%' . $this->search . '%')->orderBy('views', 'desc');
+            }
+        } elseif ((int)$this->selectedSortOption == 3) { //Sort by Downloads
+            if ($this->search) {
+                $query->where('title', 'like', '%' . $this->search . '%')->orderBy('downloads', 'desc');
+            }
+        } elseif ((int)$this->selectedSortOption == 4) { //Sort By Upload type
+            if ($this->search) {
+                $query->where('title', 'like', '%' . $this->search . '%')->orderBy('topic_id', 'asc');
+            }
         }
 
 
