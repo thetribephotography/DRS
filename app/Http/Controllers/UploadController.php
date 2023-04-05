@@ -483,6 +483,137 @@ class UploadController extends Controller
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
 
+
+
+
+    public function article_save(Request $request)
+    {
+
+        $validated = $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'date' => 'required',
+                'language' => 'required',
+                'author' => 'required',
+                'keywords' => 'required',
+                'example' => 'required',
+                'topic_id' => 'required',
+                'category' => 'required',
+                'file-upload' => 'required|mimes:docx,doc,odf,pdf,rtf,txt,md',
+                'tags' => 'required',
+            ],
+
+            //Array to specify validation message for a particular validation
+            [
+                'file-upload.mimes' => 'Accepted files - .pdf, .docx, .doc, .txt',
+            ]
+        );
+
+
+        //category save in db as array
+        $category = $request->category;
+
+        $cat = [];
+
+        foreach ($category as $categories) {
+            $cat[] = $categories;
+        }
+
+        //Convert string to array for Array Fields
+        $authors = explode(",", $request->author);
+        $keywords = explode(",", $request->keywords);
+        $languages = explode(",", $request->language);
+
+        //     request for hidden column, title and access rights and save in variable
+        $topic_id = $request->topic_id;
+        $file_name = $request->title;
+        $access = $request->example;
+
+        //STORE GROUPING ID'S IF CHOSEN
+        $groups = [];
+        if ($access == 3) {
+            $group = $request->grouping;
+
+
+            foreach ($group as $grouping) {
+                $groups[] = $grouping;
+            }
+        }
+
+
+        //Verify upload typee
+        if ($topic_id == 1) {
+            //    1 = publish
+
+            $user = Auth::id();
+            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+
+
+            $upload = new Upload;
+            $upload->title = $request->title;
+            $upload->description = $request->description;
+            $upload->published_at = $request->date;
+            $upload->language = $languages;
+            $upload->author = $authors;
+            $upload->keywords = $keywords;
+            $upload->access_id = $request->example;
+            $upload->group_id = $groups;
+            $upload->topic_id = $topic_id;
+            $upload->license = $request->license;
+            $upload->path = $path;
+            $upload->user_id = $user;
+            $upload->category_id = $cat;
+            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $upload->tags_id = $request->tags;
+            $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
+            $upload->file_size = $request->file('file-upload')->getSize(); //File size
+
+            $upload->save();
+
+            //Category - Upload Relationship
+            foreach ($cat as $categoryd) {
+                $categoryd = Category::find($categoryd);
+
+                if ($categoryd) {
+                    $categoryd->uploads()->attach($upload->id);
+                    CategoryUpload::create([
+                        'category_id' => $categoryd->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+            //Tag - Upload Relationship
+            foreach ($request->tags as $tag) {
+                $tag = Tag::find($tag);
+
+                if ($tag) {
+                    $tag->uploads()->attach($upload->id);
+                    TagUpload::create([
+                        'tag_id' => $tag->id,
+                        'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+        }
+        return redirect("/dashboard")->with("success", "Upload Successful");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function deletepost($id)
     {
         $this->authorize('delete_user_post', 'You do not have the permission to execute this command');

@@ -10,7 +10,7 @@
 
             {{-- Main Container --}}
             <div class="flex h-full w-[50rem] flex-col lg:ml-[6rem]">
-                <div class="mb-10 h-[50rem] w-full">
+                <div class="mb-10 h-full w-full">
                     {{-- Top --}}
                     <div class="">
                         <h2 class="text-s4 font-semibold normal-case text-clblack">{{ $upload->title }}
@@ -76,6 +76,87 @@
                             <h3 class="mt-4 font-semibold uppercase">File Size</h3>
                             <p class="">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                         </div>
+
+
+                        <div class="mt-4" x-show="{open: false}">
+                            {{-- Button --}}
+                            <button
+                                class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover"
+                                type="button" x-show="true" @click="open = !open">Show others</button>
+
+                            {{-- Table --}}
+
+                            <div class="relative overflow-x-auto" x-show="open">
+                                <table class="w-full text-left text-sm text-gray-500">
+                                    <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                                        <tr>
+                                            <th class="px-6 py-3" scope="col">
+                                                Product name
+                                            </th>
+                                            <th class="px-6 py-3" scope="col">
+                                                Color
+                                            </th>
+                                            <th class="px-6 py-3" scope="col">
+                                                Category
+                                            </th>
+                                            <th class="px-6 py-3" scope="col">
+                                                Price
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b bg-white">
+                                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Apple MacBook Pro 17"
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                Silver
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                Laptop
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                $2999
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b bg-white">
+                                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Microsoft Surface Pro
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                White
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                Laptop PC
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                $1999
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Magic Mouse 2
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                Black
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                Accessories
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                $99
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {{-- End table --}}
+                        </div>
+
                     </div>
                 </div>
 
@@ -261,6 +342,9 @@
                             <p> Views</p>
                         </div>
                         <div class="text-center text-white">
+                            @if ($upload->downloads == 0)
+                                <h4>0</h4>
+                            @endif
                             <h4>{{ $upload->downloads }}</h4>
                             Downloads
                         </div>

@@ -122,22 +122,30 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
     Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
 
-
-
-    //  UPLOAD
+    // Upload
     Route::any('user/upload', [UploadController::class, 'upload'])->name('user.upload');
-    Route::get('user/publish', [UploadController::class, 'published'])->name('user.publish');
     Route::post('upload/publish', [UploadController::class, 'publish'])->name('uploads.publish');
-    Route::get('user/software', [UploadController::class, 'softwares'])->name('user.software');
-    // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::get('user/dataset', [UploadController::class, 'datasets'])->name('user.dataset');
-    // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
-    // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
-    // Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
 
-    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
+    //For Articles
+    Route::get('user/publish', [UploadController::class, 'published'])->name('user.publish');
+    Route::post('upload/publish/article', [UploadController::class, 'article_save'])->name('upload.save.article');
+    Route::post('upload/update/article', [UploadController::class, 'article_update'])->name('upload.update.article');
+
+    //For Software
+    Route::get('user/software', [UploadController::class, 'softwares'])->name('user.software');
+    Route::post('upload/publish/software', [UploadController::class, 'software_save'])->name('upload.save.software');
+    Route::post('upload/update/software', [UploadController::class, 'software_update'])->name('upload.update.software');
+
+    //For Dataset
+    Route::get('user/dataset', [UploadController::class, 'datasets'])->name('user.dataset');
+    Route::post('upload/publish/dataset', [UploadController::class, 'dataset_save'])->name('upload.save.dataset');
+    Route::post('upload/update/dataset', [UploadController::class, 'dataset_update'])->name('upload.update.dataset');
+
+    //For Workflow
+    Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
+    Route::post('upload/publish/workflow', [UploadController::class, 'workflow_save'])->name('upload.save.workflow');
+    Route::post('upload/update/workflow', [UploadController::class, 'workflow_update'])->name('upload.update.workflow');
 
 
     //  Group
@@ -147,6 +155,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
     // Route::get('group/create', [GroupController  ::class, 'create_group'])->name('user.create_group');
     // Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
     Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
     Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');
     Route::post('group/leave/{_id}', [GroupController::class, 'leave'])->name('group.leave');

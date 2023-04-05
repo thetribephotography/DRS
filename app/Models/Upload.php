@@ -26,11 +26,12 @@ class Upload extends Model
         'author',
         'keywords',
         'access_id',
-        'doi_id',
+        'doi',
         'topic_id',
         'path',
         'media',
         'user_id',
+        'license',
         'tags_id',
         'comments',
         'category_id',
@@ -43,6 +44,10 @@ class Upload extends Model
     protected $casts = [
         'category_id' => 'array',
         'tags_id' => 'array',
+        'language' => 'array',
+        'group_id' => 'array',
+        'keywords' => 'array',
+        'author' => 'array',
     ];
 
 
