@@ -14,6 +14,7 @@ use App\Models\Group;
 use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class GroupController extends Controller
 {
@@ -36,20 +37,12 @@ class GroupController extends Controller
         ]);
 
         $user = Auth::id();
-
-        // $members = $request->members;
-
-        // $users_id = [];
-
-        // foreach($members as $members){
-        //     $users = User::where('email', $members)->get();
-
-        //         $users_id[] = $users->_id;
-        // }
-
+        // $slug_name = $request->name;
+        
         $update = new Group;
         $update->name = $request->name;
         $update->group_members = $request->members;
+        $update->slug = Str::slug($update->name);
         $update->user_id = $user;
 
         $update->save();
@@ -81,13 +74,18 @@ class GroupController extends Controller
 
         $user = Auth::id();
 
-        $one = Group::where('_id', $id)->where('group_members', $user)->orwhere('user_id', $user)->first();
-        $uploads = Upload::where('_id', $one->upload)->get();
+        
+        // $one = Group::with('uploads')
+        $one = Group::with('uploads')->where('_id', $id)->first();
+        
+        
+        // $uploads = Upload::whereat('_id', $one->upload)->get();
 
+        dd($one);
         if (!$one) {
             return redirect('/dashboard')->with('There is no Such Group');
         } else {
-            return view('', compact('one', '$uploads'));
+            return view('', compact('one'));
         }
     }
 
