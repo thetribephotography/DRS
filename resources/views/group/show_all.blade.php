@@ -31,17 +31,18 @@
                                         {{ $lis->name }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        <a class="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-                                            href="{{ route('group.show_one', $lis->_id) }}">View</a>
-                                        <!-- <form action="{{ route('group.leave', $lis->_id) }}" method="post">
+                                        <form action="{{ route('group.leave', $lis->_id) }}" method="post">
                                             @csrf
                                             @method('post')
+                                            <a class="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+                                                href="{{ route('group.show_one', $lis->_id) }}">View</a>
+
                                             <button
-                                                class="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-                                                type="submit"> Delete</button> -->
-                                        <a href="{{route('group.leave', $lis->_id )}}" class=" rounded-full bg-red-500 hover:bg-red-700
-                                            text-white font-bold py-2 px-4 rounded-full">Leave Group</a>
-                                        <!-- </form> -->
+                                                class="rounded-full bg-red-500 hover:bg-red-700 py-2 px-4 font-bold text-white"
+                                                type="submit"> Delete</button>
+                                            <!-- <a href="{{route('group.leave', $lis->_id )}}" class=" rounded-full bg-red-500 hover:bg-red-700
+                                            text-white font-bold py-2 px-4 rounded-full">Leave Group</a> -->
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
