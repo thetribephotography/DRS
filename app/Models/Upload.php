@@ -73,7 +73,7 @@ class Upload extends Model
 
     public function group()
     {
-        return $this->hasMany(Group::class, 'group_id');
+        return $this->belongsToMany(Group::class, 'group_ships', 'group_id', 'upload_id');
     }
 
     // Filter frrom Request

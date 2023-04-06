@@ -17,7 +17,7 @@ class Group extends Model
 
     protected $fillable = [
         'name',
-        'upload',
+        // 'upload',
         'slug',
         'group_members',
         'user_id',
@@ -27,7 +27,7 @@ class Group extends Model
 
     public function uploads()
     {
-        return $this->hasMany(Upload::class, '_id', 'upload');
+        return $this->belongsToMany(Group::class, 'group_ships', 'group_id', 'upload_id');
     }
 
     public function user()

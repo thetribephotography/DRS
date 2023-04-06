@@ -20,6 +20,7 @@ use Maklad\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Unique;
+use App\Models\GroupShip;
 
 
 
@@ -309,6 +310,21 @@ class UploadController extends Controller
                     ]);
                 }
             }
+
+            //GROUP Functionality
+                if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
+            }
+
+            
         } else if ($topic_id == 2) {
             //    2 = software
             $user = Auth::id();
@@ -361,6 +377,20 @@ class UploadController extends Controller
                     ]);
                 }
             }
+            //GROUP Functionality
+                if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
+            }
+            
+            
         } else if ($topic_id == 3) {
             //    3 = dataset
 
@@ -415,6 +445,20 @@ class UploadController extends Controller
                     ]);
                 }
             }
+            //GROUP Functionality
+                if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
+            }
+            
+            
         } else if ($topic_id == 4) {
             //    4 = workflow
 
@@ -466,6 +510,19 @@ class UploadController extends Controller
                     TagUpload::create([
                         'tag_id' => $tag->id,
                         'upload_id' => $upload->id,
+                    ]);
+                }
+            }
+
+            //GROUP Functionality
+            if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
                     ]);
                 }
             }
@@ -597,6 +654,20 @@ class UploadController extends Controller
                     ]);
                 }
             }
+
+            //GROUP Functionality
+            if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
+            }
+
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
@@ -712,30 +783,21 @@ class UploadController extends Controller
                         'upload_id' => $upload->id,
                     ]);
                 }
-
-                // //Tag Doesn't exist? aka If it is a new Tag
-                // if (!$tag) {
-                //     $newTag = Tag::create([
-                //         'name' => $tag,
-                //         'slug' => Str::slug($tag)
-                //     ]);
-
-                //     $newTag->uploads()->attach($upload->id);
-                //     TagUpload::create([
-                //         'tag_id' => $newTag->id,
-                //         'upload_id' => $upload->id,
-                //     ]);
-                // }
-
-                // //If Exist
-                // if ($tag) { //
-                //     $tag->uploads()->attach($upload->id);
-                //     TagUpload::create([
-                //         'tag_id' => $tag->id,
-                //         'upload_id' => $upload->id,
-                //     ]);
-                // }
             }
+
+            //GROUP Functionality
+            if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
+            }
+            
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
@@ -852,30 +914,19 @@ class UploadController extends Controller
                         'upload_id' => $upload->id,
                     ]);
                 }
+            }
 
-                // //Tag Doesn't exist? aka If it is a new Tag
-                // if (!$tag) {
-                //     $newTag = Tag::create([
-                //         'name' => $tag,
-                //         'slug' => Str::slug($tag)
-                //     ]);
-
-                //     $newTag->uploads()->attach($upload->id);
-                //     TagUpload::create([
-                //         'tag_id' => $newTag->id,
-                //         'upload_id' => $upload->id,
-                //     ]);
-                // } else { //
-                //     $tag->uploads()->attach($upload->id);
-                //     TagUpload::create([
-                //         'tag_id' => $tag->id,
-                //         'upload_id' => $upload->id,
-                //     ]);
-                // }
-
-
-
-
+            //GROUP Functionality
+            if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
             }
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
@@ -938,7 +989,6 @@ class UploadController extends Controller
             }
         }
 
-
         //Verify upload type
         if ($topic_id == 4) {
             //    1 = publish
@@ -994,16 +1044,22 @@ class UploadController extends Controller
                     ]);
                 }
             }
+
+            //GROUP Functionality
+            if($groups){
+                
+                foreach($groups as $groupings)  {
+                    $grp = Group::find($groupings);
+                    $grp->upload()->attach($upload->id);
+                    GroupShip::create([
+                        'group_id' => $grp->_id,
+                        'uploads' => $upload->_id,
+                    ]);
+                }
+            }
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
-
-
-
-
-
-
-
 
 
 
