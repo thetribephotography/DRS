@@ -1,6 +1,6 @@
 <x-app-layout :title="$title">
     {{-- Header start --}}
-    <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8">
+    <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8 lg:pt-12">
         <div class="ml-6 md:ml-[15rem]">
             <h2 class="md:t-5 text-s5 font-bold text-cdblack md:text-s3">Software Upload</h2>
         </div>

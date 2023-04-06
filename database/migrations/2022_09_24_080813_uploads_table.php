@@ -19,7 +19,7 @@ return new class extends Migration
             $collection->string('title');
             $collection->string('slug')->unique();
             $collection->string('description');
-            $collection->string('published_at');
+            $collection->date('published_at');
             $collection->array('language');
             $collection->array('author');
             $collection->array('keywords');

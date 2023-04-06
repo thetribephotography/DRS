@@ -42,6 +42,14 @@ class TagSeeder extends Seeder
             'slug' => Str::slug('Augmented Reality'),
         ]);
         Tag::create([
+            'name' => 'Project',
+            'slug' => Str::slug('Project'),
+        ]);
+        Tag::create([
+            'name' => 'IoT',
+            'slug' => Str::slug('IoT'),
+        ]);
+        Tag::create([
             'name' => 'Virtual Reality',
             'slug' => Str::slug('Virtual Reality'),
         ]);

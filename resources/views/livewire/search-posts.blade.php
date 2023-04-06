@@ -643,31 +643,23 @@
                         {{-- Main --}}
                         <div class="mb-8 w-full font-inter md:w-[24rem] lg:w-[60rem]">
                             <div class="flex flex-col px-2 lg:flex-row">
-                                @if ($upload->topic_id == 1)
-                                    {{-- For image --}}
-                                    <div class="my-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                                {{-- For image --}}
+                                <div class="my-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                                    @if ($upload->topic_id == 1)
                                         <img class="h-full w-full object-cover"
                                             src="{{ asset('images/pic_article.png') }}" alt="Article">
-                                    </div>
-                                @elseif ($upload->topic_id == 2)
-                                    {{-- For image --}}
-                                    <div class="my-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                                    @elseif ($upload->topic_id == 2)
                                         <img class="h-full w-full object-cover"
                                             src="{{ asset('images/pic_software.png') }}" alt="Software">
-                                    </div>
-                                @elseif ($upload->topic_id == 3)
-                                    {{-- For image --}}
-                                    <div class="my-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                                    @elseif ($upload->topic_id == 3)
                                         <img class="h-full w-full object-cover"
                                             src="{{ asset('images/pic_dataset.png') }}" alt="Dataset">
-                                    </div>
-                                @elseif($upload->topic_id == 4)
-                                    {{-- For image --}}
-                                    <div class="my-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                                    @elseif ($upload->topic_id == 4)
                                         <img class="h-full w-full object-cover"
                                             src="{{ asset('images/pic_workflow.png') }}" alt="Workflow">
-                                    </div>
-                                @endif
+                                    @endif
+                                </div>
+
 
                                 {{-- For text --}}
                                 <div class="my-2 flex flex-col md:mt-0 lg:ml-4">
@@ -786,16 +778,17 @@
                                         </div>
                                     </div>
                                     {{-- End --}}
-                                    <div class="mt-1">
+                                    <div class="mt-2">
                                         <a class="text-decoration-none hover:underline"
                                             href="/upload/public/{{ $upload->slug }}">
                                             <h3 class="text-s7 font-semibold text-cdblack md:font-regular">
                                                 {{ $upload->title }}
                                             </h3>
                                         </a>
-                                        <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}</p>
+                                        <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}
+                                        </p>
                                     </div>
-                                    <div class="mt-4 flex md:mt-2">
+                                    <div class="mt-4 flex md:mt-3">
                                         <img class="h-4 w-4 rounded-full"
                                             src="{{ $upload->users->profile_picture ? asset('storage/' . $upload->users->profile_picture) : asset('images/user.jpeg') }}"
                                             alt="">

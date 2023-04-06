@@ -23,7 +23,7 @@
                             </div>
                         </a>
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
-                            {{ $upload->created_at->format('F d, Y') }}</p>
+                            {{ $upload->updated_at->format('F d, Y') }}</p>
                         <a href="{{ route('download', $upload->_id) }}">
                             <button
                                 class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-b-hover"
@@ -57,21 +57,22 @@
 
                         </div>
                         <div class="pl-6 text-s8 text-clgray">
+                            <h3 class="mt-4 font-semibold uppercase">Publication Date</h3>
+                            <p class="">{{ $upload->published_at->format('F d, Y') }}</p>
+                        </div>
+                        <div class="mt-6 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Upload Type</h3>
-                            <p class="">{{ $upload->description }}</p>
+                            @if ($upload->topic_id == 1)
+                                <p class="">Article</p>
+                            @elseif ($upload->topic_id == 2)
+                                <p class="">Software</p>
+                            @elseif ($upload->topic_id == 3)
+                                <p class="">Dataset</p>
+                            @elseif ($upload->topic_id == 4)
+                                <p class="">Workflow</p>
+                            @endif
                         </div>
-                        <div class="pl-6 text-s8 text-clgray">
-                            <h3 class="mt-4 font-semibold uppercase">License</h3>
-                            <p class="">{{ $upload->description }}</p>
-                        </div>
-                        <div class="pl-6 text-s8 text-clgray">
-                            <h3 class="mt-4 font-semibold uppercase">Date Published</h3>
-                            <p class="">{{ $upload->description }}</p>
-                        </div>
-                        <div class="pl-6 text-s8 text-clgray">
-                            <h3 class="mt-4 font-semibold uppercase">Dated Updated</h3>
-                            <p class="">{{ $upload->description }}</p>
-                        </div>
+
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Language</h3>
                             <p class="">
@@ -80,82 +81,85 @@
                                 @endforeach
                             </p>
                         </div>
+
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">File Size</h3>
                             <p class="">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                         </div>
 
+                        <div class="pl-6 text-s8 text-clgray">
+                            <h3 class="mt-4 font-semibold uppercase">License</h3>
+                            <p class="">{{ $upload->license }}</p>
+                        </div>
 
-                        <div class="mt-4" x-show="{open: false}">
+
+                        <div class="mt-4 pl-6" x-show="{openT:false}">
                             {{-- Button --}}
                             <button
                                 class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover"
-                                type="button" x-show="true" @click="open = !open">Show others</button>
+                                type="button" x-show="true" @click="openT = !openT">View info</button>
 
                             {{-- Table --}}
 
-                            <div class="relative overflow-x-auto" x-show="open">
-                                <table class="w-full text-left text-sm text-gray-500">
+                            <div class="relative overflow-x-auto">
+                                <table class="w-full text-left text-sm text-gray-500" x-show="openT">
                                     <thead class="bg-gray-50 text-xs uppercase text-gray-700">
                                         <tr>
                                             <th class="px-6 py-3" scope="col">
-                                                Product name
+                                                File Information
                                             </th>
                                             <th class="px-6 py-3" scope="col">
-                                                Color
-                                            </th>
-                                            <th class="px-6 py-3" scope="col">
-                                                Category
-                                            </th>
-                                            <th class="px-6 py-3" scope="col">
-                                                Price
+                                                Details
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="border-b bg-white">
-                                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                                                 scope="row">
-                                                Apple MacBook Pro 17"
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                Silver
+                                                File Name
                                             </td>
                                             <td class="px-6 py-4">
-                                                Laptop
+                                                {{ $upload->title }}
                                             </td>
-                                            <td class="px-6 py-4">
-                                                $2999
-                                            </td>
+
                                         </tr>
                                         <tr class="border-b bg-white">
-                                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                                                 scope="row">
-                                                Microsoft Surface Pro
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                White
+                                                Authors
                                             </td>
                                             <td class="px-6 py-4">
-                                                Laptop PC
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                $1999
+                                                @foreach ($upload->author as $author)
+                                                    {{ $author . ', ' }}
+                                                @endforeach
                                             </td>
                                         </tr>
                                         <tr class="bg-white">
-                                            <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                                                 scope="row">
-                                                Magic Mouse 2
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                Black
+                                                Publication Date
                                             </td>
                                             <td class="px-6 py-4">
-                                                Accessories
+                                                {{ $upload->published_at->format('Y-m-d') }}
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Date Posted
                                             </td>
                                             <td class="px-6 py-4">
-                                                $99
+                                                {{ $upload->created_at->format('Y-m-d') }}
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Last Updated
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->updated_at->format('F-d-Y') }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -209,7 +213,7 @@
                                         <div class="flex items-center">
                                             <p class="mr-3 inline-flex items-center text-sm text-gray-900"><img
                                                     class="mr-2 h-6 w-6 rounded-full"
-                                                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                                    src="{{ $comment->user->profile_picture ? asset('storage/' . $comment->user->profile_picture) : asset('images/user.jpeg') }}"
                                                     alt="">
                                                 {{ $comment->user->name }} </p>
                                             <p class="text-sm text-gray-600">

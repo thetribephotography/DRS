@@ -42,6 +42,7 @@ class Upload extends Model
     ];
 
     protected $casts = [
+        'published_at' => 'date',
         'category_id' => 'array',
         'tags_id' => 'array',
         'language' => 'array',

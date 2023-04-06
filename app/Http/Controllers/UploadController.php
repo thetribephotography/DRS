@@ -10,6 +10,7 @@ use App\Models\Group;
 use App\Models\Tag;
 use App\Models\Category;
 use App\Models\Comment;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserController;
 use App\Traits\Uploader;
@@ -669,7 +670,7 @@ class UploadController extends Controller
             $upload = new Upload;
             $upload->title = $request->title;
             $upload->description = $request->description;
-            $upload->published_at = $request->date;
+            $upload->published_at = $request->date; //Date
             $upload->language = $languages;
             $upload->author = $authors;
             $upload->keywords = $keywords;
@@ -711,6 +712,29 @@ class UploadController extends Controller
                         'upload_id' => $upload->id,
                     ]);
                 }
+
+                // //Tag Doesn't exist? aka If it is a new Tag
+                // if (!$tag) {
+                //     $newTag = Tag::create([
+                //         'name' => $tag,
+                //         'slug' => Str::slug($tag)
+                //     ]);
+
+                //     $newTag->uploads()->attach($upload->id);
+                //     TagUpload::create([
+                //         'tag_id' => $newTag->id,
+                //         'upload_id' => $upload->id,
+                //     ]);
+                // }
+
+                // //If Exist
+                // if ($tag) { //
+                //     $tag->uploads()->attach($upload->id);
+                //     TagUpload::create([
+                //         'tag_id' => $tag->id,
+                //         'upload_id' => $upload->id,
+                //     ]);
+                // }
             }
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
