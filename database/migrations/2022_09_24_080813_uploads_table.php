@@ -19,10 +19,10 @@ return new class extends Migration
             $collection->string('title');
             $collection->string('slug')->unique();
             $collection->string('description');
-            $collection->string('published_at');
+            $collection->date('published_at');
             $collection->array('language');
-            $collection->string('author');
-            $collection->string('keywords');
+            $collection->array('author');
+            $collection->array('keywords');
             $collection->integer('topic_id')->nullable();
             $collection->integer('access_id')->nullable();
             $collection->unsignedBigInteger('user_id');
@@ -31,9 +31,12 @@ return new class extends Migration
             $collection->array('comments')->nullable();
             $collection->array('category_id');
             $collection->array('group_id')->nullable();
-            // $collection->string('doi_id')->nullable();
+            $collection->string('doi')->nullable(); // Store DOI
+            $collection->string('license')->nullable(); //Store License
             $collection->file('path');
-            $collection->file('media');
+            $collection->file('media')->nullable();
+            $collection->bigInteger('views')->nullable(); // Amount of views
+            $collection->bigInteger('downloads')->nullable(); // No of downloads
             $collection->string('file_type'); //Type of file, zip, jpeg, png, exe
             $collection->bigInteger('file_size'); //Size of File
             $collection->softDeletes();

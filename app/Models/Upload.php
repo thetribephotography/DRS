@@ -26,11 +26,12 @@ class Upload extends Model
         'author',
         'keywords',
         'access_id',
-        'doi_id',
+        'doi',
         'topic_id',
         'path',
         'media',
         'user_id',
+        'license',
         'tags_id',
         'comments',
         'category_id',
@@ -40,15 +41,20 @@ class Upload extends Model
 
     ];
 
+    protected $casts = [
+        'published_at' => 'date',
+        'category_id' => 'array',
+        'tags_id' => 'array',
+        'language' => 'array',
+        'group_id' => 'array',
+        'keywords' => 'array',
+        'author' => 'array',
+    ];
 
-    public function user()
+
+    public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function tags_id()
-    {
-        return $this->hasMany(Tag::class, 'tags_id');
     }
 
     public function comments()
@@ -56,9 +62,13 @@ class Upload extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function category_id()
+    public function categories()
     {
-        return $this->hasMany(Category::class, 'category_id');
+        return $this->belongsToMany(Category::class, 'upload_categories', 'upload_id', 'category_id');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tag_uploads', 'upload_id', 'tag_id');
     }
 
     public function group()
@@ -66,6 +76,7 @@ class Upload extends Model
         return $this->hasMany(Group::class, 'group_id');
     }
 
+    // Filter frrom Request
     public function scopeFilter($query, array $filters)
     {
 
@@ -74,27 +85,15 @@ class Upload extends Model
             //searches by title
             $query->where('title', 'like', '%' . request('search') . '%');
         }
+    }
 
+    public function scopecustomfilter($query, array $filters)
+    {
 
+        if ($filters['search'] ?? false) {
 
-        // //Tag filter
-        // if ($filters['tag'] ?? false) {
-        //     //quer like code
-        //     $query->where('tags', 'like', '%' . request('tag') . '%');
-        // }
-
-        // //search filter
-        // if ($filters['search'] ?? false) {
-        //     //query like code
-
-        //     //searches by title
-        //     $query->where('title', 'like', '%' . request('search') . '%')
-
-        //     //searches by description
-        //     ->orWhere('description', 'like', '%' . request('search') . '%')
-
-        //     //searches by tags
-        //     ->orWhere('tags', 'like', '%' . request('search') . '%');
-        // }
+            //searches by title
+            $query->where('title', 'like', '%' . $filters['search'] . '%');
+        }
     }
 }

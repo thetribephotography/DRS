@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 // use Illuminate\Database\Eloquent\Model;
@@ -22,8 +23,8 @@ class Category extends Model
     protected $hidden = [];
 
 
-    public function upload()
+    public function uploads()
     {
-        return $this->hasMany(Upload::class);
+        return $this->belongsToMany(Category::class, 'upload_categories', 'category_id', 'upload_id');
     }
 }

@@ -1,48 +1,41 @@
 <x-app-layout :title="$title">
-
     <div class="h-screen pt-8">
         <div class="flex pt-8">
 
             {{-- @if (session()->has('message'))
                 <h4 class="text-green-600"> {{session ('message') }} </h4>
             @endif --}}
-
-            {{-- Go back Button --}}
-            <a href="{{ url()->previous() }}">
-                <div class="absolute left-[4rem] h-10 w-10 rounded-lg border border-clgray hover:bg-gray-300">
-                    <svg class="h-5 w-5 translate-y-2.5 translate-x-2.5 text-clgray" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                    </svg>
-                </div>
-            </a>
             {{-- End --}}
 
             {{-- Main Container --}}
-            <div class="ml-[15rem] flex h-full w-[50rem] flex-col">
-                <div class="mb-10 h-[50rem] w-full">
+            <div class="flex h-full w-[50rem] flex-col lg:ml-[6rem]">
+                <div class="mb-10 h-full w-full">
                     {{-- Top --}}
                     <div class="">
-                        <h2 class="text-s4 font-bold normal-case text-clblack">{{ $upload->title }}
+                        <h2 class="text-s4 font-semibold normal-case text-clblack">{{ $upload->title }}
                         </h2>
-                        <a href="#">
+                        <a href="{{ route('user.profile.public', $upload->users->_id) }}">
                             <div class="mt-4 flex">
-                                <img class="h-5 w-5 rounded-full" src="{{ asset('images/thanos.jpg') }}">
-                                <p class="ml-2 text-s8 font-regular text-clgray">{{ $upload->user->name }}</p>
+                                <img class="h-5 w-5 rounded-full"
+                                    src="{{ $upload->users->profile_picture ? asset('storage/' . $upload->users->profile_picture) : asset('images/user.jpeg') }}">
+                                <p class="ml-2 text-s8 font-regular text-clgray">
+                                    {{ $upload->users->name }}</p>
                             </div>
                         </a>
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
-                            {{ $upload->created_at->format('F d, Y') }}</p>
-                        <button
-                            class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-blue-400"
-                            type="button">
-                            <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                            </svg>
-                            Download
-                        </button>
+                            {{ $upload->updated_at->format('F d, Y') }}</p>
+                        <a href="{{ route('download', $upload->_id) }}">
+                            <button
+                                class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-b-hover"
+                                type="button">
+                                <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                </svg>
+                                Download
+                            </button>
+                        </a>
                     </div>
                     {{-- Vidoe --}}
                     <div>
@@ -56,23 +49,133 @@
                         </div>
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Authors</h3>
-                            <p class="">{{ $upload->author }}</p>
+                            <p class="">
+                                @foreach ($upload->author as $author)
+                                    {{ $author . ', ' }}
+                                @endforeach
+                            </p>
+
                         </div>
+                        <div class="pl-6 text-s8 text-clgray">
+                            <h3 class="mt-4 font-semibold uppercase">Publication Date</h3>
+                            <p class="">{{ $upload->published_at->format('F d, Y') }}</p>
+                        </div>
+                        <div class="mt-6 pl-6 text-s8 text-clgray">
+                            <h3 class="mt-4 font-semibold uppercase">Upload Type</h3>
+                            @if ($upload->topic_id == 1)
+                                <p class="">Article</p>
+                            @elseif ($upload->topic_id == 2)
+                                <p class="">Software</p>
+                            @elseif ($upload->topic_id == 3)
+                                <p class="">Dataset</p>
+                            @elseif ($upload->topic_id == 4)
+                                <p class="">Workflow</p>
+                            @endif
+                        </div>
+
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">Language</h3>
-                            <p class="">{{ $upload->language }}</p>
+                            <p class="">
+                                @foreach ($upload->language as $language)
+                                    {{ $language . ', ' }}
+                                @endforeach
+                            </p>
                         </div>
+
                         <div class="mt-7 pl-6 text-s8 text-clgray">
                             <h3 class="mt-4 font-semibold uppercase">File Size</h3>
-                            <p class="">{{ $upload->file_size }}KB</p>
+                            <p class="">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                         </div>
+
+                        <div class="pl-6 text-s8 text-clgray">
+                            <h3 class="mt-4 font-semibold uppercase">License</h3>
+                            <p class="">{{ $upload->license }}</p>
+                        </div>
+
+
+                        <div class="mt-4 pl-6" x-show="{openT:false}">
+                            {{-- Button --}}
+                            <button
+                                class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover"
+                                type="button" x-show="true" @click="openT = !openT">View info</button>
+
+                            {{-- Table --}}
+
+                            <div class="relative overflow-x-auto">
+                                <table class="w-full text-left text-sm text-gray-500" x-show="openT">
+                                    <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                                        <tr>
+                                            <th class="px-6 py-3" scope="col">
+                                                File Information
+                                            </th>
+                                            <th class="px-6 py-3" scope="col">
+                                                Details
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                File Name
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->title }}
+                                            </td>
+
+                                        </tr>
+                                        <tr class="border-b bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Authors
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                @foreach ($upload->author as $author)
+                                                    {{ $author . ', ' }}
+                                                @endforeach
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Publication Date
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->published_at->format('Y-m-d') }}
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Date Posted
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->created_at->format('Y-m-d') }}
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                                scope="row">
+                                                Last Updated
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->updated_at->format('F-d-Y') }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {{-- End table --}}
+                        </div>
+
                     </div>
                 </div>
 
                 <div class="h-full w-full">
                     {{-- COMMENT SECTION --}}
                     <section class="bg-white py-8 lg:py-16">
-                        <div class="mx-auto max-w-2xl px-4">
+                        <div class="mx-auto max-w-2xl pr-4">
                             <div class="mb-6 flex items-center justify-between">
                                 <h2 class="text-lg font-bold text-gray-900 lg:text-2xl">Comments
                                     @if (!count($upload->comments) == 0)
@@ -90,7 +193,7 @@
                                 </div>
                                 <a href="{{ asset('uploadpath') }}" download="">
                                     <button
-                                        class="ml-[33rem] items-center rounded bg-cmblue py-2.5 px-4 text-center font-medium text-white hover:bg-blue-500">
+                                        class="ml-[33rem] items-center rounded bg-cmblue py-2.5 px-4 text-center font-medium text-white hover:bg-b-hover">
                                         Comment
                                     </button>
                                 </a>
@@ -110,7 +213,7 @@
                                         <div class="flex items-center">
                                             <p class="mr-3 inline-flex items-center text-sm text-gray-900"><img
                                                     class="mr-2 h-6 w-6 rounded-full"
-                                                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                                    src="{{ $comment->user->profile_picture ? asset('storage/' . $comment->user->profile_picture) : asset('images/user.jpeg') }}"
                                                     alt="">
                                                 {{ $comment->user->name }} </p>
                                             <p class="text-sm text-gray-600">
@@ -242,49 +345,56 @@
 
 
             {{-- Side Container --}}
-            <div class="ml-6 flex h-[40rem] w-[23rem] flex-col shadow">
-                <div class="h-40 w-full rounded-md bg-cmblue">
-                    <h4 class="pt-2 pl-2 font-semibold text-white">Metrics</h4>
-                    <div class="mt-2 flex">
-                        {{-- <div class="text-center">
-                            Views
+            <div class="ml-[12rem] hidden h-[40rem] w-[23rem] flex-col shadow lg:flex">
+                <div class="h-40 w-full rounded-t-lg bg-cmblue px-8 py-4">
+                    <h4 class="pt-2 pl-2 font-medium text-white">Metrics</h4>
+                    <div class="mt-4 flex justify-evenly">
+                        <div class="text-center text-white">
+                            <h4>{{ $upload->views }}</h4>
+                            <p> Views</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center text-white">
+                            @if ($upload->downloads == 0)
+                                <h4>0</h4>
+                            @endif
+                            <h4>{{ $upload->downloads }}</h4>
                             Downloads
-                        </div> --}}
+                        </div>
 
                     </div>
                 </div>
-                <div class="mt-4 h-full w-full rounded-md bg-cmblue px-2">
+                <div class="mt-4 h-full w-full rounded-t-lg bg-cmblue px-2">
                     {{-- Categories --}}
-                    <div class="ml-6 pt-2 text-left">
-                        <a class="t text-decoration-none" href="{{ route('category.index') }}">
-                            <h4 class="mb-2 font-semibold text-white">Categories:</h4>
+                    <div class="ml-6 pt-6 text-left">
+                        <a class="text-decoration-none" href="{{ route('category.index') }}">
+                            <h4 class="mb-2 font-medium text-white">Categories</h4>
                         </a>
                         <div class="bg mt-2 text-white">
-                            <ul class="max-w-md list-inside list-disc space-y-1">
-                                {{-- @foreach --}}
-                                <li>
-                                    Web Dev
-                                </li>
-                                {{-- <li>
-                                    Hmm
-                                </li> --}}
-                            </ul>
+
+                            @foreach ($upload->categories as $category)
+                                <a class="" href="/categories/{{ $category->slug }}">
+                                    <span
+                                        class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $category->name }}</span>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 
                     {{-- Tag --}}
                     <div class="mt-6 ml-6 text-left">
-                        <a href="">
-                            <h4 class="mb-2 font-semibold text-white">Tags:</h4>
+                        <a href="{{ route('tag.index') }}">
+                            <h4 class="mb-2 font-semibold text-white">Tags</h4>
                         </a>
                         <div class="bg mt-2 text-white">
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Security</span>
-                            <span
+                            @foreach ($upload->tags as $tag)
+                                <a class="s" href="/tags/{{ $tag->slug }}">
+                                    <span
+                                        class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $tag->name }}</span>
+                                </a>
+                            @endforeach
+                            {{-- <span
                                 class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Open-source
-                                development</span>
+                                development</span> --}}
                         </div>
                     </div>
 
@@ -292,19 +402,13 @@
                     <div class="mt-10 ml-6 h-full text-left text-white">
                         <h4 class="mb-2 font-semibold text-white">Keywords:</h4>
                         <div class="bg mt-2">
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Waste</span>
+                            @foreach ($upload->keywords as $keyword)
+                                <span
+                                    class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $keyword }}</span>
+                            @endforeach
 
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Resorce</span>
-                            <span
-                                class="mr-2 rounded-full border border-white px-2.5 py-0.5 text-xs font-medium">Red</span>
                         </div>
                     </div>
-                </div>
-                <div class="mt-8 h-full w-full">
-                    <h4 class="my-8">Related Uploads</h4>
-                    <p>Nil</p>
                 </div>
             </div>
         </div>

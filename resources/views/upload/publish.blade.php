@@ -1,21 +1,44 @@
 <x-app-layout :title="$title">
     {{-- Header start --}}
-    <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8">
+    <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8 lg:pt-12">
         <div class="ml-6 md:ml-[15rem]">
             <h2 class="md:t-5 text-s5 font-bold text-cdblack md:text-s3">Article Upload</h2>
         </div>
     </div>
     {{-- End Header --}}
-
+    {{-- Flash Message - Error --}}
+    @if ($errors->any())
+        <div class="absolute left-[40rem] mb-4 flex rounded-lg bg-red-500 p-4 text-sm text-white transition duration-700 ease-in-out"
+            id="flash-message" role="alert">
+            <svg class="mr-3 inline h-5 w-5 flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Error:</span> {{ session('error') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').classList.add('opacity-0');
+                setTimeout(function() {
+                    document.getElementById('flash-message').remove();
+                }, 10000)
+            }, 4000); // remove the alert after 4 seconds
+        </script>
+    @endif
+    {{-- End flash messages --}}
 
     {{-- Input Fields --}}
     <section class="my-8 h-full w-full pb-6 md:ml-[24rem] md:w-[51rem]">
-        <form method="POST" action="{{ route('uploads.publish') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('upload.save.article') }}" enctype="multipart/form-data">
             @csrf
             {{-- Side by isde --}}
             <div class="mb-6 grid gap-6 px-6 pt-4 md:grid-cols-2">
                 <div>
-
                     <label class="mb-2 block text-sm font-medium text-[#393E46]" for="title">Title</label>
                     <div class="flex">
                         <span
@@ -166,7 +189,7 @@
                                     <p>No Tag found</p>
                                 @endif
                                 @foreach ($tags as $tag)
-                                    <option value="{{ $tag->_id }}">{{ $tag->name }}</option>
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
                             </select>
                         </span>
@@ -269,8 +292,7 @@
                 <input
                     class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none"
                     id="file_upload" name="file-upload" type="file">
-                <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF
-                    (MAX. 800x400px).</p>
+                <p class="mt-1 text-sm text-gray-500" id="file_input_help">PDF, DOC, DOCX or ODF</p>
                 {{-- Error Mesage --}}
                 @error('file-upload')
                     <div class="mt-2 rounded-lg bg-red-50 p-4 text-sm text-red-800" role="alert">
@@ -280,50 +302,43 @@
             </div>
             {{-- end --}}
 
-            {{-- Upload Kini Multplie --}}
             <div class="mt-6 px-6">
-
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="file_upload">Instructions <span
-                        class="text-s9">(A video that explains how this upload can be used)</span></label>
-                <p class="mb-4 text-s9 text-red-500">NOTE: Only vidoes are accepted</p>
-                <div class="flex w-full items-center justify-center">
-                    <label
-                        class="hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
-                        for="dropzone-file">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg class="mb-3 h-10 w-10 text-gray-400" aria-hidden="true" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                </path>
-                            </svg>
-                            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click
-                                    to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)
-                            </p>
-                        </div>
-                        <input class="hidden" id="dropzone-file" name="summary-upload" type="file" multiple />
-                    </label>
-                    {{-- Error Mesage --}}
-                    @error('summary-upload')
-                        <div class="mt-2 rounded-lg bg-red-50 p-4 text-sm text-red-800" role="alert">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                {{-- FOR LICENSE --}}
+                <!-- Create a checkbox for the user to indicate if the upload has a license or not -->
+                <div class="form-group flex">
+                    <label class="mb-2 block text-sm font-medium text-gray-900" for="has_license">Does your upload
+                        have a license?</label>
+                    <input class="ml-4" id="has_license" name="has_license" type="checkbox">
                 </div>
 
+                <!-- Create a select dropdown to display the available licenses -->
+                <div class="form-group" class="mb-2 block text-sm font-medium text-gray-900" id="license_options"
+                    style="display: none;">
+                    <label for="license">Choose a license:</label>
+                    <select
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        id="license" name="license">
+                        <option value="GNU General Public License">GNU General Public License</option>
+                        <option value="Attribution (CC BY)">Attribution (CC BY)</option>
+                        <option value="Apache License">Apache License</option>
+                        <option value=">Attribution-NonCommercial (CC BY-NC)">Attribution-NonCommercial (CC BY-NC)
+                        </option>
+                        <option value=">MIT License">MIT License</option>
+                    </select>
+                </div>
             </div>
 
             {{-- Validation --}}
             <input id="topic_id" name="topic_id" type="hidden" value="1">
 
-
-            {{-- Submmit --}}
+            {{-- Submit --}}
             <div class="px-4 lg:px-0">
                 <button
-                    class="mt-8 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 sm:w-auto md:ml-[45rem]"
+                    class="mt-8 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover sm:w-auto md:ml-[45rem]"
                     type="submit">Save</button>
             </div>
+
+
 
         </form>
 

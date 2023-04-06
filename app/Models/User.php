@@ -51,7 +51,7 @@ class User extends Authenticatable
     ];
 
 
-    public function upload()
+    public function uploads()
     {
         return $this->hasMany(Upload::class);
     }

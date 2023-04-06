@@ -18,8 +18,6 @@ return new class extends Migration
             $collection->id();
             $collection->unsignedBigInteger('category_id');
             $collection->unsignedBigInteger('upload_id');
-            $collection->index('category_id');
-
             $collection->timestamps();
         });
     }

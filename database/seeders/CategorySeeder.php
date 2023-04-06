@@ -23,14 +23,24 @@ class CategorySeeder extends Seeder
             'slug' => Str::slug('Software Development'),
         ]);
         Category::create([
+            'name' => 'Software Architecture',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Architecture'),
+        ]);
+        Category::create([
             'name' => 'Software Security',
             'description' => "This is for this",
             'slug' => Str::slug('Software Security'),
         ]);
         Category::create([
-            'name' => 'Software Evolution and Maintenance',
+            'name' => 'Software Evolution',
             'description' => "This is for this",
-            'slug' => Str::slug('Software Evolution and Maintenance'),
+            'slug' => Str::slug('Software Evolution'),
+        ]);
+        Category::create([
+            'name' => 'Software Maintenance',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Maintenance'),
         ]);
         Category::create([
             'name' => 'Software Design Patterns',
@@ -61,6 +71,43 @@ class CategorySeeder extends Seeder
             'name' => 'Agile Software Development',
             'description' => "This is for this",
             'slug' => Str::slug('Agile Software Development'),
+        ]);
+
+
+        Category::create([
+            'name' => 'Software Quality Assurance',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Quality Assurance'),
+        ]);
+        Category::create([
+            'name' => 'Formal Methods',
+            'description' => "This is for this",
+            'slug' => Str::slug('Formal Methods'),
+        ]);
+        Category::create([
+            'name' => 'Software Ethics',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Ethics'),
+        ]);
+        Category::create([
+            'name' => 'Software Measurement and Metrics',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Measurement and metrics'),
+        ]);
+        Category::create([
+            'name' => 'Emerging Technologies',
+            'description' => "This is for this",
+            'slug' => Str::slug('Emerging Technologies'),
+        ]);
+        Category::create([
+            'name' => 'Software Testing',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Testing'),
+        ]);
+        Category::create([
+            'name' => 'Software Licensing',
+            'description' => "This is for this",
+            'slug' => Str::slug('Software Licensing'),
         ]);
     }
 }

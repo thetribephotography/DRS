@@ -2,10 +2,24 @@
     {{-- Main --}}
     <div class="mb-8 w-full font-inter md:w-[24rem] lg:ml-[20rem] lg:w-[60rem]">
         <div class="flex flex-col px-2 lg:flex-row">
-            {{-- For image --}}
-            <div class="mt-4 mb-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
-                <img class="h-full w-full object-cover" src="{{ asset('images/thanos.jpg') }}" alt="">
-            </div>
+            @if ($upload->topic_id == 1)
+                {{-- For image --}}
+                <div class="mt-4 mb-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                    <img class="h-full w-full object-cover" src="{{ asset('images/pic_article.png') }}" alt="Article">
+                </div>
+            @elseif ($upload->topic_id == 2)
+                <div class="mt-4 mb-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                    <img class="h-full w-full object-cover" src="{{ asset('images/pic_software.png') }}" alt="Software">
+                </div>
+            @elseif ($upload->topic_id == 3)
+                <div class="mt-4 mb-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                    <img class="h-full w-full object-cover" src="{{ asset('images/pic_dataset.png') }}" alt="Dataset">
+                </div>
+            @elseif ($upload->topic_id == 4)
+                <div class="mt-4 mb-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
+                    <img class="h-full w-full object-cover" src="{{ asset('images/pic_workflow.png') }}" alt="Workflow">
+                </div>
+            @endif
             {{-- For text --}}
             <div class="my-2 flex flex-col md:mt-0 lg:ml-4">
                 {{-- ForTop Part --}}
@@ -119,13 +133,18 @@
                             {{ $upload->title }}
                         </h3>
                     </a>
-                    <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}</p>
+                    <div class="w-[42rem] overflow-hidden">
+                        <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}</p>
+                    </div>
+
                 </div>
                 <div class="mt-4 flex md:mt-2">
-                    <img class="h-4 w-4 rounded-full" src="{{ asset('images/thanos.jpg') }}" alt="">
+                    <img class="h-4 w-4 rounded-full"
+                        src="{{ $upload->users->profile_picture ? asset('storage/' . $upload->users->profile_picture) : asset('images/user.jpeg') }}"
+                        alt="">
                     <a class="ml-2 -translate-y-0.5 text-s8 font-regular text-[#6F737A] hover:text-cmblue hover:underline"
-                        href="">
-                        <p>Messi jnr</p>
+                        href="{{ route('user.profile.public', $upload->users->id) }}">
+                        <p>{{ $upload->users->name }}</p>
                     </a>
                 </div>
             </div>
