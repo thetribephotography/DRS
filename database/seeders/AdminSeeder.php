@@ -19,6 +19,8 @@ class AdminSeeder extends Seeder
     {
         User::create([
             'id' => '1',
+            'first_name' => 'Dahn',
+            'last_name' => 'Badguy',
             'name' => 'DahntheBadGuy',
             'email' => 'admin2@gmail.com',
             'profile_picture' => 'thanos',
@@ -27,6 +29,8 @@ class AdminSeeder extends Seeder
 
         User::create([
             'id' => '2',
+            'first_name' => 'Dahn',
+            'last_name' => 'user',
             'name' => 'DanielTheUser',
             'email' => 'admin1@gmail.com',
             'profile_picture' => 'thanos',
@@ -35,6 +39,8 @@ class AdminSeeder extends Seeder
 
         User::create([
             'id' => '2',
+            'first_name' => 'David',
+            'last_name' => 'Badguy',
             'name' => 'David',
             'email' => 'user1@gmail.com',
             'profile_picture' => 'thanos',

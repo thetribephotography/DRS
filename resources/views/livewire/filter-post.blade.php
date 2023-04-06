@@ -4,8 +4,8 @@
         <div class="absolute top-4 left-3">
             <i class="fa fa-search z-20 text-gray-400 hover:text-gray-500"></i>
         </div>
-        <input class="z-0 h-14 w-full rounded-lg pl-10 pr-20 focus:shadow focus:outline-none" id="" name="search"
-            type="text" wire:model="query" placeholder="" wire:keyup.debounce="filter">
+        <input class="z-0 h-14 w-full rounded-lg pl-10 pr-20 focus:shadow focus:outline-none" type="text"
+            wire:model="search" placeholder="" wire:keyup.debounce="filter">
         <div class="absolute top-2 right-2">
             <button class="h-10 w-20 rounded-lg bg-blue-500 text-white hover:bg-blue-600" type="submit"
                 wire:click="filter">

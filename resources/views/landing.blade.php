@@ -260,7 +260,7 @@
     <div class="mt-6 w-full text-center text-s4 font-bold text-clblack md:mt-10">
         <h1 class="text-s6 md:text-s7">Featured datasets</h1>
         <div class="mt-4 text-clblack md:mt-8 md:pl-[34rem] lg:block">
-            <form action="/search-results" method="GET">
+            <form action="{{ route('search') }}" method="GET">
                 <div class="relative w-full text-center md:w-[30rem]">
                     <input
                         class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm font-regular text-gray-900 focus:border-cmblue focus:ring-cmblue"

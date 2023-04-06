@@ -104,7 +104,7 @@
                             <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
                                 href="{{ Route('login') }}">Login</a>
 
-                            <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+                            <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white hover:bg-b-hover lg:mt-0"
                                 href="{{ Route('register') }}">Sign
                                 Up</a>
                         </div>
@@ -129,7 +129,7 @@
             </div>
             {{-- Search Bar --}}
             <div class="relative mx-auto hidden text-clblack lg:block">
-                <form action="/search-results" method="GET">
+                <form action="{{ route('search') }}" method="GET">
                     <div class="relative">
                         <input
                             class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"

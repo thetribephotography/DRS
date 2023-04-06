@@ -19,6 +19,8 @@ class RegisteredSeeder extends Seeder
     {
         User::create([
             'id' => '3',
+            'first_name' => 'Daniel',
+            'last_name' => 'Kinlade',
             'name' => 'DanielTheUser',
             'email' => 'user3@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
