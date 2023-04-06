@@ -33,6 +33,8 @@ class SearchPosts extends Component
 
     public $isActive = true;
 
+
+
     public function resetFilters()
     {
         $this->reset('search');
@@ -74,7 +76,25 @@ class SearchPosts extends Component
         if ((int)$this->selectedSortOption == 0) {
             // For filter
             if ($this->search) {
-                $query->where('title', 'like', '%' . $this->search . '%')->latest('created_at');
+                $query->where('title', 'like', '%' . $this->search . '%');
+
+                if (!empty($this->SelectedType)) {
+                    $query
+                        ->whereIn('topic_id', $this->SelectedType)
+                        ->latest('created_at');
+                }
+
+                // if (!empty($this->SelectedType)) {
+                //     $query
+                //         ->whereIn('access_id', $this->SelectedAccess)
+                //         ->latest('created_at');
+                // }
+            }
+
+            if (!empty($this->SelectedCategories)) {
+                $query->where('title', 'like', '%' . $this->search . '%')
+                    ->whereIn('category_id', $this->SelectedCategories)
+                    ->latest('created_at');
             }
         } elseif ((int)$this->selectedSortOption == 1) { //Sort By Latest
             if ($this->search) {

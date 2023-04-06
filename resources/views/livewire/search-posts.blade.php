@@ -287,7 +287,6 @@
                                 <option value="1">Latest</option>
                                 <option value="2">Popular</option>
                                 <option value="3">By Downloads</option>
-                                <option value="4">By Upload type</option>
                             </select>
                         </button>
                     </div>
@@ -367,25 +366,29 @@
                             <div class="space-y-4">
                                 <div class="flex items-center">
                                     <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
-                                        type="checkbox" value="1" wire:model="SelectedType">
+                                        type="checkbox" value="1" wire:model="SelectedType"
+                                        wire:click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Article</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
-                                        type="checkbox" value="2" wire:model="SelectedType">
+                                        type="checkbox" value="2" wire:model="SelectedType"
+                                        wire:click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-1">Software</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
-                                        type="checkbox" value="3" wire:model="SelectedType">
+                                        type="checkbox" value="3" wire:model="SelectedType"
+                                        wire:click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-1">Dataset</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
-                                        id="filter-size-3" type="checkbox" value="4" wire:model="SelectedType">
+                                        id="filter-size-3" type="checkbox" value="4" wire:model="SelectedType"
+                                        wire:click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-3">Workflow</label>
                                 </div>
 
@@ -428,20 +431,20 @@
 
                                 <div class="flex items-center">
                                     <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
-                                        name=categories[]" type="checkbox" value="1"
-                                        wire:model="SelectedAccess">
+                                        name=categories[]" type="checkbox" value="1" wire:model="SelectedAccess"
+                                        wire::click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Public</label>
                                 </div>
                                 <div class="flex items-center">
                                     <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
-                                        name=categories[]" type="checkbox" value="2"
-                                        wire:model="SelectedAccess">
+                                        name=categories[]" type="checkbox" value="2" wire:model="SelectedAccess"
+                                        wire::click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Private</label>
                                 </div>
                                 <div class="flex items-center">
                                     <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
-                                        name=categories[]" type="checkbox" value="3"
-                                        wire:model="SelectedAccess">
+                                        name=categories[]" type="checkbox" value="3" wire:model="SelectedAccess"
+                                        wire::click="filter">
                                     <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Group</label>
                                 </div>
 
@@ -479,8 +482,8 @@
                                 @foreach ($categories as $category)
                                     <div class="flex items-center">
                                         <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
-                                            name=categories[]" type="checkbox" value="{{ $category->slug }}"
-                                            wire:model="SelectedCategories">
+                                            name=categories[]" type="checkbox" value="{{ $category->id }}"
+                                            wire:model="SelectedCategories" wire:click="filter">
                                         <label class="ml-3 text-s8 text-gray-600"
                                             for="filter-size-0">{{ $category->name }}</label>
                                     </div>
@@ -639,6 +642,10 @@
                     </div>
                     {{-- Loading bar end --}}
 
+                    @php
+                        var_dump($SelectedAccess);
+                    @endphp
+
                     @foreach ($posts as $upload)
                         {{-- Main --}}
                         <div class="mb-8 w-full font-inter md:w-[24rem] lg:w-[60rem]">
@@ -785,8 +792,9 @@
                                                 {{ $upload->title }}
                                             </h3>
                                         </a>
-                                        <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}
-                                        </p>
+                                        <div class="w-[42rem] overflow-hidden">
+                                            <p class="mt-1 font-light text-[#6F737A]">{{ $upload->description }}</p>
+                                        </div>
                                     </div>
                                     <div class="mt-4 flex md:mt-3">
                                         <img class="h-4 w-4 rounded-full"
@@ -803,7 +811,7 @@
                         </div>
                         {{-- End --}}
                     @endforeach
-
+                    {{ $posts->links() }}
 
                 </div>
             </div>
