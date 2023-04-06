@@ -642,9 +642,9 @@
                     </div>
                     {{-- Loading bar end --}}
 
-                    @php
+                    {{-- @php
                         var_dump($SelectedAccess);
-                    @endphp
+                    @endphp --}}
 
                     @foreach ($posts as $upload)
                         {{-- Main --}}
