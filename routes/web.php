@@ -42,7 +42,7 @@ use Illuminate\Http\Request;
 |
 | Public Routes - Are free and acesssible to all. The purpose is for Unregistered users/Visitors and acesss those pages and send requests
 | User Routes - Places where only the user has access to.
-| Admin Routes - Places where only the user has access to.
+| Admin Routes - Places where only the Admin has access to.
 | User && Admin Routes - These are places both the users and admins can access.
 |
 |
