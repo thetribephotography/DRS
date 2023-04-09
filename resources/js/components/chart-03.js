@@ -43,7 +43,7 @@ const chart03 = () => {
 
   if (chartSelector.length) {
     const chartThree = new ApexCharts(
-      document.querySelector("#chartThree"),
+      document.querySelector("#chartThree", "chartThree"),
       chartThreeOptions
     );
     chartThree.render();

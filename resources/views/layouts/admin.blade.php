@@ -49,8 +49,11 @@
     @livewireStyles
 </head>
 
-<body class="flex h-screen overflow-hidden"
+<body 
     x-data="{ page: 'analytics', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }">
+    
+   <div class="flex h-screen overflow-hidden">
+
     <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
     class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
     @click.outside="sidebarToggle = false">
@@ -84,7 +87,7 @@
                     <!-- Menu Item Dashboard -->
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="#" @click.prevent="selected = (selected === 'Dashboard' ? '':'Dashboard')"
+                            href="{{route ('admin.index') }}" @click="selected = (selected === 'Dashboard' ? '':'Dashboard')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Dashboard') || (page === 'analytics' || page === 'ecommerce') }">
                             <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +153,7 @@
                     <!-- Menu Item Uploads -->
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="calendar.html" @click="selected = (selected === 'Calendar' ? '':'Calendar')"
+                            href="{{ route ('admin.uploads') }}" @click="selected = (selected === 'Calendar' ? '':'Calendar')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Calendar') && (page === 'calendar') }">
                             <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +171,7 @@
                     <!-- Menu Group -->
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="tables.html" @click="selected = (selected === 'Tables' ? '':'Tables')"
+                            href="{{ route('admin.groups') }}" @click="selected = (selected === 'Tables' ? '':'Tables')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') && (page === 'Tables') }">
                             <svg class="fill-current" width="18" height="19" viewBox="0 0 18 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -316,6 +319,8 @@
     </div>
     </aside>
 
+    <!-- HEADER -->
+
     <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 <header class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
   <div class="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
@@ -364,7 +369,7 @@
       <!-- </ul> -->
 
       <!-- User Area -->
-      <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false" style="margin-left: 905px;">
+      <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false" style="margin-left: 880px;">
         <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
           <span class="hidden text-right lg:block">
             <span class="block text-sm font-medium text-black dark:text-white">Thomas Anree</span>
@@ -456,6 +461,8 @@
         {{ $slot }}
     </main>
 </div>
+</div>
+
 
     @livewireScripts
 </body>

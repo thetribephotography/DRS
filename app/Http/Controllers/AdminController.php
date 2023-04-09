@@ -32,14 +32,15 @@ class AdminController extends Controller
         $title  = "Admin|Dashboard";
         return view ('admin.user_table', compact('title'));
     }
+
     // VIEW ALL UPLOADS IN A LIST
-    public function viewallpost()
+    public function useruploads()
     {
         $this->authorize('view_all_post', 'You are not Authorized for this Action');
+        $title  = "Admin|Dashboard";
+        $see = Upload::whereNull('deleted_at')->get();
 
-        $see = Upload::all();
-
-        return view('')->with('see', $see);
+        return view('admin.user_uploads', compact('see', 'title'));
     }
 
     // VIEW 1 UPLOAD
@@ -91,13 +92,13 @@ class AdminController extends Controller
     }
 
     // view all groups in a list
-    public function viewallgroups()
+    public function usergroups()
     {
         $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
+        $title  = "Admin|Dashboard";
+        $see = Group::whereNull('deleted_at')->get();
 
-        $see = Group::all();
-
-        return view("")->with('see', $see);
+        return view("admin.user_groups", compact('see', 'title'));
     }
 
     // VIEW 1 GROUP
@@ -149,9 +150,9 @@ class AdminController extends Controller
 
         $title = "Users";
         $users = User::all();
-        $uploads = Upload::all();
-        $tags = Tag::all();
-        $categories = Category::all();
+        // $uploads = Upload::all();
+        // $tags = Tag::all();
+        // $categories = Category::all();
 
         return view("admin.users", compact('title', 'users', 'tags', 'categories', 'uploads'));
     }
