@@ -111,6 +111,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/errors', [AdminController::class, 'errors'])->name('admin.errors');
+    Route::get('/admin/user_table', [AdminController::class, 'usertable'])->name('admin.user_table');
 });
 
 

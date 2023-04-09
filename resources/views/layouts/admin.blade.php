@@ -129,7 +129,7 @@
                     <!-- Menu Item Users -->
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="profile.html" @click="selected = (selected === 'Profile' ? '':'Profile')"
+                            href="{{ route ('admin.user_table') }}" @click="selected = (selected === 'Profile' ? '':'Profile')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Profile') && (page === 'profile') }"
                             :class="page === 'profile' && 'bg-graydark'">
                             <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -229,13 +229,11 @@
                             <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                                 <li>
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                        href="form-elements.html" :class="page === 'formElements' && '!text-white'">Form
-                                        Elements</a>
+                                        href="form-elements.html" :class="page === 'formElements' && '!text-white'">Reported Uploads</a>
                                 </li>
                                 <li>
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                        href="form-layout.html" :class="page === 'formLayout' && '!text-white'">Form
-                                        Layout</a>
+                                        href="form-layout.html" :class="page === 'formLayout' && '!text-white'">Reported Comments</a>
                                 </li>
                             </ul>
                         </div>

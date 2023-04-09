@@ -26,6 +26,12 @@ class AdminController extends Controller
         $title  = "Admin|Dashboard";
         return view('admin.index', compact('title'));
     }
+
+    //USER TABLE
+    public function usertable(){
+        $title  = "Admin|Dashboard";
+        return view ('admin.user_table', compact('title'));
+    }
     // VIEW ALL UPLOADS IN A LIST
     public function viewallpost()
     {
