@@ -74,7 +74,7 @@
         @forelse($users as $user)
         <tr>
           <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-          <img class="rounded-full w-12 h-12" src="/docs/images/examples/image-4@2x.jpg" alt="image description">
+          <img class="rounded-full w-12 h-12" src=" {{asset ('storage/' . $user->profile_picture) }}" alt="Profile Picture">
           </td>
           <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
             <p class="text-black dark:text-white"> {{$user->name}} </p>
@@ -97,7 +97,7 @@
                     fill="" />
                 </svg>
               </button>
-              <button wire:click="$emit('openModal', 'user-delete', {{ json_encode(['user' => $user->_id]) }})" class="hover:text-primary">
+              <button wire:click="$emit('openModal', 'user-delete', {{ json_encode(['user' => $user->_id]) }})"  class="hover:text-primary">
                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path

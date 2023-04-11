@@ -19,6 +19,7 @@ class Group extends Model
         'name',
         // 'upload',
         'slug',
+        'group_desc',
         'group_members',
         'user_id',
         'deleted_at',
