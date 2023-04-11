@@ -42,6 +42,7 @@ class GroupController extends Controller
         $update = new Group;
         $update->name = $request->name;
         $update->group_members = $request->members;
+        $update->group_desc = $request->group_desc;
         $update->slug = Str::slug($update->name);
         $update->user_id = $user;
 
