@@ -32,6 +32,10 @@ module.exports = {
         gl: "#E0E2E9",
         gb: "#0381B1",
         "b-hover": "#0177A5",
+        "l-green": "#99FF99",
+        "m-green": "#33FF33",
+        "l-blue": "#99D3EA",
+        "m-blue": "#33A8D5",
         //update
         current: "currentColor",
         transparent: "transparent",

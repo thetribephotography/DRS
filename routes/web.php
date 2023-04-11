@@ -118,7 +118,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 // Only user can access
-Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
+Route::prefix('')->middleware(['auth', 'role:registered',])->group(function () {
     //  User
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
