@@ -4,18 +4,21 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Upload;
+use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
+
 
 class UserTable extends Component
 {
-    public $users;
+    use WithPagination;
 
-    // public function all(){
-        
-    // }
+    // public delete;
 
     public function render()
     {
-        $this->users = User::whereNull('deleted_at')->get();
-        return view('livewire.user-table', [$this->users]);
+        $users = User::whereNull('deleted_at')->paginate(4);
+        return view('livewire.user-table', ['users' => $users]);
     }
 }

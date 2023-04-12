@@ -353,7 +353,7 @@
       </button>
       <!-- Hamburger Toggle BTN -->
       <a class="block flex-shrink-0 lg:hidden" href="index.html">
-        <img src="./images/logo/logo-icon.svg" alt="Logo" />
+        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="User Logo" />
       </a>
     </div>
 
@@ -372,12 +372,12 @@
       <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false" style="margin-left: 880px;">
         <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
           <span class="hidden text-right lg:block">
-            <span class="block text-sm font-medium text-black dark:text-white">Thomas Anree</span>
-            <span class="block text-xs font-medium">UX Designer</span>
+            <span class="block text-sm font-medium text-black dark:text-white">{{ Auth::user()->name }}</span>
+            <span class="block text-xs font-medium">Admin</span>
           </span>
 
           <span class="h-12 w-12 rounded-full">
-            <img src="./images/user/user-01.png" alt="User" />
+            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="User" />
           </span>
 
           <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12" height="8"
@@ -391,8 +391,8 @@
         <!-- Dropdown Start -->
         <div x-show="dropdownOpen"
           class="absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
-            <li>
+          <!-- <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark"> -->
+            <!-- <li>
               <a href="profile.html"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
                 <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -406,8 +406,8 @@
                 </svg>
                 My Profile
               </a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a href="#"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
                 <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -418,8 +418,8 @@
                 </svg>
                 My Contacts
               </a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a href="settings.html"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
                 <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -433,9 +433,12 @@
                 </svg>
                 Account Settings
               </a>
-            </li>
-          </ul>
-          <button
+            </li> -->
+          <!-- </ul> -->
+          @auth
+        <form action="{{ Route('logout') }}" method="post">
+          @csrf
+          <button type="submit"
             class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
             <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -448,6 +451,8 @@
             </svg>
             Log Out
           </button>
+        </form>
+        @endauth
         </div>
         <!-- Dropdown End -->
       </div>
@@ -463,7 +468,7 @@
 </div>
 </div>
 
-
+    @livewire('livewire-ui-modal')
     @livewireScripts
 </body>
 

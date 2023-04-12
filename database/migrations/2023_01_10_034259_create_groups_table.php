@@ -19,6 +19,7 @@ return new class extends Migration
             $collection->string('name');
             $collection->string('slug')->unique();
             $collection->unsignedBigInteger('upload')->nullable();
+            $collection->string('group_desc')->nullable();
             $collection->array('group_members')->nullable();
             $collection->softDeletes();
             $collection->timestamps();
