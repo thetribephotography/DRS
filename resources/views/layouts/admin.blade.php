@@ -55,7 +55,8 @@
             class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#005879] duration-300 ease-linear lg:static lg:translate-x-0"
             :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" @click.outside="sidebarToggle = false">
             <!-- SIDEBAR HEADER -->
-            <div class="flex-shrink-4 flex max-w-md items-center justify-between gap-1 px-0 py-1.5 font-semibold text-cdblack lg:py-1.5"
+            <img src="/images/hope.png" alt="Software RepoHub">
+            {{-- <div class="flex-shrink-4 flex max-w-md items-center justify-between gap-1 px-0 py-1.5 font-semibold text-cdblack lg:py-1.5"
                 style="margin-top: -60px; margin-bottom: -85px;">
                 <a href="#">
                     <img src="{{ asset('images/logo.png') }}" alt="Application Logo" />
@@ -69,7 +70,7 @@
                             fill="" />
                     </svg>
                 </button>
-            </div>
+            </div> --}}
             <!-- SIDEBAR HEADER -->
 
             <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">

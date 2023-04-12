@@ -1,4 +1,54 @@
 <div>
+    {{-- Modal ende --}}
+    {{-- Flash Message - Success --}}
+    @if (session('success'))
+        <div class="absolute left-[40rem] z-40 mb-4 flex rounded-lg bg-green-500 p-4 text-sm text-white transition duration-700 ease-in-out"
+            id="flash-message" role="alert">
+            <svg class="mr-3 inline h-5 w-5 flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Success:</span> {{ session('success') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').classList.add('opacity-0');
+                setTimeout(function() {
+                    document.getElementById('flash-message').remove();
+                }, 10000)
+            }, 4000); // remove the alert after 4 seconds
+        </script>
+    @endif
+    {{-- Flash Message - Error --}}
+    @if (session('error'))
+        <div class="absolute left-[40rem] mb-4 flex rounded-lg bg-red-500 p-4 text-sm text-white transition duration-700 ease-in-out"
+            id="flash-message" role="alert">
+            <svg class="mr-3 inline h-5 w-5 flex-shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Error:</span> {{ session('error') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').classList.add('opacity-0');
+                setTimeout(function() {
+                    document.getElementById('flash-message').remove();
+                }, 10000)
+            }, 4000); // remove the alert after 4 seconds
+        </script>
+    @endif
+    {{-- End flash messages --}}
     {{-- Sub main --}}
     <div class="h-full w-full py-[2rem] pl-[6rem]">
         {{-- Top --}}
@@ -80,7 +130,7 @@
                     {{-- Main --}}
                     @foreach ($uploads as $upload)
                         {{-- Main --}}
-                        <div class="mb-8 w-full font-inter md:w-[24rem] lg:w-[60rem]">
+                        <div class="mb-8 w-full font-inter md:w-[24rem] lg:w-full">
                             <div class="flex flex-col px-2 lg:flex-row">
                                 {{-- For image --}}
                                 <div class="my-2 h-full w-full lg:mb-0 lg:h-20 lg:w-20">
@@ -107,8 +157,9 @@
                                         @if ($upload->access_id == 1)
                                             {{-- Visibility --}}
                                             <div class="mr-4 flex text-s9 text-[#6F737A]">
-                                                <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                    stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -119,8 +170,9 @@
                                         @elseif($upload->access_id == 2)
                                             {{-- Visibility --}}
                                             <div class="mr-4 flex text-s9 text-[#6F737A]">
-                                                <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                    stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -213,6 +265,113 @@
                                             </svg>
                                             <p class="ml-1">{{ $upload->created_at->format('F d, Y') }}</p>
                                         </div>
+
+                                        {{-- Dropdown start --}}
+                                        <div class="absolute right-15" x-data="{ show: false }">
+                                            <button
+                                                class="text-gray-900 hover:bg-gray-100 focus:ring-gray-50 inline-flex items-center rounded-lg bg-white p-1 text-center text-sm font-medium focus:outline-none focus:ring-4"
+                                                type="button" x-show="true" @click="show=!show">
+                                                <svg class="h-5 w-5" aria-hidden="true" fill="currentColor"
+                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+
+                                            <!-- Dropdown menu -->
+                                            <div class="absolute top-4 right-14 z-10 w-44 rounded-lg bg-white shadow"
+                                                x-show="show">
+                                                <ul class="text-gray-700 text-sm">
+                                                    <li>
+                                                        @if ($upload->topic_id == 1)
+                                                            <a class="hover:bg-gray-100 block border-b border-gg px-4 py-2"
+                                                                href="{{ route('upload.article.edit', $upload->slug) }}">
+                                                                <div class="flex hover:text-blue-400">
+                                                                    <svg class="h-4 w-4"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke-width="1.5" stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round"
+                                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                    </svg>
+                                                                    <span class="ml-1">Edit</span>
+                                                                </div>
+                                                            </a>
+                                                        @elseif ($upload->topic_id == 2)
+                                                            <a class="hover:bg-gray-100 block px-4 py-2"
+                                                                href="{{ route('upload.software.edit', $upload->slug) }}">
+                                                                <div class="flex hover:text-blue-400">
+                                                                    <svg class="h-4 w-4"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke-width="1.5" stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round"
+                                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                    </svg>
+                                                                    <span class="ml-1">Edit</span>
+                                                                </div>
+                                                            </a>
+                                                        @elseif ($upload->topic_id == 3)
+                                                            <a class="hover:bg-gray-100 block px-4 py-2"
+                                                                href="{{ route('upload.dataset.edit', $upload->slug) }}">
+                                                                <div class="flex hover:text-blue-400">
+                                                                    <svg class="h-4 w-4"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke-width="1.5" stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round"
+                                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                    </svg>
+                                                                    <span class="ml-1">Edit</span>
+                                                                </div>
+                                                            </a>
+                                                        @elseif ($upload->topic_id == 4)
+                                                            <a class="hover:bg-gray-100 block px-4 py-2"
+                                                                href="{{ route('upload.workflow.edit', $upload->slug) }}">
+                                                                <div class="flex hover:text-blue-400">
+                                                                    <svg class="h-4 w-4"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke-width="1.5" stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round"
+                                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                    </svg>
+                                                                    <span class="ml-1">Edit</span>
+                                                                </div>
+                                                            </a>
+                                                        @endif
+
+                                                    </li>
+                                                    <li>
+                                                        <form class="hover:bg-gray-100 block px-4 py-2"
+                                                            action="{{ route('upload.destroy', $upload->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit">
+                                                                <div class="flex hover:text-red-500">
+                                                                    <svg class="h-4 w-4"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke-width="1.5" stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round"
+                                                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                                    </svg>
+                                                                    <span class="ml-1">Delete</span>
+                                                                </div>
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        {{-- Dropdown end --}}
                                     </div>
                                     {{-- End --}}
                                     <div class="mt-2">
@@ -235,6 +394,7 @@
                                             <p>{{ $upload->users->name }}</p>
                                         </a>
                                     </div> --}}
+
                                 </div>
                             </div>
                             <div class="mt-2 h-[1px] w-full bg-[#C3C2C2]"></div>

@@ -118,7 +118,7 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 // Only user can access
-Route::prefix('')->middleware(['auth', 'role:registered',])->group(function () {
+Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(function () {
     //  User
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('user/profile', [UserController::class, 'show'])->name('user.view-profile');
@@ -128,25 +128,31 @@ Route::prefix('')->middleware(['auth', 'role:registered',])->group(function () {
     // Upload
     Route::any('user/upload', [UploadController::class, 'upload'])->name('user.upload');
     Route::post('upload/publish', [UploadController::class, 'publish'])->name('uploads.publish');
+    Route::delete('/upload/{id}', [UploadController::class, 'delete'])->name('upload.destroy');
+
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
 
     //For Articles
     Route::get('user/publish', [UploadController::class, 'published'])->name('user.publish');
+    Route::get('upload/article/{slug}/edit', [UploadController::class, 'article_edit'])->name('upload.article.edit');
     Route::post('upload/publish/article', [UploadController::class, 'article_save'])->name('upload.save.article');
     Route::post('upload/update/article', [UploadController::class, 'article_update'])->name('upload.update.article');
 
     //For Software
     Route::get('user/software', [UploadController::class, 'softwares'])->name('user.software');
+    Route::get('upload/software/{slug}/edit', [UploadController::class, 'software_edit'])->name('upload.software.edit');
     Route::post('upload/publish/software', [UploadController::class, 'software_save'])->name('upload.save.software');
     Route::post('upload/update/software', [UploadController::class, 'software_update'])->name('upload.update.software');
 
     //For Dataset
     Route::get('user/dataset', [UploadController::class, 'datasets'])->name('user.dataset');
+    Route::get('upload/dataset/{slug}/edit', [UploadController::class, 'dataset_edit'])->name('upload.dataset.edit');
     Route::post('upload/publish/dataset', [UploadController::class, 'dataset_save'])->name('upload.save.dataset');
     Route::post('upload/update/dataset', [UploadController::class, 'dataset_update'])->name('upload.update.dataset');
 
     //For Workflow
     Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
+    Route::get('upload/workflow/{slug}/edit', [UploadController::class, 'workflow_edit'])->name('upload.workflow.edit');
     Route::post('upload/publish/workflow', [UploadController::class, 'workflow_save'])->name('upload.save.workflow');
     Route::post('upload/update/workflow', [UploadController::class, 'workflow_update'])->name('upload.update.workflow');
 

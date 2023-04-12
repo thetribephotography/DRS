@@ -37,12 +37,13 @@
                             </button>
                         </a>
                     </div>
-                    {{-- FIle Content --}}
 
-                    <div class="mt-6 w-full bg-pink-500">
+                    {{-- FIle Content --}}
+                    <div class="my-6 w-full">
                         <x-file-content :upload="$upload" />
                     </div>
                     {{-- File Content --}}
+
                     {{-- Bottom --}}
                     <div class="w-full rounded-md bg-slate-100 pb-8 pt-4 pr-10 shadow">
                         <div class="pl-6 text-s8 text-clgray">
