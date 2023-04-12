@@ -41,7 +41,7 @@
                     </div>
                     <input
                         class="bg-gray-50 text-gray-900 block w-full rounded-lg border border-gg p-2.5 pl-10 text-sm focus:border-cmblue focus:ring-clblue"
-                        type="text" placeholder="Search.." wire.model="search" wire:keydown.enter="filter">
+                        type="text" placeholder="Search.." wire:model.debounce.1000ms="search">
                 </div>
 
                 <a href="{{ route('user.upload') }}">

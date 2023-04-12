@@ -54,7 +54,7 @@ class GroupController extends Controller
     // SHOW ALL GROUPS FOR PARTICULAR USER
     public function show()
     {
-        $this->authorize('view_group', 'You dont have the permission to access this');
+        // $this->authorize('view_group', 'You dont have the permission to access this');
 
         $user = Auth::id();
 

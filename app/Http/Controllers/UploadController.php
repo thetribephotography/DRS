@@ -312,9 +312,9 @@ class UploadController extends Controller
             }
 
             //GROUP Functionality
-                if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -323,8 +323,6 @@ class UploadController extends Controller
                     ]);
                 }
             }
-
-            
         } else if ($topic_id == 2) {
             //    2 = software
             $user = Auth::id();
@@ -378,9 +376,9 @@ class UploadController extends Controller
                 }
             }
             //GROUP Functionality
-                if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -389,8 +387,6 @@ class UploadController extends Controller
                     ]);
                 }
             }
-            
-            
         } else if ($topic_id == 3) {
             //    3 = dataset
 
@@ -446,9 +442,9 @@ class UploadController extends Controller
                 }
             }
             //GROUP Functionality
-                if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -457,8 +453,6 @@ class UploadController extends Controller
                     ]);
                 }
             }
-            
-            
         } else if ($topic_id == 4) {
             //    4 = workflow
 
@@ -515,9 +509,9 @@ class UploadController extends Controller
             }
 
             //GROUP Functionality
-            if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -656,9 +650,9 @@ class UploadController extends Controller
             }
 
             //GROUP Functionality
-            if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -667,7 +661,6 @@ class UploadController extends Controller
                     ]);
                 }
             }
-
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
@@ -786,9 +779,9 @@ class UploadController extends Controller
             }
 
             //GROUP Functionality
-            if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -797,7 +790,6 @@ class UploadController extends Controller
                     ]);
                 }
             }
-            
         }
         return redirect("/dashboard")->with("success", "Upload Successful");
     }
@@ -818,7 +810,7 @@ class UploadController extends Controller
                 'category' => 'required',
                 'file-upload' => 'required|mimes:zip,exe,dmg,zip,rar',
                 'tags' => 'required',
-                'summary-upload' => 'required|mimes:jpeg,png,jpg,mp4',
+                'summary-upload' => 'required|mimes:jpeg,png,jpg,mp4,webm,mkv,rar,zip',
             ],
 
             //Array to specify validation message for a particular validation
@@ -917,9 +909,9 @@ class UploadController extends Controller
             }
 
             //GROUP Functionality
-            if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([
@@ -1046,9 +1038,9 @@ class UploadController extends Controller
             }
 
             //GROUP Functionality
-            if($groups){
-                
-                foreach($groups as $groupings)  {
+            if ($groups) {
+
+                foreach ($groups as $groupings) {
                     $grp = Group::find($groupings);
                     $grp->upload()->attach($upload->id);
                     GroupShip::create([

@@ -12,7 +12,8 @@ class UploadAll extends Component
     use WithPagination;
     public $user;
     public $uploads;
-    public $search;
+    public string $search = '';
+    protected $queryString = ['search'];
     public $sortOption;
     public function mount()
     {
@@ -22,6 +23,13 @@ class UploadAll extends Component
     }
     public function render()
     {
+        if ($this->search) {
+            $this->uploads =  Upload::where('user_id', $this->user)
+                ->where('deleted_at', null)
+                ->where('title', 'like', '%' . $this->search . '%')
+                ->get();
+        }
+
         return view('livewire.upload-all', [
             'uploads' => $this->uploads,
         ]);
@@ -29,7 +37,6 @@ class UploadAll extends Component
 
     public function sort()
     {
-
         $option = (int)$this->sortOption;
         // If sortOption is filled
         if (!empty($option)) {
@@ -40,14 +47,10 @@ class UploadAll extends Component
             }
         }
     }
-
-    public function filter()
+    public function updated($property)
     {
-        if (!$this->search) {
-            $this->uploads = Upload::where('user_id', $this->user)
-                ->where('deleted_at', null)
-                ->where('title', 'like', '%' . $this->search . '%')
-                ->get();
+        if ($property == 'search') {
+            $this->resetPage();
         }
     }
 }

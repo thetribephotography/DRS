@@ -26,7 +26,7 @@
                             {{ $upload->updated_at->format('F d, Y') }}</p>
                         <a href="{{ route('download', $upload->_id) }}">
                             <button
-                                class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-b-hover"
+                                class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
                                 type="button">
                                 <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -37,10 +37,12 @@
                             </button>
                         </a>
                     </div>
-                    {{-- Vidoe --}}
-                    <div>
-                        <video class="" src=""></video>
+                    {{-- FIle Content --}}
+
+                    <div class="mt-6 w-full bg-pink-500">
+                        <x-file-content :upload="$upload" />
                     </div>
+                    {{-- File Content --}}
                     {{-- Bottom --}}
                     <div class="w-full rounded-md bg-slate-100 pb-8 pt-4 pr-10 shadow">
                         <div class="pl-6 text-s8 text-clgray">
@@ -102,8 +104,8 @@
                             {{-- Table --}}
 
                             <div class="relative overflow-x-auto">
-                                <table class="w-full text-left text-sm text-gray-500" x-show="openT">
-                                    <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                                <table class="text-gray-500 w-full text-left text-sm" x-show="openT">
+                                    <thead class="bg-gray-50 text-gray-700 text-xs uppercase">
                                         <tr>
                                             <th class="px-6 py-3" scope="col">
                                                 File Information
@@ -115,7 +117,7 @@
                                     </thead>
                                     <tbody>
                                         <tr class="border-b bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 File Name
                                             </td>
@@ -125,7 +127,7 @@
 
                                         </tr>
                                         <tr class="border-b bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 Authors
                                             </td>
@@ -136,7 +138,7 @@
                                             </td>
                                         </tr>
                                         <tr class="bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 Publication Date
                                             </td>
@@ -145,7 +147,7 @@
                                             </td>
                                         </tr>
                                         <tr class="bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 Date Posted
                                             </td>
@@ -154,7 +156,7 @@
                                             </td>
                                         </tr>
                                         <tr class="bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 Last Updated
                                             </td>
@@ -177,7 +179,7 @@
                     <section class="bg-white py-8 lg:py-16">
                         <div class="mx-auto max-w-2xl pr-4">
                             <div class="mb-6 flex items-center justify-between">
-                                <h2 class="text-lg font-bold text-gray-900 lg:text-2xl">Comments
+                                <h2 class="text-gray-900 text-lg font-bold lg:text-2xl">Comments
                                     @if (!count($upload->comments) == 0)
                                         ({{ count($upload->comments) }})
                                     @endif
@@ -186,9 +188,9 @@
                             <form class="mb-6" action="{{ route('upload.comment', $upload->_id) }}" method="POST">
                                 @csrf
                                 @method('POST')
-                                <div class="mb-4 rounded-lg rounded-t-lg border border-gray-200 bg-white py-2 px-4">
+                                <div class="border-gray-200 mb-4 rounded-lg rounded-t-lg border bg-white py-2 px-4">
                                     <label class="sr-only" for="comment">Your comment</label>
-                                    <textarea class="w-full border-0 px-0 text-sm text-gray-900 focus:outline-none focus:ring-0" id="comment"
+                                    <textarea class="text-gray-900 w-full border-0 px-0 text-sm focus:outline-none focus:ring-0" id="comment"
                                         name="comment" rows="6" placeholder="Write a comment..." required></textarea>
                                 </div>
                                 <a href="{{ asset('uploadpath') }}" download="">
@@ -211,16 +213,16 @@
                                 <article class="mb-6 rounded-lg bg-[#E9EDF1] p-6 text-base">
                                     <footer class="mb-2 flex items-center justify-between">
                                         <div class="flex items-center">
-                                            <p class="mr-3 inline-flex items-center text-sm text-gray-900"><img
+                                            <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
                                                     class="mr-2 h-6 w-6 rounded-full"
                                                     src="{{ $comment->user->profile_picture ? asset('storage/' . $comment->user->profile_picture) : asset('images/user.jpeg') }}"
                                                     alt="">
                                                 {{ $comment->user->name }} </p>
-                                            <p class="text-sm text-gray-600">
+                                            <p class="text-gray-600 text-sm">
                                                 {{ $comment->created_at->format('F d, Y') }}</p>
                                         </div>
                                         <button
-                                            class="inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-50 hover:bg-gray-100"
+                                            class="text-gray-400 focus:ring-gray-50 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none focus:ring-4"
                                             id="drop-comment-button" data-dropdown-toggle="comment-setting"
                                             type="button">
                                             <svg class="h-5 w-5" aria-hidden="true" fill="currentColor"
@@ -232,11 +234,11 @@
                                             <span class="sr-only">Comment settings</span>
                                         </button>
                                         <!-- Dropdown menu -->
-                                        <div class="z-10 hidden w-36 divide-y divide-gray-100 rounded bg-white shadow">
-                                            <ul class="py-1 text-sm text-gray-700">
+                                        <div class="divide-gray-100 z-10 hidden w-36 divide-y rounded bg-white shadow">
+                                            <ul class="text-gray-700 py-1 text-sm">
                                                 @if ($comment->user_id == Auth::user()->_id)
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100"
+                                                        <a class="hover:bg-gray-100 block py-2 px-4"
                                                             href="{{ route('comment.edit', $comment->_id) }}">Edit</a>
                                                     </li>
                                                 @endif
@@ -246,7 +248,7 @@
                                                         @csrf
                                                         @method('POST')
                                                         <li>
-                                                            <button class="block py-2 px-4 hover:bg-gray-100"
+                                                            <button class="hover:bg-gray-100 block py-2 px-4"
                                                                 type="submit">Delete</button>
                                                         </li>
                                                     </form>
@@ -255,7 +257,7 @@
                                                         @csrf
                                                         @method('POST')
                                                         <li>
-                                                            <button class="block py-2 px-4 hover:bg-gray-100"
+                                                            <button class="hover:bg-gray-100 block py-2 px-4"
                                                                 type="submit">Report</button>
                                                         </li>
                                                     </form>
@@ -265,7 +267,7 @@
                                     </footer>
                                     <p class="text-gray-500"> {{ $comment->content }} </p>
                                     <div class="mt-4 flex items-center space-x-4">
-                                        <button class="flex items-center text-sm text-gray-500 hover:underline"
+                                        <button class="text-gray-500 flex items-center text-sm hover:underline"
                                             type="button"
                                             onclick='Livewire.emit("openModal", "comment-reply", {{ json_encode(['data' => $comment->_id]) }})'>
                                             <svg class="mr-1 h-4 w-4" aria-hidden="true" fill="none"
@@ -285,15 +287,15 @@
                                     <article class="mb-6 ml-6 rounded-lg bg-white p-6 text-base lg:ml-12">
                                         <footer class="mb-2 flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <p class="mr-3 inline-flex items-center text-sm text-gray-900"><img
+                                                <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
                                                         class="mr-2 h-6 w-6 rounded-full"
                                                         src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                                         alt="Jese Leos">Jese Leos</p>
-                                                <p class="text-sm text-gray-600"><time title="February 12th, 2022"
+                                                <p class="text-gray-600 text-sm"><time title="February 12th, 2022"
                                                         pubdate datetime="2022-02-12">Feb. 12, 2022</time></p>
                                             </div>
                                             <button
-                                                class="inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-50 hover:bg-gray-100"
+                                                class="text-gray-400 focus:ring-gray-50 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none focus:ring-4"
                                                 id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
                                                 type="button">
                                                 <svg class="h-5 w-5" aria-hidden="true" fill="currentColor"
@@ -305,20 +307,20 @@
                                                 <span class="sr-only">Comment settings</span>
                                             </button>
                                             <!-- Dropdown menu -->
-                                            <div class="z-10 hidden w-36 divide-y divide-gray-100 rounded bg-white shadow"
+                                            <div class="divide-gray-100 z-10 hidden w-36 divide-y rounded bg-white shadow"
                                                 id="dropdownComment2">
-                                                <ul class="py-1 text-sm text-gray-700"
+                                                <ul class="text-gray-700 py-1 text-sm"
                                                     aria-labelledby="dropdownMenuIconHorizontalButton">
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100"
+                                                        <a class="hover:bg-gray-100 block py-2 px-4"
                                                             href="#">Edit</a>
                                                     </li>
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100"
+                                                        <a class="hover:bg-gray-100 block py-2 px-4"
                                                             href="#">Remove</a>
                                                     </li>
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        <a class="hover:bg-gray-100 dark:hover:bg-gray-600 block py-2 px-4 dark:hover:text-white"
                                                             href="#">Report</a>
                                                     </li>
                                                 </ul>

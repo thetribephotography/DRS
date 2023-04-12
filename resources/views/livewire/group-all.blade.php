@@ -5,7 +5,7 @@
         <div class="flex h-full w-[81.5rem] justify-between">
             <div class="flex">
                 <h1 class="text-s4 font-semibold text-cdblack">Groups</h1>
-                <span class="ml-4 mt-3 text-s6 font-medium text-clgray">56</span>
+                <span class="ml-4 mt-3 text-s6 font-medium text-clgray">1</span>
             </div>
 
             <div class="ml-8 flex w-1/2 items-center">
@@ -56,9 +56,9 @@
         <div class="g mt-6 h-full w-[81.5rem]">
 
             {{-- Flex Box --}}
-            <div class="g grid-cols-4 gap-4 lg:grid">
+            <div class="g grid-cols-4 gap-4 bg-[#EFEFEF] lg:grid">
                 {{-- Card --}}
-                <div class="b h-full w-full border border-red-400 px-3 py-4">
+                <div class="h-full w-full rounded-md border bg-white px-3 py-4 hover:border-cmblue">
                     {{-- Top --}}
                     <div class="flex justify-between">
                         <h3 class="text-s6 font-semibold text-cdblack">Cloud Chasers</h3>
@@ -72,8 +72,8 @@
                         <img class="mr-2 h-12 w-12 rounded-full" src="{{ asset('images/pic_software.png') }}"
                             alt="">
                         <div class="mb-2">
-                            <h3 class="text-s7 font-semibold text-clblack">David Tony</h3>
-                            <p class="text-s7 font-regular text-gg">davidtony@gmail.com</p>
+                            <h3 class="text-s7 font-semibold text-clblack">Steven Dexter</h3>
+                            <p class="text-s7 font-regular text-gg">steven@gmail.com</p>
                         </div>
                     </div>
                     {{-- Uploads and downloads --}}
@@ -89,17 +89,56 @@
                     </div>
                     {{-- Date created --}}
                     <div class="mt-8 flex justify-between text-s9 font-medium text-gg">
-                        Created at 12 March 2022
-                        <div class="ml-12" x-data="{ open: false }">
-                            <div class="absolute h-18 w-18 bg-red-500" x-show="open">
-                                Hey
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                x-show="true" @click="open = !open">
-                                <path fill="currentColor"
-                                    d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2Z" />
-                            </svg>
+                        <p>Created at 12 March 2022
+                        </p>
+                        <div class="ml-12" x-data="{ open: false }" x-show="true">
+                            {{-- Drp start --}}
+                            <button
+                                class="text-gray-900 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none"
+                                type="button" x-show="true" @click="open=!open">
+                                <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
+                                    </path>
+                                </svg>
+                            </button>
 
+                            <!-- Dropdown menu -->
+                            <div class="divide-gray-100 absolute top-[19rem] left-[13rem] z-10 w-44 divide-y rounded-lg bg-white shadow transition duration-200 ease-in-out"
+                                x-show="open">
+                                {{-- View --}}
+                                <div class="py-2">
+                                    <a class="text-gray-700 block px-4 py-2 text-sm transition duration-75 ease-in hover:bg-[#CFF1FF] hover:text-clblue"
+                                        href="#">
+                                        <div class="flex">
+                                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                            <p class="ml-1"> View</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                {{-- Leave --}}
+                                <div class="py-2">
+                                    <a class="text-gray-700 block px-4 py-2 text-sm transition duration-75 ease-in hover:bg-[#CFF1FF] hover:text-clblue"
+                                        href="#">
+                                        <div class="flex">
+                                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                            </svg>
+                                            <p class="ml-1">Leave</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {{-- Drop end --}}
                         </div>
                     </div>
                 </div>
