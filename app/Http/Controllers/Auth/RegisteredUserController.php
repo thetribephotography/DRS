@@ -43,8 +43,9 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        $name = $request->fname . $request->lname;
 
-        $profile = $this->UploadFile($request->file('image-upload'), 'Profile');
+        $profile = $this->UploadFile($request->file('image-upload'), 'Profile', 'public', $name);
 
         $user = User::create([
             'profile_picture' => $profile,

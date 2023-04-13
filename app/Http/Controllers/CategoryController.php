@@ -48,10 +48,11 @@ class CategoryController extends Controller
     public function show($slug)
     {
 
-        $category = Category::with('uploads')->where('slug', $slug)->first();
+        $category = Category::with('uploads',)->where('slug', $slug)->first();
+        $uploads = Upload::whereIn('_id', $category->upload_id)->get();
         $title = $category->name;
-
-        return view('categories.show', compact('title', 'category'));
+        // dd($category, $uploads);
+        return view('categories.show', compact('title', 'category', 'uploads'));
     }
 
     // SHOW ADMIN Category (With Private)

@@ -7,9 +7,9 @@
             <div
                 class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                 <div class="flex items-center justify-between px-4">
-                    <h2 class="text-lg font-medium text-gray-900">Filters</h2>
+                    <h2 class="text-gray-900 text-lg font-medium">Filters</h2>
                     <button
-                        class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
+                        class="text-gray-400 -mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2"
                         type="button">
                         <span class="sr-only">Close menu</span>
                         <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -20,9 +20,9 @@
                 </div>
 
                 <!-- Filters -->
-                <form class="mt-4 border-t border-gray-200">
+                <form class="border-gray-200 mt-4 border-t">
                     <h3 class="sr-only">Categories</h3>
-                    <ul class="px-2 py-3 font-medium text-gray-900" role="list">
+                    <ul class="text-gray-900 px-2 py-3 font-medium" role="list">
                         <li>
                             <a class="block px-2 py-3" href="#">Totes</a>
                         </li>
@@ -44,13 +44,13 @@
                         </li>
                     </ul>
 
-                    <div class="border-t border-gray-200 px-4 py-6">
+                    <div class="border-gray-200 border-t px-4 py-6">
                         <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button" aria-controls="filter-section-mobile-0" aria-expanded="false">
-                                <span class="font-medium text-gray-900">Color</span>
+                                <span class="text-gray-900 font-medium">Color</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
@@ -70,58 +70,58 @@
                         <div class="pt-6" id="filter-section-mobile-0">
                             <div class="space-y-6">
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-color-0" name="color[]" type="checkbox" value="white">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-color-0">White</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-color-1" name="color[]" type="checkbox" value="beige">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-color-1">Beige</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-color-2" name="color[]" type="checkbox" value="blue"
                                         checked>
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-color-2">Blue</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-color-3" name="color[]" type="checkbox" value="brown">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-color-3">Brown</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-color-4" name="color[]" type="checkbox" value="green">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-color-4">Green</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-color-5" name="color[]" type="checkbox" value="purple">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-color-5">Purple</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-200 px-4 py-6">
+                    <div class="border-gray-200 border-t px-4 py-6">
                         <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button" aria-controls="filter-section-mobile-1" aria-expanded="false">
-                                <span class="font-medium text-gray-900">Category</span>
+                                <span class="text-gray-900 font-medium">Category</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
@@ -142,59 +142,59 @@
                             <div class="space-y-6">
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-category-0" name="category[]" type="checkbox"
                                         value="new-arrivals">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-category-0">New Arrivals</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-category-1" name="category[]" type="checkbox"
                                         value="sale">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-category-1">Sale</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-category-2" name="category[]" type="checkbox"
                                         value="travel" checked>
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-category-2">Travel</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-category-3" name="category[]" type="checkbox"
                                         value="organization">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-category-3">Organization</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-category-4" name="category[]" type="checkbox"
                                         value="accessories">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-category-4">Accessories</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-200 px-4 py-6">
+                    <div class="border-gray-200 border-t px-4 py-6">
                         <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button" aria-controls="filter-section-mobile-2" aria-expanded="false">
-                                <span class="font-medium text-gray-900">Size</span>
+                                <span class="text-gray-900 font-medium">Size</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
@@ -215,50 +215,50 @@
                             <div class="space-y-6">
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-size-0" name="size[]" type="checkbox" value="2l">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-size-0">2L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-size-1" name="size[]" type="checkbox" value="6l">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-size-1">6L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-size-2" name="size[]" type="checkbox" value="12l">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-size-2">12L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-size-3" name="size[]" type="checkbox" value="18l">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-size-3">18L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-size-4" name="size[]" type="checkbox" value="20l">
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-size-4">20L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-mobile-size-5" name="size[]" type="checkbox" value="40l"
                                         checked>
-                                    <label class="ml-3 min-w-0 flex-1 text-gray-500"
+                                    <label class="text-gray-500 ml-3 min-w-0 flex-1"
                                         for="filter-mobile-size-5">40L</label>
                                 </div>
                             </div>
@@ -270,7 +270,7 @@
     </div>
 
     <main class="ml-[5rem] max-w-7xl px-4 sm:px-6">
-        <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-4">
+        <div class="border-gray-200 flex items-baseline justify-between border-b pb-6 pt-4">
             <h1 class="text-2xl font-bold tracking-tight text-black">Search Results</h1>
 
 
@@ -278,7 +278,7 @@
                 <div class="relative inline-block text-left">
                     <div>
                         <button
-                            class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+                            class="text-gray-700 hover:text-gray-900 group inline-flex justify-center text-sm font-medium"
                             id="menu-button" type="button" aria-expanded="false" aria-haspopup="true"
                             x-show="true">
                             <select id="" name="" wire:model="selectedSortOption"
@@ -312,7 +312,7 @@
                     </div> --}}
                 </div>
 
-                <button class="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7" type="button">
+                <button class="text-gray-400 hover:text-gray-500 -m-2 ml-5 p-2 sm:ml-7" type="button">
                     <span class="sr-only">View grid</span>
                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -320,7 +320,7 @@
                             clip-rule="evenodd" />
                     </svg>
                 </button>
-                <button class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden" type="button">
+                <button class="text-gray-400 hover:text-gray-500 -m-2 ml-4 p-2 sm:ml-6 lg:hidden" type="button">
                     <span class="sr-only">Filters</span>
                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -337,13 +337,13 @@
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 <!-- Filters -->
                 <div class="hidden lg:block">
-                    <div class="border-b border-gray-200 py-6" x-data="{ open: false }">
+                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button">
-                                <span class="font-medium text-gray-900">Upload type</span>
+                                <span class="text-gray-900 font-medium">Upload type</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
@@ -365,49 +365,49 @@
                         <div class="pt-6" x-show="open">
                             <div class="space-y-4">
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
                                         type="checkbox" value="1" wire:model="SelectedType"
                                         wire:click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Article</label>
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Article</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
                                         type="checkbox" value="2" wire:model="SelectedType"
                                         wire:click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-1">Software</label>
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-1">Software</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
                                         type="checkbox" value="3" wire:model="SelectedType"
                                         wire:click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-1">Dataset</label>
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-1">Dataset</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
                                         id="filter-size-3" type="checkbox" value="4" wire:model="SelectedType"
                                         wire:click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-3">Workflow</label>
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-3">Workflow</label>
                                 </div>
 
                                 {{-- Others temporarily off --}}
                                 <div class="flex items-center">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-cmblue focus:ring-cmblue"
+                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
                                         type="checkbox" value="5">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-4">Others</label>
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-4">Others</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="border-b border-gray-200 py-6" x-data="{ open: false }">
+                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button">
-                                <span class="font-medium text-gray-900">Access Rights</span>
+                                <span class="text-gray-900 font-medium">Access Rights</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
@@ -430,35 +430,35 @@
                             <div class="space-y-4">
 
                                 <div class="flex items-center">
-                                    <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
+                                    <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
                                         name=categories[]" type="checkbox" value="1" wire:model="SelectedAccess"
-                                        wire::click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Public</label>
+                                        wire:click="filter">
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Public</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
+                                    <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
                                         name=categories[]" type="checkbox" value="2" wire:model="SelectedAccess"
-                                        wire::click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Private</label>
+                                        wire:click="filter">
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Private</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
+                                    <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
                                         name=categories[]" type="checkbox" value="3" wire:model="SelectedAccess"
-                                        wire::click="filter">
-                                    <label class="ml-3 text-s8 text-gray-600" for="filter-size-0">Group</label>
+                                        wire:click="filter">
+                                    <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Group</label>
                                 </div>
 
 
                             </div>
                         </div>
                     </div>
-                    <div class="border-b border-gray-200 py-6" x-data="{ open: false }">
+                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button">
-                                <span class="font-medium text-gray-900">Categories</span>
+                                <span class="text-gray-900 font-medium">Categories</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
@@ -481,10 +481,10 @@
                             <div class="space-y-4">
                                 @foreach ($categories as $category)
                                     <div class="flex items-center">
-                                        <input class="focclblueblue h-4 w-4 rounded border-gray-300 text-clblue"
-                                            name=categories[]" type="checkbox" value="{{ $category->id }}"
+                                        <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
+                                            type="checkbox" value="{{ $category->id }}"
                                             wire:model="SelectedCategories" wire:click="filter">
-                                        <label class="ml-3 text-s8 text-gray-600"
+                                        <label class="text-gray-600 ml-3 text-s8"
                                             for="filter-size-0">{{ $category->name }}</label>
                                     </div>
                                 @endforeach
@@ -492,13 +492,13 @@
                         </div>
                     </div>
 
-                    <div class="border-b border-gray-200 py-6" x-data="{ open: false }">
+                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button">
-                                <span class="font-medium text-gray-900">Tags</span>
+                                <span class="text-gray-900 font-medium">Tags</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
@@ -522,22 +522,22 @@
 
                                 @foreach ($tags as $tag)
                                     <div class="flex items-center">
-                                        <input class="h-4 w-4 rounded border-gray-300 text-clblue focus:ring-cmblue"
+                                        <input class="border-gray-300 h-4 w-4 rounded text-clblue focus:ring-cmblue"
                                             type="checkbox" value="{{ $tag->slug }}" wire:model="SelectedTags">
-                                        <label class="ml-3 text-s8 text-gray-600"
+                                        <label class="text-gray-600 ml-3 text-s8"
                                             for="filter-size-0">{{ $tag->name }}</label>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    <div class="border-b border-gray-200 py-6" x-data="{ open: false }">
+                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
+                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
                                 type="button">
-                                <span class="font-medium text-gray-900">Date Published</span>
+                                <span class="text-gray-900 font-medium">Date Published</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
@@ -560,44 +560,44 @@
                             <div class="space-y-4">
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         name="size[]" type="checkbox" value="2l">
-                                    <label class="ml-3 text-s8 text-gray-600">2L</label>
+                                    <label class="text-gray-600 ml-3 text-s8">2L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         name="size[]" type="checkbox" value="6l">
-                                    <label class="ml-3 text-s8 text-gray-600">6L</label>
+                                    <label class="text-gray-600 ml-3 text-s8">6L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         name="size[]" type="checkbox" value="12l">
-                                    <label class="ml-3 text-s8 text-gray-600">12L</label>
+                                    <label class="text-gray-600 ml-3 text-s8">12L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         id="filter-size-3" name="size[]" type="checkbox" value="18l">
-                                    <label class="ml-3 text-s8 text-gray-600">18L</label>
+                                    <label class="text-gray-600 ml-3 text-s8">18L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         name="size[]" type="checkbox" value="20l">
-                                    <label class="ml-3 text-s8 text-gray-600">20L</label>
+                                    <label class="text-gray-600 ml-3 text-s8">20L</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input
-                                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
                                         name="size[]" type="checkbox" value="40l" checked>
-                                    <label class="ml-3 text-s8 text-gray-600">40L</label>
+                                    <label class="text-gray-600 ml-3 text-s8">40L</label>
                                 </div>
                             </div>
                         </div>
@@ -610,7 +610,7 @@
                     {{-- Search bar --}}
                     <div class="relative mb-6 w-full">
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-gray-500" aria-hidden="true" fill="currentColor"
+                            <svg class="text-gray-500 h-5 w-5" aria-hidden="true" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
@@ -618,7 +618,7 @@
                             </svg>
                         </div>
                         <input
-                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-clblue focus:ring-clblue"
+                            class="border-gray-300 bg-gray-50 text-gray-900 block w-full rounded-lg border p-2.5 pl-10 text-sm focus:border-clblue focus:ring-clblue"
                             type="text" placeholder="Search" wire:model.debounce.2000ms="search"
                             wire:keydown.enter="filter">
                     </div>
@@ -628,7 +628,7 @@
                     {{-- LoadingBar --}}
                     <div class="text-center" wire:loading>
                         <div role="status">
-                            <svg class="mr-2 inline h-8 w-8 animate-spin fill-clblue text-gray-200" aria-hidden="true"
+                            <svg class="text-gray-200 mr-2 inline h-8 w-8 animate-spin fill-clblue" aria-hidden="true"
                                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -710,6 +710,19 @@
                                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
                                                 <p class="ml-1">Group</p>
+                                            </div>
+                                        @elseif($upload->access_id == 4)
+                                            {{-- Visibility --}}
+                                            <div class="mr-4 flex text-s9 text-[#6F737A]">
+                                                <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                                <p class="ml-1">Personal</p>
                                             </div>
                                         @endif
                                         @if ($upload->topic_id == 1)

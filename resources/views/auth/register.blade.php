@@ -1,13 +1,12 @@
 <x-guest-layout :title="$title">
     <section>
-        <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
-            <a class="mb-4 flex items-center text-2xl font-bold text-clblack" href="#">
-                <img src="" alt="">
+        <div class="items-center justify-center px-6 py-8 pl-[35rem] md:h-screen lg:pt-8">
+            <a class="pl-[6rem] text-center text-2xl font-bold text-clblack" href="#">
                 SoftwareRepoHub
             </a>
-            <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0">
+            <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0">
                 <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
-                    <h1 class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                    <h1 class="text-gray-900 text-center text-xl font-bold leading-tight tracking-tight md:text-2xl">
                         Sign Up
                     </h1>
                     <!-- Session Status -->
@@ -24,7 +23,7 @@
                                     First Name</label>
                                 <div>
                                     <input
-                                        class="block h-11 w-full rounded-lg border-2 border-gl p-2.5 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                        class="text-gray-900 block h-11 w-full rounded-lg border-2 border-gl p-2.5 text-s1 focus:border-cmblue sm:text-sm"
                                         id="first_name" name="fname" type="text" value="{{ old('fname') }}"
                                         placeholder="First Name" required="">
                                 </div>
@@ -35,7 +34,7 @@
                                     Last Name</label>
                                 <div>
                                     <input
-                                        class="block h-11 w-full rounded-lg border-2 border-gl p-2.5 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                        class="text-gray-900 block h-11 w-full rounded-lg border-2 border-gl p-2.5 text-s1 focus:border-cmblue sm:text-sm"
                                         id="last_name" name="lname" type="text" value="{{ old('lname') }}"
                                         placeholder="Last Name" required="">
                                 </div>
@@ -47,7 +46,7 @@
                                 Email</label>
                             <div>
                                 <input
-                                    class="block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                    class="text-gray-900 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 focus:border-cmblue sm:text-sm"
                                     id="email" name="email" type="email" value="{{ old('email') }}"
                                     placeholder="Johndoe@gmail.com" required="">
                                 <svg class="absolute h-4 w-4 -translate-y-7 translate-x-4 text-gg"
@@ -72,7 +71,7 @@
                                         d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
                                 </svg>
                                 <input
-                                    class="block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                    class="text-gray-900 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 focus:border-cmblue sm:text-sm"
                                     id="password" name="password" x-bind:type="open ? 'text' : 'password'"
                                     placeholder="Password" required="">
 
@@ -109,7 +108,7 @@
                                         d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
                                 </svg>
                                 <input
-                                    class="focus:ring-primary-600 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 text-gray-900 focus:border-cmblue sm:text-sm"
+                                    class="focus:ring-primary-600 text-gray-900 block h-11 w-full rounded-lg border-2 border-gl p-2.5 px-12 text-s1 focus:border-cmblue sm:text-sm"
                                     id="password_confirmation" name="password_confirmation"
                                     x-bind:type="open ? 'text' : 'password'" placeholder="Password" required="">
 
@@ -143,13 +142,13 @@
                                 for="password_confirmation">
                                 Profile picture</label>
                             <input
-                                class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none"
+                                class="white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 border-gray-300 bg-gray-50 text-gray-900 block w-full cursor-pointer rounded-lg border text-lg focus:outline-none"
                                 id="image-upload" name="image-upload" type="file">
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
                                 <div class="flex h-5 items-center">
-                                    <input class="h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-0"
+                                    <input class="border-gray-300 bg-gray-50 h-4 w-4 rounded border focus:ring-0"
                                         id="terms" name="terms" type="checkbox" aria-describedby="remember">
                                 </div>
                                 <div class="ml-3 text-s8">
@@ -160,7 +159,7 @@
                         <button
                             class="focus:ring-primary-300 w-full rounded-lg bg-cmblue px-5 py-2.5 text-center text-s7 font-semibold text-white focus:outline-none focus:ring-0 hover:bg-clblue"
                             type="submit">Sign in</button>
-                        <p class="text-center text-sm font-light text-gray-500">
+                        <p class="text-gray-500 text-center text-sm font-light">
                             Already have an account? <span class="text-cmblue">
                                 <a class="font-medium hover:underline" href="{{ route('login') }}">Log In</a>
                             </span>

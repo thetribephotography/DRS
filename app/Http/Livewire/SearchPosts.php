@@ -29,8 +29,6 @@ class SearchPosts extends Component
 
 
     // Override the default layout file for this component
-    protected $listeners = ['searchResultsLoaded'];
-
     public $isActive = true;
 
 
@@ -52,7 +50,7 @@ class SearchPosts extends Component
     {
         $this->categories = Category::all();
         $this->tags = Tag::all();
-        $this->posts = Upload::latest()->filter(request(['search']))->paginate(8);
+        $this->posts = Upload::latest()->filter(request(['search']))->whereIn('access_id', [1, 2])->paginate(8);
 
         // dd($this->posts);
     }
@@ -80,21 +78,12 @@ class SearchPosts extends Component
 
                 if (!empty($this->SelectedType)) {
                     $query
-                        ->whereIn('topic_id', $this->SelectedType)
+                        ->whereIn('topic_id', $this->SelectedType);
+                }
+                if (!empty($this->SelectedCategories)) {
+                    $query->whereIn('category_id', $this->SelectedCategories)
                         ->latest('created_at');
                 }
-
-                // if (!empty($this->SelectedType)) {
-                //     $query
-                //         ->whereIn('access_id', $this->SelectedAccess)
-                //         ->latest('created_at');
-                // }
-            }
-
-            if (!empty($this->SelectedCategories)) {
-                $query->where('title', 'like', '%' . $this->search . '%')
-                    ->whereIn('category_id', $this->SelectedCategories)
-                    ->latest('created_at');
             }
         } elseif ((int)$this->selectedSortOption == 1) { //Sort By Latest
             if ($this->search) {
