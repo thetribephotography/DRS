@@ -1,15 +1,15 @@
 import ApexCharts from "apexcharts";
 
-// ===== chartThree
-const chart03 = () => {
-  const chartThreeOptions = {
-    series: [45, 55],
+// ===== chartFiveteen
+const chart15 = () => {
+  const chart15Options = {
+    series: [65, 34],
     chart: {
       type: "donut",
       width: 380,
     },
     colors: ["#3C50E0", "#0FADCF"],
-    labels: ["Downloads", "Uploads",],
+    labels: ["Desktops", "Tablet"],
     legend: {
       show: false,
       position: "bottom",
@@ -39,15 +39,15 @@ const chart03 = () => {
     ],
   };
 
-  const chartSelector = document.querySelectorAll("#chartThree");
+  const chartSelector = document.querySelectorAll("#chart15");
 
   if (chartSelector.length) {
     const chartThree = new ApexCharts(
-      document.querySelector("#chartThree", "chartThree"),
-      chartThreeOptions
+      document.querySelector("#chart15", "chart15"),
+      chart15Options
     );
-    chartThree.render();
+    chart15.render();
   }
 };
 
-export default chart03;
+export default chart15;

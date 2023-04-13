@@ -36,7 +36,7 @@ class AdminController extends Controller
     // VIEW ALL UPLOADS IN A LIST
     public function useruploads()
     {
-        $this->authorize('view_all_post', 'You are not Authorized for this Action');
+        // $this->authorize('view_all_post', 'You are not Authorized for this Action');
         $title  = "Admin|Dashboard";
         $see = Upload::whereNull('deleted_at')->get();
 
@@ -94,7 +94,7 @@ class AdminController extends Controller
     // view all groups in a list
     public function usergroups()
     {
-        $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
+        // $this->authorize('view_all_group', 'You do not have the Authorization for this Action');
         $title  = "Admin|Dashboard";
         $see = Group::whereNull('deleted_at')->get();
 

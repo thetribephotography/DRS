@@ -21,7 +21,7 @@
                 </span>
                 <div class="w-full">
                 <p class="font-semibold text-secondary">Total Downloads</p>
-                <p class="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+                <p class="text-sm font-medium">12.03-2023 - 11.04.2023</p>
                 </div>
             </div>
             </div>

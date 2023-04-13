@@ -13,8 +13,8 @@ use Maklad\Permission\Models\Permission;
 class UserShow extends ModalComponent
 {
     public $user, $upload, $role;
-    public $role_id, $newrole, $runs, $old_role_name; 
-    public $rales, $one, $roles, $newvariable;
+    public $role_id, $newrole, $old_role_name; 
+    public $rales, $one_user, $roles, $old_role_instance;
 
     public static function modalMaxWidth(): string
     {
@@ -37,34 +37,30 @@ class UserShow extends ModalComponent
 
     public function render()
     {
-        $this->one = User::where('_id', $this->user)->first();
-        // $this->runs = $this->one->reply_ids;
-        $this->role_id = Role::whereIn('_id', $this->one->role_ids)->get();
+        $this->one_user = User::where('_id', $this->user)->first();
+
+        $this->role_id = Role::whereIn('_id', $this->one_user->role_ids)->get();
         $this->upload = Upload::Where('user_id', $this->user)->get();
         $this->rales = Role::all();
 
-        return view('livewire.user-show', [$this->one, $this->upload, $this->rales, $this->role_id]);
+        return view('livewire.user-show', [$this->one_user, $this->upload, $this->rales, $this->role_id]);
     }
 
     public function update()
     {
         $validateData = $this->validate();
 
-        $this->role_id = Role::whereIn('_id', $this->one->role_ids)->first();
+        $this->role_id = Role::whereIn('_id', $this->one_user->role_ids)->first();
         $this->old_role_name = $this->role_id->name;
 
-        $this->newrole = $this->one;
+        $this->newrole = $this->one_user;
 
-        // dd($this->newrole);
+        $this->old_role_instance = Role::findbyName($this->old_role_name);
 
-        $this->newvariable = Role::findbyName($this->old_role_name);
-
-        // dd($this->newvariable);
-
-        if($this->newrole->hasRole($this->newvariable))
+        if($this->newrole->hasRole($this->old_role_instance))
         {
-            $this->newrole->removeRole($this->newvariable);
-            // dd($this->roles);
+            $this->newrole->removeRole($this->old_role_instance);
+       
             $this->newrole->assignRole($this->roles);
         } 
 

@@ -15,7 +15,7 @@
                         <label class="mb-2.5 block text-black dark:text-white">
                           Name
                         </label>
-                        <input type="text" value=" {{ $one->name }} " 
+                        <input type="text" value=" {{ $one_user->name }} " 
                           class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" disabled/>
                       </div>
 
@@ -32,7 +32,7 @@
                       <label class="mb-2.5 block text-black dark:text-white">
                         Email <span class="text-meta-1">*</span>
                       </label>
-                      <input type="email" value= " {{ $one->email }} "
+                      <input type="email" value= " {{ $one_user->email }} "
                         class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" disabled/>
                     </div>
 

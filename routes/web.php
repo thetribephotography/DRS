@@ -157,7 +157,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
     // Route::get('group/create', [GroupController  ::class, 'create_group'])->name('user.create_group');
-    Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+    Route::post('group/create', [GroupController::class, 'create'])->name('create.group');
     // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
     Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
     Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');
