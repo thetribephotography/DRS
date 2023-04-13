@@ -11,7 +11,7 @@
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm">
-                    <form class="p-6" action="{{ route('group.create') }}" method="POST" enctype="multipart/form-data">
+                    <form class="p-6" action="{{ route('create.group') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
                             <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-black"
