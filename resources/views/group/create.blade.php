@@ -11,7 +11,7 @@
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm">
-                    <form class="p-6" action="" method="POST">
+                    <form class="p-6" action="{{ route('create.group') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
                             <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-black"
@@ -31,6 +31,13 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-6">
+                            <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-black"
+                                for="name">Group Description</label>
+                            <input
+                                class="text-black-900 white:bg-gray-700 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                id="group_desc" name="group_desc" type="textarea" placeholder="Enter a valid Decription">
+                        </div>    
                         <button
                             class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 dark:bg-blue-600 dark:focus:ring-blue-800 dark:hover:bg-blue-700 sm:w-auto"
                             type="submit">

@@ -26,11 +26,12 @@ class Upload extends Model
         'author',
         'keywords',
         'access_id',
-        'doi_id',
+        'doi',
         'topic_id',
         'path',
         'media',
         'user_id',
+        'license',
         'tags_id',
         'comments',
         'category_id',
@@ -41,8 +42,13 @@ class Upload extends Model
     ];
 
     protected $casts = [
+        'published_at' => 'date',
         'category_id' => 'array',
         'tags_id' => 'array',
+        'language' => 'array',
+        'group_id' => 'array',
+        'keywords' => 'array',
+        'author' => 'array',
     ];
 
 
@@ -67,9 +73,10 @@ class Upload extends Model
 
     public function group()
     {
-        return $this->hasMany(Group::class, 'group_id');
+        return $this->belongsToMany(Group::class, 'group_ships', 'group_id', 'upload_id');
     }
 
+    // Filter frrom Request
     public function scopeFilter($query, array $filters)
     {
 
@@ -78,27 +85,15 @@ class Upload extends Model
             //searches by title
             $query->where('title', 'like', '%' . request('search') . '%');
         }
+    }
 
+    public function scopecustomfilter($query, array $filters)
+    {
 
+        if ($filters['search'] ?? false) {
 
-        // //Tag filter
-        // if ($filters['tag'] ?? false) {
-        //     //quer like code
-        //     $query->where('tags', 'like', '%' . request('tag') . '%');
-        // }
-
-        // //search filter
-        // if ($filters['search'] ?? false) {
-        //     //query like code
-
-        //     //searches by title
-        //     $query->where('title', 'like', '%' . request('search') . '%')
-
-        //     //searches by description
-        //     ->orWhere('description', 'like', '%' . request('search') . '%')
-
-        //     //searches by tags
-        //     ->orWhere('tags', 'like', '%' . request('search') . '%');
-        // }
+            //searches by title
+            $query->where('title', 'like', '%' . $filters['search'] . '%');
+        }
     }
 }

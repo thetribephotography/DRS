@@ -12,8 +12,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Livewire\SearchPosts;
+use App\Http\Livewire\SearchResult;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -39,7 +42,7 @@ use Illuminate\Http\Request;
 |
 | Public Routes - Are free and acesssible to all. The purpose is for Unregistered users/Visitors and acesss those pages and send requests
 | User Routes - Places where only the user has access to.
-| Admin Routes - Places where only the user has access to.
+| Admin Routes - Places where only the Admin has access to.
 | User && Admin Routes - These are places both the users and admins can access.
 |
 |
@@ -83,13 +86,23 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
 
 //Search Result from landing page
-Route::get('/search-results', [UserController::class, 'search_result']);
+Route::get('/search', SearchPosts::class)->name('search');
 //View search result (Single)
 Route::any('/upload/public/{slug}', [UploadController::class, 'public_view'])->name('upload.show_one');
 
+///Download
+Route::get('/download/{id}', [UploadController::class, 'download'])->name('download');
+
 //Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/categories/{slug}', [CategoryController::class, 'show_user'])->name('category.show');
+Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('category.show');
+
+//Tags
+Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
+Route::get('/tags/{slug}', [TagController::class, 'show'])->name('tag.show');
+
+//View User Profile
+Route::get('/public/user/profile/{id}', [UserController::class, 'public_show'])->name('user.profile.public');
 
 
 // Only Admin can access
@@ -98,6 +111,9 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/errors', [AdminController::class, 'errors'])->name('admin.errors');
+    Route::get('/admin/user_table', [AdminController::class, 'usertable'])->name('admin.user_table');
+    Route::get('/admin/user_uploads', [AdminController::class, 'useruploads'])->name('admin.uploads');
+    Route::get('/admin/user_groups', [AdminController::class, 'usergroups'])->name('admin.groups');
 });
 
 
@@ -109,22 +125,37 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::get('user/edit_profile', [UserController::class, 'edit'])->name('user.edit-profile');
     Route::post('account-delete', [UserController::class, 'destroy'])->name('user.delete-account');
 
-
-
-    //  UPLOAD
+    // Upload
     Route::any('user/upload', [UploadController::class, 'upload'])->name('user.upload');
-    Route::get('user/publish', [UploadController::class, 'published'])->name('user.publish');
     Route::post('upload/publish', [UploadController::class, 'publish'])->name('uploads.publish');
-    Route::get('user/software', [UploadController::class, 'softwares'])->name('user.software');
-    // Route::post('upload/software',[UploadController::class, 'software'])->name('uploads.software');
-    Route::get('user/dataset', [UploadController::class, 'datasets'])->name('user.dataset');
-    // Route::post('upload/dataset',[UploadController::class, 'dataset'])->name('uploads.dataset');
-    Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
-    // Route::post('upload/webflow',[UploadController::class, 'webflow'])->name('uploads.webflow');
-    Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
-    // Route::any('/upload/uploadshow/{_id}',[UploadController::class, 'uploadshow'])->name('upload.upload_show');
+    Route::delete('/upload/{id}', [UploadController::class, 'delete'])->name('upload.destroy');
+    Route::put('/upload/update_access/{id}', [UploadController::class, 'update_access'])->name('upload.update.access');
 
-    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
+    Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
+
+    //For Articles
+    Route::get('user/publish', [UploadController::class, 'published'])->name('user.publish');
+    Route::get('upload/article/{slug}/edit', [UploadController::class, 'article_edit'])->name('upload.article.edit');
+    Route::post('upload/publish/article', [UploadController::class, 'article_save'])->name('upload.save.article');
+    Route::post('upload/update/article', [UploadController::class, 'article_update'])->name('upload.update.article');
+
+    //For Software
+    Route::get('user/software', [UploadController::class, 'softwares'])->name('user.software');
+    Route::get('upload/software/{slug}/edit', [UploadController::class, 'software_edit'])->name('upload.software.edit');
+    Route::post('upload/publish/software', [UploadController::class, 'software_save'])->name('upload.save.software');
+    Route::post('upload/update/software', [UploadController::class, 'software_update'])->name('upload.update.software');
+
+    //For Dataset
+    Route::get('user/dataset', [UploadController::class, 'datasets'])->name('user.dataset');
+    Route::get('upload/dataset/{slug}/edit', [UploadController::class, 'dataset_edit'])->name('upload.dataset.edit');
+    Route::post('upload/publish/dataset', [UploadController::class, 'dataset_save'])->name('upload.save.dataset');
+    Route::post('upload/update/dataset', [UploadController::class, 'dataset_update'])->name('upload.update.dataset');
+
+    //For Workflow
+    Route::get('user/workflow', [UploadController::class, 'workflows'])->name('user.workflow');
+    Route::get('upload/workflow/{slug}/edit', [UploadController::class, 'workflow_edit'])->name('upload.workflow.edit');
+    Route::post('upload/publish/workflow', [UploadController::class, 'workflow_save'])->name('upload.save.workflow');
+    Route::post('upload/update/workflow', [UploadController::class, 'workflow_update'])->name('upload.update.workflow');
 
 
     //  Group
@@ -133,7 +164,8 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     // Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
     // Route::get('user/groups', [GroupContoller::class, 'show'])->name('group.view_group');
     // Route::get('group/create', [GroupController  ::class, 'create_group'])->name('user.create_group');
-    // Route::post('group/create', [GroupController::class, 'create'])->name('group.create');
+    Route::post('group/create', [GroupController::class, 'create'])->name('create.group');
+    // Route::get('user/create_group',[UserController::class, 'create_group'])->name('group.create');
     Route::get('group/show', [GroupController::class, 'show'])->name('group.show_all');
     Route::get('group/show_one/{_id}', [GroupController::class, 'show_one'])->name('group.show_one');
     Route::post('group/leave/{_id}', [GroupController::class, 'leave'])->name('group.leave');

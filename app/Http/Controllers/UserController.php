@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Upload;
+use Livewire\Component;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -31,14 +33,6 @@ class UserController extends Controller
         return view('user.edit-profile', compact('title'));
     }
 
-    public function search_result(Request $request)
-    {
-
-        $title = "Search Results";
-        $results = Upload::latest()->filter(request(['search',]))->simplepaginate(8);
-        return view('user.search_result', compact('results', 'title'));
-    }
-
     public function show()
     {
         $title = "User Profile";
@@ -46,5 +40,12 @@ class UserController extends Controller
         $user = User::where('_id', $auth_user_id)->first();
 
         return view('user.show', compact('title', 'user'));
+    }
+
+    public function public_show($id)
+    {
+        $user = User::with('uploads')->where('_id', $id)->first();
+        $title = $user->name . " - Profile";
+        return view('user.public_show', compact('title', 'user'));
     }
 }

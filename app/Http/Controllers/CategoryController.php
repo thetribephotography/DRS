@@ -45,14 +45,14 @@ class CategoryController extends Controller
 
 
     //SHOW USER CATEGORY  (No private)
-    public function show_user($id)
+    public function show($slug)
     {
-        //
 
-        // $category = Upload::where('_id', Auth::user()->_id)->where('access_id', '1')->latest();
-        $title = "e";
-
-        return view('categories.show', compact('title',));
+        $category = Category::with('uploads',)->where('slug', $slug)->first();
+        $uploads = Upload::whereIn('_id', $category->upload_id)->get();
+        $title = $category->name;
+        // dd($category, $uploads);
+        return view('categories.show', compact('title', 'category', 'uploads'));
     }
 
     // SHOW ADMIN Category (With Private)

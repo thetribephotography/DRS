@@ -27,6 +27,18 @@ radioButtons.forEach((radio) => {
   radio.addEventListener("click", handleRadioClick);
 });
 
+//  show/hide the license select dropdown based on the checkbox value
+const hasLicenseCheckbox = document.getElementById("has_license");
+const licenseOptions = document.getElementById("license_options");
+
+hasLicenseCheckbox.addEventListener("change", (event) => {
+  if (event.target.checked) {
+    licenseOptions.style.display = "block";
+  } else {
+    licenseOptions.style.display = "none";
+  }
+});
+
 //  Multiple select dropdowns
 $(document).ready(function () {
   $(".category-multiple").select2({

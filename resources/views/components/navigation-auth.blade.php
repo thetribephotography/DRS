@@ -1,7 +1,7 @@
     <!-- Navigation component -->
     <nav class="flex flex-wrap items-center justify-between bg-white py-4 lg:px-12">
         <div
-            class="flex w-full justify-between border-b-2 border-solid border-gray-300 pr-2 pb-5 lg:w-auto lg:border-b-0 lg:pb-0">
+            class="border-gray-300 flex w-full justify-between border-b-2 border-solid pr-2 pb-5 lg:w-auto lg:border-b-0 lg:pb-0">
 
             {{-- Mobile MENU Bar --}}
             <div class="block lg:hidden">
@@ -33,7 +33,7 @@
                     {{-- User Icon --}}
                     <div class="z-30" x-data="{ open: false }">
                         {{-- Button --}}
-                        <button class="mx-3 mt-2 flex rounded-full text-sm focus:ring-4 focus:ring-gray-300 lg:mt-0"
+                        <button class="focus:ring-gray-300 mx-3 mt-2 flex rounded-full text-sm focus:ring-4 lg:mt-0"
                             type="button" @click="open=!open">
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full"
@@ -47,7 +47,7 @@
 
                             @role('registered')
                                 <a class="" href="{{ route('user.index') }}">
-                                    <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                    <div class="full border-gray-100 mb-4 flex border px-3 text-clgray hover:text-cmblue">
                                         <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -59,7 +59,7 @@
                                 </a>
                             @else
                                 <a class="" href="{{ route('admin.index') }}">
-                                    <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                    <div class="full border-gray-100 mb-4 flex border px-3 text-clgray hover:text-cmblue">
                                         <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -116,14 +116,14 @@
 
         {{-- Search Bar --}}
         <div class="relative mx-auto hidden text-clblack md:block">
-            <form action="/search-results" method="GET">
+            <form action="{{ route('search') }}" method="GET">
                 <div class="relative md:w-[20rem] lg:w-[30rem]">
                     <input
-                        class="block w-full rounded-lg border-gray-300 p-4 pl-10 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                        class="text-gray-900 block w-full rounded-lg border-gg p-4 pl-10 text-sm focus:border-cmblue focus:ring-cmblue"
                         name="search" type="search" placeholder="Explore various datasets" required>
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <button type="submit">
-                            <svg class="h-5 w-5 text-gray-500" aria-hidden="true" fill="none"
+                            <svg class="text-gray-500 h-5 w-5" aria-hidden="true" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -138,7 +138,7 @@
 
         <div class="hidden w-full px-8 lg:ml-[10rem] lg:flex lg:w-auto lg:px-3">
             {{-- Upload Button --}}
-            <a class="text-md ml-2 mt-4 rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+            <a class="text-md ml-2 mt-4 rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white hover:bg-b-hover lg:mt-0"
                 href="{{ Route('user.upload') }}">Upload
             </a>
             {{-- End upload button --}}
@@ -163,7 +163,7 @@
                     {{-- User Icon --}}
                     <div class="z-30" x-data="{ open: false }">
                         {{-- Button --}}
-                        <button class="mx-3 flex rounded-full text-sm focus:ring-4 focus:ring-gray-300" type="button"
+                        <button class="focus:ring-gray-300 mx-3 flex rounded-full text-sm focus:ring-4" type="button"
                             @click="open=!open">
                             <span class="sr-only">Open user menu</span>
                             <img class="h-8 w-8 rounded-full"
@@ -178,7 +178,7 @@
 
                             @role('registered')
                                 <a class="" href="{{ route('user.index') }}">
-                                    <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                    <div class="full mb-4 flex px-3 text-clgray hover:text-cmblue">
                                         <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -190,7 +190,7 @@
                                 </a>
                             @else
                                 <a class="" href="{{ route('admin.index') }}">
-                                    <div class="full mb-4 flex border border-gray-100 px-3 text-clgray hover:text-cmblue">
+                                    <div class="full mb-4 flex px-3 text-clgray hover:text-cmblue">
                                         <svg class="mr-2 h-5 w-5 translate-y-0.5" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -248,7 +248,7 @@
                         <a class="text-md ml-2 mt-4 block rounded border border-cmblue px-4 py-2 text-s8 font-medium text-clblack lg:mt-0"
                             href="{{ Route('login') }}">Login</a>
 
-                        <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white lg:mt-0"
+                        <a class="text-md ml-2 mt-4 block rounded bg-cmblue px-4 py-2 text-s8 font-medium text-white hover:bg-b-hover lg:mt-0"
                             href="{{ Route('register') }}">Sign
                             Up</a>
                     </div>
