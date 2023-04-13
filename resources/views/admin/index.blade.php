@@ -153,9 +153,9 @@
           <div class="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
             <!-- ====== Chart One Start -->
             <!-- <include src="./partials/chart-01.html" /> -->
-            <livewire:admin-dashboard>
+            <!-- <livewire:admin-dashboard> -->
                   <!-- //CHART 1 -->
-   <!-- <div class="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
+   <!-- <div class="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-12">
   <div class="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
     <div class="flex w-full flex-wrap gap-3 sm:gap-5">
       <div class="flex min-w-47.5">
