@@ -376,7 +376,7 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
                             <!-- </ul> -->
 
                             <!-- User Area -->
-                            <div class="relative" style="margin-left: 880px;" x-data="{ dropdownOpen: false }"
+                            <!-- <div class="relative" style="margin-left: 880px;" x-data="{ dropdownOpen: false }"
                                 @click.outside="dropdownOpen = false">
                                 <a class="flex items-center gap-4" href="#"
                                     @click.prevent="dropdownOpen = ! dropdownOpen">
@@ -398,7 +398,7 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
                                             d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
                                             fill="" />
                                     </svg>
-                                </a>
+                                </a> -->
 
         <!-- Notification Menu Area -->
 
@@ -409,7 +409,7 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
       <!-- </ul> -->
 
       <!-- User Area -->
-      <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false" style="margin-left: 728px;">
+      <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false" style="margin-left: 762px;">
         <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
           <span class="hidden text-right lg:block">
             <span class="block text-sm font-medium text-black dark:text-white">{{ Auth::user()->name }}</span>
