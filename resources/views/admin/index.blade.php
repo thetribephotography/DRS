@@ -2,6 +2,7 @@
     <!-- //MAINNNNNNNNNN -->
     <section>
         <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
                 <!-- Card Item Start -->
                 <div class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default">
@@ -54,6 +55,7 @@
                                 fill="" />
                         </svg>
                     </div>
+
 
                     <div class="mt-4 flex items-end justify-between">
                         <div>
@@ -108,6 +110,7 @@
                             </svg>
                         </span>
                     </div>
+                
                 </div>
                 <!-- Card Item End -->
 
@@ -127,6 +130,7 @@
                                 fill="" />
                         </svg>
                     </div>
+
 
                     <div class="mt-4 flex items-end justify-between">
                         <div>
