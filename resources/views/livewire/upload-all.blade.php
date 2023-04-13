@@ -109,7 +109,7 @@
 
             {{-- Box --}}
             <div class="">
-                <div class="relative overflow-x-auto py-4 pl-8 shadow-md sm:rounded-lg">
+                <div class="relative overflow-x-auto pb-2 pt-12 pl-8 shadow-md sm:rounded-lg">
 
                     {{-- LoadingBar --}}
                     <div class="text-center" wire:loading>
@@ -129,6 +129,53 @@
                     {{-- Loading bar end --}}
                     {{-- Main --}}
                     @foreach ($uploads as $upload)
+                        {{-- Pop Up modal --}}
+                        {{-- <div class="absolute top-[25rem] left-[30rem] z-50 w-full md:h-full">
+                            <div class="absolute h-full w-full max-w-lg p-4 md:h-auto">
+                                <div class="absolute rounded-lg bg-white p-4 shadow md:p-8">
+                                    <div class="text-gray-500 mb-4 text-sm font-light">
+                                        <h3 class="text-gray-900 d mb-3 text-2xl font-bold">Change Access</h3>
+                                        <p>
+                                            Change who can access your documents
+                                        </p>
+                                    </div>
+                                    <form action="{{ route('upload.update.access', $upload->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <div class="mx-4">
+                                            <label for="current_access">
+                                                Current Access
+                                            </label>
+                                            @if ($upload->access_id == 1)
+                                                <input type="text" value="Public">
+                                            @elseif ($upload->access_id == 2)
+                                                <input type="text" value="Private">
+                                            @elseif ($upload->access_id == 3)
+                                                <input type="text" value="Group">
+                                            @elseif ($upload->access_id == 4)
+                                                <input type="text" value="Personal">
+                                            @endif
+                                        </div>
+                                        <label class="text-gray-900 mb-2 block text-sm font-medium"
+                                            for="">Update Acess</label>
+                                        <select
+                                            class="bg-gray-50 border-gray-300 text-gray-900 block w-full rounded-lg border p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                            id="access_type" name="access_type">
+                                            <option value="1">Public</option>
+                                            <option value="2">Private</option>
+                                            <option value="3">Group</option>
+                                            <option value="4">Personal</option>
+                                        </select>
+                                        <button>Cancel</button>
+                                        <button type="submit">Change</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- Pop up modal end --}}
+
                         {{-- Main --}}
                         <div class="mb-8 w-full font-inter md:w-[24rem] lg:w-full">
                             <div class="flex flex-col px-2 lg:flex-row">
@@ -192,6 +239,19 @@
                                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
                                                 <p class="ml-1">Group</p>
+                                            </div>
+                                        @elseif($upload->access_id == 4)
+                                            {{-- Visibility --}}
+                                            <div class="mr-4 flex text-s9 text-[#6F737A]">
+                                                <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                                <p class="ml-1">Personal</p>
                                             </div>
                                         @endif
                                         @if ($upload->topic_id == 1)
@@ -280,10 +340,23 @@
                                             </button>
 
                                             <!-- Dropdown menu -->
-                                            <div class="absolute top-4 right-14 z-10 w-44 rounded-lg bg-white shadow"
+                                            <div class="absolute top-4 right-14 z-10 w-44 rounded-lg bg-[#DEDEDE] shadow"
                                                 x-show="show">
                                                 <ul class="text-gray-700 text-sm">
                                                     <li>
+                                                        <a class="hover:bg-gray-100 block px-4 py-2" href="#">
+                                                            <div class="flex hover:text-green-400">
+                                                                <svg class="h-4 w-4"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round"
+                                                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                </svg>
+                                                                <span class="ml-1">Change Access</span>
+                                                            </div>
+                                                        </a>
                                                         @if ($upload->topic_id == 1)
                                                             <a class="hover:bg-gray-100 block border-b border-gg px-4 py-2"
                                                                 href="{{ route('upload.article.edit', $upload->slug) }}">

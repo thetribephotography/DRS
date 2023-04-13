@@ -24,18 +24,28 @@
                         </a>
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
                             {{ $upload->updated_at->format('F d, Y') }}</p>
-                        <a href="{{ route('download', $upload->_id) }}">
-                            <button
-                                class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
-                                type="button">
-                                <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                </svg>
-                                Download
-                            </button>
-                        </a>
+                        @if ($upload->access_id == 2)
+                            <a href="#">
+                                <button
+                                    class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
+                                    type="button">
+                                    Request Access
+                                </button>
+                            </a>
+                        @else
+                            <a href="{{ route('download', $upload->_id) }}">
+                                <button
+                                    class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
+                                    type="button">
+                                    <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                    </svg>
+                                    Download
+                                </button>
+                            </a>
+                        @endif
                     </div>
 
                     {{-- FIle Content --}}
@@ -90,23 +100,18 @@
                             <p class="">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                         </div>
 
-                        <div class="pl-6 text-s8 text-clgray">
-                            <h3 class="mt-4 font-semibold uppercase">License</h3>
-                            <p class="">{{ $upload->license }}</p>
-                        </div>
 
 
-                        <div class="mt-4 pl-6" x-show="{openT:false}">
+
+                        <div class="mt-4 pl-6" x-data="{ open: false }">
                             {{-- Button --}}
-                            <button
-                                class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover"
-                                type="button" x-show="true" @click="openT = !openT">View info</button>
+                            <button class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white"
+                                type="button" x-show="true" @click="open = !open">View info</button>
 
                             {{-- Table --}}
-
-                            <div class="relative overflow-x-auto">
-                                <table class="text-gray-500 w-full text-left text-sm" x-show="openT">
-                                    <thead class="bg-gray-50 text-gray-700 text-xs uppercase">
+                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg" x-show="open">
+                                <table class="text-gray-500 w-full text-left text-sm">
+                                    <thead class="text-gray-700 bg-gray-500 text-xs uppercase">
                                         <tr>
                                             <th class="px-6 py-3" scope="col">
                                                 File Information
@@ -118,52 +123,128 @@
                                     </thead>
                                     <tbody>
                                         <tr class="border-b bg-white">
-                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 File Name
-                                            </td>
+                                            </th>
                                             <td class="px-6 py-4">
                                                 {{ $upload->title }}
                                             </td>
 
+
                                         </tr>
-                                        <tr class="border-b bg-white">
-                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                        <tr class="bg-gray-50 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 Authors
-                                            </td>
+                                            </th>
                                             <td class="px-6 py-4">
                                                 @foreach ($upload->author as $author)
                                                     {{ $author . ', ' }}
                                                 @endforeach
                                             </td>
+
                                         </tr>
-                                        <tr class="bg-white">
-                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                        <tr class="border-b bg-white">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
-                                                Publication Date
-                                            </td>
+                                                Publication date
+                                            </th>
                                             <td class="px-6 py-4">
-                                                {{ $upload->published_at->format('Y-m-d') }}
+                                                {{ $upload->published_at->format('F-d-Y') }}
                                             </td>
+
                                         </tr>
-                                        <tr class="bg-white">
-                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
-                                                Date Posted
+                                                Description
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->description }}
                                             </td>
+
+                                        </tr>
+                                        <tr class="border-b bg-white"">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Upload Type
+                                            </th>
+                                            <td class="px-6 py-4">
+
+                                            </td>
+
+                                        </tr>
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Categeories
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                @foreach ($upload->categories as $category)
+                                                    {{ $category->name . ', ' }}
+                                                @endforeach
+                                            </td>
+
+                                        </tr>
+                                        </tr>
+                                        <tr class="border-b bg-white"">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Tags
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                @foreach ($upload->tags as $tag)
+                                                    {{ $tag->name . ', ' }}
+                                                @endforeach
+                                            </td>
+
+                                        </tr>
+                                        </tr>
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Created at
+                                            </th>
                                             <td class="px-6 py-4">
                                                 {{ $upload->created_at->format('Y-m-d') }}
                                             </td>
+
                                         </tr>
-                                        <tr class="bg-white">
-                                            <td class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                        </tr>
+                                        <tr class="border-b bg-white">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
-                                                Last Updated
-                                            </td>
+                                                Last Updated at
+                                            </th>
                                             <td class="px-6 py-4">
-                                                {{ $upload->updated_at->format('F-d-Y') }}
+                                                {{ $upload->updated_at->format('Y-m-d') }}
                                             </td>
+
+                                        </tr>
+                                        </tr>
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                File Size
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                {{ round($upload->file_size / 1048576, 2) }} MB
+                                            </td>
+
+                                        </tr>
+                                        <tr class="border-b bg-white">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                License
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                @if ($upload->topic_id == 1)
+                                                    Nil
+                                                @endif
+                                                {{ $upload->license }}
+                                            </td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -186,7 +267,8 @@
                                     @endif
                                 </h2>
                             </div>
-                            <form class="mb-6" action="{{ route('upload.comment', $upload->_id) }}" method="POST">
+                            <form class="mb-6" action="{{ route('upload.comment', $upload->_id) }}"
+                                method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="border-gray-200 mb-4 rounded-lg rounded-t-lg border bg-white py-2 px-4">
@@ -375,7 +457,7 @@
                         <div class="bg mt-2 text-white">
 
                             @foreach ($upload->categories as $category)
-                                <a class="" href="/categories/{{ $category->slug }}">
+                                <a class="" href="{{ route('category.show', $category->slug) }}">
                                     <span
                                         class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $category->name }}</span>
                                 </a>
@@ -390,7 +472,7 @@
                         </a>
                         <div class="bg mt-2 text-white">
                             @foreach ($upload->tags as $tag)
-                                <a class="s" href="/tags/{{ $tag->slug }}">
+                                <a class="s" href="{{ route('tag.show', $tag->slug) }}">
                                     <span
                                         class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $tag->name }}</span>
                                 </a>

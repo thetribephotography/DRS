@@ -100,7 +100,7 @@ class UploadController extends Controller
         $title = "View Single Upload";
         $upload = Upload::with('comments', 'users', 'categories', 'tags')
             ->where('slug', $slug)  //Get by slug
-            ->whereIn('access_id', ["1"]) //Get only public
+            ->whereIn('access_id', ["1", "2"]) //Get only public
             ->first();
 
 
@@ -272,7 +272,8 @@ class UploadController extends Controller
             //    1 = publish
 
             $user = Auth::id();
-            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $strip_file_name = str_replace(array('"', ':', ',', '.', '/'), ' ', $request->title);
+            $path = $this->UploadFile($request->file('file-upload'), $strip_file_name, 'public', $file_name);
 
 
             $upload = new Upload;
@@ -290,7 +291,8 @@ class UploadController extends Controller
             $upload->path = $path;
             $upload->user_id = $user;
             $upload->category_id = $cat;
-            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $title_strip = str_replace(array('"', ':', ',', '.', '/'), '_', $upload->title);
+            $upload->slug = Str::slug($title_strip); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -415,7 +417,8 @@ class UploadController extends Controller
             //    1 = publish
 
             $user = Auth::id();
-            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $strip_file_name = str_replace(array('"', ':', ',', '.', '/'), ' ', $request->title);
+            $path = $this->UploadFile($request->file('file-upload'), $strip_file_name, 'public', $file_name);
             $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
 
@@ -434,7 +437,8 @@ class UploadController extends Controller
             $upload->user_id = $user;
             $upload->category_id = $cat;
             $upload->media = $media;
-            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $title_strip = str_replace(array('"', ':', ',', '.', '/'), '', $upload->title);
+            $upload->slug = Str::slug($title_strip); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -560,7 +564,8 @@ class UploadController extends Controller
             //    1 = publish
 
             $user = Auth::id();
-            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $strip_file_name = str_replace(array('"', ':', ',', '.', '/'), ' ', $request->title);
+            $path = $this->UploadFile($request->file('file-upload'), $strip_file_name, 'public', $file_name);
             $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
 
@@ -579,7 +584,8 @@ class UploadController extends Controller
             $upload->user_id = $user;
             $upload->category_id = $cat;
             $upload->media = $media;
-            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $title_strip = str_replace(array('"', ':', ',', '.', '/'), '', $upload->title);
+            $upload->slug = Str::slug($title_strip); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -704,7 +710,8 @@ class UploadController extends Controller
             //    1 = publish
 
             $user = Auth::id();
-            $path = $this->UploadFile($request->file('file-upload'), $file_name, 'public', $file_name);
+            $strip_file_name = str_replace(array('"', ':', ',', '.', '/'), ' ', $request->title);
+            $path = $this->UploadFile($request->file('file-upload'), $strip_file_name, 'public', $file_name);
             $media = $this->UploadFile($request->file('summary-upload'), $file_name);
 
 
@@ -723,7 +730,8 @@ class UploadController extends Controller
             $upload->user_id = $user;
             $upload->category_id = $cat;
             $upload->media = $media;
-            $upload->slug = Str::slug($upload->title); //Slug for better retrieval
+            $title_strip = str_replace(array('"', ':', ',', '.', '/'), '', $upload->title);
+            $upload->slug = Str::slug($title_strip); //Slug for better retrieval
             $upload->tags_id = $request->tags;
             $upload->file_type = $request->file('file-upload')->getClientOriginalExtension(); // File type
             $upload->file_size = $request->file('file-upload')->getSize(); //File size
@@ -789,7 +797,13 @@ class UploadController extends Controller
 
 
 
-
+    public function update_access(Request $request, $id)
+    {
+        $upload = Upload::find($id);
+        $upload->access_id = $request->access_type;
+        $upload->update();
+        return redirect()->back()->with('success', 'Access Changed sucessfully');
+    }
 
 
 

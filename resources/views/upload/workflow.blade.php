@@ -19,14 +19,14 @@
                     <label class="mb-2 block text-sm font-medium text-[#393E46]" for="title">Title</label>
                     <div class="flex">
                         <span
-                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                            class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                             <svg width="10" height="11" viewBox="0 0 14 15" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 0V3H5.5V15H8.5V3H14V0H0Z" fill="#7A7A7A" />
                             </svg>
                         </span>
                         <input
-                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                            class="border-gray-300 bg-gray-50 text-gray-900 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                             id="title" name="title" type="text" placeholder=""
                             autocomplete="
                             ">
@@ -39,11 +39,11 @@
                     @enderror
                 </div>
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-900" for="date">Publication
+                    <label class="text-gray-900 mb-2 block text-sm font-medium" for="date">Publication
                         Date</label>
                     <div class="flex">
                         <span
-                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                            class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                             <svg class="h-4 w-4 text-[##7A7A7A]" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,7 +52,7 @@
 
                         </span>
                         <input
-                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                            class="border-gray-300 bg-gray-50 text-gray-900 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                             id="date" name="date" type="date">
                     </div>
                     {{-- Error Mesage --}}
@@ -66,14 +66,14 @@
             {{-- End side by side --}}
             {{-- Author --}}
             <div class="mb-6 px-6">
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="authors">Author(s)</label>
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="authors">Author(s)</label>
                 <div class="flex">
                     <span
-                        class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                        class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                         @
                     </span>
                     <input
-                        class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                        class="border-gray-300 bg-gray-50 text-gray-900 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                         id="authors" name="author" type="text" placeholder="">
                 </div>
                 {{-- Error Mesage --}}
@@ -85,9 +85,9 @@
             </div>
             {{-- Description --}}
             <div class="mb-6 px-6">
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="message">Description</label>
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="message">Description</label>
                 <textarea
-                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                    class="border-gray-300 bg-gray-50 text-gray-900 block w-full rounded-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                     id="description" name="description" rows="4" placeholder="A 3-part workflow process.."></textarea>
                 {{-- Error Mesage --}}
                 @error('description')
@@ -98,11 +98,11 @@
             </div>
             {{-- DIO --}}
             <div class="mb-6 px-6">
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="authors">DIO <span
-                        class="text-s9 text-gray-400">(Optional)</span></label>
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="authors">DIO <span
+                        class="text-gray-400 text-s9">(Optional)</span></label>
                 <div class="flex">
                     <span
-                        class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                        class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                         <svg width="10" height="14" viewBox="0 0 14 18" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -111,7 +111,7 @@
                         </svg>
                     </span>
                     <input
-                        class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                        class="border-gray-300 bg-gray-50 text-gray-900 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                         id="authors" name="dio" type="text" placeholder="http://09291223/">
 
                 </div>
@@ -119,10 +119,10 @@
             </div>
             {{-- Category --}}
             <div class="mb-6 px-6">
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="category">Category</label>
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="category">Category</label>
                 <div class="flex">
                     <span
-                        class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                        class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                         <svg width="12" height="13" viewBox="0 0 19 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -131,7 +131,7 @@
                         </svg>
                     </span>
                     <select
-                        class="category-multiple mt-1 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                        class="category-multiple border-gray-300 bg-gray-50 text-gray-900 mt-1 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                         id="category" name="category[]" multiple="multiple">
                         @if (count($categories) == 0)
                             <p>No Category available</p>
@@ -147,10 +147,10 @@
             <div class="mb-6 grid gap-6 px-6 pt-4 md:grid-cols-2">
                 {{-- Tags --}}
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-900" for="website-admin">Tags</label>
+                    <label class="text-gray-900 mb-2 block text-sm font-medium" for="website-admin">Tags</label>
                     <div class="flex">
                         <span
-                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                            class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                             <svg width="11" height="12" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -158,7 +158,7 @@
                                     fill="black" />
                             </svg>
                             <select
-                                class="tags-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                class="tags-multiple border-gray-300 mt-1 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 id="tags" name="tags[]"
                                 style="background-color: red
                                 " multiple="multiple">
@@ -173,10 +173,10 @@
                     </div>
                 </div>
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-900" for="website-admin">Keywords</label>
+                    <label class="text-gray-900 mb-2 block text-sm font-medium" for="website-admin">Keywords</label>
                     <div class="flex">
                         <span
-                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                            class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                             <svg width="15" height="5" viewBox="0 0 23 13" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -185,7 +185,7 @@
                             </svg>
                         </span>
                         <input
-                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                            class="border-gray-300 bg-gray-50 text-gray-900 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                             id="keywords" name="keywords" type="text">
                     </div>
                     {{-- Error Mesage --}}
@@ -199,14 +199,14 @@
             {{-- End tags and kyword --}}
             {{-- Language --}}
             <div class="mb-6 px-6">
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="language">Language</label>
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="language">Language</label>
                 <div class="flex">
                     <span
-                        class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+                        class="border-gray-300 bg-gray-200 text-gray-900 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm">
                         LA
                     </span>
                     <input
-                        class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cmblue focus:ring-cmblue"
+                        class="border-gray-300 bg-gray-50 text-gray-900 block w-full min-w-0 flex-1 rounded-none rounded-r-lg border p-2.5 text-sm focus:border-cmblue focus:ring-cmblue"
                         id="language" name="language" type="text" placeholder="">
                 </div>
                 {{-- Error Mesage --}}
@@ -218,40 +218,49 @@
             </div>
             {{-- Access right --}}
             <div class="mb-6 px-6">
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="website-admin">Access Rights</label>
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="website-admin">Access Rights</label>
                 <ul
-                    class="w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 sm:flex">
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    class="border-gray-200 text-gray-900 w-full items-center rounded-lg border bg-white text-sm font-medium sm:flex">
+                    <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">
                         <div class="flex items-center pl-3">
                             <input
-                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
-                                id="public" name="example" type="radio" value="1" checked>
-                            <label class="ml-2 w-full py-3 text-sm font-medium text-gray-900"
+                                class="border-gray-300 bg-gray-100 h-4 w-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                id="public" name="example" type="radio" value="4">
+                            <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
+                                for="horizontal-list-radio-license">Personal</label>
+                        </div>
+                    </li>
+                    <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">
+                        <div class="flex items-center pl-3">
+                            <input
+                                class="border-gray-300 bg-gray-100 h-4 w-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                id="public" name="example" type="radio" value="1">
+                            <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
                                 for="horizontal-list-radio-license">Public</label>
                         </div>
                     </li>
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">
                         <div class="flex items-center pl-3">
                             <input
-                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                class="border-gray-300 bg-gray-100 h-4 w-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                 id="private" name="example" type="radio" value="2">
-                            <label class="ml-2 w-full py-3 text-sm font-medium text-gray-900"
+                            <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
                                 for="horizontal-list-radio-id">Private</label>
                         </div>
                     </li>
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                    <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">
                         <div class="flex items-center pl-3">
                             <input
-                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                class="border-gray-300 bg-gray-100 h-4 w-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                 id="group" name="example" type="radio" value="3">
-                            <label class="ml-2 w-full py-3 text-sm font-medium text-gray-900"
+                            <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
                                 for="horizontal-list-radio-millitary">Group</label>
                         </div>
                     </li>
                 </ul>
                 <div id="box" style="display: none">
                     <select
-                        class="grouping-multiple mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        class="grouping-multiple border-gray-300 mt-1 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         id="grouping" name="grouping[]" multiple="multiple">
                         @foreach ($find as $find)
                             <option value="{{ $find->_id }}">{{ $find->name }}
@@ -264,12 +273,12 @@
             {{-- Upload kini  Single --}}
             <div class="mt-6 px-6">
 
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="file_upload">Upload
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="file_upload">Upload
                     file</label>
                 <input
-                    class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none"
+                    class="border-gray-300 bg-gray-50 text-gray-900 block w-full cursor-pointer rounded-lg border text-lg focus:outline-none"
                     id="file_upload" name="file-upload" type="file">
-                <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF
+                <p class="text-gray-500 mt-1 text-sm" id="file_input_help">SVG, PNG, JPG or GIF
                     (MAX. 800x400px).</p>
                 {{-- Error Mesage --}}
                 @error('file-upload')
@@ -283,23 +292,23 @@
             {{-- Upload Kini Multplie --}}
             <div class="mt-6 px-6">
 
-                <label class="mb-2 block text-sm font-medium text-gray-900" for="file_upload">Instructions <span
+                <label class="text-gray-900 mb-2 block text-sm font-medium" for="file_upload">Instructions <span
                         class="text-s9">(A video that explains how this upload can be used)</span></label>
                 <p class="mb-4 text-s9 text-red-500">NOTE: Only vidoes are accepted</p>
                 <div class="flex w-full items-center justify-center">
                     <label
-                        class="hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
+                        class="hover:bg-bray-800 border-gray-300 bg-gray-50 hover:bg-gray-100 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed"
                         for="dropzone-file">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg class="mb-3 h-10 w-10 text-gray-400" aria-hidden="true" fill="none"
+                            <svg class="text-gray-400 mb-3 h-10 w-10" aria-hidden="true" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
                                 </path>
                             </svg>
-                            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click
+                            <p class="text-gray-500 mb-2 text-sm"><span class="font-semibold">Click
                                     to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500">cwl, .json, .yaml, .yml, .sh
+                            <p class="text-gray-500 text-xs">cwl, .json, .yaml, .yml, .sh
                             </p>
                         </div>
                         <input class="hidden" id="dropzone-file" name="summary-upload" type="file" multiple />
@@ -319,17 +328,17 @@
             <div class="mt-6 px-6">
                 <!-- Create a checkbox for the user to indicate if the upload has a license or not -->
                 <div class="form-group flex">
-                    <label class="mb-2 block text-sm font-medium text-gray-900" for="has_license">Does your upload
+                    <label class="text-gray-900 mb-2 block text-sm font-medium" for="has_license">Does your upload
                         have a license?</label>
                     <input class="ml-4" id="has_license" name="has_license" type="checkbox">
                 </div>
 
                 <!-- Create a select dropdown to display the available licenses -->
-                <div class="form-group" class="mb-2 block text-sm font-medium text-gray-900" id="license_options"
+                <div class="form-group" class="text-gray-900 mb-2 block text-sm font-medium" id="license_options"
                     style="display: none;">
                     <label for="license">Choose a license:</label>
                     <select
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        class="border-gray-300 mt-1 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         id="license" name="license">
                         <option value="GNU General Public License">GNU General Public License</option>
                         <option value="Attribution (CC BY)">Attribution (CC BY)</option>

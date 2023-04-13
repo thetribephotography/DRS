@@ -129,6 +129,7 @@ Route::prefix('')->middleware(['auth', 'role:registered', 'verified'])->group(fu
     Route::any('user/upload', [UploadController::class, 'upload'])->name('user.upload');
     Route::post('upload/publish', [UploadController::class, 'publish'])->name('uploads.publish');
     Route::delete('/upload/{id}', [UploadController::class, 'delete'])->name('upload.destroy');
+    Route::put('/upload/update_access/{id}', [UploadController::class, 'update_access'])->name('upload.update.access');
 
     Route::any('/upload/upload_list', [UploadController::class, 'uploadlist'])->name('upload.upload_list');
 
