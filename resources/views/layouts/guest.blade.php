@@ -35,7 +35,7 @@
     @livewireStyles
 </head>
 
-<body class="font-poppins scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
+<body class="scrollbar-track-gray-100 font-poppins scrollbar-thin scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
 
     @auth
         <x-navigation-auth />

@@ -38,7 +38,7 @@ class GroupController extends Controller
 
         $user = Auth::id();
         // $slug_name = $request->name;
-        
+
         $update = new Group;
         $update->name = $request->name;
         $update->group_members = $request->members;
@@ -54,11 +54,12 @@ class GroupController extends Controller
     // SHOW ALL GROUPS FOR PARTICULAR USER
     public function show()
     {
-        $this->authorize('view_group', 'You dont have the permission to access this');
+        // $this->authorize('view_group', 'You dont have the permission to access this');
 
         $user = Auth::id();
 
-        $list = Group::where('group_members', $user)->orwhere('user_id', $user)->get();
+        $list = "Hey";
+        // $list = Group::with('user', 'uploads')->where('group_members', $user)->orwhere('user_id', $user)->get();
         $title = "Groups | All";
 
         // dd($list);
@@ -75,11 +76,11 @@ class GroupController extends Controller
 
         $user = Auth::id();
 
-        
+
         // $one = Group::with('uploads')
         $one = Group::with('uploads')->where('_id', $id)->first();
-        
-        
+
+
         // $uploads = Upload::whereat('_id', $one->upload)->get();
 
         dd($one);
