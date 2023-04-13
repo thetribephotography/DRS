@@ -24,23 +24,36 @@
                         </a>
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
                             {{ $upload->updated_at->format('F d, Y') }}</p>
-                        <a href="{{ route('download', $upload->_id) }}">
-                            <button
-                                class="mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-gray-100 hover:bg-b-hover"
-                                type="button">
-                                <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                </svg>
-                                Download
-                            </button>
-                        </a>
+                        @if ($upload->access_id == 2)
+                            <a href="#">
+                                <button
+                                    class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
+                                    type="button">
+                                    Request Access
+                                </button>
+                            </a>
+                        @else
+                            <a href="{{ route('download', $upload->_id) }}">
+                                <button
+                                    class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
+                                    type="button">
+                                    <svg class="h-4 w-4 -translate-x-2" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                    </svg>
+                                    Download
+                                </button>
+                            </a>
+                        @endif
                     </div>
-                    {{-- Vidoe --}}
-                    <div>
-                        <video class="" src=""></video>
+
+                    {{-- FIle Content --}}
+                    <div class="my-6 w-full">
+                        <x-file-content :upload="$upload" />
                     </div>
+                    {{-- File Content --}}
+
                     {{-- Bottom --}}
                     <div class="w-full rounded-md bg-slate-100 pb-8 pt-4 pr-10 shadow">
                         <div class="pl-6 text-s8 text-clgray">
@@ -87,23 +100,18 @@
                             <p class="">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                         </div>
 
-                        <div class="pl-6 text-s8 text-clgray">
-                            <h3 class="mt-4 font-semibold uppercase">License</h3>
-                            <p class="">{{ $upload->license }}</p>
-                        </div>
 
 
-                        <div class="mt-4 pl-6" x-show="{openT:false}">
+
+                        <div class="mt-4 pl-6" x-data="{ open: false }">
                             {{-- Button --}}
-                            <button
-                                class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 hover:bg-b-hover"
-                                type="button" x-show="true" @click="openT = !openT">View info</button>
+                            <button class="mr-2 mb-2 rounded-lg bg-cmblue px-5 py-2.5 text-sm font-medium text-white"
+                                type="button" x-show="true" @click="open = !open">View info</button>
 
                             {{-- Table --}}
-
-                            <div class="relative overflow-x-auto">
-                                <table class="w-full text-left text-sm text-gray-500" x-show="openT">
-                                    <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg" x-show="open">
+                                <table class="text-gray-500 w-full text-left text-sm">
+                                    <thead class="text-gray-700 bg-gray-500 text-xs uppercase">
                                         <tr>
                                             <th class="px-6 py-3" scope="col">
                                                 File Information
@@ -115,52 +123,128 @@
                                     </thead>
                                     <tbody>
                                         <tr class="border-b bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 File Name
-                                            </td>
+                                            </th>
                                             <td class="px-6 py-4">
                                                 {{ $upload->title }}
                                             </td>
 
+
                                         </tr>
-                                        <tr class="border-b bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                        <tr class="bg-gray-50 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
                                                 Authors
-                                            </td>
+                                            </th>
                                             <td class="px-6 py-4">
                                                 @foreach ($upload->author as $author)
                                                     {{ $author . ', ' }}
                                                 @endforeach
                                             </td>
+
                                         </tr>
-                                        <tr class="bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                        <tr class="border-b bg-white">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
-                                                Publication Date
-                                            </td>
+                                                Publication date
+                                            </th>
                                             <td class="px-6 py-4">
-                                                {{ $upload->published_at->format('Y-m-d') }}
+                                                {{ $upload->published_at->format('F-d-Y') }}
                                             </td>
+
                                         </tr>
-                                        <tr class="bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
-                                                Date Posted
+                                                Description
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                {{ $upload->description }}
                                             </td>
+
+                                        </tr>
+                                        <tr class="border-b bg-white"">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Upload Type
+                                            </th>
+                                            <td class="px-6 py-4">
+
+                                            </td>
+
+                                        </tr>
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Categeories
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                @foreach ($upload->categories as $category)
+                                                    {{ $category->name . ', ' }}
+                                                @endforeach
+                                            </td>
+
+                                        </tr>
+                                        </tr>
+                                        <tr class="border-b bg-white"">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Tags
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                @foreach ($upload->tags as $tag)
+                                                    {{ $tag->name . ', ' }}
+                                                @endforeach
+                                            </td>
+
+                                        </tr>
+                                        </tr>
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                Created at
+                                            </th>
                                             <td class="px-6 py-4">
                                                 {{ $upload->created_at->format('Y-m-d') }}
                                             </td>
+
                                         </tr>
-                                        <tr class="bg-white">
-                                            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                                        </tr>
+                                        <tr class="border-b bg-white">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
                                                 scope="row">
-                                                Last Updated
-                                            </td>
+                                                Last Updated at
+                                            </th>
                                             <td class="px-6 py-4">
-                                                {{ $upload->updated_at->format('F-d-Y') }}
+                                                {{ $upload->updated_at->format('Y-m-d') }}
                                             </td>
+
+                                        </tr>
+                                        </tr>
+                                        <tr class="bg-gray-100 border-b">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                File Size
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                {{ round($upload->file_size / 1048576, 2) }} MB
+                                            </td>
+
+                                        </tr>
+                                        <tr class="border-b bg-white">
+                                            <th class="text-gray-900 whitespace-nowrap px-6 py-4 font-medium"
+                                                scope="row">
+                                                License
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                @if ($upload->topic_id == 1)
+                                                    Nil
+                                                @endif
+                                                {{ $upload->license }}
+                                            </td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -177,18 +261,19 @@
                     <section class="bg-white py-8 lg:py-16">
                         <div class="mx-auto max-w-2xl pr-4">
                             <div class="mb-6 flex items-center justify-between">
-                                <h2 class="text-lg font-bold text-gray-900 lg:text-2xl">Comments
+                                <h2 class="text-gray-900 text-lg font-bold lg:text-2xl">Comments
                                     @if (!count($upload->comments) == 0)
                                         ({{ count($upload->comments) }})
                                     @endif
                                 </h2>
                             </div>
-                            <form class="mb-6" action="{{ route('upload.comment', $upload->_id) }}" method="POST">
+                            <form class="mb-6" action="{{ route('upload.comment', $upload->_id) }}"
+                                method="POST">
                                 @csrf
                                 @method('POST')
-                                <div class="mb-4 rounded-lg rounded-t-lg border border-gray-200 bg-white py-2 px-4">
+                                <div class="border-gray-200 mb-4 rounded-lg rounded-t-lg border bg-white py-2 px-4">
                                     <label class="sr-only" for="comment">Your comment</label>
-                                    <textarea class="w-full border-0 px-0 text-sm text-gray-900 focus:outline-none focus:ring-0" id="comment"
+                                    <textarea class="text-gray-900 w-full border-0 px-0 text-sm focus:outline-none focus:ring-0" id="comment"
                                         name="comment" rows="6" placeholder="Write a comment..." required></textarea>
                                 </div>
                                 <a href="{{ asset('uploadpath') }}" download="">
@@ -211,16 +296,16 @@
                                 <article class="mb-6 rounded-lg bg-[#E9EDF1] p-6 text-base">
                                     <footer class="mb-2 flex items-center justify-between">
                                         <div class="flex items-center">
-                                            <p class="mr-3 inline-flex items-center text-sm text-gray-900"><img
+                                            <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
                                                     class="mr-2 h-6 w-6 rounded-full"
                                                     src="{{ $comment->user->profile_picture ? asset('storage/' . $comment->user->profile_picture) : asset('images/user.jpeg') }}"
                                                     alt="">
                                                 {{ $comment->user->name }} </p>
-                                            <p class="text-sm text-gray-600">
+                                            <p class="text-gray-600 text-sm">
                                                 {{ $comment->created_at->format('F d, Y') }}</p>
                                         </div>
                                         <button
-                                            class="inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-50 hover:bg-gray-100"
+                                            class="text-gray-400 focus:ring-gray-50 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none focus:ring-4"
                                             id="drop-comment-button" data-dropdown-toggle="comment-setting"
                                             type="button">
                                             <svg class="h-5 w-5" aria-hidden="true" fill="currentColor"
@@ -232,11 +317,11 @@
                                             <span class="sr-only">Comment settings</span>
                                         </button>
                                         <!-- Dropdown menu -->
-                                        <div class="z-10 hidden w-36 divide-y divide-gray-100 rounded bg-white shadow">
-                                            <ul class="py-1 text-sm text-gray-700">
+                                        <div class="divide-gray-100 z-10 hidden w-36 divide-y rounded bg-white shadow">
+                                            <ul class="text-gray-700 py-1 text-sm">
                                                 @if ($comment->user_id == Auth::user()->_id)
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100"
+                                                        <a class="hover:bg-gray-100 block py-2 px-4"
                                                             href="{{ route('comment.edit', $comment->_id) }}">Edit</a>
                                                     </li>
                                                 @endif
@@ -246,7 +331,7 @@
                                                         @csrf
                                                         @method('POST')
                                                         <li>
-                                                            <button class="block py-2 px-4 hover:bg-gray-100"
+                                                            <button class="hover:bg-gray-100 block py-2 px-4"
                                                                 type="submit">Delete</button>
                                                         </li>
                                                     </form>
@@ -255,7 +340,7 @@
                                                         @csrf
                                                         @method('POST')
                                                         <li>
-                                                            <button class="block py-2 px-4 hover:bg-gray-100"
+                                                            <button class="hover:bg-gray-100 block py-2 px-4"
                                                                 type="submit">Report</button>
                                                         </li>
                                                     </form>
@@ -265,7 +350,7 @@
                                     </footer>
                                     <p class="text-gray-500"> {{ $comment->content }} </p>
                                     <div class="mt-4 flex items-center space-x-4">
-                                        <button class="flex items-center text-sm text-gray-500 hover:underline"
+                                        <button class="text-gray-500 flex items-center text-sm hover:underline"
                                             type="button"
                                             onclick='Livewire.emit("openModal", "comment-reply", {{ json_encode(['data' => $comment->_id]) }})'>
                                             <svg class="mr-1 h-4 w-4" aria-hidden="true" fill="none"
@@ -285,15 +370,15 @@
                                     <article class="mb-6 ml-6 rounded-lg bg-white p-6 text-base lg:ml-12">
                                         <footer class="mb-2 flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <p class="mr-3 inline-flex items-center text-sm text-gray-900"><img
+                                                <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
                                                         class="mr-2 h-6 w-6 rounded-full"
                                                         src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                                         alt="Jese Leos">Jese Leos</p>
-                                                <p class="text-sm text-gray-600"><time title="February 12th, 2022"
+                                                <p class="text-gray-600 text-sm"><time title="February 12th, 2022"
                                                         pubdate datetime="2022-02-12">Feb. 12, 2022</time></p>
                                             </div>
                                             <button
-                                                class="inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-50 hover:bg-gray-100"
+                                                class="text-gray-400 focus:ring-gray-50 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none focus:ring-4"
                                                 id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
                                                 type="button">
                                                 <svg class="h-5 w-5" aria-hidden="true" fill="currentColor"
@@ -305,20 +390,20 @@
                                                 <span class="sr-only">Comment settings</span>
                                             </button>
                                             <!-- Dropdown menu -->
-                                            <div class="z-10 hidden w-36 divide-y divide-gray-100 rounded bg-white shadow"
+                                            <div class="divide-gray-100 z-10 hidden w-36 divide-y rounded bg-white shadow"
                                                 id="dropdownComment2">
-                                                <ul class="py-1 text-sm text-gray-700"
+                                                <ul class="text-gray-700 py-1 text-sm"
                                                     aria-labelledby="dropdownMenuIconHorizontalButton">
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100"
+                                                        <a class="hover:bg-gray-100 block py-2 px-4"
                                                             href="#">Edit</a>
                                                     </li>
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100"
+                                                        <a class="hover:bg-gray-100 block py-2 px-4"
                                                             href="#">Remove</a>
                                                     </li>
                                                     <li>
-                                                        <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        <a class="hover:bg-gray-100 dark:hover:bg-gray-600 block py-2 px-4 dark:hover:text-white"
                                                             href="#">Report</a>
                                                     </li>
                                                 </ul>
@@ -372,7 +457,7 @@
                         <div class="bg mt-2 text-white">
 
                             @foreach ($upload->categories as $category)
-                                <a class="" href="/categories/{{ $category->slug }}">
+                                <a class="" href="{{ route('category.show', $category->slug) }}">
                                     <span
                                         class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $category->name }}</span>
                                 </a>
@@ -387,7 +472,7 @@
                         </a>
                         <div class="bg mt-2 text-white">
                             @foreach ($upload->tags as $tag)
-                                <a class="s" href="/tags/{{ $tag->slug }}">
+                                <a class="s" href="{{ route('tag.show', $tag->slug) }}">
                                     <span
                                         class="mr-2 inline-block rounded-full border border-white px-2.5 py-0.5 text-xs font-medium transition duration-300 ease-in-out hover:bg-white hover:text-cmblue">{{ $tag->name }}</span>
                                 </a>

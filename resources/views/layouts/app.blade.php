@@ -65,7 +65,7 @@
 </head>
 
 <body
-    class="font-poppins antialiased scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
+    class="scrollbar-track-gray-100 font-poppins antialiased scrollbar-thin scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm">
     {{-- Navigation --}}
     <x-navigation-auth />
 

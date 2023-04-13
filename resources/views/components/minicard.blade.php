@@ -56,6 +56,18 @@
                             </svg>
                             <p class="ml-1">Group</p>
                         </div>
+                    @elseif($upload->access_id == 4)
+                        {{-- Visibility --}}
+                        <div class="mr-4 flex text-s9 text-[#6F737A]">
+                            <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <p class="ml-1">Personal</p>
+                        </div>
                     @endif
                     @if ($upload->topic_id == 1)
                         {{-- Type --}}
@@ -93,7 +105,8 @@
                     @elseif($upload->topic_id == 4)
                         {{-- Type --}}
                         <div class="mr-4 flex text-s9 text-[#6F737A]">
-                            <svg class="h-3 w-3" viewBox="0 0 55 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-3 w-3" viewBox="0 0 55 50" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M50 35V27.5C50 24.725 47.775 22.5 45 22.5H30V15H35V0H20V15H25V22.5H10C7.225 22.5 5 24.725 5 27.5V35H0V50H15V35H10V27.5H25V35H20V50H35V35H30V27.5H45V35H40V50H55V35H50ZM25 5H30V10H25V5ZM10 45H5V40H10V45ZM30 45H25V40H30V45ZM50 45H45V40H50V45Z"
                                     fill="#7A7A7A" />
