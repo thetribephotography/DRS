@@ -20,6 +20,11 @@ class UploadView extends ModalComponent
 {
     public $upload, $view_one;
 
+    public static function modalMaxWidth(): string
+    {
+        return '7xl';
+    }    
+
     public function mount($upload)
     {
         $this->upload = $upload;
