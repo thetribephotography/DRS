@@ -24,7 +24,7 @@ return new class extends Migration
             $collection->timestamps();
             $collection->integer('status');
             $collection->array('replies');
-            $collection->softDeletes()->nullable();
+            $collection->softDeletes();
 
         });
     }

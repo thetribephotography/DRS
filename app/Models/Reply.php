@@ -14,6 +14,8 @@ class Reply extends Model
     use HasFactory, HasRoles, SoftDeletes, Notifiable;
 
     protected $guard_name = 'web';
+    
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'user_id',

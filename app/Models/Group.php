@@ -15,6 +15,8 @@ class Group extends Model
 
     protected $guard_name = 'web';
 
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'name',
         // 'upload',
@@ -22,7 +24,6 @@ class Group extends Model
         'group_desc',
         'group_members',
         'user_id',
-        'deleted_at',
 
     ];
 

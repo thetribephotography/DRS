@@ -1,19 +1,34 @@
 import ApexCharts from "apexcharts";
 
 // ===== chartOne
-const chart01 = () => {
+const chart01 = (uploadsByMonth, downloadsByMonth, chartMonths) => {
+  let uploadData = [];
+  let downloadData = [];
+
+  if (uploadsByMonth && uploadsByMonth.length > 0) {
+    uploadData = uploadsByMonth.map((doc) => doc.count);
+  }
+
+  if (downloadsByMonth && downloadsByMonth.length > 0) {
+    downloadData = downloadsByMonth.map((doc) => doc.count);
+  }
+
+  // console.log(uploadData);
   const chartOneOptions = {
     series: [
       {
-        name: "Product One",
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+        name: "Total Uploads",
+        data: uploadData,
       },
 
       {
-        name: "Product Two",
-        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+        name: "Total Downloads",
+        data: downloadData,
       },
     ],
+    xaxis: {
+  type: 'series'
+  },
     legend: {
       show: false,
       position: "top",
@@ -97,21 +112,8 @@ const chart01 = () => {
       },
     },
     xaxis: {
-      type: "category",
-      categories: [
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-      ],
+      type: 'categories',
+      categories: chartMonths,
       axisBorder: {
         show: false,
       },
@@ -130,7 +132,18 @@ const chart01 = () => {
     },
   };
 
-  const chartSelector = document.querySelectorAll("#chartOne");
+    const chartSelector = document.querySelectorAll("#chartOne");
+
+  //   if (chartSelector.length) {
+  //     const chartOne = new ApexCharts(
+  //       document.querySelector("#chartOne"),
+  //       chartOneOptions
+  //     );
+  //     chartOne.render();
+  //   }
+  // };
+
+  // export default chart01;
 
   if (chartSelector.length) {
     const chartOne = new ApexCharts(
@@ -138,6 +151,29 @@ const chart01 = () => {
       chartOneOptions
     );
     chartOne.render();
+
+    document.addEventListener("livewire:load", function () {
+      Livewire.hook("afterDomUpdate", function () {
+        window.livewire.on("chartData", function (data) {
+          chartOne.updateOptions({
+            series: [
+              {
+                name: "Total Uploads",
+                data: data.uploadsByMonth.map((doc) => doc.count),
+              },
+
+              {
+                name: "Total Downloads",
+                data: data.downloadsByMonth.map((doc) => doc.count),
+              },
+            ],
+            xaxis: {
+              categories: data.chartMonths,
+            },
+          });
+        });
+      });
+    });
   }
 };
 
