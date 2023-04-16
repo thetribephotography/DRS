@@ -1,7 +1,7 @@
 <x-app-layout :title="$title">
     {{-- Header start --}}
     <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8 lg:pt-12">
-        <div class="ml-6 md:ml-[15rem]">
+        <div class="ml-6 md:ml-[6rem]">
             <h2 class="md:t-5 text-s5 font-bold text-cdblack md:text-s3">Software Upload</h2>
         </div>
     </div>
@@ -334,7 +334,7 @@
                             </svg>
                             <p class="text-gray-500 mb-2 text-sm"><span class="font-semibold">Click
                                     to upload</span> or drag and drop</p>
-                            <p class="text-gray-500 text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            <p class="text-gray-500 text-xs">MP4, MPEG4, WEBM
                             </p>
                         </div>
                         <input class="hidden" id="dropzone-file" name="summary-upload" type="file" multiple />

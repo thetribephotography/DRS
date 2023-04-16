@@ -1,7 +1,7 @@
 <x-app-layout :title="$title">
     {{-- Header start --}}
     <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8 lg:pt-12">
-        <div class="ml-6 md:ml-[15rem]">
+        <div class="ml-6 md:ml-[6rem]">
             <h2 class="md:t-5 text-s5 font-bold text-cdblack md:text-s3">Workflow Upload</h2>
         </div>
     </div>
@@ -278,8 +278,7 @@
                 <input
                     class="border-gray-300 bg-gray-50 text-gray-900 block w-full cursor-pointer rounded-lg border text-lg focus:outline-none"
                     id="file_upload" name="file-upload" type="file">
-                <p class="text-gray-500 mt-1 text-sm" id="file_input_help">SVG, PNG, JPG or GIF
-                    (MAX. 800x400px).</p>
+                <p class="text-gray-500 mt-1 text-sm" id="file_input_help">Zip, YAML, RAR</p>
                 {{-- Error Mesage --}}
                 @error('file-upload')
                     <div class="mt-2 rounded-lg bg-red-50 p-4 text-sm text-red-800" role="alert">
