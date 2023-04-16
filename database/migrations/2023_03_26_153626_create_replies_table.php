@@ -21,7 +21,7 @@ return new class extends Migration
             $collection->longText('content');
             $collection->timestamps();
             $collection->integer('status');
-            $collection->softDeletes()->nullable();
+            $collection->softDeletes();
         });
     }
 

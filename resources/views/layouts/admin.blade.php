@@ -503,6 +503,7 @@ d="M11 6.32498C8.42189 6.32498 6.32501 8.42186 6.32501 11C6.32501 13.5781 8.4218
 
     @livewire('livewire-ui-modal')
     @livewireScripts
+
 </body>
 
 </html>

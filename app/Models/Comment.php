@@ -15,13 +15,14 @@ class Comment extends Model
 
     protected $guard_name = 'web';
 
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'user_id',
         'upload_id',
         'content',
         'status',
         'replies',
-        'deleted_at',
     ];
 
     protected $casts = [];

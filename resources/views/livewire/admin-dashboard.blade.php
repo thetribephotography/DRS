@@ -43,7 +43,7 @@
             </div>
         </div>
         <div>
-            <div id="chartOne" class="-ml-5"></div>
+            <div wire:ignore id="chartOne" x-data x-init="chart01(@json($uploadsByMonth), @json($downloadsByMonth), @json($chartMonths))" class="-ml-5"></div>
         </div>
     </div>
 
@@ -93,3 +93,4 @@
 
 
 </div>
+
