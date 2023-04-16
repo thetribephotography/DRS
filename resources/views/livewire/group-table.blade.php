@@ -87,7 +87,7 @@
           </td>
           <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
             <div class="flex items-center space-x-3.5">
-              <button class="hover:text-primary">
+              <button wire:click="$emit('openModal', 'group-view', {{ json_encode(['group' => $group->_id]) }})" class="hover:text-primary">
                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path

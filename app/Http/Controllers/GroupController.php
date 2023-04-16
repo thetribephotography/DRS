@@ -80,7 +80,6 @@ class GroupController extends Controller
         // $one = Group::with('uploads')
         $one = Group::with('uploads')->where('_id', $id)->first();
 
-
         // $uploads = Upload::whereat('_id', $one->upload)->get();
 
         dd($one);
