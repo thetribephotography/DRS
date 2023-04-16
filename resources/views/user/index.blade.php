@@ -1,31 +1,9 @@
 <x-app-layout :title="$title">
     {{-- Modal  --}}
-    <div class="absolute top-36 left-24 right-0 z-50 h-[calc(100%-1rem)] p-4 md:h-full" id="modal-div" tabindex="-1"
-        style="display:none;">
-        <div class="relative h-full w-full max-w-md md:h-auto">
-            <div class="relative rounded-lg bg-white shadow">
-                <button
-                    class="absolute top-3 right-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
-                    id="modal-div-btn" data-modal-hide="popup-modal" type="button">
-                    <svg class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-                <div class="p-6 text-center">
-                    <a class="mr-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 hover:bg-b-hover"
-                        data-modal-hide="popup-modal" href="{{ route('user.upload') }}">
-                        Upload file
-                    </a>
-                    <a class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 hover:text-gray-900"
-                        data-modal-hide="popup-modal" href="{{ route('group.create') }}">Create group</a>
-                </div>
-            </div>
-        </div>
+    <div x-data="{ showPopup: false }">
+
     </div>
+
     {{-- Modal ende --}}
     {{-- Flash Message - Success --}}
     @if (session('success'))
@@ -85,27 +63,10 @@
                 <div
                     class="relative mt-6 flex w-full justify-between overflow-x-auto border border-[#D9D9D9] p-4 sm:rounded-lg lg:mt-10 lg:w-[50rem] lg:p-8">
 
-                    <div class="" id="create-div">
-                        {{-- POP up --}}
-                        {{-- <div class="absolute left-[7.5rem] top-[10rem] flex">
-                                <div class="hover:text-white">
-                                    <a class="block max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-cmblue"
-                                        href="{{ route('user.upload') }}">
-                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Icon</h5>
-                                        <p class="font-semibold text-gray-700">Uploads</p>
-                                    </a>
-                                </div>
-                                <div class="ml-8">
-                                    <a class="block max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-cmblue"
-                                        href="{{ route('group.create') }}">
-                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Icon</h5>
-                                        <p class="font-semibold text-gray-700">Group</p>
-                                    </a>
-                                </div>
-                            </div> --}}
-                        {{-- End --}}
+                    <div class="" x-data="{ showPopup: false }">
                         <div class="h-14 w-14 rounded-full bg-cmblue hover:bg-[#03739D] md:h-16 md:w-16 lg:h-24 lg:w-24"
-                            x-show="true" @click="open = !open">
+                            x-show="true" @click="showPopup = !showPopup">
+                            <!-- Create button -->
                             <svg class="h-4 w-4 translate-x-5 translate-y-5 lg:h-8 lg:w-8 lg:translate-x-8 lg:translate-y-8"
                                 width="33" height="33" viewBox="0 0 33 33" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -113,6 +74,40 @@
                                 <path d="M16.711 2L16.4578 31.1688M2 16.4578L31.1688 16.711" stroke="white"
                                     stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
+                        </div>
+                        <!-- Popup modal -->
+                        <div class="fixed inset-0 z-50 overflow-y-auto border border-cmblue bg-slate-400"
+                            x-show="showPopup">
+                            {{-- <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" @click="showPopup = false">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg> --}}
+                            <div class="flex min-h-screen items-center justify-center">
+                                <!-- Background overlay -->
+                                <div class="bg-gray-500 fixed inset-0 opacity-75" x-show="showPopup"></div>
+                                <!-- Popup content -->
+                                <div class="mx-auto w-full max-w-md rounded-lg bg-white p-8" x-show="showPopup">
+
+                                    <!-- Header -->
+                                    <div class="mb-4 text-lg font-bold">Let's do some actions shall we</div>
+                                    <!-- Body -->
+                                    <div class="mb-4">Select what you wish to create</div>
+                                    <!-- Buttons -->
+                                    <div class="flex justify-end">
+                                        <a href="{{ route('user.upload') }}">
+                                            <button
+                                                class="hover:bg-gray-700 mr-2 rounded bg-blue-500 py-2 px-4 font-bold text-white">Upload
+                                            </button>
+                                        </a>
+
+                                        <a href="{{ route('group.create') }}">
+                                            <button
+                                                class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">Group
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <h4 class="ml-2 mt-2 font-semibold text-clblack lg:mt-4 lg:ml-5">Create</h4>
                     </div>

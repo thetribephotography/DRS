@@ -1,7 +1,7 @@
 <x-app-layout :title="$title">
     {{-- Header start --}}
     <div class="h-[5rem] w-full bg-[#C2E7F4] pt-5 pb-3 shadow md:h-[10rem] md:pt-8 lg:pt-12">
-        <div class="ml-6 md:ml-[15rem]">
+        <div class="ml-6 md:ml-[6rem]">
             <h2 class="md:t-5 text-s5 font-bold text-cdblack md:text-s3">Dataset Upload</h2>
         </div>
     </div>
@@ -227,7 +227,7 @@
                                 class="border-gray-300 bg-gray-100 h-4 w-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                 id="public" name="example" type="radio" value="4" checked>
                             <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
-                                for="horizontal-list-radio-license">Public</label>
+                                for="horizontal-list-radio-license">Personal</label>
                         </div>
                     </li>
                     <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">
@@ -332,7 +332,7 @@
                             </svg>
                             <p class="text-gray-500 mb-2 text-sm"><span class="font-semibold">Click
                                     to upload</span> or drag and drop</p>
-                            <p class="text-gray-500 text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            <p class="text-gray-500 text-xs">MP4. MKV, WEBM(MAX. 800x400px)
                             </p>
                         </div>
                         <input class="hidden" id="dropzone-file" name="summary-upload" type="file" multiple />
