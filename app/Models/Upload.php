@@ -83,17 +83,7 @@ class Upload extends Model
         if ($filters['search'] ?? false) {
 
             //searches by title
-            $query->where('title', 'like', '%' . request('search') . '%');
-        }
-    }
-
-    public function scopecustomfilter($query, array $filters)
-    {
-
-        if ($filters['search'] ?? false) {
-
-            //searches by title
-            $query->where('title', 'like', '%' . $filters['search'] . '%');
+            $query->where('title', 'like', '%' . request('search') . '%')->whereIn("access_id", ["1", "2"]);
         }
     }
 }

@@ -25,6 +25,7 @@ class SearchPosts extends Component
     public $SelectedTags = [];
     public $SelectedAccess = [];
     public $SelectedType = [];
+    public $SelectedDates = [];
 
 
 
@@ -50,7 +51,7 @@ class SearchPosts extends Component
     {
         $this->categories = Category::all();
         $this->tags = Tag::all();
-        $this->posts = Upload::latest()->filter(request(['search']))->whereIn('access_id', [1, 2])->paginate(8);
+        $this->posts = Upload::latest()->filter(request(['search']))->paginate(8);
 
         // dd($this->posts);
     }
@@ -64,25 +65,26 @@ class SearchPosts extends Component
 
     public function filter()
     {
-        // $this->posts = Upload::query()->when($this->search, function ($query, $search) {
-        //     return $query->where('title', 'like', '%' . $search . '%');
-        // })->paginate(8);
-
         $query = Upload::query();
 
         // Condition for Sort
         if ((int)$this->selectedSortOption == 0) {
             // For filter
             if ($this->search) {
-                $query->where('title', 'like', '%' . $this->search . '%');
+                $query->where('title', 'like', '%' . $this->search . '%')->whereIn("access_id", ["1", "2"]);
 
                 if (!empty($this->SelectedType)) {
                     $query
                         ->whereIn('topic_id', $this->SelectedType);
                 }
+                if (!empty($this->SelectedAccess)) {
+                    $query->whereIn('access_id', $this->SelectedAccess);
+                }
+                if (!empty($this->SelectedDates)) {
+                    $query->whereIn('published_at', []);
+                }
                 if (!empty($this->SelectedCategories)) {
-                    $query->whereIn('category_id', $this->SelectedCategories)
-                        ->latest('created_at');
+                    $query->whereIn('category_id', $this->SelectedCategories);
                 }
             }
         } elseif ((int)$this->selectedSortOption == 1) { //Sort By Latest
@@ -107,34 +109,16 @@ class SearchPosts extends Component
         $this->posts = $query->paginate(8);
     }
 
-    public function filter2()
-    {
-        $query = Upload::query();
 
-        if ($this->search) {
-            $query->where('title', 'like', '%' . $this->search . '%');
-        }
-
-        if (!empty($this->SelectedCategories)) {
-            $query->whereIn('category_id', $this->SelectedCategories);
-        }
-
-        if (!empty($this->SelectedTags)) {
-            $query->whereHas('tags', function ($q) {
-                $q->whereIn('tag_id', $this->SelectedTags);
-            });
-        }
-
-        if ($this->startDate && $this->endDate) {
-            $query->whereBetween('created_at', [$this->startDate, $this->endDate]);
-        }
-
-        $this->posts = $query->paginate(8);
-    }
     public function updated()
     {
-        $this->posts = Upload::query()->when($this->search, function ($query, $search) {
-            return $query->where('title', 'like', '%' . $search . '%');
-        })->paginate(8);
+        if ($this->search) {
+            $query = Upload::query()
+                ->where('title', 'like', '%' . $this->search . '%')
+                ->whereIn("access_id", ["1", "2"]);
+            $this->posts = $query->paginate(8);
+        } else {
+            $this->posts = Upload::whereIn("access_id", ["1", "2"])->paginate(8);
+        }
     }
 }

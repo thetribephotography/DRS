@@ -26,6 +26,9 @@ class Group extends Model
         'user_id',
 
     ];
+    protected $casts = [
+        'group_members' => 'array',
+    ];
 
     public function uploads()
     {
@@ -34,7 +37,7 @@ class Group extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class, '_id', 'group_members');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function userone()

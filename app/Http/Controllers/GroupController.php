@@ -37,18 +37,22 @@ class GroupController extends Controller
         ]);
 
         $user = Auth::id();
-        // $slug_name = $request->name;
 
-        $update = new Group;
-        $update->name = $request->name;
-        $update->group_members = $request->members;
-        $update->group_desc = $request->group_desc;
-        $update->slug = Str::slug($update->name);
-        $update->user_id = $user;
+        //Add owner to group memeber array
+        $hold[] = $user;
+        foreach ($request->members as $m) {
+            $hold[] = $m;
+        };
 
-        $update->save();
+        $group = new Group;
+        $group->name = $request->name;
+        $group->group_members = $hold;
+        $group->group_desc = $request->group_desc;
+        $group->slug = Str::slug($group->name);
+        $group->user_id = $user;
+        $group->save();
 
-        return redirect('/dashboard')->with('Group Created Successfully');
+        return redirect('/dashboard')->with('success', 'Group Created Successfully');
     }
 
     // SHOW ALL GROUPS FOR PARTICULAR USER
@@ -56,13 +60,21 @@ class GroupController extends Controller
     {
         // $this->authorize('view_group', 'You dont have the permission to access this');
 
-        $user = Auth::id();
+        $id = Auth::id();
+        $user = User::where("_id", $id)->first();
 
-        $list = "Hey";
-        // $list = Group::with('user', 'uploads')->where('group_members', $user)->orwhere('user_id', $user)->get();
+
+        $list = Group::with('uploads', 'user')
+            // ->whereIn('group_members', [$user->id])
+            ->where('user_id', $user->id) //Fetches those users own
+            ->get();
+
         $title = "Groups | All";
-
         // dd($list);
+
+
+
+
         if (!$list) {
             return redirect('/dashboard')->with('You are not in any groups right now.Kindly create yours and add your friends or ask to be added');
         } else {
@@ -84,7 +96,7 @@ class GroupController extends Controller
 
         dd($one);
         if (!$one) {
-            return redirect('/dashboard')->with('There is no Such Group');
+            return redirect('/dashboard')->with('success', 'There is no Such Group');
         } else {
             return view('', compact('one'));
         }
@@ -97,7 +109,7 @@ class GroupController extends Controller
         $one = Group::where('_id', $id)->first();
 
         if ($request->all() == '') {
-            return redirect('/dashboard')->with('No Updates Made');
+            return redirect('/dashboard')->with('success', 'No Updates Made');
         } else {
 
             $one->name = $request->name;
@@ -115,7 +127,7 @@ class GroupController extends Controller
 
             $one->update();
 
-            return view('/dashboard')->with('Update Successful');
+            return view('/dashboard')->with('success', 'Update Successful');
         }
     }
 

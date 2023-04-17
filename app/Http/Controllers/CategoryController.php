@@ -49,8 +49,8 @@ class CategoryController extends Controller
     {
 
         $category = Category::with('uploads',)->where('slug', $slug)->first();
-        $uploads = Upload::whereIn('_id', $category->upload_id)->get();
-        $title = $category->name;
+        $uploads = Upload::whereIn('_id', $category->upload_id)->whereIn("access_id", ["1", "2"])->get();
+        $title = "Category - " . $category->name;
         // dd($category, $uploads);
         return view('categories.show', compact('title', 'category', 'uploads'));
     }

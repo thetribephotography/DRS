@@ -76,38 +76,34 @@
                             </svg>
                         </div>
                         <!-- Popup modal -->
-                        <div class="fixed inset-0 z-50 overflow-y-auto border border-cmblue bg-slate-400"
-                            x-show="showPopup">
-                            {{-- <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" @click="showPopup = false">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg> --}}
-                            <div class="flex min-h-screen items-center justify-center">
-                                <!-- Background overlay -->
-                                <div class="bg-gray-500 fixed inset-0 opacity-75" x-show="showPopup"></div>
-                                <!-- Popup content -->
-                                <div class="mx-auto w-full max-w-md rounded-lg bg-white p-8" x-show="showPopup">
+                        <div class="fixed inset-0 z-50 overflow-y-auto border border-cmblue" x-show="showPopup">
+                            {{-- PopUp content --}}
+                            <div class="mx-auto w-full max-w-md rounded-lg bg-white p-8" x-show="showPopup">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    @click="showPopup = !showPopup">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                <!-- Header -->
+                                <div class="mb-4 text-lg font-bold">Let's do some actions shall we</div>
+                                <!-- Body -->
+                                <div class="mb-4">Select what you wish to create</div>
+                                <!-- Buttons -->
+                                <div class="flex justify-end">
+                                    <a href="{{ route('user.upload') }}">
+                                        <button
+                                            class="hover:bg-gray-700 mr-2 rounded bg-blue-500 py-2 px-4 font-bold text-white">Upload
+                                        </button>
+                                    </a>
 
-                                    <!-- Header -->
-                                    <div class="mb-4 text-lg font-bold">Let's do some actions shall we</div>
-                                    <!-- Body -->
-                                    <div class="mb-4">Select what you wish to create</div>
-                                    <!-- Buttons -->
-                                    <div class="flex justify-end">
-                                        <a href="{{ route('user.upload') }}">
-                                            <button
-                                                class="hover:bg-gray-700 mr-2 rounded bg-blue-500 py-2 px-4 font-bold text-white">Upload
-                                            </button>
-                                        </a>
-
-                                        <a href="{{ route('group.create') }}">
-                                            <button
-                                                class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">Group
-                                            </button>
-                                        </a>
-                                    </div>
+                                    <a href="{{ route('group.create') }}">
+                                        <button
+                                            class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">Group
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
+                            {{-- Content End --}}
                         </div>
                         <h4 class="ml-2 mt-2 font-semibold text-clblack lg:mt-4 lg:ml-5">Create</h4>
                     </div>
