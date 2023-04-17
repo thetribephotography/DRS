@@ -531,7 +531,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-b border-gg py-6" x-data="{ open: false }">
+                    {{-- <div class="border-b border-gg py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
@@ -559,31 +559,35 @@
                         <div class="pt-6" x-show="open">
                             <div class="space-y-4">
                                 <div class="flex items-center">
-                                    <input class="focus:ring-none w-noneded h-4 border-gg text-indigo-600"
-                                        name="date[]" type="checkbox" value="">
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
+                                        type="checkbox" value="2018" wire:model="SelectedDates"
+                                        wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8">2018 - 2023</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
-                                        name="date[]" type="checkbox" value="">
+                                        type="checkbox" value="2017" wire:model="SelectedDates"
+                                        wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8">2013 - 2018</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
-                                        name="date[]" type="checkbox" value="">
+                                        type="checkbox" value="2016" wire:model="SelectedDates"
+                                        wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8">2008 - 2013</label>
                                 </div>
 
                                 <div class="flex items-center">
                                     <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
-                                        id="filter-size-3" name="date[]" type="checkbox" value="">
+                                        id="filter-size-3" type="checkbox" value="2015" wire:model="SelectedDates"
+                                        wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8">2003 - 2008</label>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Product grid -->
@@ -625,7 +629,7 @@
                     {{-- Loading bar end --}}
 
                     {{-- @php
-                        var_dump($SelectedAccess);
+                        var_dump($SelectedDates);
                     @endphp --}}
 
                     @foreach ($posts as $upload)

@@ -25,6 +25,7 @@ class SearchPosts extends Component
     public $SelectedTags = [];
     public $SelectedAccess = [];
     public $SelectedType = [];
+    public $SelectedDates = [];
 
 
 
@@ -76,9 +77,14 @@ class SearchPosts extends Component
                     $query
                         ->whereIn('topic_id', $this->SelectedType);
                 }
+                if (!empty($this->SelectedAccess)) {
+                    $query->whereIn('access_id', $this->SelectedAccess);
+                }
+                if (!empty($this->SelectedDates)) {
+                    $query->whereIn('published_at', []);
+                }
                 if (!empty($this->SelectedCategories)) {
-                    $query->whereIn('category_id', $this->SelectedCategories)
-                        ->latest('created_at');
+                    $query->whereIn('category_id', $this->SelectedCategories);
                 }
             }
         } elseif ((int)$this->selectedSortOption == 1) { //Sort By Latest
@@ -106,8 +112,13 @@ class SearchPosts extends Component
 
     public function updated()
     {
-        $this->posts = Upload::query()->when($this->search, function ($query, $search) {
-            return $query->where('title', 'like', '%' . $search . '%')->whereIn("access_id", ["1", "2"]);
-        })->paginate(8);
+        if ($this->search) {
+            $query = Upload::query()
+                ->where('title', 'like', '%' . $this->search . '%')
+                ->whereIn("access_id", ["1", "2"]);
+            $this->posts = $query->paginate(8);
+        } else {
+            $this->posts = Upload::whereIn("access_id", ["1", "2"])->paginate(8);
+        }
     }
 }
