@@ -270,8 +270,8 @@
     </div>
 
     <main class="ml-[5rem] max-w-7xl px-4 sm:px-6">
-        <div class="border-gray-200 flex items-baseline justify-between border-b pb-6 pt-4">
-            <h1 class="text-2xl font-bold tracking-tight text-black">Search Results</h1>
+        <div class="flex items-baseline justify-between border-b border-gg pb-6 pt-4">
+            <h1 class="text-2xl font-bold tracking-tight text-clblack">Search Results</h1>
 
 
             <div class="flex items-center">
@@ -337,11 +337,11 @@
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 <!-- Filters -->
                 <div class="hidden lg:block">
-                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
+                    <div class="border-b border-gg py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
+                                class="text-gray-400 flex w-full items-center justify-between bg-white px-2 py-3 hover:text-cmblue"
                                 type="button">
                                 <span class="text-gray-900 font-medium">Upload type</span>
                                 <span class="ml-6 flex items-center">
@@ -365,28 +365,28 @@
                         <div class="pt-6" x-show="open">
                             <div class="space-y-4">
                                 <div class="flex items-center">
-                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-cmblue"
                                         type="checkbox" value="1" wire:model="SelectedType"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Article</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-cmblue"
                                         type="checkbox" value="2" wire:model="SelectedType"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-1">Software</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-cmblue"
                                         type="checkbox" value="3" wire:model="SelectedType"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-1">Dataset</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-cmblue"
                                         id="filter-size-3" type="checkbox" value="4" wire:model="SelectedType"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-3">Workflow</label>
@@ -394,18 +394,18 @@
 
                                 {{-- Others temporarily off --}}
                                 <div class="flex items-center">
-                                    <input class="border-gray-300 h-4 w-4 rounded text-cmblue focus:ring-cmblue"
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-cmblue"
                                         type="checkbox" value="5">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-4">Others</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
+                    <div class="border-b border-gg py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
+                                class="text-gray-400 flex w-full items-center justify-between bg-white px-2 py-3 hover:text-cmblue"
                                 type="button">
                                 <span class="text-gray-900 font-medium">Access Rights</span>
                                 <span class="ml-6 flex items-center">
@@ -430,19 +430,19 @@
                             <div class="space-y-4">
 
                                 <div class="flex items-center">
-                                    <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-clblue"
                                         name=categories[]" type="checkbox" value="1" wire:model="SelectedAccess"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Public</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
+                                    <input class="border-gray-300 focus:ring-none h-4 w-4 rounded text-clblue"
                                         name=categories[]" type="checkbox" value="2" wire:model="SelectedAccess"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Private</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
+                                    <input class="border-gray-300 focus:ring-none h-4 w-4 rounded text-clblue"
                                         name=categories[]" type="checkbox" value="3" wire:model="SelectedAccess"
                                         wire:click="filter">
                                     <label class="text-gray-600 ml-3 text-s8" for="filter-size-0">Group</label>
@@ -452,11 +452,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
+                    <div class="border-b border-gg py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
+                                class="text-gray-400 flex w-full items-center justify-between bg-white px-2 py-3 hover:text-cmblue"
                                 type="button">
                                 <span class="text-gray-900 font-medium">Categories</span>
                                 <span class="ml-6 flex items-center">
@@ -481,9 +481,9 @@
                             <div class="space-y-4">
                                 @foreach ($categories as $category)
                                     <div class="flex items-center">
-                                        <input class="focclblueblue border-gray-300 h-4 w-4 rounded text-clblue"
-                                            type="checkbox" value="{{ $category->id }}"
-                                            wire:model="SelectedCategories" wire:click="filter">
+                                        <input class="h-4 w-4 rounded border-gg text-clblue" type="checkbox"
+                                            value="{{ $category->id }}" wire:model="SelectedCategories"
+                                            wire:click="filter">
                                         <label class="text-gray-600 ml-3 text-s8"
                                             for="filter-size-0">{{ $category->name }}</label>
                                     </div>
@@ -492,11 +492,11 @@
                         </div>
                     </div>
 
-                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
+                    <div class="border-b border-gg py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
+                                class="text-gray-400 flex w-full items-center justify-between bg-white px-2 py-3 hover:text-cmblue"
                                 type="button">
                                 <span class="text-gray-900 font-medium">Tags</span>
                                 <span class="ml-6 flex items-center">
@@ -522,7 +522,7 @@
 
                                 @foreach ($tags as $tag)
                                     <div class="flex items-center">
-                                        <input class="border-gray-300 h-4 w-4 rounded text-clblue focus:ring-cmblue"
+                                        <input class="focus:ring-none h-4 w-4 rounded border-gg text-clblue"
                                             type="checkbox" value="{{ $tag->slug }}" wire:model="SelectedTags">
                                         <label class="text-gray-600 ml-3 text-s8"
                                             for="filter-size-0">{{ $tag->name }}</label>
@@ -531,13 +531,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-gray-200 border-b py-6" x-data="{ open: false }">
+                    <div class="border-b border-gg py-6" x-data="{ open: false }">
                         <h3 class="-mx-2 -my-3 flow-root text-s8">
                             <!-- Expand/collapse section button -->
                             <button
-                                class="text-gray-400 hover:text-gray-500 flex w-full items-center justify-between bg-white px-2 py-3"
+                                class="text-gray-400 flex w-full items-center justify-between bg-white px-2 py-3 hover:text-cmblue"
                                 type="button">
-                                <span class="text-gray-900 font-medium">Date Published</span>
+                                <span class="text-gray-900 font-medium">Publication Date</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
                                     <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
@@ -559,45 +559,27 @@
                         <div class="pt-6" x-show="open">
                             <div class="space-y-4">
                                 <div class="flex items-center">
-                                    <input
-                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
-                                        name="size[]" type="checkbox" value="2l">
-                                    <label class="text-gray-600 ml-3 text-s8">2L</label>
+                                    <input class="focus:ring-none w-noneded h-4 border-gg text-indigo-600"
+                                        name="date[]" type="checkbox" value="">
+                                    <label class="text-gray-600 ml-3 text-s8">2018 - 2023</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input
-                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
-                                        name="size[]" type="checkbox" value="6l">
-                                    <label class="text-gray-600 ml-3 text-s8">6L</label>
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
+                                        name="date[]" type="checkbox" value="">
+                                    <label class="text-gray-600 ml-3 text-s8">2013 - 2018</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input
-                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
-                                        name="size[]" type="checkbox" value="12l">
-                                    <label class="text-gray-600 ml-3 text-s8">12L</label>
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
+                                        name="date[]" type="checkbox" value="">
+                                    <label class="text-gray-600 ml-3 text-s8">2008 - 2013</label>
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input
-                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
-                                        id="filter-size-3" name="size[]" type="checkbox" value="18l">
-                                    <label class="text-gray-600 ml-3 text-s8">18L</label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input
-                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
-                                        name="size[]" type="checkbox" value="20l">
-                                    <label class="text-gray-600 ml-3 text-s8">20L</label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input
-                                        class="border-gray-300 h-4 w-4 rounded text-indigo-600 focus:ring-indigo-500"
-                                        name="size[]" type="checkbox" value="40l" checked>
-                                    <label class="text-gray-600 ml-3 text-s8">40L</label>
+                                    <input class="focus:ring-none h-4 w-4 rounded border-gg text-indigo-600"
+                                        id="filter-size-3" name="date[]" type="checkbox" value="">
+                                    <label class="text-gray-600 ml-3 text-s8">2003 - 2008</label>
                                 </div>
                             </div>
                         </div>
@@ -618,7 +600,7 @@
                             </svg>
                         </div>
                         <input
-                            class="border-gray-300 bg-gray-50 text-gray-900 block w-full rounded-lg border p-2.5 pl-10 text-sm focus:border-clblue focus:ring-clblue"
+                            class="bg-gray-50 text-gray-900 block w-full rounded-lg border border-gg p-2.5 pl-10 text-sm focus:border-clblue focus:ring-clblue"
                             type="text" placeholder="Search" wire:model.debounce.2000ms="search"
                             wire:keydown.enter="filter">
                     </div>
@@ -787,7 +769,16 @@
                                             </svg>
                                             <p class="ml-1">{{ round($upload->file_size / 1048576, 2) }} MB</p>
                                         </div>
-                                        {{-- Date --}}
+                                        {{-- Publication Date --}}
+                                        <div class="mr-4 flex text-s9 text-[#6F737A]">
+                                            <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                            </svg>
+                                            <p class="ml-1">{{ $upload->published_at->format('F d, Y') }}</p>
+                                        </div>
+                                        {{-- Creation Date --}}
                                         <div class="flex text-s9 text-[#6F737A]">
                                             <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -796,6 +787,7 @@
                                             </svg>
                                             <p class="ml-1">{{ $upload->created_at->format('F d, Y') }}</p>
                                         </div>
+
                                     </div>
                                     {{-- End --}}
                                     <div class="mt-2">

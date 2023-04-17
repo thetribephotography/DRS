@@ -18,14 +18,14 @@
                             <div class="mt-4 flex">
                                 <img class="h-5 w-5 rounded-full"
                                     src="{{ $upload->users->profile_picture ? asset('storage/' . $upload->users->profile_picture) : asset('images/user.jpeg') }}">
-                                <p class="ml-2 text-s8 font-regular text-clgray">
+                                <p class="ml-2 text-s8 font-regular text-clgray hover:underline">
                                     {{ $upload->users->name }}</p>
                             </div>
                         </a>
                         <p class="mt-4 text-s8 text-[#8F8F8F]">Lasted updated at
                             {{ $upload->updated_at->format('F d, Y') }}</p>
                         @if ($upload->access_id == 2)
-                            <a href="#">
+                            <a id="reqeust-access-btn" href="#">
                                 <button
                                     class="focus:ring-gray-100 mt-8 ml-[42rem] mb-2 inline-flex items-center rounded-lg bg-cmblue px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-2 hover:bg-b-hover"
                                     type="button">
@@ -253,6 +253,16 @@
                             {{-- End table --}}
                         </div>
 
+                        {{-- If upload isn't an article --}}
+                        @if (!($upload->topic_id == 1))
+                            {{-- Video --}}
+                            <div class="mt-6">
+                                <p class="text-center text-s6 font-semibold uppercase text-cdblack">Tutorial Video</p>
+                                <video class="e mt-6 ml-[5rem]" src="{{ asset('storage/' . $upload->media) }}"
+                                    height="400" width="650" controls></video>
+                            </div>
+                            {{-- Video End --}}
+                        @endif
                     </div>
                 </div>
 
@@ -452,7 +462,7 @@
                     {{-- Categories --}}
                     <div class="ml-6 pt-6 text-left">
                         <a class="text-decoration-none" href="{{ route('category.index') }}">
-                            <h4 class="mb-2 font-medium text-white">Categories</h4>
+                            <h4 class="mb-2 font-medium text-white hover:underline">Categories</h4>
                         </a>
                         <div class="bg mt-2 text-white">
 
@@ -468,7 +478,7 @@
                     {{-- Tag --}}
                     <div class="mt-6 ml-6 text-left">
                         <a href="{{ route('tag.index') }}">
-                            <h4 class="mb-2 font-semibold text-white">Tags</h4>
+                            <h4 class="mb-2 font-semibold text-white hover:underline">Tags</h4>
                         </a>
                         <div class="bg mt-2 text-white">
                             @foreach ($upload->tags as $tag)
@@ -485,7 +495,7 @@
 
                     {{-- Keyword --}}
                     <div class="mt-10 ml-6 h-full text-left text-white">
-                        <h4 class="mb-2 font-semibold text-white">Keywords:</h4>
+                        <h4 class="mb-2 font-semibold text-white">Keywords</h4>
                         <div class="bg mt-2">
                             @foreach ($upload->keywords as $keyword)
                                 <span
@@ -500,5 +510,14 @@
 
 
         <x-footer />
+
+
+        <script>
+            //Alert when request access btn is clciked
+            const requestButton = document.getElementById("reqeust-access-btn");
+            requestButton.addEventListener("click", () => {
+                alert("Requested Sucessfully");
+            });
+        </script>
     </div>
 </x-app-layout>
