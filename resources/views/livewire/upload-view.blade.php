@@ -1,5 +1,5 @@
 <main>
-        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+        <div class="mx-auto max-w-screen-7xl p-4 md:p-6 5xl:p-10">
           <div class="mx-auto max-w-242.5">
             <!-- Breadcrumb Start -->
             <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -20,12 +20,12 @@
             <div
               class="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div class="relative z-20 h-35 md:h-65">
-                <img src="./images/cover/cover-01.png" alt="profile cover"
+                <img src="{{ $view_one->users->profile_picture ? asset('storage/' . $view_one->users->profile_picture) : asset('images/user.jpeg') }}" alt="profile cover"
                   class="h-full w-full rounded-tl-sm rounded-tr-sm object-cover object-center" />
                 <div class="absolute bottom-1 right-1 z-10 xsm:bottom-4 xsm:right-4">
                   <label for="cover"
                     class="flex cursor-pointer items-center justify-center gap-2 rounded bg-primary py-1 px-2 text-sm font-medium text-white hover:bg-opacity-80 xsm:px-4">
-                    <input type="file" name="cover" id="cover" class="sr-only" />
+                    <input type="file" name="cover" id="cover" class="sr-only" disabled/>
                     <span>
                       <svg class="fill-current" width="14" height="14" viewBox="0 0 14 14" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@
                           fill="white" />
                       </svg>
                     </span>
-                    <span>Edit</span>
+                    <span></span>
                   </label>
                 </div>
               </div>
@@ -45,7 +45,7 @@
                 <div
                   class="relative z-30 mx-auto -mt-22 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-44 sm:p-3">
                   <div class="relative drop-shadow-2">
-                    <img src="./images/user/user-06.png" alt="profile" />
+                    <img src="{{ $view_one->users->profile_picture ? asset('storage/' . $view_one->users->profile_picture) : asset('images/user.jpeg') }}" alt="profile" />
                     <label for="profile"
                       class="absolute bottom-0 right-0 flex h-8.5 w-8.5 cursor-pointer items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 sm:bottom-2 sm:right-2">
                       <svg class="fill-current" width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -57,47 +57,59 @@
                           d="M7.00004 5.83329C6.03354 5.83329 5.25004 6.61679 5.25004 7.58329C5.25004 8.54979 6.03354 9.33329 7.00004 9.33329C7.96654 9.33329 8.75004 8.54979 8.75004 7.58329C8.75004 6.61679 7.96654 5.83329 7.00004 5.83329ZM4.08337 7.58329C4.08337 5.97246 5.38921 4.66663 7.00004 4.66663C8.61087 4.66663 9.91671 5.97246 9.91671 7.58329C9.91671 9.19412 8.61087 10.5 7.00004 10.5C5.38921 10.5 4.08337 9.19412 4.08337 7.58329Z"
                           fill="" />
                       </svg>
-                      <input type="file" name="profile" id="profile" class="sr-only" />
+                      <input type="file" name="profile" id="profile" class="sr-only" disabled/>
                     </label>
                   </div>
                 </div>
                 <div class="mt-4">
                   <h3 class="mb-1.5 text-2xl font-medium text-black dark:text-white">
-                    Danish Heilium
+                    {{$view_one->title}}
                   </h3>
-                  <p class="font-medium">Ui/Ux Designer</p>
+                  <p class="font-medium">{{$view_one->users->name}}</p>
                   <div
                     class="dark:bg-[#37404F] mx-auto mt-4.5 mb-5.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark">
                     <div
                       class="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
-                      <span class="font-semibold text-black dark:text-white">259</span>
+                      @if($view_one->access_id == 1)
+                      <span class="font-semibold text-black dark:text-white">Public</span>
+                        @elseif($view_one->access_id == 2)
+                        <span class="font-semibold text-black dark:text-white">Private</span>
+                        @elseif($view_one->access_id == 3)
+                        <span class="font-semibold text-black dark:text-white">Group</span>
+                        @elseif($view_one->access_id == 4)
+                        <span class="font-semibold text-black dark:text-white">Personal</span>
+                        @endif
                       <span class="text-sm">Posts</span>
                     </div>
                     <div
                       class="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
-                      <span class="font-semibold text-black dark:text-white">129K</span>
-                      <span class="text-sm">Followers</span>
+                      @if($view_one->topic_id == 1)
+                      <span class="font-semibold text-black dark:text-white">Article</span>
+                      @elseif($view_one->topic_id == 2)
+                      <span class="font-semibold text-black dark:text-white">Software</span>
+                      @elseif($view_one->topic_id == 3)
+                      <span class="font-semibold text-black dark:text-white">Dataset</span>
+                      @elseif($view_one->topic_id == 4)
+                      <span class="font-semibold text-black dark:text-white">Workflow</span>
+                      @endif
+                      <span class="text-sm">Topic</span>
                     </div>
                     <div class="flex flex-col items-center justify-center gap-1 px-4 xsm:flex-row">
-                      <span class="font-semibold text-black dark:text-white">2K</span>
-                      <span class="text-sm">Following</span>
+                      <span class="font-semibold text-black dark:text-white">{{$view_one->downloads}}</span>
+                      <span class="text-sm">Downloaded</span>
                     </div>
                   </div>
 
                   <div class="mx-auto max-w-180">
                     <h4 class="font-medium text-black dark:text-white">
-                      About Me
+                      Description
                     </h4>
                     <p class="mt-4.5 font-medium text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Pellentesque posuere fermentum urna, eu condimentum
-                      mauris tempus ut. Donec fermentum blandit aliquet. Etiam
-                      dictum dapibus ultricies. Sed vel aliquet libero. Nunc a
-                      augue fermentum, pharetra ligula sed, aliquam lacus.
+                        {{$view_one->description}}
                     </p>
                   </div>
 
-                  <div class="mt-6.5">
+                  <!-- <div class="mt-6.5">
                     <h4 class="mb-3.5 font-medium text-black dark:text-white">
                       Follow me on
                     </h4>
@@ -178,7 +190,7 @@
                         </svg>
                       </a>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

@@ -74,8 +74,8 @@
         @forelse($groups as $group)
         <tr>
           <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-            <img class="rounded-full w-10 h-10" src=" {{asset ('storage/' . $group->users->profile_picture) }}" alt="Profile Picture">
-            <p class="text-sm">{{$group->users->name}}</p>
+            <img class="rounded-full w-10 h-10" src=" {{asset ('storage/' . $group->userone->profile_picture) }}" alt="Profile Picture">
+            <p class="text-sm">{{$group->userone->name}}</p>
           </td>
           <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
             <p class="text-black dark:text-white">{{$group->name}}</p>

@@ -22,7 +22,7 @@ class Reply extends Model
         'comment_id',
         'content',
         'status',
-        'deleted_at',
+        // 'deleted_at',
     ];
 
     public function comment_id(){

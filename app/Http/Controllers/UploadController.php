@@ -98,7 +98,7 @@ class UploadController extends Controller
     {
         $user = Auth::id();
         $title = "View Single Upload";
-        $upload = Upload::with('comments', 'users', 'categories', 'tags')
+        $upload = Upload::with('comments.replies', 'users', 'categories', 'tags')
             ->where('slug', $slug)  //Get by slug
             ->whereIn('access_id', ["1", "2"]) //Get only public
             ->first();

@@ -17,8 +17,7 @@ class GroupTable extends Component
 
     public function render()
     {
-        $groups = Group::with('users')->whereNull('deleted_at')->paginate(5);
-        // $uploads = Upload::with('users')->whereNull('deleted_at')->paginate(8);
+        $groups = Group::with('userone')->paginate(5);
         return view('livewire.group-table', ['groups' => $groups]);
     }
 }
