@@ -1,5 +1,5 @@
 <x-app-layout :title="$title">
-    <div class="h-screen pt-8">
+    <div wire:poll class="h-screen pt-8">
         <div class="flex pt-8">
 
             {{-- @if (session()->has('message'))
@@ -352,7 +352,7 @@
                                     <div class="mt-4 flex items-center space-x-4">
                                         <button class="text-gray-500 flex items-center text-sm hover:underline"
                                             type="button"
-                                            onclick='Livewire.emit("openModal", "comment-reply", {{ json_encode(['data' => $comment->_id]) }})'>
+                                            onclick="Livewire.emit('openModal', 'comment-reply', {{ json_encode(['data' => $comment->_id]) }})">
                                             <svg class="mr-1 h-4 w-4" aria-hidden="true" fill="none"
                                                 stroke="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -372,10 +372,9 @@
                                             <div class="flex items-center">
                                                 <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
                                                         class="mr-2 h-6 w-6 rounded-full"
-                                                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                                        alt="Jese Leos">Jese Leos</p>
-                                                <p class="text-gray-600 text-sm"><time title="February 12th, 2022"
-                                                        pubdate datetime="2022-02-12">Feb. 12, 2022</time></p>
+                                                        src="{{ $reply->user->profile_picture ? asset('storage/' . $reply->user->profile_picture) : asset('images/user.jpeg') }}"
+                                                        alt="">{{$reply->user->name}}</p>
+                                                <p class="text-gray-600 text-sm">{{ $reply->created_at->format('F d, Y') }}</p>
                                             </div>
                                             <button
                                                 class="text-gray-400 focus:ring-gray-50 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none focus:ring-4"
@@ -409,7 +408,7 @@
                                                 </ul>
                                             </div>
                                         </footer>
-                                        <p class="text-gray-500">Much appreciated! Glad you liked it ☺️</p>
+                                        <p class="text-gray-500">{{reply->content}}</p>
                                         <div class="mt-4 flex items-center space-x-4">
                                         </div>
                                     </article>

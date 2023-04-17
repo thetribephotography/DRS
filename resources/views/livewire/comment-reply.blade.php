@@ -22,7 +22,7 @@
                     type="submit">
                     Post comment
                 </button>
-                <button wire:click="$emit('closeModal')">Close Modal</button>
+                <button wire:click="$refresh; $emit('closeModal')">Close Modal</button>
             </form>
         </div>
     </section>

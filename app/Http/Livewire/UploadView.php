@@ -33,6 +33,6 @@ class UploadView extends ModalComponent
     public function render()
     {
         $this->view_one = Upload::with('users', 'comments', 'categories', 'tags')->where('_id', $this->upload)->first();
-        return view('livewire.upload-view', ['view_one' => $this->view_one]);
+        return view('livewire.upload-view', [$this->view_one]);
     }
 }

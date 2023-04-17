@@ -15,11 +15,14 @@ class CommentReply extends ModalComponent
 {
     public $reply, $data, $user;
     public $status, $reply_id, $one;
+    public $interval = 5;
 
 
     protected $rules = [
         'reply' => 'required',
     ];
+
+    // protected $listeners = ['refreshData' => 'refreshData'];
 
     public function updated($fields)
     {
@@ -29,7 +32,6 @@ class CommentReply extends ModalComponent
     public function mount($data){
         $this->data = $data;
     }
-
     
     public function replyComment(Comment $com){
         $data = $this->data;
@@ -51,8 +53,17 @@ class CommentReply extends ModalComponent
 
         session()->flash('message', 'Comment Posted');
         $this->resetInput();
+        // $this->emit('refreshData');
+        // $this->reply_id->refresh();
+        // $this->com->refresh();
         $this->closeModal();
     }
+
+    // public function refreshData()
+    // {
+    //     // code to refresh data
+    //     $this->comments = Comment::with('replies')->where('_id', $this->data)->get();
+    // }
 
     public function resetInput(){
         $this->reply = '';
