@@ -14,11 +14,12 @@ class UserTable extends Component
 {
     use WithPagination;
 
-    // public delete;
+    public $table_search='';
+    // public $page = 8;
 
     public function render()
     {
-        $users = User::whereNull('deleted_at')->paginate(8);
+        $users = User::where('name', 'like', '%'.$this->table_search.'%')->orwhere('deleted_at',null)->paginate(8);
         return view('livewire.user-table', ['users' => $users]);
     }
 }

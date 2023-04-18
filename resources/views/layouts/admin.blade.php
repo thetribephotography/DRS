@@ -178,11 +178,11 @@ d="M15.7499 2.9812H14.2874V2.36245C14.2874 2.02495 14.0062 1.71558 13.6405 1.715
 
 
                             <!-- Menu Group -->
-                            {{-- <li>
+                             <!-- <li>
                                 <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-white hover:text-[#005879]"
                                     href="{{ route('admin.groups') }}"
                                     @click="selected = (selected === 'Tables' ? '':'Tables')"
-                                    :class="{ 'bg-white': (selected === 'Tables') && (page === 'Tables') }"> --}}
+                                    :class="{ 'bg-white': (selected === 'Tables') && (page === 'Tables') }"> -->
                             <!-- <svg class="fill-current" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_130_9756)">
                                     <path
@@ -195,7 +195,7 @@ d="M15.7501 0.55835H2.2501C1.29385 0.55835 0.506348 1.34585 0.506348 2.3021V15.8
                                 </defs>
                             </svg> -->
 
-                            {{-- <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"
+                             <!-- <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"
                                         width="19" height="20" viewBox="0 0 19 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -205,7 +205,7 @@ d="M15.7501 0.55835H2.2501C1.29385 0.55835 0.506348 1.34585 0.506348 2.3021V15.8
 
                                     Groups
                                 </a>
-                            </li> --}}
+                            </li> -->
                             <!-- Menu Group  -->
 
                             <!-- Menu Item Reports -->
@@ -412,7 +412,7 @@ class="block text-sm font-medium text-black dark:text-white">{{ Auth::user()->na
                             <!-- </ul> -->
 
                             <!-- User Area -->
-                            <div class="relative" style="margin-left: 762px;" x-data="{ dropdownOpen: false }"
+                            <div class="relative" style="margin-left: 922px;" x-data="{ dropdownOpen: false }"
                                 @click.outside="dropdownOpen = false">
                                 <a class="flex items-center gap-4" href="#"
                                     @click.prevent="dropdownOpen = ! dropdownOpen">
@@ -423,7 +423,7 @@ class="block text-sm font-medium text-black dark:text-white">{{ Auth::user()->na
                                     </span>
 
                                     <span class="h-12 w-12 rounded-full">
-                                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
+                                        <img class="h-12 w-12 rounded-full" src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
                                             alt="User" />
                                     </span>
 

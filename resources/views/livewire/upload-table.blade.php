@@ -1,7 +1,7 @@
 <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default sm:px-7.5 xl:pb-1">
     <div class="flex items-center justify-between pb-4">
         <div>
-            <button
+            <!-- <button
                 class="text-gray-500 border-gray-300 hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 inline-flex items-center rounded-lg border bg-white px-3 py-1.5 text-sm font-medium focus:outline-none focus:ring-4 dark:text-white"
                 id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" type="button">
                 <svg class="text-gray-400 mr-2 h-4 w-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -15,9 +15,9 @@
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
-            </button>
+            </button> -->
             <!-- Dropdown menu -->
-            <div class="divide-gray-100 dark:bg-gray-700 dark:divide-gray-600 z-10 hidden w-48 divide-y rounded-lg bg-white shadow"
+            <!-- <div class="divide-gray-100 dark:bg-gray-700 dark:divide-gray-600 z-10 hidden w-48 divide-y rounded-lg bg-white shadow"
                 id="dropdownRadio" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
                 style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
                 <ul class="text-gray-700 dark:text-gray-200 space-y-1 p-3 text-sm"
@@ -69,7 +69,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <label class="sr-only" for="table-search">Search</label>
         <div class="relative">
@@ -81,9 +81,9 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </div>
-            <input
+            <input wire:model="table_search"
                 class="text-gray-900 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 block w-80 rounded-lg border p-2 pl-10 text-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                id="table-search" type="text" placeholder="Search for items">
+                id="table_search"  type="text" placeholder="Search for items">
         </div>
     </div>
     <div class="max-w-full overflow-x-auto">

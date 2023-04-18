@@ -375,9 +375,9 @@
                                     </div>
                                 </article>
 
-                                {{-- FOR COMMENTS OF COMMENT --}}
+                                {{-- FOR COMMENTS OF COMMENT --}}   
                                 @foreach ($comment->replies as $reply)
-                                    <article class="mb-6 ml-6 rounded-lg bg-white p-6 text-base lg:ml-12">
+                                    <article class="mb-6 ml-6 rounded-lg bg-[#E9EDF1] p-6 text-base lg:ml-12">
                                         <footer class="mb-2 flex items-center justify-between">
                                             <div class="flex items-center">
                                                 <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
