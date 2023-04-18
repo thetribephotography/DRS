@@ -12,7 +12,7 @@
                     </span>
                     <div class="w-full">
                         <p class="font-semibold text-primary">Total Users</p>
-                        <p class="text-sm font-medium">12.03.2022 - 12.04.2022</p>
+                        <p class="text-sm font-medium">01.04.2022 - 18.04.2022</p>
                     </div>
                 </div>
                 <div class="flex min-w-47.5">
@@ -22,7 +22,7 @@
                     </span>
                     <div class="w-full">
                         <p class="font-semibold text-secondary">Total Downloads</p>
-                        <p class="text-sm font-medium">12.03-2023 - 11.04.2023</p>
+                        <p class="text-sm font-medium">01.04-2023 - 18.04.2023</p>
                     </div>
                 </div>
             </div>

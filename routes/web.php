@@ -114,6 +114,8 @@ Route::prefix('')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/user_table', [AdminController::class, 'usertable'])->name('admin.user_table');
     Route::get('/admin/user_uploads', [AdminController::class, 'useruploads'])->name('admin.uploads');
     Route::get('/admin/user_groups', [AdminController::class, 'usergroups'])->name('admin.groups');
+    Route::get('/admin/comment_report', [AdminController::class, 'comment_report'])->name('admin.comment_report');
+
 });
 
 
