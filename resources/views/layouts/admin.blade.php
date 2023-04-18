@@ -241,12 +241,12 @@
                                     <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                                         <li>
                                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                                href="form-elements.html"
+                                                href="#"
                                                 :class="page === 'formElements' && '!text-white'">Reported Uploads</a>
                                         </li>
                                         <li>
                                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                                href="form-layout.html"
+                                                href="{{route ('admin.comment_report') }}"
                                                 :class="page === 'formLayout' && '!text-white'">Reported Comments</a>
                                         </li>
                                     </ul>
@@ -359,8 +359,8 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
                             </span>
                         </button>
                         <!-- Hamburger Toggle BTN -->
-                        <a class="block flex-shrink-0 lg:hidden" href="index.html">
-                            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="User Logo" />
+                        <a class="block flex-shrink-0 lg:hidden" href="{{route ('admin.index') }}">
+                            <img class="rounded-full w-15 h-15" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="User Logo" />
                         </a>
                     </div>
 

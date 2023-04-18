@@ -33,6 +33,12 @@ class AdminController extends Controller
         return view ('admin.user_table', compact('title'));
     }
 
+    //COMMENT REPORT TABLE
+    public function comment_report(){
+        $title = "Report";
+        return view('admin.comment_report', compact('title'));
+    }
+
     // VIEW ALL UPLOADS IN A LIST
     public function useruploads()
     {

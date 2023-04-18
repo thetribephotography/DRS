@@ -16,7 +16,8 @@ class CommentReport extends Component
 
     public function render()
     {
-        $comments = Comment::where('status', 2)->paginate(5);
-        return view('livewire.comment-report',['comments' => $this->comments]);
+        $comments = Comment::with('user')->where('status', 2)->paginate(5);
+        // dd($comments);
+        return view('livewire.comment-report',['comments' => $comments]);
     }
 }

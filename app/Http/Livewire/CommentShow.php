@@ -33,15 +33,15 @@ class CommentShow extends ModalComponent
 
     public function render()
     {
-        $this->show_one = Comment::where('_id', $this->comment)->first();
+        $this->show_one = Comment::with('user')->where('_id', $this->comment)->first();
         return view('livewire.comment-show', [$this->show_one]);
     }
 
     public function delete(){
         $this->comment_delete = Comment::where('_id', $this->comment)->first();
         if($this->comment_delete){
-            
-        } else {
+            $this->comment_delete->delete();
+        } else if (!$this->comment_delete) {
             $this->comment_delete = Reply::where('_id', $this->comment)->first();
             $this->comment_delete->delete();
         }
