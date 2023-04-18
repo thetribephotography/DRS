@@ -102,6 +102,7 @@ class UploadController extends Controller
             ->where('slug', $slug)  //Get by slug
             ->whereIn('access_id', ["1", "2"]) //Get only public
             ->first();
+        // dd($upload->comments);
 
 
         //Track and Record Views using sessions
@@ -354,6 +355,12 @@ class UploadController extends Controller
 
         return view("upload.article_edit", compact("title", "upload", "tags", "categories", "find", "groups"));
     }
+    public function article_update(Request $request, $id)
+    {
+
+
+        return redirect("/dashboard")->with("success", " Updated Successfully");
+    }
 
     public function dataset_save(Request $request)
     {
@@ -501,6 +508,12 @@ class UploadController extends Controller
 
         return view("upload.dataset_edit", compact("title", "upload", "tags", "categories", "find", "groups"));
     }
+    public function dataset_update(Request $request, $id)
+    {
+
+
+        return redirect("/dashboard")->with("success", " Updated Successfully");
+    }
     public function software_save(Request $request)
     {
 
@@ -646,6 +659,12 @@ class UploadController extends Controller
 
 
         return view("upload.software_edit", compact("title", "upload", "tags", "categories", "find", "groups"));
+    }
+    public function software_update(Request $request, $id)
+    {
+
+
+        return redirect("/dashboard")->with("success", " Updated Successfully");
     }
 
     public function workflow_save(Request $request)
@@ -794,6 +813,12 @@ class UploadController extends Controller
 
         return view("upload.workflow_edit", compact("title", "upload", "tags", "categories", "find", "groups"));
     }
+    public function workflow_update(Request $request, $id)
+    {
+
+
+        return redirect("/dashboard")->with("success", " Updated Successfully");
+    }
 
 
 
@@ -836,8 +861,8 @@ class UploadController extends Controller
         // }
 
 
-        $upload->categories()->detach();
-        $upload->tags()->detach();
+        // $upload->categories()->detach();
+        // $upload->tags()->detach();
 
 
         //Delete file from Databse

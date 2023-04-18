@@ -1,5 +1,5 @@
 <x-app-layout :title="$title">
-    <div wire:poll class="h-screen pt-8">
+    <div class="h-screen pt-8" wire:poll>
         <div class="flex pt-8">
 
             {{-- @if (session()->has('message'))
@@ -328,7 +328,7 @@
                                         </button>
                                         <!-- Dropdown menu -->
                                         <div class="divide-gray-100 z-10 hidden w-36 divide-y rounded bg-white shadow">
-                                            <ul class="text-gray-700 py-1 text-sm">
+                                            {{-- <ul class="text-gray-700 py-1 text-sm">
                                                 @if ($comment->user_id == Auth::user()->_id)
                                                     <li>
                                                         <a class="hover:bg-gray-100 block py-2 px-4"
@@ -355,7 +355,7 @@
                                                         </li>
                                                     </form>
                                                 @endif
-                                            </ul>
+                                            </ul> --}}
                                         </div>
                                     </footer>
                                     <p class="text-gray-500"> {{ $comment->content }} </p>
@@ -383,8 +383,9 @@
                                                 <p class="text-gray-900 mr-3 inline-flex items-center text-sm"><img
                                                         class="mr-2 h-6 w-6 rounded-full"
                                                         src="{{ $reply->user->profile_picture ? asset('storage/' . $reply->user->profile_picture) : asset('images/user.jpeg') }}"
-                                                        alt="">{{$reply->user->name}}</p>
-                                                <p class="text-gray-600 text-sm">{{ $reply->created_at->format('F d, Y') }}</p>
+                                                        alt="">{{ $reply->user->name }}</p>
+                                                <p class="text-gray-600 text-sm">
+                                                    {{ $reply->created_at->format('F d, Y') }}</p>
                                             </div>
                                             <button
                                                 class="text-gray-400 focus:ring-gray-50 hover:bg-gray-100 inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium focus:outline-none focus:ring-4"
@@ -399,7 +400,7 @@
                                                 <span class="sr-only">Comment settings</span>
                                             </button>
                                             <!-- Dropdown menu -->
-                                            <div class="divide-gray-100 z-10 hidden w-36 divide-y rounded bg-white shadow"
+                                            <div class="divide-gray-100 z-10 w-36 divide-y rounded bg-white shadow"
                                                 id="dropdownComment2">
                                                 <ul class="text-gray-700 py-1 text-sm"
                                                     aria-labelledby="dropdownMenuIconHorizontalButton">
@@ -418,7 +419,7 @@
                                                 </ul>
                                             </div>
                                         </footer>
-                                        <p class="text-gray-500">{{reply->content}}</p>
+                                        <p class="text-gray-500">{{ reply->content }}</p>
                                         <div class="mt-4 flex items-center space-x-4">
                                         </div>
                                     </article>
