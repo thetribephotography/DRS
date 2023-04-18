@@ -26,9 +26,9 @@ class Group extends Model
         'user_id',
 
     ];
-    protected $casts = [
-        'group_members' => 'array',
-    ];
+    // protected $casts = [
+    //     'group_members' => 'array',
+    // ];
 
     public function uploads()
     {

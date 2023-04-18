@@ -2,8 +2,8 @@ import ApexCharts from "apexcharts";
 
 // ===== chartOne
 const chart01 = (uploadsByMonth, downloadsByMonth, chartMonths) => {
-  let uploadData = [];
-  let downloadData = [];
+  let uploadData = [2, 5, 7, 10];
+  let downloadData = [2, 16, 20, 22];
 
   if (uploadsByMonth && uploadsByMonth.length > 0) {
     uploadData = uploadsByMonth.map((doc) => doc.count);
@@ -27,8 +27,8 @@ const chart01 = (uploadsByMonth, downloadsByMonth, chartMonths) => {
       },
     ],
     xaxis: {
-  type: 'series'
-  },
+      type: "series",
+    },
     legend: {
       show: false,
       position: "top",
@@ -112,7 +112,7 @@ const chart01 = (uploadsByMonth, downloadsByMonth, chartMonths) => {
       },
     },
     xaxis: {
-      type: 'categories',
+      type: "categories",
       categories: chartMonths,
       axisBorder: {
         show: false,
@@ -132,7 +132,7 @@ const chart01 = (uploadsByMonth, downloadsByMonth, chartMonths) => {
     },
   };
 
-    const chartSelector = document.querySelectorAll("#chartOne");
+  const chartSelector = document.querySelectorAll("#chartOne");
 
   //   if (chartSelector.length) {
   //     const chartOne = new ApexCharts(

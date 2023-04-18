@@ -49,7 +49,9 @@
     @livewireStyles
 </head>
 
-<body x-data="{ page: 'analytics', 'loaded': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }">
+<body
+    class="scrollbar-track-gray-100 font-poppins antialiased scrollbar-thin scrollbar-thumb-cmblue scrollbar-thumb-rounded-sm"
+    x-data="{ page: 'analytics', 'loaded': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }">
     <div class="flex h-screen overflow-hidden">
         <aside
             class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#005879] duration-300 ease-linear lg:static lg:translate-x-0"
@@ -79,16 +81,16 @@
                 $watch('selected', value => localStorage.setItem('selected', JSON.stringify(value)))">
                     <!-- Menu Group -->
                     <div>
-                        <h3 class="mb-4 ml-4 text-sm font-medium text-clgray">MENU</h3>
+                        <h3 class="mb-4 ml-4 text-sm font-medium uppercase text-white">Menu</h3>
 
                         <ul class="mb-6 flex flex-col gap-1.5">
                             <!-- Menu Item Dashboard -->
                             <li>
-                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark"
+                                <a class="group relative flex items-center gap-2.5 rounded-sm bg-white py-2 px-4 font-medium text-[#005879] duration-300 ease-in-out"
                                     href="{{ route('admin.index') }}"
                                     @click="selected = (selected === 'Dashboard' ? '':'Dashboard')"
                                     :class="{
-                                        'bg-graydark ': (selected === 'Dashboard') || (page ===
+                                        'bg-white ': (selected === 'Dashboard') || (page ===
                                             'analytics' || page === 'ecommerce')
                                     }">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
@@ -128,11 +130,11 @@
 
                             <!-- Menu Item Users -->
                             <li>
-                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark"
+                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-white hover:text-[#005879]"
                                     href="{{ route('admin.user_table') }}"
                                     @click="selected = (selected === 'Profile' ? '':'Profile')"
-                                    :class="{ 'bg-graydark ': (selected === 'Profile') && (page === 'profile') }"
-                                    :class="page === 'profile' && 'bg-graydark'">
+                                    :class="{ 'bg-white ': (selected === 'Profile') && (page === 'profile') }"
+                                    :class="page === 'profile' && 'bg-white'">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -148,20 +150,26 @@
                             </li>
                             <!-- Menu Item Users -->
 
-                    <!-- Menu Item Uploads -->
-                    <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="{{ route ('admin.uploads') }}" @click="selected = (selected === 'CloudArrowUpIcon' ? '':'CloudArrowUpIcon')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'CloudArrowUpIcon') && (page === 'CloudArrowUpIcon') }">
-                            <!-- <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <!-- Menu Item Uploads -->
+                            <li>
+                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-white hover:text-[#005879]"
+                                    href="{{ route('admin.uploads') }}"
+                                    @click="selected = (selected === 'CloudArrowUpIcon' ? '':'CloudArrowUpIcon')"
+                                    :class="{
+                                        'bg-white': (selected === 'CloudArrowUpIcon') && (page ===
+                                            'CloudArrowUpIcon')
+                                    }">
+                                    <!-- <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
-                                    d="M15.7499 2.9812H14.2874V2.36245C14.2874 2.02495 14.0062 1.71558 13.6405 1.71558C13.2749 1.71558 12.9937 1.99683 12.9937 2.36245V2.9812H4.97803V2.36245C4.97803 2.02495 4.69678 1.71558 4.33115 1.71558C3.96553 1.71558 3.68428 1.99683 3.68428 2.36245V2.9812H2.2499C1.29365 2.9812 0.478027 3.7687 0.478027 4.75308V14.5406C0.478027 15.4968 1.26553 16.3125 2.2499 16.3125H15.7499C16.7062 16.3125 17.5218 15.525 17.5218 14.5406V4.72495C17.5218 3.7687 16.7062 2.9812 15.7499 2.9812ZM1.77178 8.21245H4.1624V10.9968H1.77178V8.21245ZM5.42803 8.21245H8.38115V10.9968H5.42803V8.21245ZM8.38115 12.2625V15.0187H5.42803V12.2625H8.38115ZM9.64678 12.2625H12.5999V15.0187H9.64678V12.2625ZM9.64678 10.9968V8.21245H12.5999V10.9968H9.64678ZM13.8374 8.21245H16.228V10.9968H13.8374V8.21245ZM2.2499 4.24683H3.7124V4.83745C3.7124 5.17495 3.99365 5.48433 4.35928 5.48433C4.7249 5.48433 5.00615 5.20308 5.00615 4.83745V4.24683H13.0499V4.83745C13.0499 5.17495 13.3312 5.48433 13.6968 5.48433C14.0624 5.48433 14.3437 5.20308 14.3437 4.83745V4.24683H15.7499C16.0312 4.24683 16.2562 4.47183 16.2562 4.75308V6.94683H1.77178V4.75308C1.77178 4.47183 1.96865 4.24683 2.2499 4.24683ZM1.77178 14.5125V12.2343H4.1624V14.9906H2.2499C1.96865 15.0187 1.77178 14.7937 1.77178 14.5125ZM15.7499 15.0187H13.8374V12.2625H16.228V14.5406C16.2562 14.7937 16.0312 15.0187 15.7499 15.0187Z"
-                                    fill="" />
+d="M15.7499 2.9812H14.2874V2.36245C14.2874 2.02495 14.0062 1.71558 13.6405 1.71558C13.2749 1.71558 12.9937 1.99683 12.9937 2.36245V2.9812H4.97803V2.36245C4.97803 2.02495 4.69678 1.71558 4.33115 1.71558C3.96553 1.71558 3.68428 1.99683 3.68428 2.36245V2.9812H2.2499C1.29365 2.9812 0.478027 3.7687 0.478027 4.75308V14.5406C0.478027 15.4968 1.26553 16.3125 2.2499 16.3125H15.7499C16.7062 16.3125 17.5218 15.525 17.5218 14.5406V4.72495C17.5218 3.7687 16.7062 2.9812 15.7499 2.9812ZM1.77178 8.21245H4.1624V10.9968H1.77178V8.21245ZM5.42803 8.21245H8.38115V10.9968H5.42803V8.21245ZM8.38115 12.2625V15.0187H5.42803V12.2625H8.38115ZM9.64678 12.2625H12.5999V15.0187H9.64678V12.2625ZM9.64678 10.9968V8.21245H12.5999V10.9968H9.64678ZM13.8374 8.21245H16.228V10.9968H13.8374V8.21245ZM2.2499 4.24683H3.7124V4.83745C3.7124 5.17495 3.99365 5.48433 4.35928 5.48433C4.7249 5.48433 5.00615 5.20308 5.00615 4.83745V4.24683H13.0499V4.83745C13.0499 5.17495 13.3312 5.48433 13.6968 5.48433C14.0624 5.48433 14.3437 5.20308 14.3437 4.83745V4.24683H15.7499C16.0312 4.24683 16.2562 4.47183 16.2562 4.75308V6.94683H1.77178V4.75308C1.77178 4.47183 1.96865 4.24683 2.2499 4.24683ZM1.77178 14.5125V12.2343H4.1624V14.9906H2.2499C1.96865 15.0187 1.77178 14.7937 1.77178 14.5125ZM15.7499 15.0187H13.8374V12.2625H16.228V14.5406C16.2562 14.7937 16.0312 15.0187 15.7499 15.0187Z" fill=""/>
                             </svg> -->
-                            <svg fill="none" stroke="currentColor" width="19" height="19" viewBox="0 0 20 20" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"></path>
-                            </svg>
+                                    <svg aria-hidden="true" fill="none" stroke="currentColor" width="19"
+                                        height="19" viewBox="0 0 20 20" stroke-width="1.5"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z">
+                                        </path>
+                                    </svg>
 
                                     Uploads
                                 </a>
@@ -169,40 +177,43 @@
                             <!-- Menu Item Uploads -->
 
 
-                    <!-- Menu Group -->
-                    <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="{{ route('admin.groups') }}" @click="selected = (selected === 'Tables' ? '':'Tables')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') && (page === 'Tables') }">
-                            <!-- <svg class="fill-current" width="18" height="19" viewBox="0 0 18 19" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <!-- Menu Group -->
+                            {{-- <li>
+                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-white hover:text-[#005879]"
+                                    href="{{ route('admin.groups') }}"
+                                    @click="selected = (selected === 'Tables' ? '':'Tables')"
+                                    :class="{ 'bg-white': (selected === 'Tables') && (page === 'Tables') }"> --}}
+                            <!-- <svg class="fill-current" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_130_9756)">
                                     <path
-                                        d="M15.7501 0.55835H2.2501C1.29385 0.55835 0.506348 1.34585 0.506348 2.3021V15.8021C0.506348 16.7584 1.29385 17.574 2.27822 17.574H15.7782C16.7345 17.574 17.5501 16.7865 17.5501 15.8021V2.3021C17.522 1.34585 16.7063 0.55835 15.7501 0.55835ZM6.69385 10.599V6.4646H11.3063V10.5709H6.69385V10.599ZM11.3063 11.8646V16.3083H6.69385V11.8646H11.3063ZM1.77197 6.4646H5.45635V10.5709H1.77197V6.4646ZM12.572 6.4646H16.2563V10.5709H12.572V6.4646ZM2.2501 1.82397H15.7501C16.0313 1.82397 16.2563 2.04897 16.2563 2.33022V5.2271H1.77197V2.3021C1.77197 2.02085 1.96885 1.82397 2.2501 1.82397ZM1.77197 15.8021V11.8646H5.45635V16.3083H2.2501C1.96885 16.3083 1.77197 16.0834 1.77197 15.8021ZM15.7501 16.3083H12.572V11.8646H16.2563V15.8021C16.2563 16.0834 16.0313 16.3083 15.7501 16.3083Z"
-                                        fill="" />
+d="M15.7501 0.55835H2.2501C1.29385 0.55835 0.506348 1.34585 0.506348 2.3021V15.8021C0.506348 16.7584 1.29385 17.574 2.27822 17.574H15.7782C16.7345 17.574 17.5501 16.7865 17.5501 15.8021V2.3021C17.522 1.34585 16.7063 0.55835 15.7501 0.55835ZM6.69385 10.599V6.4646H11.3063V10.5709H6.69385V10.599ZM11.3063 11.8646V16.3083H6.69385V11.8646H11.3063ZM1.77197 6.4646H5.45635V10.5709H1.77197V6.4646ZM12.572 6.4646H16.2563V10.5709H12.572V6.4646ZM2.2501 1.82397H15.7501C16.0313 1.82397 16.2563 2.04897 16.2563 2.33022V5.2271H1.77197V2.3021C1.77197 2.02085 1.96885 1.82397 2.2501 1.82397ZM1.77197 15.8021V11.8646H5.45635V16.3083H2.2501C1.96885 16.3083 1.77197 16.0834 1.77197 15.8021ZM15.7501 16.3083H12.572V11.8646H16.2563V15.8021C16.2563 16.0834 16.0313 16.3083 15.7501 16.3083Z" fill=""/>
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_130_9756">
-                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)" />
+                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)"/>
                                     </clipPath>
                                 </defs>
                             </svg> -->
 
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
-                            </svg>
+                            {{-- <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        width="19" height="20" viewBox="0 0 19 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z">
+                                        </path>
+                                    </svg>
 
                                     Groups
                                 </a>
-                            </li>
+                            </li> --}}
                             <!-- Menu Group  -->
 
                             <!-- Menu Item Reports -->
                             <li>
-                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark"
+                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-white hover:text-[#005879]"
                                     href="#" @click.prevent="selected = (selected === 'Forms' ? '':'Forms')"
                                     :class="{
-                                        'bg-graydark': (selected === 'Forms') || (page ===
+                                        'bg-white': (selected === 'Forms') || (page ===
                                             'formElements' || page === 'formLayout')
                                     }">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
@@ -239,11 +250,11 @@
                                 <!-- Dropdown Menu Start -->
                                 <div class="overflow-hidden" :class="(selected === 'Forms') ? 'block' : 'hidden'">
                                     <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                                        <li>
+                                        {{-- <li>
                                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                                 href="form-elements.html"
                                                 :class="page === 'formElements' && '!text-white'">Reported Uploads</a>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                                 href="form-layout.html"
@@ -281,16 +292,16 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
                     </div>
 
                     <!-- Others Group -->
-                    <div>
+                    {{-- <div>
                         <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">OTHERS</h3>
 
-                        <ul class="mb-6 flex flex-col gap-1.5">
-                            <!-- Menu Item Settings -->
-                            <li>
-                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                        <ul class="mb-6 flex flex-col gap-1.5"> --}}
+                    <!-- Menu Item Settings -->
+                    {{-- <li>
+                                <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-white hover:text-[#005879]"
                                     href="settings.html" @click="selected = (selected === 'Settings' ? '':'Settings')"
-                                    :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') && (page === 'settings') }"
-                                    :class="page === 'settings' && 'bg-graydark'">
+                                    :class="{ 'bg-white': (selected === 'Settings') && (page === 'settings') }"
+                                    :class="page === 'settings' && 'bg-white'">
                                     <svg class="fill-current" width="18" height="19" viewBox="0 0 18 19"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_130_9763)">
@@ -311,15 +322,15 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
 
                                     Settings
                                 </a>
-                            </li>
-                            <!-- Menu Item Settings -->
+                            </li> --}}
+                    <!-- Menu Item Settings -->
 
 
-                            <!-- Menu Item Chart -->
+                    <!-- Menu Item Chart -->
 
-                            <!-- Menu Item Auth Pages -->
-                        </ul>
-                    </div>
+                    <!-- Menu Item Auth Pages -->
+                    {{-- </ul>
+                    </div> --}}
                 </nav>
                 <!-- Sidebar Menu -->
             </div>
@@ -328,32 +339,31 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
         <!-- HEADER -->
 
         <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-            <header
-                class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
+            <header class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">
                 <div class="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
                     <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
                         <!-- Hamburger Toggle BTN -->
                         <button
-                            class="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
+                            class="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm lg:hidden"
                             @click.stop="sidebarToggle = !sidebarToggle">
                             <span class="relative block h-5.5 w-5.5 cursor-pointer">
                                 <span class="du-block absolute right-0 h-full w-full">
                                     <span
-                                        class="relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white"
+                                        class="relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out"
                                         :class="{ '!w-full delay-300': !sidebarToggle }"></span>
                                     <span
-                                        class="relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white"
+                                        class="relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out"
                                         :class="{ '!w-full delay-400': !sidebarToggle }"></span>
                                     <span
-                                        class="relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white"
+                                        class="relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out"
                                         :class="{ '!w-full delay-500': !sidebarToggle }"></span>
                                 </span>
                                 <span class="du-block absolute right-0 h-full w-full rotate-45">
                                     <span
-                                        class="absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white"
+                                        class="absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out"
                                         :class="{ 'h-0 delay-[0]': !sidebarToggle }"></span>
                                     <span
-                                        class="delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white"
+                                        class="delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out"
                                         :class="{ 'h-0 dealy-200': !sidebarToggle }"></span>
                                 </span>
                             </span>
@@ -376,7 +386,33 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
                             <!-- </ul> -->
 
                             <!-- User Area -->
-                            <!-- <div class="relative" style="margin-left: 880px;" x-data="{ dropdownOpen: false }"
+                            <!-- <div class="relative" style="margin-left: 880px;" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
+                                <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
+                                    <span class="hidden text-right lg:block">
+                                        <span
+class="block text-sm font-medium text-black dark:text-white">{{ Auth::user()->name }}</span>
+                                        <span class="block text-xs font-medium">Admin</span>
+                                    </span>
+
+                                    <span class="h-12 w-12 rounded-full">
+                                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="User"/>
+                                    </span>
+
+                                    <svg class="hidden fill-current sm:block" :class="dropdownOpen && 'rotate-180'" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z" fill=""/>
+                                    </svg>
+                                </a> -->
+
+                            <!-- Notification Menu Area -->
+
+                            <!-- Chat Notification Area -->
+                            <li class="relative" x-data="{ dropdownOpen: false, notifying: true }" @click.outside="dropdownOpen = false">
+                            </li>
+                            <!-- Chat Notification Area -->
+                            <!-- </ul> -->
+
+                            <!-- User Area -->
+                            <div class="relative" style="margin-left: 762px;" x-data="{ dropdownOpen: false }"
                                 @click.outside="dropdownOpen = false">
                                 <a class="flex items-center gap-4" href="#"
                                     @click.prevent="dropdownOpen = ! dropdownOpen">
@@ -398,45 +434,15 @@ d="M9.00029 5.22705C6.89092 5.22705 5.17529 6.94268 5.17529 9.05205C5.17529 11.1
                                             d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
                                             fill="" />
                                     </svg>
-                                </a> -->
+                                </a>
 
-        <!-- Notification Menu Area -->
-
-        <!-- Chat Notification Area -->
-      <li class="relative" x-data="{ dropdownOpen: false, notifying: true }" @click.outside="dropdownOpen = false">
-      </li>
-        <!-- Chat Notification Area -->
-      <!-- </ul> -->
-
-      <!-- User Area -->
-      <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false" style="margin-left: 762px;">
-        <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
-          <span class="hidden text-right lg:block">
-            <span class="block text-sm font-medium text-black dark:text-white">{{ Auth::user()->name }}</span>
-            <span class="block text-xs font-medium">Admin</span>
-          </span>
-
-          <span class="h-12 w-12 rounded-full">
-            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="User" />
-          </span>
-
-          <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12" height="8"
-            viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
-              fill="" />
-          </svg>
-        </a>
-
-        <!-- Dropdown Start -->
-        <div x-show="dropdownOpen"
-          class="absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <!-- <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark"> -->
-            <!-- <li>
-              <a href="profile.html"
-                class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
-                <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
+                                <!-- Dropdown Start -->
+                                <div class="absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+                                    x-show="dropdownOpen">
+                                    <!-- <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark"> -->
+                                    <!-- <li>
+              <a class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" href="profile.html">
+                <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
 d="M11 9.62499C8.42188 9.62499 6.35938 7.59687 6.35938 5.12187C6.35938 2.64687 8.42188 0.618744 11 0.618744C13.5781 0.618744 15.6406 2.64687 15.6406 5.12187C15.6406 7.59687 13.5781 9.62499 11 9.62499ZM11 2.16562C9.28125 2.16562 7.90625 3.50624 7.90625 5.12187C7.90625 6.73749 9.28125 8.07812 11 8.07812C12.7188 8.07812 14.0938 6.73749 14.0938 5.12187C14.0938 3.50624 12.7188 2.16562 11 2.16562Z" fill=""/>
                   <path
