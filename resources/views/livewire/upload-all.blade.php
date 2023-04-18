@@ -354,7 +354,8 @@
                                                 <ul class="text-gray-700 text-sm">
                                                     <li>
                                                         <a class="hover:bg-gray-100 block px-4 py-2" href="#">
-                                                            <div class="flex hover:text-green-400">
+                                                            <div class="flex hover:text-green-400"
+                                                                x-data="{ open: false }">
                                                                 <svg class="h-4 w-4"
                                                                     xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
@@ -367,7 +368,65 @@
                                                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                                 </svg>
 
-                                                                <span class="ml-1">Change Access</span>
+                                                                <span class="ml-1" x-show="true"
+                                                                    @click="open=!open">Change Access</span>
+                                                                {{-- Test --}}
+                                                                <div class="h-modal fixed z-50 w-full overflow-y-auto overflow-x-hidden md:inset-0 md:h-full"
+                                                                    x-show="open">
+                                                                    <div class="h-full w-full max-w-lg p-4 md:h-auto">
+                                                                        <div
+                                                                            class="rounded-lg bg-white p-4 shadow md:p-8">
+                                                                            <div
+                                                                                class="text-gray-500 mb-4 text-sm font-light">
+                                                                                <h3
+                                                                                    class="mb-3 text-2xl font-bold text-clblack">
+                                                                                    Change Access</h3>
+                                                                                <form
+                                                                                    action="{{ route('upload.update.access', $upload->id) }}"
+                                                                                    method="POST"
+                                                                                    enctype="multipart/form-data">
+                                                                                    @csrf
+                                                                                    @method('PUT')
+                                                                                    <label
+                                                                                        class="mb-2 block text-sm font-medium text-clblack"
+                                                                                        for="">Update
+                                                                                        Access</label>
+                                                                                    <select
+                                                                                        class="bg-gray-50 border-gray-300 block w-full rounded-lg border p-2.5 text-sm text-clblack focus:border-blue-500 focus:ring-blue-500"
+                                                                                        id="access_type"
+                                                                                        name="access_type">
+                                                                                        <option value="1">Public
+                                                                                        </option>
+                                                                                        <option value="2">Private
+                                                                                        </option>
+                                                                                        <option value="3">Group
+                                                                                        </option>
+                                                                                        <option value="4">Personal
+                                                                                        </option>
+                                                                                    </select>
+
+                                                                                    <div
+                                                                                        class="mt-4 items-center justify-between space-y-4 pt-0 sm:flex sm:space-y-0">
+                                                                                        <div
+                                                                                            class="items-center space-y-4 sm:flex sm:space-x-4 sm:space-y-0">
+                                                                                            <button
+                                                                                                class="border-gray-200 hover:bg-gray-100 focus:ring-primary-300 hover:text-gray-900 w-full rounded-lg border bg-white py-2 px-4 text-sm font-medium text-clblack focus:z-10 focus:outline-none focus:ring-4 sm:w-auto"
+                                                                                                id="close-modal"
+                                                                                                type="button"
+                                                                                                @click="open = false">Cancel</button>
+                                                                                            <button
+                                                                                                class="hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 w-full rounded-lg bg-cmblue py-2 px-4 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 sm:w-auto"
+                                                                                                id="confirm-button"
+                                                                                                type="submit">Confirm</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {{-- End Test --}}
                                                             </div>
                                                         </a>
                                                         @if ($upload->topic_id == 1)

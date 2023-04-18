@@ -34,8 +34,9 @@
 
     {{-- Input Fields --}}
     <section class="my-8 h-full w-full pb-6 md:ml-[24rem] md:w-[51rem]">
-        <form method="POST" action="{{ route('upload.update.article') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('upload.update.article', $upload->id) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             {{-- Side by isde --}}
             <div class="mb-6 grid gap-6 px-6 pt-4 md:grid-cols-2">
                 <div>
@@ -265,6 +266,15 @@
                                 id="private" name="example" type="radio" value="2">
                             <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
                                 for="horizontal-list-radio-id">Private</label>
+                        </div>
+                    </li>
+                    <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">
+                        <div class="flex items-center pl-3">
+                            <input
+                                class="border-gray-300 bg-gray-100 h-4 w-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                id="private" name="example" type="radio" value="4">
+                            <label class="text-gray-900 ml-2 w-full py-3 text-sm font-medium"
+                                for="horizontal-list-radio-id">Personal</label>
                         </div>
                     </li>
                     <li class="border-gray-200 w-full border-b sm:border-b-0 sm:border-r">

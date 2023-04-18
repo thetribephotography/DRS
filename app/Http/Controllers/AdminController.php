@@ -24,13 +24,18 @@ class AdminController extends Controller
     public function index()
     {
         $title  = "Admin|Dashboard";
-        return view('admin.index', compact('title'));
+        $users = User::all();
+        $uploads = Upload::all();
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('admin.index', compact('title', 'tags', 'categories', 'uploads', 'users'));
     }
 
     //USER TABLE
-    public function usertable(){
+    public function usertable()
+    {
         $title  = "Admin|Dashboard";
-        return view ('admin.user_table', compact('title'));
+        return view('admin.user_table', compact('title'));
     }
 
     //COMMENT REPORT TABLE

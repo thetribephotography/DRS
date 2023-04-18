@@ -18,7 +18,7 @@ class UserTable extends Component
 
     public function render()
     {
-        $users = User::whereNull('deleted_at')->paginate(4);
+        $users = User::whereNull('deleted_at')->paginate(8);
         return view('livewire.user-table', ['users' => $users]);
     }
 }
